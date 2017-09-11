@@ -114,23 +114,46 @@ def generate():
 
 def logisticf(x, th):
 	steepness = 20 # arbitrary?
-	return 1/(1 + exp((th-x) * steepness))
+	return float(1)/(1 + exp((th-x) * steepness))
+
+def probFloor(a, prob):
+	if a > (1-prob):
+		return 1
+	return 0
 
 def simulate():
+	# yes lotta hardcoding, but hopefully there's just a better way to take arguments like this. TODO
 	prefix = raw_input("Input prefix: ")
 	maxIdx = raw_input("Highest folder index: [0] ")
 	maxIdx = (int(maxIdx) if len(maxIdx) > 0 else 0)
+	iterations = raw_input("Number of iterations: [20000] ")
+	iterations = (int(iterations) if len(iterations) > 0 else 20000)
 	
 	spikeChance = raw_input("Spike chance: [.1]")
 	spikeChance = (float(spikeChance) if len(spikeChance) > 0 else .1)
 	
+	initSpikeChance = raw_input("Init spike chance: [.5] ")
+	initSpikeChance = (float(initSpikeChance) if len(initSpikeChance) > 0 else .5)
+	
+	threshold = raw_input("Threshold: [.5]")
+	threshold = (float(threshold) if len(threshold) > 0 else .5)
+	
+	pFloor = np.vectorize(probFloor)
+	logistic = np.vectorize(logisticf)
+	
 	
 	for i in range(0,maxIdx+1):
-		w = np.genfromtxt(prefix + "/" + str(i) + "/w.csv", delimiter=',')
-		s = np.random.randint(2, size=len(w))
-	# TODO
+		w = np.matrix(np.genfromtxt(prefix + "/" + str(i) + "/w.csv", delimiter=','))
+		s = np.matrix(pFloor(np.random.rand(len(w), 1), initSpikeChance))
+		out = s
+		for j in range(0, iterations):
+			s = w * s
+			s = s + np.matrix(pFloor(np.random.rand(len(w), 1), spikeChance))
+			s = logistic(s, threshold)
+			out = np.append(out, s, 1)
+		np.savetxt(prefix + "/" + str(i) + "data.csv", out, delimiter=',')	
+	# TODO: noisify
 	
-	print("todo")
 
 
 def main():
@@ -147,7 +170,7 @@ def main():
 			drawNx(genNx(w), drawEdgeLabels=showEdges)
 		else:
 			print("Syntax: " + sys.argv[0] + " [" + options + "]")
-		# TODO: handle
+		# TODO
 		exit()
 	else:
 		print("Syntax: " + sys.argv[0] + " [" + options + "]")
