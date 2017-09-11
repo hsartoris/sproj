@@ -151,7 +151,7 @@ def simulate():
 			s = s + np.matrix(pFloor(np.random.rand(len(w), 1), spikeChance))
 			s = logistic(s, threshold)
 			out = np.append(out, s, 1)
-		np.savetxt(prefix + "/" + str(i) + "data.csv", out, delimiter=',')	
+		np.savetxt(prefix + "/" + str(i) + "/data.csv", out, delimiter=',')	
 	# TODO: noisify
 	
 
