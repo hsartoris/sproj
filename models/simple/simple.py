@@ -148,7 +148,7 @@ def simulate():
 		out = s
 		for j in range(0, iterations):
 			s = w * s
-			s = s + np.matrix(pFloor(np.random.rand(len(w), 1), spikeChance))
+			s = s + np.matrix(pFloor(np.random.rand(len(w), 1), spikeChance)) # disabling random spiking for testing purposes
 			s = logistic(s, threshold)
 			out = np.append(out, s, 1)
 		np.savetxt(prefix + "/" + str(i) + "/data.csv", out, delimiter=',')	
