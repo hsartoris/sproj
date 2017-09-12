@@ -37,24 +37,45 @@ def drawNx(g, drawEdgeLabels=False):
 	pylab.show()
 
 
-def randWeightMatrix(numNeurons, cycles, isVerbose, minWeight=1, maxWeight=1):
+def randWeightMatrix(numPrimaries, cycles, isVerbose, minWeight=1, maxWeight=1, makeTris=False, soloNeurons=0):
 	# returns a 2d array of weights defining a fully connected, somewhat reasonable network
-	out = np.arange(numNeurons)
-	mem = np.array([])
+	numNeurons = (numPrimaries if not makeTris else (numPrimaries * 3) + soloNeurons)
+	out = np.arange(numNeurons) # neurons not yet in network
+	mem = np.array([])							# neurons in network
 	w = np.zeros(shape=(numNeurons, numNeurons))
 	mem = np.append(mem, random.randint(0, len(out) - 1))
 	out = np.delete(out, mem[0])
 	if isVerbose: print("First node: " + str(mem[0]))
-	while len(out) > 0:
-		# choose a node in the network & a node outside the network
-		# add a directed edge from the latter to the former & add note that the other is now in the network
-		memberNode = mem[random.randint(0, len(mem) - 1)]  # actual index of the node in the weight matrix
-		newMember = random.randint(0, len(out) - 1)  # index of actual index
-		if isVerbose: print("Adding node " + str(out[newMember]) + " connected to " + str(int(memberNode)))
-		# w[memberNode] is the input vector for memberNode
-		w[int(memberNode)][int(out[newMember])] = random.uniform(minWeight, maxWeight)
+	#while len(out) > 0:
+	for i in range(1, numNeurons):
+		newMember = random.randint(0, len(out) - 1) # index of actual index
+		if not makeTris:
+			# choose a node in the network & a node outside the network
+			# add a directed edge from the latter to the former & add note that the other is now in the network
+			memberNode = mem[random.randint(0, len(mem) - 1)]  # actual index of the node in the weight matrix
+			# newMember = random.randint(0, len(out) - 1)  # index of actual index
+			if isVerbose: print("Adding node " + str(out[newMember]) + " connected to " + str(int(memberNode)))
+			# w[memberNode] is the input vector for memberNode
+			#w[int(memberNode)][int(out[newMember])] = random.uniform(minWeight, maxWeight)
+			#mem = np.append(mem, out[newMember])
+			#out = np.delete(out, newMember)
+		elif i < numPrimaries * 3:
+			if i%3 != 0:
+				#if i%3 != 0: # if in the middle of defining a triangle
+				memberNode = mem[i-1] # get index in weight matrix of previous
+			else:
+				# 3rd tri
+				memberNode = -1 # signal not to connect this yet
+		else:
+			memberNode = -1
+		if memberNode != -1:
+			w[int(memberNode)][int(out[newMember])] = random.uniform(minWeight, maxWeight)
 		mem = np.append(mem, out[newMember])
 		out = np.delete(out, newMember)
+	# at this point all nodes should be connected OR all triangles should be formed and last chunk are unconnected solo neurons
+	
+	#if makeTris:
+		# TODO: connect solo neurons and triangles together
 
 	if isVerbose:
 		print("Pre-cycle matrix: ")
@@ -178,4 +199,6 @@ def main():
 
 
 if __name__ == "__main__":
-	main()
+	#main()
+	w = randWeightMatrix(3,0,False,makeTris=True)
+	drawNx(genNx(w))
