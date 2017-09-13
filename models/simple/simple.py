@@ -37,14 +37,23 @@ def drawNx(g, drawEdgeLabels=False):
 		nx.draw_networkx(g, labels=nodeLabels)
 	pylab.show()
 
+def addConnection(w, f=-1, t=-1, weight=1, verbose=False):
+	if f >= 0 and t >= 0:
+		w[int(t)][int(f)] = weight
+		if verbose:
+			print("Adding connection from " + str(int(f)) + " to " + str(int(t)) + ".")
+	else:
+		print("Tried to add with bad indices")
 
-def randWeightMatrix(numNeurons, cycles, isVerbose, minWeight=1, maxWeight=1, makeTris=False, numTris=0):
+def randWeightMatrix(numNeurons, cycles, verbose, minWeight=1, maxWeight=1, makeTris=False, numTris=0):
 	# returns a 2d array of weights defining a fully connected, somewhat reasonable network
 	if makeTris and numTris == 0:
 		soloNeurons = numNeurons % 3
+		numTris = int(numNeurons / 3)
 	elif numTris > 0:
 		if numTris * 3 < numNeurons: soloNeurons = numNeurons - (numTris * 3)
 	else:
+		print("fuck this")
 		# fuck this
 	#numNeurons = (numPrimaries if not makeTris else (numPrimaries * 3) + soloNeurons)
 	out = np.arange(numNeurons) # neurons not yet in network
@@ -52,7 +61,10 @@ def randWeightMatrix(numNeurons, cycles, isVerbose, minWeight=1, maxWeight=1, ma
 	w = np.zeros(shape=(numNeurons, numNeurons))
 	mem = np.append(mem, random.randint(0, len(out) - 1))
 	out = np.delete(out, mem[0])
-	if isVerbose: print("First node: " + str(mem[0]))
+	if verbose: print("First node: " + str(int(mem[0])))
+	if makeTris:
+		tris = np.zeros(shape=(numTris, 3))
+		tris[0][0] = mem[0]
 	#while len(out) > 0:
 	for i in range(1, numNeurons):
 		newMember = random.randint(0, len(out) - 1) # index of actual index
@@ -60,40 +72,61 @@ def randWeightMatrix(numNeurons, cycles, isVerbose, minWeight=1, maxWeight=1, ma
 			# choose a node in the network & a node outside the network
 			# add a directed edge from the latter to the former & add note that the other is now in the network
 			memberNode = mem[random.randint(0, len(mem) - 1)]  # actual index of the node in the weight matrix
-		elif i < numPrimaries * 3:
-			if i%3 != 0 and not i == numNeurons - 1:
+		elif i < numTris * 3:
+			tris[int(i/3)][i%3] = int(out[newMember])
+			if i%3 != 0:
 				# if in the middle of defining a triangle
 				memberNode = mem[i-1] # get index in weight matrix of previous
+				if i%3 == 2:
+					# connect back to first part of triangle
+					addConnection(w, f=int(mem[i-2]), t=int(out[newMember]), weight=random.uniform(minWeight,maxWeight), verbose=verbose)
 			else:
 				# 3rd tri
-				w[int(mem[i-3])][int(mem[i-1])] = random.uniform(minWeight, maxWeight) # connect third node to first
 				memberNode = -1 # signal not to connect this yet
 		else:
 			memberNode = -1
 		if memberNode != -1:
-			if isVerbose: print("Adding node " + str(out[newMember]) + " connected to " + str(int(memberNode)))
-			w[int(out[newMember])][int(memberNode)] = random.uniform(minWeight, maxWeight)
+			addConnection(w, f=int(out[newMember]), t=int(memberNode), weight=random.uniform(minWeight,maxWeight), verbose=verbose)
+
 		mem = np.append(mem, out[newMember])
 		out = np.delete(out, newMember)
 	# at this point all nodes should be connected OR all triangles should be formed and last chunk are unconnected solo neurons
+	if verbose and makeTris: print("Triangles assembled; connecting")
+	if makeTris:
+		# this actually is probably extensible to any dimension shape
+		# like 1d......
+		addedTris = np.array([[]])
+		i = random.randint(0, len(tris)-1)
+		addedTris = np.concatenate((addedTris, np.array([tris[i]])), axis=1)
+		tris = np.delete(tris, i, 0)
+		while len(tris) > 0:
+			nextTri = random.randint(0, len(tris)-1)
+			currTri = random.randint(0, len(addedTris)-1)
+			addConnection(w, f=tris[nextTri][random.randint(0,len(tris[nextTri])-1)], t=addedTris[currTri][random.randint(0,len(addedTris[currTri])-1)], weight=random.uniform(minWeight, maxWeight), verbose=verbose)
+			# god damn
+			addedTris = np.concatenate((addedTris, np.array([tris[nextTri]])), axis=0)
+			tris = np.delete(tris, nextTri, 0)
+		if verbose: print("Connected tris")
 
-	#if makeTris:
-		# TODO: connect solo neurons and triangles together
+	# TODO: soloNeurons
 
-	if isVerbose:
+	if verbose:
 		print("Pre-cycle matrix: ")
 		print(w)
 
 	# insert the random cycles
 	while cycles > 0:
-		node1 = node2 = mem[random.randint(0, len(mem) - 1)]
+		#node1 = node2 = mem[random.randint(0, len(mem) - 1)]
+		node1 = node2 = random.randint(0, len(w) - 1)
 		while node1 == node2:
 			# make sure we have different nodes
-			node2 = mem[random.randint(0, len(mem) - 1)]
-		w[int(node1)][int(node2)] = random.uniform(minWeight, maxWeight)
-		if isVerbose: print("Adding connection from node " + str(int(node2)) + " to node " + str(int(node1)))
+			#node2 = mem[random.randint(0, len(mem) - 1)]
+			node2 = random.randint(0, len(w) -1)
+		addConnection(w, f=node1, t=node1, weight=random.uniform(minWeight,maxWeight), verbose=verbose)
+		#w[int(node1)][int(node2)] = random.uniform(minWeight, maxWeight)
+		#if verbose: print("Adding connection from node " + str(int(node2)) + " to node " + str(int(node1)))
 		cycles = cycles - 1
-	if isVerbose:
+	if verbose:
 		print("Post-cycle matrix:")
 		print(w)
 	return w
@@ -245,5 +278,5 @@ def main():
 
 if __name__ == "__main__":
 	#main()
-	w = randWeightMatrix(3,0,True,makeTris=True)
+	w = randWeightMatrix(27,10,True,makeTris=True)
 	drawNx(genNx(w))
