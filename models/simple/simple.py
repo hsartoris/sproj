@@ -61,6 +61,7 @@ def randWeightMatrix(numNeurons, cycles, verbose, minWeight=1, maxWeight=1, make
 	w = np.zeros(shape=(numNeurons, numNeurons))
 	mem = np.append(mem, random.randint(0, len(out) - 1))
 	out = np.delete(out, mem[0])
+	solo = np.array([])
 	if verbose: print("First node: " + str(int(mem[0])))
 	if makeTris:
 		tris = np.zeros(shape=(numTris, 3))
@@ -85,6 +86,9 @@ def randWeightMatrix(numNeurons, cycles, verbose, minWeight=1, maxWeight=1, make
 				memberNode = -1 # signal not to connect this yet
 		else:
 			memberNode = -1
+			#solo = np.append(solo, out[newMember])
+			tris = np.concatenate((tris, np.array([[out[memberNode], out[memberNode], out[memberNode]]])), axis=0)
+			# ok this is hacky
 		if memberNode != -1:
 			addConnection(w, f=int(out[newMember]), t=int(memberNode), weight=random.uniform(minWeight,maxWeight), verbose=verbose)
 
@@ -171,6 +175,7 @@ def generate(num, neur, cycles, verbosity, minWeight, maxWeight, prefix):
 
 def logisticf(x, th):
 	steepness = 20 # arbitrary?
+	#print(str(1 + exp((th-x) * steepness)))
 	return float(1)/(1 + exp((th-x) * steepness))
 
 def probFloor(a, prob):
@@ -201,12 +206,15 @@ def simulate():
 
 	for i in range(0,maxIdx+1):
 		w = np.matrix(np.genfromtxt(prefix + "/" + str(i) + "/w.csv", delimiter=','))
-		s = np.matrix(pFloor(np.random.rand(len(w), 1), initSpikeChance))
+		#s = np.matrix(pFloor(np.random.rand(len(w), 1), initSpikeChance))
+		s = np.matrix(np.zeros(shape=(len(w),1)) + 1)
 		out = s
+		print(w)
 		for j in range(0, iterations):
+			print(s)
 			s = w * s
 			s = s + np.matrix(pFloor(np.random.rand(len(w), 1), spikeChance)) # disabling random spiking for testing purposes
-			s = logistic(s, threshold)
+			#s = logistic(s, threshold)
 			out = np.append(out, s, 1)
 		np.savetxt(prefix + "/" + str(i) + "/data.csv", out, delimiter=',')
 	# TODO: noisify
@@ -278,5 +286,8 @@ def main():
 
 if __name__ == "__main__":
 	#main()
-	w = randWeightMatrix(27,10,True,makeTris=True)
-	drawNx(genNx(w))
+	#w = randWeightMatrix(4,0,True,makeTris=True, minWeight=.1, maxWeight=.7)
+	#writeMatrix(w, "test1/0")
+	#simulate()
+	w = np.genfromtxt("test1/0/w.csv", delimiter=',')
+	drawNx(genNx(w), drawEdgeLabels=True)
