@@ -13,3 +13,6 @@ Also needed for rendering is the system-appropriate package of python-tk (tkinte
 
 
 cd sproj/models/simple/ && python simple.py
+
+
+Actually it's not user friendly right now; need to implement argparse
