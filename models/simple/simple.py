@@ -8,6 +8,8 @@ import warnings
 import os
 import sys
 import argparse
+import nest
+import nest.voltage_trace
 from math import exp
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)  # lol
@@ -22,6 +24,26 @@ def genNx(w):
 			if w[i][j] > 0:
 				G.add_edges_from([(str(j), str(i))], weight=w[i][j])
 	return G
+
+def makeNest(w):
+	# this assumes no nest network has been created before1
+	pop = nest.Create("iaf_psc_alpha", len(w))
+	for i in range(0, len(w)):
+		for j in range(0, len(w[i])):
+			if w[i][j] > 0:
+				syn_spec={"weight":w[i][j]}
+				nest.Connect((j+1,), (i+1,), syn_spec=syn_spec)
+
+	poiss = nest.Create("poisson_generator", len(w))
+	volts = nest.Create("voltmeter", len(w))
+	conn_dict = {'rule': 'one_to_one'}
+	nest.Connect(poiss, pop, conn_dict)
+	nest.Connect(volts, pop, conn_dict)
+	nest.Simulate(1000)
+	nest.PrintNetwork()
+	print("Trying to show voltage trace")
+	nest.voltage_trace.from_device((volts[0],))
+	nest.voltage_trace.show()
 
 
 def drawNx(g, drawEdgeLabels=False):
@@ -126,7 +148,7 @@ def randWeightMatrix(numNeurons, cycles, verbose, minWeight=1, maxWeight=1, make
 			# make sure we have different nodes
 			#node2 = mem[random.randint(0, len(mem) - 1)]
 			node2 = random.randint(0, len(w) -1)
-		addConnection(w, f=node1, t=node1, weight=random.uniform(minWeight,maxWeight), verbose=verbose)
+		addConnection(w, f=node1, t=node2, weight=random.uniform(minWeight,maxWeight), verbose=verbose)
 		#w[int(node1)][int(node2)] = random.uniform(minWeight, maxWeight)
 		#if verbose: print("Adding connection from node " + str(int(node2)) + " to node " + str(int(node1)))
 		cycles = cycles - 1
@@ -214,7 +236,7 @@ def simulate():
 			print(s)
 			s = w * s
 			s = s + np.matrix(pFloor(np.random.rand(len(w), 1), spikeChance)) # disabling random spiking for testing purposes
-			#s = logistic(s, threshold)
+			s = logistic(s, threshold)
 			out = np.append(out, s, 1)
 		np.savetxt(prefix + "/" + str(i) + "/data.csv", out, delimiter=',')
 	# TODO: noisify
@@ -286,8 +308,10 @@ def main():
 
 if __name__ == "__main__":
 	#main()
-	#w = randWeightMatrix(4,0,True,makeTris=True, minWeight=.1, maxWeight=.7)
+	#w = randWeightMatrix(10,3,True,makeTris=False, minWeight=.1, maxWeight=.7)
+	#np.savetxt("out.csv", w, delimiter=',')
 	#writeMatrix(w, "test1/0")
 	#simulate()
 	w = np.genfromtxt("test1/0/w.csv", delimiter=',')
-	drawNx(genNx(w), drawEdgeLabels=True)
+	#drawNx(genNx(w), drawEdgeLabels=False)
+	makeNest(w)
