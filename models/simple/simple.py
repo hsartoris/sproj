@@ -8,8 +8,8 @@ import warnings
 import os
 import sys
 import argparse
-import nest
-import nest.voltage_trace
+#import nest		# MUST BE REENABLED TO USE NEST FUNCTIONS
+#import nest.voltage_trace
 from math import exp
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)  # lol
@@ -26,13 +26,18 @@ def genNx(w):
 	return G
 
 def makeNest(w):
+	#neurons = []
+	#for i in range(0, len(w)):
+	#	neurons += [nest.Create("iaf_psc_alpha")]
 	# this assumes no nest network has been created before1
 	pop = nest.Create("iaf_psc_alpha", len(w))
 	for i in range(0, len(w)):
 		for j in range(0, len(w[i])):
 			if w[i][j] > 0:
 				syn_spec={"weight":w[i][j]}
-				nest.Connect((j+1,), (i+1,), syn_spec=syn_spec)
+				nest.Connect([j+1], [i+1])
+				#nest.Connect(neurons[j],neurons[i])
+	nest.PrintNetwork()
 
 	poiss = nest.Create("poisson_generator", len(w))
 	volts = nest.Create("voltmeter", len(w))
@@ -75,7 +80,7 @@ def randWeightMatrix(numNeurons, cycles, verbose, minWeight=1, maxWeight=1, make
 	elif numTris > 0:
 		if numTris * 3 < numNeurons: soloNeurons = numNeurons - (numTris * 3)
 	else:
-		print("fuck this")
+		if verbose: print("fuck this")
 		# fuck this
 	#numNeurons = (numPrimaries if not makeTris else (numPrimaries * 3) + soloNeurons)
 	out = np.arange(numNeurons) # neurons not yet in network
@@ -229,7 +234,7 @@ def simulate():
 	for i in range(0,maxIdx+1):
 		w = np.matrix(np.genfromtxt(prefix + "/" + str(i) + "/w.csv", delimiter=','))
 		#s = np.matrix(pFloor(np.random.rand(len(w), 1), initSpikeChance))
-		s = np.matrix(np.zeros(shape=(len(w),1)) + 1)
+		s = np.matrix(pFloor(np.random.rand(len(w), 1), initSpikeChance))
 		out = s
 		print(w)
 		for j in range(0, iterations):
@@ -308,10 +313,15 @@ def main():
 
 if __name__ == "__main__":
 	#main()
-	#w = randWeightMatrix(10,3,True,makeTris=False, minWeight=.1, maxWeight=.7)
+	prefix = "data1"
+
+	for i in range(0, 1000):
+		w = randWeightMatrix(6,True,makeTris=False, minWeight=.1, maxWeight=.7)
+		np.savetxt(w, prefix + "/" + str(i) + "/w.csv", delimiter=',')
+
 	#np.savetxt("out.csv", w, delimiter=',')
 	#writeMatrix(w, "test1/0")
 	#simulate()
 	w = np.genfromtxt("test1/0/w.csv", delimiter=',')
 	#drawNx(genNx(w), drawEdgeLabels=False)
-	makeNest(w)
+	#makeNest(w)
