@@ -19,7 +19,7 @@ if __name__ == "__main__":
     loading = ["|", "/", "-", "\\", "*"]
     prefix = "data1"
     iterations = 1000
-    networks = 1000
+    networks = 100000
     neurons = 6
     cols = get_terminal_size().columns
     spikeChance = .3
