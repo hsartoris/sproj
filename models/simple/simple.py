@@ -313,15 +313,15 @@ def main():
 
 if __name__ == "__main__":
 	#main()
-	prefix = "data1"
+	#prefix = "data1"
 
-	for i in range(0, 1000):
-		w = randWeightMatrix(6,True,makeTris=False, minWeight=.1, maxWeight=.7)
-		np.savetxt(w, prefix + "/" + str(i) + "/w.csv", delimiter=',')
+	#for i in range(0, 1000):
+	#	w = randWeightMatrix(6,True,makeTris=False, minWeight=.1, maxWeight=.7)
+	#	np.savetxt(w, prefix + "/" + str(i) + "/w.csv", delimiter=',')
 
 	#np.savetxt("out.csv", w, delimiter=',')
 	#writeMatrix(w, "test1/0")
 	#simulate()
-	w = np.genfromtxt("test1/0/w.csv", delimiter=',')
-	#drawNx(genNx(w), drawEdgeLabels=False)
+	w = np.genfromtxt("data1/0/w.csv", delimiter=',')
+	drawNx(genNx(w), drawEdgeLabels=False)
 	#makeNest(w)

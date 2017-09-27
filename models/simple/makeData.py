@@ -12,12 +12,12 @@ def correlation(prev, curr):
         if prev[i] == 0: continue
         for j in range(len(curr)):
             if i == j or curr[j] == 0: continue
-            m[i][j] = prev[i]/curr[j]
+            m[i][j] = (curr[j] - prev[j])/prev[i]
     return np.array([m])
 
 if __name__ == "__main__":
     loading = ["|", "/", "-", "\\", "*"]
-    prefix = "data2"
+    prefix = "data1"
     iterations = 1000
     networks = 1000
     cols = get_terminal_size().columns
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         w = np.matrix(np.genfromtxt(prefix + "/" + str(i) + "/w.csv", delimiter=','))
         s = np.matrix(pFloor(np.random.rand(len(w), 1), initSpikeChance))
         out = s
-        totalCorr = np.array([np.zeros(shape=(len(w), len(w)))])
+        totalCorr = np.zeros(shape=(len(w), len(w)))
         correlations = np.array([np.zeros(shape=(len(w), len(w)))])
         for j in range(0, iterations):
             prev = s
@@ -52,13 +52,14 @@ if __name__ == "__main__":
             out = np.append(out, s, 1)
             corr = correlation(prev, s)
             correlations = np.append(correlations, corr, 0)
-            totalCorr += corr
+            totalCorr += corr[0]
             sys.stdout.write("\r{0}>".format(loading[(count/600)%len(loading)] + ("="*((cols-3)*i/networks))))
             sys.stdout.flush()
             count += 1
         np.savetxt(prefix + "/" + str(i) + "/raw.csv", out, delimiter=',')
         np.savetxt(prefix + "/" + str(i) + "/correlations.csv", correlations.reshape(-1, correlations.shape[-1]), delimiter=',')
-        np.savetxt(prefix + "/" + str(i) + "/total.csv", totalCorr.reshape(-1, totalCorr.shape[-1]), delimiter=',')
+        print(totalCorr)
+	np.savetxt(prefix + "/" + str(i) + "/total.csv", totalCorr, delimiter=',')
     sys.stdout.write("\r{0}".format("="*cols))
     sys.stdout.flush()
     print("Done simulating")
