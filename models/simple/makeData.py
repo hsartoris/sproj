@@ -20,13 +20,14 @@ if __name__ == "__main__":
     prefix = "data1"
     iterations = 1000
     networks = 1000
+    neurons = 6
     cols = get_terminal_size().columns
     spikeChance = .3
     threshold = .5
     initSpikeChance = .5
     print("Generating matrices...")
     for i in range(0, networks):
-        w = simple.randWeightMatrix(6,0,False)
+        w = simple.randWeightMatrix(neurons,0,False)
         os.makedirs(prefix + "/" + str(i))
         np.savetxt(prefix + "/" + str(i) + "/w.csv", w, delimiter=',')
         sys.stdout.write("\r{0}>".format("="*(cols*i/networks)))
