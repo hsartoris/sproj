@@ -59,7 +59,7 @@ if __name__ == "__main__":
             count += 1
         np.savetxt(prefix + "/" + str(i) + "/raw.csv", out, delimiter=',')
         np.savetxt(prefix + "/" + str(i) + "/correlations.csv", correlations.reshape(-1, correlations.shape[-1]), delimiter=',')
-        print(totalCorr)
+        #print(totalCorr)
 	np.savetxt(prefix + "/" + str(i) + "/total.csv", totalCorr, delimiter=',')
     sys.stdout.write("\r{0}".format("="*cols))
     sys.stdout.flush()
