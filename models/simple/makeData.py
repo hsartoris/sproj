@@ -19,7 +19,7 @@ if __name__ == "__main__":
     loading = ["|", "/", "-", "\\", "*"]
     prefix = "data1"
     iterations = 1000
-    networks = 1000
+    networks = 100000
     neurons = 6
     cols = get_terminal_size().columns
     spikeChance = .3
@@ -59,7 +59,7 @@ if __name__ == "__main__":
             count += 1
         np.savetxt(prefix + "/" + str(i) + "/raw.csv", out, delimiter=',')
         np.savetxt(prefix + "/" + str(i) + "/correlations.csv", correlations.reshape(-1, correlations.shape[-1]), delimiter=',')
-        print(totalCorr)
+        #print(totalCorr)
 	np.savetxt(prefix + "/" + str(i) + "/total.csv", totalCorr, delimiter=',')
     sys.stdout.write("\r{0}".format("="*cols))
     sys.stdout.flush()
