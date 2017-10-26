@@ -8,8 +8,8 @@ import warnings
 import os
 import sys
 import argparse
-#import nest		# MUST BE REENABLED TO USE NEST FUNCTIONS
-#import nest.voltage_trace
+import nest		# MUST BE REENABLED TO USE NEST FUNCTIONS
+import nest.voltage_trace
 from math import exp
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)  # lol
@@ -30,20 +30,21 @@ def makeNest(w):
 	#for i in range(0, len(w)):
 	#	neurons += [nest.Create("iaf_psc_alpha")]
 	# this assumes no nest network has been created before1
-	pop = nest.Create("iaf_psc_alpha", len(w))
+	population = nest.Create("iaf_psc_alpha", len(w))
 	for i in range(0, len(w)):
 		for j in range(0, len(w[i])):
 			if w[i][j] > 0:
+				print("yes")
 				syn_spec={"weight":w[i][j]}
-				nest.Connect([j+1], [i+1])
+				nest.Connect([population[j]], [population[i]], 'one_to_one')
 				#nest.Connect(neurons[j],neurons[i])
 	nest.PrintNetwork()
 
 	poiss = nest.Create("poisson_generator", len(w))
 	volts = nest.Create("voltmeter", len(w))
 	conn_dict = {'rule': 'one_to_one'}
-	nest.Connect(poiss, pop, conn_dict)
-	nest.Connect(volts, pop, conn_dict)
+	nest.Connect(poiss, population, conn_dict)
+	nest.Connect(volts, population, conn_dict)
 	nest.Simulate(1000)
 	nest.PrintNetwork()
 	print("Trying to show voltage trace")
@@ -323,5 +324,5 @@ if __name__ == "__main__":
 	#writeMatrix(w, "test1/0")
 	#simulate()
 	w = np.genfromtxt("data1/0/w.csv", delimiter=',')
-	drawNx(genNx(w), drawEdgeLabels=False)
-	#makeNest(w)
+	#drawNx(genNx(w), drawEdgeLabels=False)
+	makeNest(w)
