@@ -12,13 +12,15 @@ class PowerLaw(SingleVarFunction):
 		if not (k_min > 0): raise ValueError("k_min must be greater than 0")
 		self.g = gamma
 		self.C = (gamma - 1) * (k_min ** (gamma - 1 ))
+		self.km = k_min
 
 	def f(self, k):
-		if not (k > 0): raise ValueError("k must be greater than 0")
+		if not (k > self.km): raise ValueError("k must be greater than " + str(self.km))
 		return self.C * (k ** (-(self.g)))
 
 class ProbDist:
 	# not sure how to handle 0 probability
+	# update: fuck it
 	lookup = np.array([])
 	cutoff = 1000000000
 	k_min = .1
@@ -27,17 +29,20 @@ class ProbDist:
 		#self.f = np.vectorize(function)
 		if isinstance(function, SingleVarFunction):
 			self.f = function.f
+			self.k_min = function.km
 		else:
 			self.f = function
 		self.nf = normalization_factor
+		self.startIdx = int(self.k_min)
 
 	def get(self):
-		i = 0
+		i = self.startIdx
 		acc = 0
 		r = np.random.rand()
 		while (True):
-			if (i >= len(self.lookup)): self.lookup = np.append(self.lookup, [integrate.quad(self.f, (i if (i > 0) else self.k_min), i+1, epsabs=0) / self.nf])
-			acc += self.lookup[i]
+			if (i-self.startIdx >= len(self.lookup)): self.lookup = np.append(self.lookup, [integrate.quad(self.f, (i if (i > 0) else self.k_min), i+1, epsabs=0)[0] / self.nf])
+			acc += self.lookup[i-self.startIdx]
 			if acc > r: return i
 			# ideally this terminates
-			if (i == cutoff): return i
+			if (i == self.cutoff): return i
+			i += 1
