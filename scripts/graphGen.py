@@ -1,3 +1,11 @@
+"""
+@author Hayden Sartoris
+Intended as a toolkit of sorts for playing with graphs.
+
+28 Oct 2017: provides SingleVarFunction, PowerLaw(SingleVarFunction), and
+	ProbDist, in support of genGraph::Matrix for known distribution
+
+"""
 import scipy.integrate as integrate
 import numpy as np
 
@@ -25,7 +33,9 @@ class ProbDist:
 	cutoff = 1000000000
 	k_min = .1
 	def __init__(self, function, normalization_factor = 1):
-		# ProbDist(lambda x: <func>) [ I hope ]
+		# ProbDist(lambda x: <func>)
+		# Takes a probability function p(k) that predicts how probable
+		# 	continuous k is
 		#self.f = np.vectorize(function)
 		if isinstance(function, SingleVarFunction):
 			self.f = function.f
@@ -46,3 +56,9 @@ class ProbDist:
 			# ideally this terminates
 			if (i == self.cutoff): return i
 			i += 1
+
+class GraphGen:
+	def __init__(self, n):
+		# what am I doing
+		self.n = n
+		
