@@ -2,8 +2,6 @@
 @author Hayden Sartoris
 Intended as a toolkit of sorts for playing with graphs.
 
-28 Oct 2017: provides SingleVarFunction, PowerLaw(SingleVarFunction), and
-	ProbDist, in support of genGraph::Matrix for known distribution
 
 """
 import scipy.integrate as integrate
@@ -57,8 +55,27 @@ class ProbDist:
 			if (i == self.cutoff): return i
 			i += 1
 
-class GraphGen:
+class Simplex:
 	def __init__(self, n):
-		# what am I doing
 		self.n = n
-		
+		self.blueprint = np.zeros(shape=(n,n))
+		self.source = 0
+		self.sink = n-1
+		for i in range(n):
+			for j in range(n):
+				if i == j or self.blueprint[i][j] > 0 or self.blueprint[j][i] > 0:
+					# no loops; don't overwrite connections
+					continue
+				if i == self.source or j == self.sink:
+					# always connect from source or to sink
+					self.blueprint[i][j] = 1
+				elif i == self.sink or j == self.source:
+					self.blueprint[j][i] = 1
+				elif np.random.rand() > .5:
+					# neither node source or sink
+					self.blueprint[i][j] = 1
+				else:
+					self.blueprint[j][i] = 1
+
+	def save(self, filename):
+		np.savetxt(filename, self.blueprint, delimiter=',')

@@ -1,1 +1,1 @@
-from .graphGen import ProbDist, PowerLaw, SingleVarFunction, GraphGen
+from GraphKit import ProbDist, PowerLaw, SingleVarFunction, Simplex
