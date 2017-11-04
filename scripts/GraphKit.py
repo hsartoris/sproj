@@ -56,7 +56,8 @@ class ProbDist:
 			i += 1
 
 class Simplex:
-	def __init__(self, n):
+	def __init__(self, n, weight=1):
+		self.weight=weight
 		self.n = n
 		self.blueprint = np.zeros(shape=(n,n))
 		self.source = 0
@@ -68,14 +69,35 @@ class Simplex:
 					continue
 				if i == self.source or j == self.sink:
 					# always connect from source or to sink
-					self.blueprint[i][j] = 1
+					self.blueprint[i][j] = weight
 				elif i == self.sink or j == self.source:
-					self.blueprint[j][i] = 1
+					self.blueprint[j][i] = weight
 				elif np.random.rand() > .5:
 					# neither node source or sink
-					self.blueprint[i][j] = 1
+					self.blueprint[i][j] = weight
 				else:
-					self.blueprint[j][i] = 1
+					self.blueprint[j][i] = weight
 
-	def save(self, filename):
-		np.savetxt(filename, self.blueprint, delimiter=',')
+	def save(self, filename, pad=False):
+		if pad:
+			temp = np.zeros(shape=(len(self.blueprint)+2, len(self.blueprint)+2))
+			self.map(temp, range(1,len(self.blueprint)+1))
+			np.savetxt(filename, temp, delimiter=',', fmt='%i')
+		else: 
+			np.savetxt(filename, self.blueprint, delimiter=',', fmt='%i')
+	
+
+	def map(self, w, rules, weight=0):
+		if weight == 0: weight = self.weight
+		# syntax: pass in matrix to map Simplex into
+		# rules[0] ::> index to map blueprint[0] onto
+		if not len(rules) ==  len(self.blueprint):
+			raise Exception("Bad rules matrix length")
+
+		for i in range(len(self.blueprint)):
+			for j in range(len(self.blueprint)):
+				if self.blueprint[i][j] > 0:
+					# connection
+					if not w[rules[i]][rules[j]] > 0:
+						w[rules[i]][rules[j]] = weight
+					

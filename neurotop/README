@@ -1,0 +1,126 @@
+/*****************************************************************************/
+Neurotop: software for simplicial flag complexes complexes of symmetric and directed graphs
+/*****************************************************************************/
+
+"Neurotop" software is developed by Pawel Dlotko
+
+The source code is distributed under GNU General Public License. Please consult a file INSTALL for a instalation details
+
+=================================
+DESCRIPTION
+=================================
+
+The "Neurotop" software can compute simplicial complexes and Z_2 Betti numbers of flag complexes of directed and undirected graphs. For further details
+please consult the paper:
+
+	* Paper: Pawel Dlotko, Kathryn Hess, Ran Levi, Max Nolte, Michael Reimann, Martina Scolamiero, Kathrine Turner, Eilif Muller and Henry Markram,
+	TOPOLOGICAL ANALYSIS OF THE CONNECTOME OF DIGITAL RECONSTRUCTIONS OF NEURAL MICROCIRCUITS
+		http://arxiv.org/pdf/1601.01580.pdf.
+
+The input to a "Neurotop" software is a file with a incidence matrix of a graph. Currently three types of input files can be used with the software:
+a) binary file, extension ".bin". We assume that each element of a file is a C++ boolean value (true or false).
+b) comma separated values ".csv" files.c) ".h5" files, see https://www.hdfgroup.org/HDF5/doc/H5.format.html and the documentation of the constructor of sparseSquareBinaryMatrix class (in sparseSquareBinaryMatrix.h)
+
+Used libraries.
+    For computation of Z_2 Betti numbers "Neurotop" uses Phat software, please consult https://bitbucket.org/phat-code/phat
+
+    The conversion form .h5 file into sparseSquareBinaryMatrix () is implemented by the HDF Group, please consilt h5reader.h for details.
+
+    h5reader.h, hdf5wrapper.h was implemented by the HPC team at Blue Brain Project.
+--------------------------------------------------------------
+
+=================================
+USAGE
+=================================
+
+-------------------------------------------------------------------------------
+./symmetric <input file with a boundary matrix> <0/1 parameter A> <0/1 parameter B>
+./directed <input file with a boundary matrix> <0/1 parameter A> <0/1 parameter B>
+
+We assume that the input matrix do not have non-zero elements on the diagonal. If there are non-zero elements in the diagonal, then they are removed.
+When the second (obligatory) parameter is 1, then homology of the structure will be computed. If it is 0, then no homology computations will be performed.
+The third parameter is not obligatory. When it is set to 1, all the constructed simplices will be stored in HD.
+-------------------------------------------------------------------------------
+=================================
+OUTPUT FILES:
+=================================
+Both symmetric and directed program produces text files named <first parameter of the program>_directed_output.txt and <first parameter of the program>_symmetric_output.txt.
+Here is the sample file with the description of its content. One can obtain this file by running ./symmetric example.csv 1 (i.e. we want to compute Z_2 Betti numbers)
+
+4                                  <--- number of vertices
+5                                  <--- number of edges
+2                                  <--- number of triangles / 2-simplices. If there are higher dimensional simplices, there are more lines like this.
+Euler characteristic : 1           <--- Euler characteristic of a complex
+Standard Betti numbers: 1 0 0      <--- Z_2 Betti numbers of the complex.
+
+
+=================================
+EXAMPLE
+=================================
+Let us consult a simple example provided in example.csv file:
+0,1,0,0
+0,0,1,1
+0,0,0,1
+1,0,0,0
+
+it corresponds to the following directed graph:
+
+ 1-->--2
+ |\    |
+ | \   |
+ /\ v  v
+ |   \ |
+ |    \|
+ 0--<--3
+
+ Let us call the directed flag complex of the graph above D.
+
+it corresponds to the following non-directed graph:
+
+ 1-----2
+ |\    |
+ | \   |
+ |  \  |
+ |   \ |
+ |    \|
+ 0-----3
+
+ Let us call the directed flag complex of the graph above E.
+
+ In case of D, we expect to see 4 vertices, 5 edges and one 2-simplex. We do not see two 2-simplices there because the vertices 0,1,3 do not support a 2-simplex, because no ordering of
+ vertices 0,1,3 restrict to the cyclic ordering of edges.
+
+ In the case of a complex E, we will see four vertices, five edges and two 2-simplices.
+
+
+=================================
+BUILDING FROM SOURCE CODES
+=================================
+The software is released with source codes.
+It requires modern C++ compiler for building from the source codes.
+Please refer to the 'INSTALL' file for detailed instructions.
+
+=================================
+LEGAL TERMS
+=================================
+
+THIS SOFTWARE IS PROVIDED "AS-IS". THERE IS NO WARRANTY OF ANY KIND.
+NEITHER THE AUTHOR NOR INRIA WILL BE LIABLE FOR
+ANY DAMAGES OF ANY KIND, EVEN IF ADVISED OF SUCH POSSIBILITY.
+
+Author(s):       Pawel Dlotko
+
+Copyright (C) 2015  INRIA Sophia-Saclay (France)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
