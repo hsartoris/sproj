@@ -1,1 +1,1 @@
-from GraphKit import ProbDist, PowerLaw, SingleVarFunction, Simplex
+from GraphKit import ProbDist, PowerLaw, SingleVarFunction, Simplex, SimplicialComplex

@@ -1,0 +1,4 @@
+#!/bin/bash
+python test.py
+./GraphCSV.py neurotop/complete.csv
+feh neurotop/complete.png
