@@ -59,42 +59,47 @@ class ProbDist:
 
 #class SimplicialComplex:
 	#def __init__(self
+class diGraph(object):
+	def __init__(self, n):
+		self.n = n
+		self.blueprint = np.matrix(np.zeros(shape=(n,n)))
+		self.rules = None
+		self.weight = 1
 
-class Simplex:
+	def save(self, filename, pad=0):
+		if pad > 0:
+			temp = np.matrix(np.zeros(shape=(len(self.blueprint)+(2*pad), len(self.blueprint)+(2*pad))))
+			self.map(temp, range(pad, len(self.blueprint) + pad))
+		else:
+			temp = self.blueprint
+		np.savetxt(filename, temp, delimiter=',', fmt='%i')
+	
+	def map(self, w, rules=None, weight=0):
+		# in-place map of diGraph object onto existing matrix
+		if rules is None and not self.rules is None: rules = self.rules
+		else: self.rules = rules
+		if rules is None: raise Exception("No rules set and none provided")
+		if weight == 0: weight = self.weight
+		if not len(rules) == len(self.blueprint): raise Exception("Bad rules array length")
+		
+		for i in range(len(rules)):
+			for j in range(len(rules)):
+				if self.blueprint[i,j] > 0 and not w[rules[i], rules[j]] > 0:
+					if (rules[i] == rules[j]): print(str(i) + "," + str(j))
+					w[rules[i], rules[j]] = weight
+
+class Simplex(diGraph):
 	def __init__(self, n, weight=1, rules=None):
-		# weights
+		# adheres to stupid simplex terminology; Simplex(8) is a 9-node simplex
+		diGraph.__init__(self, n+1)
 		if not rules is None:
 			self.rules = rules
 		self.weight=weight
-		self.n = n
-		self.blueprint = np.triu(np.zeros(shape=(n,n))+1, 1)
-				
-	def save(self, filename, pad=False):
-		if pad:
-			temp = np.zeros(shape=(len(self.blueprint)+2, len(self.blueprint)+2))
-			self.map(temp, range(1,len(self.blueprint)+1))
-			np.savetxt(filename, temp, delimiter=',', fmt='%i')
-		else: 
-			np.savetxt(filename, self.blueprint, delimiter=',', fmt='%i')
+		self.blueprint = np.matrix(np.triu(np.zeros(shape=(self.n,self.n))+1, 1))
 	
 
-	def map(self, w, rules=None, weight=0):
-		if rules is None: rules = self.rules
-		else: self.rules = rules
-		if weight == 0: weight = self.weight
-		# syntax: pass in matrix to map Simplex into
-		# rules[0] ::> index to map blueprint[0] onto
-		if not len(rules) ==  len(self.blueprint):
-			raise Exception("Bad rules matrix length")
-
-		for i in range(len(self.blueprint)):
-			for j in range(len(self.blueprint)):
-				if self.blueprint[i][j] > 0:
-					# connection
-					if not w[rules[i]][rules[j]] > 0:
-						w[rules[i]][rules[j]] = weight
 	def rank(self):
-		return np.linalg.matrix_rank(np.matrix(self.blueprint))
+		return np.linalg.matrix_rank(self.blueprint)
 
 	def face(self, n):
 		# returns random RULESET of dimension n
@@ -109,38 +114,47 @@ class Simplex:
 	
 	def dim(s):
 		return s.n - 1
+	def dim(self):
+		return self.n - 1
 
-class SimplicialComplex:
-	def __init__(self, n):
+class SimplicialComplex(diGraph):
+	def __init__(self):
+		diGraph.__init__(self,0)
 		self.simplices=[]
-		self.n=n
-		self.blueprint = np.zeros(shape=(n,n))
 	def addSimplex(self, sim):
 		if len(self.simplices) == 0:
-			rules = []
-			while len(rules) < sim.n:
-				r = np.random.randint(len(self.blueprint))
-				if not r in rules:
-					rules.append(r)
+			rules = range(sim.n)
+#			rules = []
+#			while len(rules) < sim.n:
+#				r = np.random.randint(len(self.blueprint))
+#				if not r in rules:
+#					rules.append(r)
+			self.blueprint = np.zeros((sim.n, sim.n))
 		else:
 			# pick random simplex to append to
 			target = np.random.randint(len(self.simplices))
 			if verbose: print("Chose simplex " + str(target) + " of dimension " + str(Simplex.dim(self.simplices[target])))
-			# note that dim here is actually order, dim is usually order-1, oops
 			faceDim = np.random.randint(1, min(sim.n, self.simplices[target].n))
 			rules = self.simplices[target].face(faceDim)
 			if verbose: print("Chose face of order " + str(faceDim) + "; nodes are " + str(rules))
+			if verbose: print("Adding " + str(sim.n - faceDim) + " nodes to existing blueprint of size " + str(len(self.blueprint)))
+			overlap = sim.n - faceDim
+			temp = np.zeros((len(self.blueprint)+overlap, len(self.blueprint)+overlap))
+			temp[:-overlap,:-overlap] = self.blueprint
+			self.blueprint = temp
 			for i in range(sim.n - faceDim):
-				idx = -1
-				while idx < 0:
-					# find unused node
-					idx = np.random.randint(len(self.blueprint))
-					if idx in rules or np.sum(self.blueprint[:,idx]) > 0 or np.sum(self.blueprint[idx,:]) > 0:
-						idx = -1
+				idx = len(self.blueprint) - (i + 1)
+#				idx = -1
+#				while idx < 0:
+#					# find unused node
+#					idx = np.random.randint(len(self.blueprint))
+#					if idx in rules or np.sum(self.blueprint[:,idx]) > 0 or np.sum(self.blueprint[idx,:]) > 0:
+#						idx = -1
 				# could print this but then it wouldn't be one line lol
 				rules.insert(np.random.randint(len(rules)+1), idx)
 			# rules should now be complete
-		sim.map(self.blueprint, rules)
+		print(rules)
+		sim.map(self.blueprint, rules=rules)
 		self.simplices.append(sim)
 
 	def __str__(self):
@@ -149,17 +163,6 @@ class SimplicialComplex:
 			temp += "Simplex " + str(i) + " of dimension " + str(Simplex.dim(self.simplices[i])) + " with nodes " + str(self.simplices[i].rules) 
 			temp += "\n"
 		return temp
-
-	def save(self, filename, pad=False):
-		if pad:
-			temp = np.zeros(shape=(len(self.blueprint)+2, len(self.blueprint)+2))
-			self.map(temp, range(1,len(self.blueprint)+1))
-			np.savetxt(filename, temp, delimiter=',', fmt='%i')
-		else: 
-			np.savetxt(filename, self.blueprint, delimiter=',', fmt='%i')
-
-
-				
 
 
 def linkedSimplices():

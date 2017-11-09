@@ -1,0 +1,5 @@
+96
+97
+5
+Euler characteristic : 4
+Standard Betti numbers: 49 45 0 

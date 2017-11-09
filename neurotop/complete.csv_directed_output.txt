@@ -1,10 +1,10 @@
-94
-87
-143
-157
-118
-57
-16
+124
+153
+251
+255
+169
+72
+18
 2
-Euler characteristic : 68
-Standard Betti numbers: 68 0 0 0 0 0 0 0 
+Euler characteristic : 80
+Standard Betti numbers: 80 0 0 0 0 0 0 0 
