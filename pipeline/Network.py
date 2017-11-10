@@ -1,10 +1,13 @@
+#!/home/hsartoris/anaconda2/bin/python
+# stolen from Derek
 import nest
 import pylab
 import nest.topology as topp
 import nest.raster_plot as raster
 import networkx as nx
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
+import sys
 
 #DEFINE FUNCTIONS
 '''
@@ -25,9 +28,9 @@ def drawNetwork(pop):
 	return G
 
 '''
-Create a random network (random being defined by the numpy.random.randint function_)
-and write it to a csv. Honestly, easier way to do this is numpy.random.randint(0,high=2,10,10)
-or something like that, as numpy will create a 2d array with those randints.
+Create a random network (random being defined by the np.random.randint function_)
+and write it to a csv. Honestly, easier way to do this is np.random.randint(0,high=2,10,10)
+or something like that, as np will create a 2d array with those randints.
 
 However, I did it this way as an exploration into how I could manipulate these arrays for
 future purposes, such as implementing other network properties.
@@ -35,7 +38,7 @@ future purposes, such as implementing other network properties.
 def createRandomNetwork(file_name, popSize):
 	#generates an adj matrix based on parameters of network, and depending on formula
 	#such as small world, clustering, criticality, etc. WIP
-	adjMatrix = numpy.zeros((popSize, popSize))
+	adjMatrix = np.zeros((popSize, popSize))
 	#ensure that there are no self-connections at each neuron
 	for ith_neuron_index in range(len(adjMatrix)):
 		adjMatrix[ith_neuron_index][ith_neuron_index] = 0
@@ -44,17 +47,17 @@ def createRandomNetwork(file_name, popSize):
 	for ith_neuron_index in range(len(adjMatrix)):
 		for jth_neuron_index in range(len(adjMatrix)):
 			if ith_neuron_index != jth_neuron_index:
-				adjMatrix[ith_neuron_index][jth_neuron_index]= numpy.random.randint(0,high=2)
+				adjMatrix[ith_neuron_index][jth_neuron_index]= np.random.randint(0,high=2)
 	print adjMatrix
-	numpy.savetxt("./Syn Weights/"+file_name, adjMatrix, delimiter=",")
+	np.savetxt("./Syn Weights/"+file_name, adjMatrix, delimiter=",")
 	return	
 
 '''
 Reads from a csv file for storing weights, connects corresponding
-nest neurons, outputs a numpy matrix
+nest neurons, outputs a np matrix
 '''
 def readAndConnect(file, population):
-	matrix = numpy.loadtxt(open(file, "rb"), delimiter=",")
+	matrix = np.loadtxt(open(file, "rb"), delimiter=",")
 	row_pos = 0
 	#adjMatrix = []
 	for i_neuron_array in matrix:
@@ -76,10 +79,10 @@ def readAndCreate(file):
 	'''Reads from a csv file for storing weights, creates the population indicated,
 	returns population'''
 	#read a csv file with conections, and rows and columns correspond to individual neurons
-	matrix = numpy.loadtxt(open(file, "rb"), delimiter=",")
+	matrix = np.loadtxt(open(file, "rb"), delimiter=",")
 	#Set parameters of the network by reading the length of the matrix (number of arrays)
 	numNeuronsCSV = len(matrix)
-	numNeuronsInCSV = numpy.floor(numNeuronsCSV/5)
+	numNeuronsInCSV = np.floor(numNeuronsCSV/5)
 	numNeuronsExCSV = int(numNeuronsCSV-numNeuronsInCSV)
 
 	#Create the neurons for the network
@@ -129,79 +132,68 @@ def rasterGenerator(pop):
 
 ######################################################################################
 
-#     #    #####    #####     ######   #
-##   ##   #     #   #    #    #        #
-# # # #   #     #   #     #   #        #
-#  #  #   #     #   #     #   ######   #
-#     #   #     #   #     #   #        #
-#     #   #     #   #    #    #        #
-#     #    #####    #####     ######   ######
+#######
+#
+# 
+#####
+#   
+#  
+#
 
 #########################################
-'''
-TO DO:
--write a separate coding segment that will generate a csv with specific network parameters such as small-worldness, average links, etc
--downsample
-'''
 ######################################################################################
 
-#SET PARAMETERS
-numNeurons = 5
-poisson_rate = 3000.0
-'''
-numNeuronsIn = numpy.floor(numNeurons/5)
-numNeuronsEx = int(numNeurons-numNeuronsIn)
 
-#Create the neurons for the network
-pop = nest.Create("izhikevich", numNeurons)
-popEx = pop[:numNeuronsEx]
-popIn = pop[numNeuronsEx:]
-'''
+def spikeTimeMatrix(spikes, num_neurons, timesteps):
+	n = nest.GetStatus(spikes, "events")[0]
+	output = np.matrix(np.zeros((num_neurons,timesteps)))
+	for i in range(len(n['times'])):
+		output[n['senders'][i]-1,int(round(n['times'][i]))] = 1
+	return output
 
+if __name__ == "__main__":
+	   
+	#SET PARAMETERS
+	numNeurons = 5
+	poisson_rate = 3000.0
+	if len(sys.argv) < 3:
+		print("Bad arguments. no info for you")
+		exit()
+	inp = np.loadtxt(sys.argv[1], delimiter=',')
+#	neuronPop, neuronEx, neuronIn = readAndCreate("neurotop/test8.csv")
+	neuronPop, neuronEx, neuronIn = readAndCreate(sys.argv[1])
+	simtime = float(sys.argv[2])
 
-createRandomNetwork("foo.csv",numNeurons)
-neuronPop, neuronEx, neuronIn = readAndCreate("./Syn Weights/foo.csv")
-
-#CREATE NODES
-noise = nest.Create("poisson_generator",1,{'rate':poisson_rate})
-#noiseIn = nest.Create("poisson_generator",1,{'rate':10000.0})
-#sine = nest.Create("ac_generator",1,{"amplitude": 100.0, "frequency" :2.0})
-spikes = nest.Create("spike_detector", 1)
-#spikesEx = spikes[:1]
-#spikesIn = spikes[1:]
-
-Ex = 1
-d = 1.0
-wEx = 1.0
-wIn = -1.0
-
-#SPECIFY CONNECTION DICTIONARIES
-conn_dict = {"rule": "fixed_indegree", "indegree": Ex,
-			"autapses":False,"multapses":False} #connection dictionary
-syn_dict_ex = {"delay": d, "weight": wEx}
-syn_dict_in = {"delay": d, "weight": wIn}
-
-#SPECIFY CONNECTIONS
-nest.Connect(noise, neuronPop,syn_spec = syn_dict_ex)
-nest.Connect(neuronPop,spikes)
-#nest.Connect(noiseIn, neuronIn, syn_spec = syn_dict_in)
-#nest.Connect(neuronEx, spikesEx)
-#nest.Connect(neuronIn, spikesIn)
-
-#nest.Connect(multimeter, [1])
-#nest.Connect(sine, [1])
-#nest.Connect([pop[1]],[pop[2]])
-#readAndConnect("./Syn Weights/syn_weights1.csv",pop)
-
-nest.Simulate(1000.0)
-
-#pylab.figure(2)
-drawNetwork(neuronPop)
-plot = nest.raster_plot.from_device(spikes, hist=True)
-
-'''
-The exact neuron spikes and corresponding timings can be obtained by viewing the events
-dictionary of GetStatus(spikesEx, "events")
-'''
-print nest.GetStatus(spikes, "events")
-plt.show()
+	#CREATE NODES
+	noise = nest.Create("poisson_generator",1,{'rate':poisson_rate})
+	spikes = nest.Create("spike_detector", 1)
+	
+	Ex = 1
+	d = 1.0
+	wEx = 1.0
+	wIn = -1.0
+	
+	#SPECIFY CONNECTION DICTIONARIES
+	conn_dict = {"rule": "fixed_indegree", "indegree": Ex,
+				"autapses":False,"multapses":False} #connection dictionary
+	syn_dict_ex = {"delay": d, "weight": wEx}
+	syn_dict_in = {"delay": d, "weight": wIn}
+	
+	#SPECIFY CONNECTIONS
+	nest.Connect(noise, neuronPop,syn_spec = syn_dict_ex)
+	nest.Connect(neuronPop,spikes)
+	
+	nest.Simulate(simtime)
+	
+#	drawNetwork(neuronPop)
+	plot = nest.raster_plot.from_device(spikes, hist=True)
+	
+	'''
+	The exact neuron spikes and corresponding timings can be obtained by viewing the events
+	dictionary of GetStatus(spikesEx, "events")
+	'''
+	#print nest.GetStatus(spikes, "events")
+	#print(dir(nest.GetStatus(spikes, "events")))
+	#print(spikeTimeMatrix(spikes, len(inp), int(simtime)))
+	#plt.show()
+	np.savetxt(sys.argv[1][:-4] + "_pipe.csv", spikeTimeMatrix(spikes, len(inp), int(simtime)), delimiter=',', fmt='%i')
