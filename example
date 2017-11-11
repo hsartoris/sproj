@@ -1,0 +1,3 @@
+#!/bin/bash
+python makeSimplicialComplexes.py 100 1000 .008 1000 testdata/
+# 100 networks; 1000 neurons, .008% connectivity; 1000 timesteps

@@ -7,7 +7,7 @@ Intended as a toolkit of sorts for playing with graphs.
 import scipy.integrate as integrate
 import numpy as np
 
-verbose = True
+verbose = False
 
 class SingleVarFunction(object):
 	# abstract class to represent functions
@@ -144,18 +144,12 @@ class SimplicialComplex(diGraph):
 			self.blueprint = temp
 			for i in range(sim.n - faceDim):
 				idx = len(self.blueprint) - (i + 1)
-#				idx = -1
-#				while idx < 0:
-#					# find unused node
-#					idx = np.random.randint(len(self.blueprint))
-#					if idx in rules or np.sum(self.blueprint[:,idx]) > 0 or np.sum(self.blueprint[idx,:]) > 0:
-#						idx = -1
 				# could print this but then it wouldn't be one line lol
 				rules.insert(np.random.randint(len(rules)+1), idx)
 			# rules should now be complete
-		print(rules)
 		sim.map(self.blueprint, rules=rules)
 		self.simplices.append(sim)
+		self.n = len(self.blueprint)
 
 	def __str__(self):
 		temp = "Simplicial complex of " + str(self.n) + " nodes (wrong number though lol)\nContains the following simplices:\n"
@@ -163,7 +157,8 @@ class SimplicialComplex(diGraph):
 			temp += "Simplex " + str(i) + " of dimension " + str(Simplex.dim(self.simplices[i])) + " with nodes " + str(self.simplices[i].rules) 
 			temp += "\n"
 		return temp
-
+	def edges(self):
+		return np.sum(self.blueprint)
 
 def linkedSimplices():
 	s1 = Simplex(4)
