@@ -52,4 +52,4 @@ for i in range(numGraphs):
 			complexes += 1
 	if verbosity > 0: print("Completed graph " + str(i) + " with " + (str(complexes) + " simplicial complexes, and " if simplicial else "") + str(np.sum(matrix)) + " edges (" + str(float(np.sum(matrix))/maxEdges) + "% connected)")
 	np.savetxt(prefix + str(i) + ".csv", matrix, delimiter=',', fmt='%i')
-	subprocess.call(["pipeline/pipe.py", prefix + str(i) + ".csv", str(timesteps), prefix])
+	subprocess.call("pipeline/pipe.py " + prefix + str(i) + ".csv " + str(timesteps) + " " +  prefix, shell=True)
