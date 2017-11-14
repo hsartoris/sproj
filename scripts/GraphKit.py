@@ -6,6 +6,7 @@ Intended as a toolkit of sorts for playing with graphs.
 """
 import scipy.integrate as integrate
 import numpy as np
+import scipy.sparse as sparse
 
 verbose = False
 
@@ -160,6 +161,14 @@ class SimplicialComplex(diGraph):
 	def edges(self):
 		return np.sum(self.blueprint)
 
+def saveSparse(filename, matrix):
+	sp = sparse.csc_matrix(matrix)
+	sparse.save_npz(filename, sp)
+
+def loadSparse(filename):
+	sp = sparse.load_npz(filename)
+	return sp.todense()
+
 def linkedSimplices():
 	s1 = Simplex(4)
 	s2 = Simplex(4)
@@ -172,3 +181,4 @@ def simplicialGraph():
 	# 3. validate nodes: no cycles; not a simplex; etc
 	# 4. construct simplex with additional nodes as necessary
 	print("screw off") 	
+

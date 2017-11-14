@@ -8,6 +8,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import scipy.sparse as sparse
 
 #DEFINE FUNCTIONS
 '''
@@ -65,8 +66,8 @@ def create(matrix):
 	ratio = .2 # inhib to excite
 	#Connect the neurons
 	for row_pos in range(len(matrix)):
-		for col_pos in range(len(matrix[row_pos])):
-			if matrix[row_pos][col_pos] > 0:
+		for col_pos in range(len(matrix)):
+			if matrix[row_pos, col_pos] > 0:
 				if np.random.random() <= ratio:
 					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":-1.0})
 				else:
@@ -108,7 +109,10 @@ if __name__ == "__main__":
 	if len(sys.argv) < 3:
 		print("Bad arguments. no info for you")
 		exit()
-	neuronPop, matrix = readAndCreate(sys.argv[1])
+	print(sys.argv[1])
+	matrix = sparse.load_npz(sys.argv[1] + ".npz").todense()
+#	neuronPop, matrix = readAndCreate(sys.argv[1])
+	neuronPop = create(matrix)
 	simtime = float(sys.argv[2])
 
 	#CREATE NODES
@@ -133,8 +137,8 @@ if __name__ == "__main__":
 	nest.Simulate(simtime)
 	
 #	drawNetwork(neuronPop)
-#	plot = nest.raster_plot.from_device(spikes, hist=True)
-#	plt.show()
+	plot = nest.raster_plot.from_device(spikes, hist=True)
+	plt.show()
 	split = sys.argv[1].split("/")
 	name = split[len(split)-1]
 	'''

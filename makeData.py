@@ -1,5 +1,5 @@
 import sys
-from scripts.GraphKit import diGraph, Simplex, SimplicialComplex
+from scripts.GraphKit import diGraph, Simplex, SimplicialComplex, saveSparse, loadSparse
 import numpy as np
 import pipeline.pipe
 import subprocess
@@ -16,12 +16,12 @@ timesteps = int(sys.argv[4])
 prefix = sys.argv[5]
 maxPlex = 6
 minPlex = 2
-simplicial = False
+simplicial = True
 
 for i in range(numGraphs):
 	if verbosity > 0: print("-"*40)
 	if verbosity > 0: print("Generating graph " +  str(i))
-	matrix = np.zeros((numNeurons, numNeurons))
+	matrix = np.zeros((numNeurons, numNeurons), dtype=int)
 	maxEdges = (numNeurons * (numNeurons - 1))/2
 	complexes = 0
 	while np.sum(matrix) < percent * maxEdges:
@@ -51,5 +51,6 @@ for i in range(numGraphs):
 				matrix[n1][n2] = 1
 			complexes += 1
 	if verbosity > 0: print("Completed graph " + str(i) + " with " + (str(complexes) + " simplicial complexes, and " if simplicial else "") + str(np.sum(matrix)) + " edges (" + str(float(np.sum(matrix))/maxEdges) + "% connected)")
-	np.savetxt(prefix + str(i) + ".csv", matrix, delimiter=',', fmt='%i')
-	subprocess.call("pipeline/pipe.py " + prefix + str(i) + ".csv " + str(timesteps) + " " +  prefix, shell=True)
+	#np.savetxt(prefix + str(i) + ".csv", matrix, delimiter=',', fmt='%i')
+	saveSparse(prefix + str(i), matrix)
+	subprocess.call("pipeline/pipe.py " + prefix + str(i) + " " + str(timesteps) + " " +  prefix, shell=True)
