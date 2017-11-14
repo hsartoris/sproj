@@ -69,9 +69,9 @@ def create(matrix):
 		for col_pos in range(len(matrix)):
 			if matrix[row_pos, col_pos] > 0:
 				if np.random.random() <= ratio:
-					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":-1.0})
+					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":-100})
 				else:
-					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec={"model":"stdp_synapse","weight":1.0})
+					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec={"model":"stdp_synapse","weight":100})
 	return pop
 
 def rasterGenerator(pop):
@@ -137,8 +137,8 @@ if __name__ == "__main__":
 	nest.Simulate(simtime)
 	
 #	drawNetwork(neuronPop)
-	plot = nest.raster_plot.from_device(spikes, hist=True)
-	plt.show()
+#	plot = nest.raster_plot.from_device(spikes, hist=True)
+#	plt.show()
 	split = sys.argv[1].split("/")
 	name = split[len(split)-1]
 	'''
