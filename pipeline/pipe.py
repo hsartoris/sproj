@@ -1,5 +1,5 @@
-#!/home/hsartoris/anaconda2/bin/python
-# stolen from Derek
+#!/usr/bin/env python
+#. stolen from Derek
 import nest
 import pylab
 import nest.topology as topp
