@@ -34,15 +34,6 @@ nest neurons, outputs a np matrix
 def readAndConnect(file, population):
 	matrix = np.loadtxt(open(file, "rb"), delimiter=",")
 	row_pos = 0
-	#adjMatrix = []
-#	for i_neuron_array in matrix:
-#		col_pos = 0
-#		for j_connection in i_neuron_array:
-#			if j_connection == 1.0:
-#				#adjMatrix.append([row_pos,col_pos])
-#				nest.Connect([population[row_pos]],[population[col_pos]])
-#			col_pos = col_pos + 1		
-#		row_pos = row_pos +1
 	for row_pos in range(len(matrix)):
 		for col_pos in range(len(matrix[row_pos])):
 			if matrix[row_pos][col_pos] == 1.0:
@@ -61,10 +52,11 @@ def readAndCreate(file):
 	for row_pos in range(len(matrix)):
 		for col_pos in range(len(matrix[row_pos])):
 			if matrix[row_pos][col_pos] == 1.0:
-				if np.random.random() <= ratio:
-					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":-1.0})
-				else:
-					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec={"model":"stdp_synapse","weight":1.0})
+				nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":(-1.0 if np.random.random() <= ratio else 1.0)})
+#				if np.random.random() <= ratio:
+#					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":-1.0})
+#				else:
+#					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec={"model":"stdp_synapse","weight":1.0})
 	return pop, matrix
 
 def create(matrix):
@@ -112,7 +104,6 @@ def spikeTimeMatrix(spikes, num_neurons, timesteps):
 if __name__ == "__main__":
 	precise = True
 	#SET PARAMETERS
-	numNeurons = 5
 	poisson_rate = 3000.0
 	if len(sys.argv) < 3:
 		print("Bad arguments. no info for you")
