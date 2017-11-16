@@ -181,5 +181,5 @@ def spikeTimeMatrix(spikes, numNeurons, timesteps):
 	# note: loses precision
 	output = np.matrix(np.zeros((numNeurons, timesteps)))
 	for i in range(len(spikes[0])):
-		output[spikes[0][i]-1, int(round(spikes[1][i]))] = 1
+		output[int(spikes[0][i]-1), int(round(spikes[1][i]))] = 1
 	return output
