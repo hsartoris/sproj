@@ -4,7 +4,7 @@ import numpy as np
 import pipeline.pipe
 import subprocess
 
-verbosity=3
+verbosity=1
 
 if len(sys.argv) < 6:
 	print("Syntax: <num graphs> <num neurons> <percent connections> <timesteps> <prefix>")
@@ -16,7 +16,7 @@ timesteps = int(sys.argv[4])
 prefix = sys.argv[5]
 maxPlex = 6
 minPlex = 2
-simplicial = True
+simplicial = int(sys.argv[6]) == 1
 
 for i in range(numGraphs):
 	if verbosity > 0: print("-"*40)
