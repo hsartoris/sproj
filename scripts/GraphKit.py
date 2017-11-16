@@ -175,10 +175,11 @@ def linkedSimplices():
 	faceDim = np.random.randint(min(Simplex.dim(s1), Simplex.dim(s2)))
 	#nodes = 
 	
-def simplicialGraph():
-	# 1. choose desired face size
-	# 2. choose appropriate number of nodes
-	# 3. validate nodes: no cycles; not a simplex; etc
-	# 4. construct simplex with additional nodes as necessary
-	print("screw off") 	
-
+def spikeTimeMatrix(spikes, numNeurons, timesteps):
+	# takes saved matrix where first row is spiking neuron
+	# and second row is time of spike
+	# note: loses precision
+	output = np.matrix(np.zeros((numNeurons, timesteps))
+	for i in range(len(spikes[0])):
+		output[spikes[0][i]-1, int(round(spikes[1][i]))] = 1
+	return output

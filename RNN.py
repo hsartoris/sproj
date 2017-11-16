@@ -1,9 +1,10 @@
 import numpy as np
-#import scripts.GraphKit
+import scripts.GraphKit as gk
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
+import scipy.sparse as sparse
 import sys
 
 
@@ -11,8 +12,8 @@ def loadData(prefix):
 	x_train_rand = []
 	x_train_simp = []
 	for i in range(500):
-		x_train_simp.append(np.transpose(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=',')))
-		x_train_rand.append(np.transpose(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=',')))
+		x_train_simp.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','))))
+		x_train_rand.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','))))
 	
 	x_train = np.array(x_train_simp + x_train_rand)
 	y_train = np.append(np.zeros((500)), np.zeros((500)) + 1)
@@ -42,6 +43,20 @@ def model(inputLen):
 	model.add(Dense(1, activation='sigmoid'))
 	print("doin some stuff")
 	model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+	return model
+
+def model2():
+	model = Sequential()
+	model.add(Dense(64, input_shape=(1000, 1000, 1000)))
+	model.add(Activation('relu'))
+	model.add(Dropout(.5))
+	model.add(Dense(256)
+	model.add(Activation('relu'))
+	model.add(Dropout(.5))
+	model.add(Dense(1))
+	model.add(Activation('softmax'))
+
+	model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 	return model
 
 x_train, y_train = loadData2("classifiertest")
