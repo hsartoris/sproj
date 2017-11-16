@@ -12,8 +12,8 @@ def loadData(prefix):
 	x_train_rand = []
 	x_train_simp = []
 	for i in range(500):
-		x_train_simp.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','))))
-		x_train_rand.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','))))
+		x_train_simp.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000)))
+		x_train_rand.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000)))
 	
 	x_train = np.array(x_train_simp + x_train_rand)
 	y_train = np.append(np.zeros((500)), np.zeros((500)) + 1)
@@ -50,7 +50,7 @@ def model2():
 	model.add(Dense(64, input_shape=(1000, 1000, 1000)))
 	model.add(Activation('relu'))
 	model.add(Dropout(.5))
-	model.add(Dense(256)
+	model.add(Dense(256))
 	model.add(Activation('relu'))
 	model.add(Dropout(.5))
 	model.add(Dense(1))
@@ -59,6 +59,6 @@ def model2():
 	model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 	return model
 
-x_train, y_train = loadData2("classifiertest")
-model = model(len(x_train[0]))
+x_train, y_train = loadData("classifiertest")
+model = model2()
 hist = model.fit(x_train, y_train, batch_size=64, nb_epoch=10, validation_split = .1, verbose = 1)	
