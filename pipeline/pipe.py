@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #. stolen from Derek
+import time
 import nest
 import pylab
 import nest.topology as topp
@@ -61,17 +62,18 @@ def readAndCreate(file):
 	return pop, matrix
 
 def create(matrix):
+	weight = 10.0
 	#Create the neurons for the network
 	pop = nest.Create("izhikevich", len(matrix))
-	ratio = .2 # inhib to excite
+	ratio = .1 # inhib to excite
 	#Connect the neurons
 	for row_pos in range(len(matrix)):
 		for col_pos in range(len(matrix)):
 			if matrix[row_pos, col_pos] > 0:
 				if np.random.random() <= ratio:
-					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"model":"stdp_synapse","weight":-100})
+					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec = {"weight":-weight, "delay":1.0})
 				else:
-					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec={"model":"stdp_synapse","weight":100})
+					nest.Connect([pop[row_pos]],[pop[col_pos]],syn_spec={"weight":weight, "delay":1.0})
 	return pop
 
 def rasterGenerator(pop):
@@ -91,7 +93,6 @@ def rasterGenerator(pop):
 #  
 #
 
-#########################################
 ######################################################################################
 
 
@@ -103,9 +104,12 @@ def spikeTimeMatrix(spikes, num_neurons, timesteps):
 	return output
 
 if __name__ == "__main__":
+	msd = int(time.time())
+	N_vp = nest.GetKernelStatus(['total_num_virtual_procs'])[0]
+	nest.SetKernelStatus({'rng_seeds': range(msd+N_vp+1, msd+2*N_vp+1)})
 	precise = True
 	#SET PARAMETERS
-	poisson_rate = 3000.0
+	poisson_rate = 50.0
 	if len(sys.argv) < 3:
 		print("Bad arguments. no info for you")
 		exit()
@@ -121,13 +125,14 @@ if __name__ == "__main__":
 	
 	Ex = 1
 	d = 1.0
-	wEx = 1.0
+	wEx = 10.0
 	wIn = -1.0
 	
 	#SPECIFY CONNECTION DICTIONARIES
 	conn_dict = {"rule": "fixed_indegree", "indegree": Ex,
 				"autapses":False,"multapses":False} #connection dictionary
-	syn_dict_ex = {"delay": d, "weight": wEx}
+#	syn_dict_ex = {"delay": d, "weight": wEx}
+	syn_dict_ex = {"weight": wEx}
 	syn_dict_in = {"delay": d, "weight": wIn}
 	
 	#SPECIFY CONNECTIONS
@@ -137,8 +142,8 @@ if __name__ == "__main__":
 	nest.Simulate(simtime)
 	
 #	drawNetwork(neuronPop)
-#	plot = nest.raster_plot.from_device(spikes, hist=True)
-#	plt.show()
+	#plot = nest.raster_plot.from_device(spikes, hist=True)
+	#plt.show()
 	split = sys.argv[1].split("/")
 	name = split[len(split)-1]
 	'''
@@ -152,43 +157,4 @@ if __name__ == "__main__":
 	temp = np.array([n['senders'], n['times']])
 	np.savetxt(sys.argv[3] + "spikes/" + name, temp, delimiter=',', fmt=('%f' if precise else '%i'))
 	print(temp)
-
-def pipe(matrix, simtime):
-	reload(nest)
-	#SET PARAMETERS
-	poisson_rate = 3000.0
-	neuronPop = create(matrix)
-
-	#CREATE NODES
-	noise = nest.Create("poisson_generator",1,{'rate':poisson_rate})
-	spikes = nest.Create("spike_detector", 1)
-	
-	Ex = 1
-	d = 1.0
-	wEx = 1.0
-	wIn = -1.0
-	
-	#SPECIFY CONNECTION DICTIONARIES
-	conn_dict = {"rule": "fixed_indegree", "indegree": Ex,
-				"autapses":False,"multapses":False} #connection dictionary
-	syn_dict_ex = {"delay": d, "weight": wEx}
-	syn_dict_in = {"delay": d, "weight": wIn}
-	
-	#SPECIFY CONNECTIONS
-	nest.Connect(noise, neuronPop,syn_spec = syn_dict_ex)
-	nest.Connect(neuronPop,spikes)
-	
-	nest.Simulate(float(simtime))
-	
-#	drawNetwork(neuronPop)
-#	plot = nest.raster_plot.from_device(spikes, hist=True)
-#	plt.show()
-	'''
-	The exact neuron spikes and corresponding timings can be obtained by viewing the events
-	dictionary of GetStatus(spikesEx, "events")
-	'''
-	#print nest.GetStatus(spikes, "events")
-	#print(dir(nest.GetStatus(spikes, "events")))
-	#np.savetxt("spikes/"+str(index) + ".csv", spikeTimeMatrix(spikes, len(matrix), int(simtime)), delimiter=',', fmt='%i')
-	return spikeTimeMatrix(spikes, len(matrix), simtime)
 
