@@ -1,7 +1,7 @@
 import numpy as np
 import scripts.GraphKit as gk
 from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout
+from keras.layers import Dense, LSTM, Dropout, Activation, Flatten
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
 import scipy.sparse as sparse
@@ -12,12 +12,16 @@ def loadData(prefix):
 	x_train_rand = []
 	x_train_simp = []
 	for i in range(500):
-		x_train_simp.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000)))
-		x_train_rand.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000)))
+		#x_train_simp.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000)))
+		#x_train_rand.append(sparse.lil_matrix(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000)))
+		x_train_simp.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000))
+		x_train_rand.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), 1000, 1000))
 	
 	x_train = np.array(x_train_simp + x_train_rand)
 	y_train = np.append(np.zeros((500)), np.zeros((500)) + 1)
-	return sequence.pad_sequences(x_train), y_traini
+	print(x_train[0])
+	return x_train, y_train
+
 
 def loadData2(prefix):
 	x_train = np.zeros(shape=(1000,1001), dtype=int)
@@ -47,14 +51,13 @@ def model(inputLen):
 
 def model2():
 	model = Sequential()
-	model.add(Dense(64, input_shape=(1000, 1000, 1000)))
-	model.add(Activation('relu'))
+	model.add(Dense(64, input_shape=(1000, 1000)))
+	model.add(Flatten())
+	model.add(LSTM(output_dim = 512, activation='sigmoid', inner_activation='hard_sigmoid', return_sequences = True))
 	model.add(Dropout(.5))
-	model.add(Dense(256))
-	model.add(Activation('relu'))
+	model.add(LSTM(output_dim = 512, activation = 'sigmoid', inner_activation = 'hard_sigmoid'))
 	model.add(Dropout(.5))
-	model.add(Dense(1))
-	model.add(Activation('softmax'))
+	model.add(Dense(1, activation='softmax'))
 
 	model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 	return model
