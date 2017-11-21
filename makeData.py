@@ -17,8 +17,9 @@ prefix = sys.argv[5]
 maxPlex = 6
 minPlex = 2
 simplicial = int(sys.argv[6]) == 1
+initIdx = int(sys.argv[7])
 
-for i in range(numGraphs):
+for i in range(initIdx, initIdx + numGraphs):
 	if verbosity > 0: print("-"*40)
 	if verbosity > 0: print("Generating graph " +  str(i))
 	matrix = np.zeros((numNeurons, numNeurons), dtype=int)
@@ -53,4 +54,4 @@ for i in range(numGraphs):
 	if verbosity > 0: print("Completed graph " + str(i) + " with " + (str(complexes) + " simplicial complexes, and " if simplicial else "") + str(np.sum(matrix)) + " edges (" + str(float(np.sum(matrix))/maxEdges) + "% connected)")
 	#np.savetxt(prefix + str(i) + ".csv", matrix, delimiter=',', fmt='%i')
 	saveSparse(prefix + str(i), matrix)
-	subprocess.call("pipeline/pipe.py " + prefix + str(i) + " " + str(timesteps) + " " +  prefix, shell=True)
+#	subprocess.call("pipeline/pipe.py " + prefix + str(i) + " " + str(timesteps) + " " +  prefix, shell=True)

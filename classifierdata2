@@ -1,0 +1,4 @@
+#!/bin/bash
+#python makeData.py 500 1000 .008 1000 classifiertest/random/ 0 565
+python makeData.py 500 1000 .008 1000 classifiertest/simplicial/ 1 500
+# <networks> <neurons> <percent connectivity> <timesteps> <prefix> <simplex/not>

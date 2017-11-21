@@ -3,15 +3,18 @@ import scripts.GraphKit as gk
 import sys
 import tensorflow as tf
 from tensorflow.contrib import rnn
+import prettify
 
 batchSize = 128
 numClasses = 2
-numInput = 1000
+numInput = 500
 timesteps = 1000
 numHidden = 256
-learningRate = .01
-trainingSteps = 5000
-prefix = "classifiertest"
+learningRate = .005
+trainingSteps = 10000
+epochLen = 150
+prefix = "classifiertest2"
+pretty = prettify.pretty()
 
 class seqData(object):
 	def __init__(self, minIdx = 0, maxIdx=499):
@@ -29,18 +32,22 @@ class seqData(object):
 				self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(randIdx) + ".csv", delimiter=','), 1000, 1000))
 				self.labels.append([0,1])
 				randIdx += 1
-			print(str(randIdx + simpIdx) + "\r")
+			pretty.arrow(randIdx + simpIdx - (minIdx * 2), ((maxIdx-minIdx) * 2))
 		while randIdx < maxIdx:
 			self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(randIdx) + ".csv", delimiter=','), 1000, 1000))
 			self.labels.append([0,1])
 			randIdx += 1
-			print(str(randIdx + simpIdx) + "\r")
+			pretty.arrow(randIdx + simpIdx - (minIdx * 2), ((maxIdx-minIdx) * 2))
 		while simpIdx < maxIdx:
 			self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(simpIdx) + ".csv", delimiter=','), 1000, 1000))
 			self.labels.append([1,0])
 			simpIdx += 1
-			print(str(randIdx + simpIdx) + "\r")
+			pretty.arrow(randIdx + simpIdx - (minIdx * 2), ((maxIdx-minIdx) * 2))
 		self.batchId = 0
+
+	def crop(self, cropLen):
+		for i in range(len(self.data)):
+			self.data[i] = self.data[i][:cropLen]
 
 	def next(self, batchSize):
 		if self.batchId == len(self.data):
@@ -50,10 +57,12 @@ class seqData(object):
 		self.batchId = min(self.batchId + batchSize, len(self.data))
 		return batchData, batchLabels
 			
-if len(sys.argv) == 1 : training = seqData(0, 349)
-testing = seqData(350, 499)
+training = seqData(0, 749)
+testing = seqData(750, 999)
+training.crop(numInput)
+testing.crop(numInput)
 
-_data = tf.placeholder("float", [None, timesteps, numInput])
+_data = tf.placeholder("float", [None, numInput, timesteps])
 _labels = tf.placeholder("float", [None, numClasses])
 
 
@@ -61,7 +70,7 @@ weights = { 'out': tf.Variable(tf.random_normal([numHidden, numClasses])) }
 biases = { 'out': tf.Variable(tf.random_normal([numClasses])) }
 
 def RNN(x, weights, biases):
-	x = tf.unstack(x, timesteps, 1)
+	x = tf.unstack(x, numInput, 1)
 	lstm_cell = rnn.BasicLSTMCell(numHidden, forget_bias=1.0)
 	outputs, states = rnn.static_rnn(lstm_cell, x, dtype=tf.float32)
 	return tf.matmul(outputs[-1], weights['out']) + biases['out']
@@ -94,20 +103,16 @@ with tf.Session() as sess:
 	for step in range(1, trainingSteps+1):
 		batchX, batchY = training.next(batchSize)
 		sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
-		if step % 150 == 0 or step == 1:
+		if step % epochLen == 0 or step == 1:
 			loss, acc = sess.run([lossOp, accuracy], feed_dict={_data: batchX, _labels: batchY})
 			print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + ", accuracy = " + "{:.3f}".format(acc))
-			if acc == 1.0:
-				print("probably overtrained; exiting. you did this to yourself.")
-				saver.save(sess, "./trained" + str(step) + ".ckpt")
-				break
-		print(str(step) + "\r")
+		pretty.arrow(step%epochLen, epochLen)
 		if step % 500 == 0:
 			save = saver.save(sess, "./trained" + str(step) + ".ckpt")
 			print("Saved checkpoint " + str(step))
 	save = saver.save(sess, "./trained.ckpt")
 	print("Training complete; model save in file %s" % save)
-	
+#	testing = seqData(750, 999)
 	testData = testing.data
 	testLabels = testing.labels
 	print("Accuracy on validation data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))

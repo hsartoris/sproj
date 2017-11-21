@@ -155,6 +155,6 @@ if __name__ == "__main__":
 #	np.savetxt(sys.argv[3] + "spikes/" + name, spikeTimeMatrix(spikes, len(matrix), int(simtime)), delimiter=',', fmt='%i')
 	n = nest.GetStatus(spikes, "events")[0]
 	temp = np.array([n['senders'], n['times']])
-	np.savetxt(sys.argv[3] + "spikes/" + name, temp, delimiter=',', fmt=('%f' if precise else '%i'))
+	np.savetxt(sys.argv[3] + "spikes/" + name + ".csv", temp, delimiter=',', fmt=('%f' if precise else '%i'))
 	print(temp)
 
