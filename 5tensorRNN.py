@@ -17,32 +17,31 @@ prefix = "classifiertest2"
 pretty = prettify.pretty()
 
 class seqData(object):
-	def __init__(self, minIdx = 0, maxIdx=499):
+	def __init__(self, minIdx = 0, maxIdx=499, numNeurons=1000, timesteps=1000, blockLen=250):
 		global prefix
 		self.data = []
 		self.labels = []
-		randIdx = minIdx
-		simpIdx = minIdx
-		while randIdx < maxIdx and simpIdx < maxIdx:
+		rand = []
+		simp = []
+		for i in range(minIdx, maxIdx):
+			tRand = gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), numNeurons, timesteps)
+			tSimp = gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), numNeurons, timesteps)
+			for j in range(0, timesteps/blockLen):
+				rand.append(tRand[:,(j*blockLen):((j+1)*blockLen))
+				simp.append(tSimp[:,(j*blockLen):((j+1)*blockLen))
+		while len(rand) > 0 and len(simp) > 0:
 			if np.random.rand() < .5:
-				self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(simpIdx) + ".csv", delimiter=','), 1000, 1000))
-				self.labels.append([1,0])
-				simpIdx += 1
-			else:
-				self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(randIdx) + ".csv", delimiter=','), 1000, 1000))
+				self.data.append(rand.pop())
 				self.labels.append([0,1])
-				randIdx += 1
-			pretty.arrow(randIdx + simpIdx - (minIdx * 2), ((maxIdx-minIdx) * 2))
-		while randIdx < maxIdx:
-			self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(randIdx) + ".csv", delimiter=','), 1000, 1000))
+			else:
+				self.data.append(simp.pop())
+				self.labels.append([1,0])
+		while len(rand) > 0:
+			self.data.append(rand.pop())
 			self.labels.append([0,1])
-			randIdx += 1
-			pretty.arrow(randIdx + simpIdx - (minIdx * 2), ((maxIdx-minIdx) * 2))
-		while simpIdx < maxIdx:
-			self.data.append(gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(simpIdx) + ".csv", delimiter=','), 1000, 1000))
+		while len(simp) > 0:
+			self.data.append(simp.pop())
 			self.labels.append([1,0])
-			simpIdx += 1
-			pretty.arrow(randIdx + simpIdx - (minIdx * 2), ((maxIdx-minIdx) * 2))
 		self.batchId = 0
 
 	def crop(self, cropLen):
@@ -59,8 +58,6 @@ class seqData(object):
 			
 training = seqData(0, 749)
 testing = seqData(750, 999)
-training.crop(numInput)
-testing.crop(numInput)
 
 _data = tf.placeholder("float", [None, numInput, timesteps])
 _labels = tf.placeholder("float", [None, numClasses])
