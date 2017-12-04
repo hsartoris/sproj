@@ -12,7 +12,7 @@ numGraphs = int(sys.argv[1]) # will generate numGraphs simplicial AND numGraphs 
 numNeurons = int(sys.argv[2])
 percent = float(sys.argv[3]) # relevant only for simplicial generation; random is dependent
 prefix = sys.argv[4]
-maxPlex = 6
+maxPlex = 8
 minPlex = 2
 initIdx = (0 if len(sys.argv) < 6 else int(sys.argv[5]))
 
@@ -43,6 +43,7 @@ for i in range(initIdx, initIdx + numGraphs):
 		complexes += 1
 	if verbosity > 0: print("Completed simplicial graph " + str(i) + " with " + str(complexes) + " simplicial complexes, and " + str(np.sum(matrix)) + " edges (" + str(float(np.sum(matrix))/maxEdges) + "% connected)")
 	saveSparse(prefix + "/simplicial/" + str(i), matrix)
+	np.savetxt(prefix + "/simplicial/" + str(i) + ".csv", matrix, delimiter=',', fmt='%i')
 	connLevels.append(np.sum(matrix))
 #	subprocess.call("pipeline/pipe.py " + prefix + str(i) + " " + str(timesteps) + " " +  prefix, shell=True)
 
@@ -57,5 +58,6 @@ for i in range(initIdx, initIdx + numGraphs):
 		if (not matrix[n1][n2] > 0) and (not matrix[n2][n1] > 0):
 			matrix[n1][n2] = 1
 	saveSparse(prefix + "/random/" + str(i), matrix)
+	np.savetxt(prefix + "/random/" + str(i) + ".csv", matrix, delimiter=',', fmt="%i")
 
 if len(connLevels) > 0: print("probably shouldn't have anything left but there is")

@@ -1,0 +1,7 @@
+200
+4037
+8178
+1620
+28
+Euler characteristic : 2749
+Standard Betti numbers: 1 13 2761 0 0 
