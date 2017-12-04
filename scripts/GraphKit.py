@@ -183,3 +183,20 @@ def spikeTimeMatrix(spikes, numNeurons, timesteps):
 	for i in range(len(spikes[0])):
 		output[int(spikes[0][i]-1), int(round(spikes[1][i]))] = 1
 	return output
+
+def spikeTimeArray(spikes, timesteps):
+	# takes saved matrix where first row is spiking neuron
+	# and second row is time of spike
+	# outputs a list of len 10*timesteps
+	output = np.zeros((10*timesteps, 1), dtype=int)
+	for i in range(len(spikes[0])):
+		output[int(spikes[1][i] * 10)] = np.array([int(spikes[0][i])])
+	return output
+
+def perturb(matrix, chance=.01):
+	for i in range(len(matrix)):
+		for j in range(len(matrix)):
+			if matrix[i,j] > 0 and np.random.random() > chance:
+				matrix[i,j] = 0
+				4
+

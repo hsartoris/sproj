@@ -15,4 +15,4 @@ initIdx = (0 if len(sys.argv) < 5 else int(sys.argv[4]))
 #"/simplicial/", shell=True)
 
 for i in range(initIdx, initIdx + numGraphs):
-	subprocess.call("pipeline/pipe.py " + prefix + "/random/" + str(i) + " " + str(timesteps) + " " + prefix + "/random/", shell=True)
+	subprocess.call("pipeline/pipe.py " + prefix + str(i) + " " + str(timesteps) + " " + prefix, shell=True)

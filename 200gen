@@ -1,0 +1,33 @@
+#!/bin/bash
+#python makeData.py 500 1000 .008 1000 classifiertest/random/ 0 565
+#python makeData.py 500 1000 .008 1000 classifiertest/simplicial/ 1 500
+# <networks> <neurons> <percent connectivity> <timesteps> <prefix> <simplex/not>
+
+NEUR=200
+TIME=1000
+PERC=.015
+MIN=0
+MAX=1000
+let MID=($MIN+$MAX)/2
+let MID2MAX=$MAX-$MID
+DIR="200neur"
+
+echo "Creating $($MAX * 2) networks of size $NEUR with connectivity %$PERC, simulated for $TIME steps"
+echo "Spawning subprocesses..."
+
+python makeData2.py $MID $NEUR $PERC $DIR & WAITPIDS=$!
+python makeData2.py $MID2MAX $NEUR $PERC $DIR $MID & WAITPIDS="$WAITPIDS "$!
+
+
+echo $WAITPIDS
+wait $WAITPIDS
+
+python processData.py $MID $TIME "$DIR/random/" & WAITPIDS=$!
+python processData.py $MID2MAX $TIME "$DIR/random/" $MID & WAITPIDS="$WAITPIDS "$!
+
+python processData.py $MID $TIME "$DIR/simplicial/" & WAITPIDS="$WAITPIDS "$!
+python processData.py $MID2MAX $TIME "$DIR/simplicial/" $MID & WAITPIDS="$WAITPIDS "$!
+
+wait $WAITPIDS
+
+echo "Finished simulating."

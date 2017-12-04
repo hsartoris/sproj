@@ -5,15 +5,15 @@ import tensorflow as tf
 from tensorflow.contrib import rnn
 import prettify
 
-batchSize = 128
+batchSize = 64
 numClasses = 2
-numInput = 500
+numInput = 200
 timesteps = 1000
 numHidden = 256
 learningRate = .005
 trainingSteps = 10000
 epochLen = 150
-prefix = "classifiertest2"
+prefix = "200neur"
 pretty = prettify.pretty()
 
 class seqData(object):
@@ -24,11 +24,11 @@ class seqData(object):
 		rand = []
 		simp = []
 		for i in range(minIdx, maxIdx):
-			tRand = gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), numNeurons, timesteps)
-			tSimp = gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), numNeurons, timesteps)
-			for j in range(0, timesteps/blockLen):
-				rand.append(tRand[:,(j*blockLen):((j+1)*blockLen))
-				simp.append(tSimp[:,(j*blockLen):((j+1)*blockLen))
+			tRand = gk.spikeTimeMatrix(np.loadtxt(prefix + "/random/spikes/" + str(i) + ".csv", delimiter=','), numNeurons, timesteps).transpose()
+			tSimp = gk.spikeTimeMatrix(np.loadtxt(prefix + "/simplicial/spikes/" + str(i) + ".csv", delimiter=','), numNeurons, timesteps).transpose()
+			for j in range(0, int(timesteps/blockLen)):
+				rand.append(tRand[:,(j*blockLen):((j+1)*blockLen)])
+				simp.append(tSimp[:,(j*blockLen):((j+1)*blockLen)])
 		while len(rand) > 0 and len(simp) > 0:
 			if np.random.rand() < .5:
 				self.data.append(rand.pop())
@@ -56,10 +56,10 @@ class seqData(object):
 		self.batchId = min(self.batchId + batchSize, len(self.data))
 		return batchData, batchLabels
 			
-training = seqData(0, 749)
-testing = seqData(750, 999)
+training = seqData(0, 749, blockLen=numInput)
+testing = seqData(750, 999, blockLen=numInput)
 
-_data = tf.placeholder("float", [None, numInput, timesteps])
+_data = tf.placeholder("float", [None, timesteps, numInput])
 _labels = tf.placeholder("float", [None, numClasses])
 
 
@@ -67,7 +67,7 @@ weights = { 'out': tf.Variable(tf.random_normal([numHidden, numClasses])) }
 biases = { 'out': tf.Variable(tf.random_normal([numClasses])) }
 
 def RNN(x, weights, biases):
-	x = tf.unstack(x, numInput, 1)
+	x = tf.unstack(x, timesteps, 1)
 	lstm_cell = rnn.BasicLSTMCell(numHidden, forget_bias=1.0)
 	outputs, states = rnn.static_rnn(lstm_cell, x, dtype=tf.float32)
 	return tf.matmul(outputs[-1], weights['out']) + biases['out']
