@@ -33,8 +33,8 @@ _data = tf.placeholder(tf.float32, [None, b, numInput])
 _labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
 dropout = tf.placeholder(tf.float32)
 
-#weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'final' : tf.Variable(tf.random_normal([1,d])) }
-weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
+weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'final' : tf.Variable(tf.random_normal([1,d])) }
+#weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
 #biases = [tf.Variable(tf.random_normal([d])), tf.Variable(tf.random_normal([1]))]
 biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
 
