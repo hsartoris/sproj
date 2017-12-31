@@ -139,10 +139,12 @@ class SimplicialComplex(diGraph):
 			rules = self.simplices[target].face(faceDim)
 			if verbose: print("Chose face of order " + str(faceDim) + "; nodes are " + str(rules))
 			if verbose: print("Adding " + str(sim.n - faceDim) + " nodes to existing blueprint of size " + str(len(self.blueprint)))
+			# Expand the blueprint to accomodate the new simplex
 			overlap = sim.n - faceDim
 			temp = np.zeros((len(self.blueprint)+overlap, len(self.blueprint)+overlap))
 			temp[:-overlap,:-overlap] = self.blueprint
 			self.blueprint = temp
+			# add new indices to the ruleset
 			for i in range(sim.n - faceDim):
 				idx = len(self.blueprint) - (i + 1)
 				# could print this but then it wouldn't be one line lol
