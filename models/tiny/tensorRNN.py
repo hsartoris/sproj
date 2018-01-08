@@ -1,5 +1,4 @@
 import numpy as np
-import scripts.GraphKit as gk
 import sys
 import tensorflow as tf
 from tensorflow.contrib import rnn
@@ -24,7 +23,7 @@ numLayers = 2
 
 
 b = 20
-d = 4
+d = 3
 n = 3
 
 _data = tf.placeholder(tf.float32, [None, b, numInput])
@@ -49,7 +48,7 @@ def batchModel(x, weights, biases):
 	layer2 = tf.nn.relu(tf.einsum('ij,kjl->kil', weights['layer1'], layer1))
 	print("Compiled first layer set")
 #	out = tf.einsum('ij,kjl->kil', weights['final'], layer1)
-	print(out.get_shape().as_list())
+	#print(out.get_shape().as_list())
 	return layer2
 
 def model(x, weights, biases):
@@ -109,26 +108,28 @@ class SeqData(object):
 		for i in range(num):
 			self.data.append(np.loadtxt(str(i) + "/data.csv", delimiter=','))
 			self.labels.append(np.loadtxt(str(i) + "/label.csv", delimiter=','))
+		self.data = np.array(self.data)
+		self.labels = np.array(self.labels)
 		p = np.random.permutation(len(self.data))
 		self.data = self.data[p]
 		self.labels = self.labels[p]
-		self.maxTrain = len(self.data) * train
-		self.maxValid = len(self.data) * (train + validate)
+		self.maxTrain = int(len(self.data) * train)
+		self.maxValid = int(len(self.data) * (train + validate))
 		self.maxTest = len(self.data)
 		self.batchId = 0
 	def next(self, batchSize):
 		if self.batchId == len(self.data): self.batchId = 0
 		n = self.batchId + batchSize
-		batchData = self.data[self.batchId:min(n, maxTrain)]
-		batchLabels = self.labels[self.batchId:min(n, maxTrain)]
-		self.batchId = min(n, maxTrain)
+		batchData = self.data[self.batchId:min(n, self.maxTrain)]
+		batchLabels = self.labels[self.batchId:min(n, self.maxTrain)]
+		self.batchId = min(n, self.maxTrain)
 		return batchData, batchLabels
 	def validation(self):
 		return self.data[self.maxTrain:self.maxValid], self.labels[self.maxTrain:self.maxValid]
 	def testing(self):
 		return self.data[self.maxValid:len(self.data)], self.labels[self.maxTrain:len(self.data)]
 
-data = SeqData(0, 639)
+data = SeqData(10000)
 data.validation()
 data.testing()
 start = 1
@@ -150,7 +151,7 @@ with tf.Session() as sess:
 		#if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
 		#else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
 		lr = initLearningRate
-		batchX, batchY = training.next(batchSize)
+		batchX, batchY = data.next(batchSize)
 	#	batchY = batchY.transpose()
 		sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
 
