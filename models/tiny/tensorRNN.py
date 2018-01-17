@@ -23,11 +23,12 @@ numLayers = 2
 
 
 b = 20
-d = 3
+d = 10
 n = 3
 
 _data = tf.placeholder(tf.float32, [None, b, numInput])
-_labels = tf.placeholder(tf.float32, [None, d, numInput * numInput])
+#_labels = tf.placeholder(tf.float32, [None, d, numInput * numInput])
+_labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
 dropout = tf.placeholder(tf.float32)
 
 weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'layer1': tf.Variable(tf.random_normal([d,d])), 'final' : tf.Variable(tf.random_normal([1,d])) }
@@ -47,9 +48,9 @@ def batchModel(x, weights, biases):
 	layer1 = tf.nn.relu(tf.einsum('ij,kjl->kil', weights['layer0'], total))
 	layer2 = tf.nn.relu(tf.einsum('ij,kjl->kil', weights['layer1'], layer1))
 	print("Compiled first layer set")
-#	out = tf.einsum('ij,kjl->kil', weights['final'], layer1)
+	out = tf.einsum('ij,kjl->kil', weights['final'], layer2)
 	#print(out.get_shape().as_list())
-	return layer2
+	return out
 
 def model(x, weights, biases):
 	upper1 = tf.matmul(x, expand)
@@ -80,8 +81,8 @@ with tf.name_scope("Loss"):
 	#lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.SUM))
 	lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
-#optimizer = tf.train.AdamOptimizer(initLearningRate)
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
+optimizer = tf.train.AdamOptimizer(initLearningRate)
 #optimizer = tf.train.MomentumOptimizer(initLearningRate, .001)
 #optimizer = tf.train.AdagradOptimizer(initLearningRate)
 

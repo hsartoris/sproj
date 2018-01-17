@@ -4,7 +4,7 @@ import os
 
 networks = 10000
 timesteps = 20
-depth = 3
+depth = 10
 
 for i in range(networks):
 	if not os.path.exists(str(i)):
