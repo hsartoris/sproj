@@ -29,11 +29,13 @@ b = 200
 d = 25
 n = numInput
 
-_data = tf.placeholder(tf.float32, [None, b, numInput])
-_labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
+#_data = tf.placeholder(tf.float32, [None, b, numInput])
+_data = tf.placeholder(tf.float32, [b, numInput])
+#_labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
+_labels = tf.placeholder(tf.float32, [1, numInput * numInput])
 dropout = tf.placeholder(tf.float32)
 
-weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'final' : tf.Variable(tf.random_normal([1,d])) }
+weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 'final' : tf.Variable(tf.random_normal([1,d])) }
 #weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
 #biases = [tf.Variable(tf.random_normal([d])), tf.Variable(tf.random_normal([1]))]
 biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
@@ -44,7 +46,14 @@ for i in range(1, n):
 
 expand = tf.constant(expand, tf.float32)
 
+tile = np.array([([1] + [0]*(n-1))*n])
+for i in range(1, n):
+	tile = np.append(tile, [([0]*i + [1] + [0]*(n-1-i))*n], 0)
+
+tile = tf.constant(tile, tf.float32);
+
 def batchModel(x, weights, biases):
+	# effectively layer 0
 	# this is a party
 #	upper1 = tf.einsum('ijk,kl->ijl', x, expand) # this may well be the most simple part of this
 #	print(upper1.get_shape().as_list())
@@ -60,7 +69,17 @@ def batchModel(x, weights, biases):
 	print(out.get_shape().as_list())
 	return out
 
-def model(x, weights, biases):
+def layer2(x, weights):
+	# non-batch model
+	a = tf.matmul(tf.matmul(x, tf.transpose(expand)), expand)
+	b = tf.matmul(tf.matmul(x, tf.transpose(tile)), tile)
+	a_total = tf.concat([a, x], 0)
+	b_total = tf.concat([x, b], 0)
+	total = tf.nn.relu(tf.add(tf.matmul(weights['layer2_out'], a_total), tf.matmul(weights['layer2_in'], b_total)))
+	return total;
+	
+
+def model(x, weights):
 	upper1 = tf.matmul(x, expand)
 	lower1 = tf.tile(x, [1,n])
 	total = tf.concat([upper1, lower1], 0)
@@ -68,8 +87,11 @@ def model(x, weights, biases):
 #	layer1 = [tf.nn.relu(tf.matmul(tf.expand_dims(tf.concat([x[int(i/n)], x[i%n]], 0), 0), weights['layer0']) + biases['layer0']) for i in range(n*n)]
 	print("Compiled first layer")
 #	out = [(tf.matmul(layer1[i], weights['final']) + biases['final']) for i in range(len(layer1))]
-	out = tf.matmul(weights['final'], layer1)
-	return out	
+	return layer1
+
+def final(x, weights):
+	# non-batch model final layer
+	return tf.matmul(weights['final'], x)
 
 def RNN(x, weights, biases):
 #	x = tf.unstack(x, numInput, 1)
@@ -91,7 +113,8 @@ with tf.name_scope("rate"):
 	#learningRate = tf.train.polynomial_decay(0.001, global_step, trainingSteps, .0001)
 	learningRate = tf.placeholder(tf.float32, shape=[])
 
-logits = batchModel(_data, weights, biases)
+#logits = batchModel(_data, weights, biases)
+logits = final(layer2(model(_data, weights), weights), weights);
 with tf.name_scope("Model"):
 	pred = tf.nn.softmax(logits)
 
@@ -148,7 +171,9 @@ with tf.Session() as sess:
 		#if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
 		#else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
 		lr = initLearningRate
-		batchX, batchY = training.next(batchSize)
+		batchX, batchY = training.next(1)
+		batchX = batchX[0];
+		batchY = batchY[0];
 	#	batchY = batchY.transpose()
 		sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
 
@@ -159,7 +184,7 @@ with tf.Session() as sess:
 			summWriter.add_summary(tAcc, step)
 #			validX, validY = validation.data, validation.labels
 			validX, validY = validation.next(batchSize*2)
-			vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], feed_dict={_data: validX, _labels: validY, learningRate: lr})
+			vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], feed_dict={_data: validX[0], _labels: validY[0], learningRate: lr})
 			validWriter.add_summary(vloss, step)
 			validWriter.add_summary(vacc, step)
 			#loss, acc = sess.run([lossOp], feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
