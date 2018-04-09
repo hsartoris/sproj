@@ -15,7 +15,7 @@ runNumber = 2
 batchSize = 64
 timesteps = 200
 baseRate = .0001
-initLearningRate = .05
+initLearningRate = .01
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
@@ -35,13 +35,13 @@ _labels = tf.placeholder(tf.float32, [None, 1, n * n])
 #_labels = tf.placeholder(tf.float32, [1, n * n])
 dropout = tf.placeholder(tf.float32)
 
-weights = { 'layer0': tf.Variable(tf.random_poisson([d, 2*b])), 
-        'layer2_in': tf.Variable(tf.random_poisson([d, 2*d])), 
-        'layer2_out': tf.Variable(tf.random_poisson([d, 2*d])), 
-        'final' : tf.Variable(tf.random_poisson([1,d])) }
+weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 
+        'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 
+        'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 
+        'final' : tf.Variable(tf.random_normal([1,d])) }
 
 # biases not currently in use
-biases = { 'layer0' : tf.Variable(tf.random_poisson([d])), 'final' : tf.Variable(tf.random_poisson([1])) }
+biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
 
 expand = np.array([[1]*n + [0]*n*(n-1)])
 for i in range(1, n):
@@ -112,7 +112,7 @@ with tf.name_scope("Accuracy"):
 init = tf.global_variables_initializer()
 
 if TBOARD_LOG:
-    #rateSum = tf.summary.scalar("learn_rate", learningRate)
+    rateSum = tf.summary.scalar("learn_rate", learningRate)
     lossSum = tf.summary.scalar("train_loss", lossOp)
     accSum = tf.summary.scalar("train_accuracy", accuracy)
 
@@ -167,11 +167,11 @@ with tf.Session() as sess:
         if batchId == trainMaxIdx or step == 1:
             # end of epoch as signaled by SeqData
             # calculate current loss on training data
-            #currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
-            tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
-                    feed_dict={_data: batchX, _labels: batchY})
+            #tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
+            currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
+                    feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
             # see status.1
-            #        feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
+            #        feed_dict={_data: batchX, _labels: batchY})
 
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
@@ -180,6 +180,7 @@ with tf.Session() as sess:
 
             if TBOARD_LOG:
                 # log various data
+                 validWriter.add_summary(currRate, step)
                  validWriter.add_summary(vloss, step)
                  validWriter.add_summary(vacc, step)
                  summWriter.add_summary(tLoss, step)
