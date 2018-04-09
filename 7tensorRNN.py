@@ -93,8 +93,8 @@ with tf.name_scope("Model"):
 
 with tf.name_scope("Loss"):
     #lossOp = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=_labels))
-#    lossOp = tf.reduce_mean(tf.losses.mean_squared_error(_labels, pred, reduction=tf.losses.Reduction.NONE))
-    lossOp = tf.reduce_mean(tf.losses.hinge_loss(_labels, pred, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
+    lossOp = tf.reduce_mean(tf.losses.mean_squared_error(_labels, pred, reduction=tf.losses.Reduction.NONE))
+    #lossOp = tf.reduce_mean(tf.losses.hinge_loss(_labels, pred, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
     #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
 #optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
