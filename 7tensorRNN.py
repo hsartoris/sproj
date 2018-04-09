@@ -164,7 +164,7 @@ with tf.Session() as sess:
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
             vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], 
-                    feed_dict={_data: validX, _labels: validY, learningRate: lr})
+                    feed_dict={_data: validX, _labels: validY})
 
             if TBOARD_LOG:
                 # log various data
