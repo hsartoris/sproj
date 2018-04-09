@@ -130,8 +130,8 @@ with tf.Session() as sess:
 
     if TBOARD_LOG:
         # initialize log writers
-    summWriter = tf.summary.FileWriter(logPath + "/train" + str(runNumber), graph=tf.get_default_graph())
-    validWriter = tf.summary.FileWriter(logPath + "/validation" + str(runNumber))
+        summWriter = tf.summary.FileWriter(logPath + "/train" + str(runNumber), graph=tf.get_default_graph())
+        validWriter = tf.summary.FileWriter(logPath + "/validation" + str(runNumber))
 
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
