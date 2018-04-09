@@ -86,6 +86,10 @@ if __name__ == "__main__":
             # structure already defined
             if verbose: print("Found network structure")
             connMatrix = np.loadtxt(dataDir + structName, delimiter=',')
+        
+        if os.path.exists(dataDir + spikeDir) and (overwriteData or overwriteAll):
+            if verbose: print("Deleting old spike directory")
+            shutil.rmtree(dataDir + spikeDir)
     
         if os.path.exists(dataDir + paramsName):
             # parameters already defined
