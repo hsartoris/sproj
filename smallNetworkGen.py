@@ -19,7 +19,7 @@ Options:
 """
 
 from docopt import docopt
-import os, shutil
+import os, shutil, prettify
 import numpy as np
 
 structName = "struct.csv"
@@ -53,11 +53,15 @@ def randSpikeCol(spikeProb):
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
 def simulate(matrix, params, dataDir, simple=True):
+    arrow = pretty()
     global NUM_NEUR
+    global verbose
     # for now this just overwrites, and assumes simple
     if not os.path.exists(dataDir + spikeDir): 
+        if verbose: print("creating spike directory" + dataDir + spikeDir)
         os.makedirs(dataDir + spikeDir)
     for run in range(params['runs']):
+        arrow.arrow(run, params['runs'])
         data = np.matrix(np.zeros((NUM_NEUR,params['steps'])))
         data[:,0] = randSpikeCol(params['spikeProb'])
         for step in range(1,params['steps']):
