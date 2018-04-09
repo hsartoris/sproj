@@ -171,7 +171,7 @@ with tf.Session() as sess:
                  summWriter.add_summary(currRate, step)
                  summWriter.add_summary(tLoss, step)
                  summWriter.add_summary(tAcc, step)
-        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
+            print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
                    ", accuracy = " + "{:.3f}".format(acc))
            #print(weights['final'].eval())
         #pretty.arrow(step%epochLen, epochLen)
