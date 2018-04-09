@@ -26,6 +26,7 @@ structName = "struct.csv"
 paramsName = "params"
 spikeDir = "spikes/"
 params = dict()
+spikeProb = .3
 NUM_NEUR = 3
 
 def genMatrix(simple=True):
@@ -42,7 +43,7 @@ def genMatrix(simple=True):
 def loadParams(dataDir):
     f = open(dataDir + paramsName)
     p = f.readlines()
-    params = { 'runs':int(f[0]), 'timesteps':int(f[1]) } 
+    params = { 'runs':int(p[0]), 'timesteps':int(p[1]) } 
     f.close()
     return params
 
@@ -51,15 +52,17 @@ def randSpikeCol(spikeProb):
     # returns column matrix of 1/0 with spikeProb chance of 1
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
-def simulate(matrix, runs, steps, dataDir, spikeChance=.15, simple=True):
+def simulate(matrix, params, dataDir, simple=True):
     global NUM_NEUR
     # for now this just overwrites, and assumes simple
-    if not os.path.exists(dataDir + spikeDir): os.makedirs(dataDir + spikeDir)
-    for run in range(runs):
-        data = np.matrix(np.zeros((NUM_NEUR,steps)))
-        data[:,0] = randSpikeCol(spikeChance)
-        for step in range(1,steps):
-            data[:,step] = np.clip((data[:,step-1] * matrix) + randSpikeCol, 0, 1)
+    if not os.path.exists(dataDir + spikeDir): 
+        os.makedirs(dataDir + spikeDir)
+    for run in range(params['runs']):
+        data = np.matrix(np.zeros((NUM_NEUR,params['steps'])))
+        data[:,0] = randSpikeCol(params['spikeProb'])
+        for step in range(1,params['steps']):
+            data[:,step] = np.clip((matrix * data[:,step-1]) + 
+                                    randSpikeCol(params['spikeProb']), 0, 1)
         np.savetxt(dataDir + spikeDir + str(run) + ".csv", data, delimiter=',', fmt='%i')
     
 
@@ -78,7 +81,7 @@ if __name__ == "__main__":
         if os.path.exists(dataDir + structName) and not overwriteAll:
             # structure already defined
             if verbose: print("Found network structure")
-            connMatrix = np.loadtxt(dataDir + structName)
+            connMatrix = np.loadtxt(dataDir + structName, delimiter=',')
     
         if os.path.exists(dataDir + paramsName):
             # parameters already defined
@@ -105,10 +108,11 @@ if __name__ == "__main__":
         np.savetxt(dataDir + structName, matrix, delimiter=',')
         params['runs'] = int(arguments['<runs>'])
         params['timesteps'] = int(arguments['<timesteps>'])
+        params['spikeProb'] = spikeProb
         p = open(dataDir + paramsName, 'w+')
         p.write("{}\n{}\n".format(params['runs'], params['timesteps']))
         p.close()
-
+        simulate(matrix, params['runs'], params['timesteps'], dataDir)
 
 
     if arguments['-t']:

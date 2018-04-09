@@ -18,7 +18,7 @@ initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
-prefix = "classifiertest2"
+prefix = "200neur"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 numLayers = 2
@@ -29,10 +29,10 @@ b = 200
 d = 25
 n = numInput
 
-#_data = tf.placeholder(tf.float32, [None, b, numInput])
-_data = tf.placeholder(tf.float32, [b, numInput])
-#_labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
-_labels = tf.placeholder(tf.float32, [1, numInput * numInput])
+_data = tf.placeholder(tf.float32, [None, b, numInput])
+#_data = tf.placeholder(tf.float32, [b, numInput])
+_labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
+#_labels = tf.placeholder(tf.float32, [1, numInput * numInput])
 dropout = tf.placeholder(tf.float32)
 
 weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 'final' : tf.Variable(tf.random_normal([1,d])) }
@@ -52,7 +52,7 @@ for i in range(1, n):
 
 tile = tf.constant(tile, tf.float32);
 
-def batchModel(x, weights, biases):
+def batchModel(x, weights):
 	# effectively layer 0
 	# this is a party
 #	upper1 = tf.einsum('ijk,kl->ijl', x, expand) # this may well be the most simple part of this
@@ -65,9 +65,20 @@ def batchModel(x, weights, biases):
 	print(layer1.get_shape().as_list())
 #	layer1 = [tf.nn.relu(tf.matmul(tf.expand_dims(tf.concat([x[int(i/n)], x[i%n]], 0), 0), weights['layer0']) + biases['layer0']) for i in range(n*n)]
 	print("Compiled first layer")
-	out = tf.einsum('ij,kjl->kil', weights['final'], layer1)
-	print(out.get_shape().as_list())
+#	out = tf.einsum('ij,kjl->kil', weights['final'], layer1)
+	out = layer1
+	print("first layer output size:",out.get_shape().as_list())
 	return out
+
+def layer2batch(x, weights):
+	a_total = tf.concat([tf.einsum('ijk,kl->ijl', tf.einsum('ijk,kl->ijl', x, tf.transpose(expand)), expand), x], 1)
+	print("A mat size", a_total.get_shape().as_list())
+	a_total = tf.einsum('ij,ljk->lik', weights['layer2_out'], a_total)
+	b_total = tf.concat([x, tf.einsum('ijk,kl->ijl', tf.einsum('ijk,kl->ijl', x, tf.transpose(tile)), tile)], 1)
+	print("B mat size", b_total.get_shape().as_list())
+	b_total = tf.einsum('ij,ljk->lik', weights['layer2_in'], b_total)
+	return tf.nn.relu(tf.add(a_total, b_total))
+	
 
 def layer2(x, weights):
 	# non-batch model
@@ -77,6 +88,9 @@ def layer2(x, weights):
 	b_total = tf.concat([x, b], 0)
 	total = tf.nn.relu(tf.add(tf.matmul(weights['layer2_out'], a_total), tf.matmul(weights['layer2_in'], b_total)))
 	return total;
+
+def finalBatch(x, weights):
+	return tf.einsum('ij,ljk->lik', weights['final'], x)
 	
 
 def model(x, weights):
@@ -113,15 +127,17 @@ with tf.name_scope("rate"):
 	#learningRate = tf.train.polynomial_decay(0.001, global_step, trainingSteps, .0001)
 	learningRate = tf.placeholder(tf.float32, shape=[])
 
-#logits = batchModel(_data, weights, biases)
-logits = final(layer2(model(_data, weights), weights), weights);
+logits = finalBatch(layer2batch(batchModel(_data, weights), weights), weights)
+#logits = final(layer2(model(_data, weights), weights), weights);
 with tf.name_scope("Model"):
-	pred = tf.nn.softmax(logits)
+#	pred = tf.nn.softmax(logits)
+	pred = tf.nn.tanh(logits)
 
 with tf.name_scope("Loss"):
-#	lossOp = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits, labels=_labels))
+	lossOp = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=_labels))
+	lossOp = tf.reduce_mean(tf.losses.mean_squared_error(_labels, pred, reduction=tf.losses.Reduction.NONE))
 	#lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.SUM))
-	lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
+#	lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
 #optimizer = tf.train.AdamOptimizer(initLearningRate)
@@ -172,8 +188,6 @@ with tf.Session() as sess:
 		#else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
 		lr = initLearningRate
 		batchX, batchY = training.next(1)
-		batchX = batchX[0];
-		batchY = batchY[0];
 	#	batchY = batchY.transpose()
 		sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
 
@@ -184,7 +198,7 @@ with tf.Session() as sess:
 			summWriter.add_summary(tAcc, step)
 #			validX, validY = validation.data, validation.labels
 			validX, validY = validation.next(batchSize*2)
-			vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], feed_dict={_data: validX[0], _labels: validY[0], learningRate: lr})
+			vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], feed_dict={_data: validX, _labels: validY, learningRate: lr})
 			validWriter.add_summary(vloss, step)
 			validWriter.add_summary(vacc, step)
 			#loss, acc = sess.run([lossOp], feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
