@@ -28,7 +28,7 @@ spikeDir = "spikes/"
 params = dict()
 spikeProb = .3
 params['spikeProb'] = spikeProb
-NUM_NEUR = 3
+NUM_NEUR = 4
 
 def genMatrix(simple=True):
     global NUM_NEUR
@@ -46,8 +46,10 @@ def genMatrix2(simple=True):
     # 0 -> 1 -> 2
     # 0    ->   2
     mat[1,0] = (1 if simple else np.random.random())
-    mat[2,0] = (1 if simple else np.random.random())
-    mat[1,2] = (1 if simple else np.random.random())
+    mat[3,0] = (1 if simple else np.random.random())
+    mat[0,2] = (1 if simple else np.random.random())
+    mat[3,2] = (1 if simple else np.random.random())
+    mat[1,3] = (1 if simple else np.random.random())
     return mat
 
 def loadParams(dataDir):

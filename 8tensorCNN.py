@@ -11,7 +11,7 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 1
+runNumber = 2
 batchSize = 64
 timesteps = 200
 baseRate = .0001
@@ -19,7 +19,7 @@ initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
-prefix = "dataSmall"
+prefix = "dataStaging/4neur1"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
@@ -27,7 +27,7 @@ logPath = "/home/hsartoris/tflowlogs/"
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
 d = 2
-n = 3           # number of neurons
+n = 4           # number of neurons
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 #_data = tf.placeholder(tf.float32, [b, n])
@@ -35,15 +35,13 @@ _labels = tf.placeholder(tf.float32, [None, 1, n * n])
 #_labels = tf.placeholder(tf.float32, [1, n * n])
 dropout = tf.placeholder(tf.float32)
 
-weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 
-        'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 
-        'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 
-        'final' : tf.Variable(tf.random_normal([1,d])) }
+weights = { 'layer0': tf.Variable(tf.random_poisson([d, 2*b])), 
+        'layer2_in': tf.Variable(tf.random_poisson([d, 2*d])), 
+        'layer2_out': tf.Variable(tf.random_poisson([d, 2*d])), 
+        'final' : tf.Variable(tf.random_poisson([1,d])) }
 
-#weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
-#biases = [tf.Variable(tf.random_normal([d])), tf.Variable(tf.random_normal([1]))]
 # biases not currently in use
-biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
+biases = { 'layer0' : tf.Variable(tf.random_poisson([d])), 'final' : tf.Variable(tf.random_poisson([1])) }
 
 expand = np.array([[1]*n + [0]*n*(n-1)])
 for i in range(1, n):
@@ -98,8 +96,8 @@ with tf.name_scope("Loss"):
     #lossOp = tf.reduce_mean(tf.losses.hinge_loss(_labels, pred, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
     #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
-#optimizer = tf.train.AdamOptimizer(initLearningRate)
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
+optimizer = tf.train.AdamOptimizer(initLearningRate/2)
 #optimizer = tf.train.MomentumOptimizer(initLearningRate, .001)
 #optimizer = tf.train.AdagradOptimizer(initLearningRate)
 
