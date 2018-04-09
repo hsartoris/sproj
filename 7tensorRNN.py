@@ -14,14 +14,14 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 4
+runNumber = 3
 batchSize = 64
-timesteps = 200
+timesteps = 25
 baseRate = .0001
 initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
-prefix = "dataStaging/10neur4k"
+prefix = "dataStaging/3neur8k"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
@@ -30,7 +30,7 @@ b = timesteps   # time dimension subsampling. ignored in this test case as we ar
 # metalayers. let's try restricting to 1
 d = 2
 # number of neurons
-n = 10
+n = 3
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 #_data = tf.placeholder(tf.float32, [b, n])
@@ -142,7 +142,7 @@ with tf.Session() as sess:
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
-        #testing = seqData2(0, 5, "dataSmallInvert2", b)
+        testing = seqData2(0, 5, "dataStaging/3neur8k", b)
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on testing data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
