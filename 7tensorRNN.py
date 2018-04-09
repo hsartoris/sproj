@@ -112,7 +112,7 @@ with tf.name_scope("Accuracy"):
 init = tf.global_variables_initializer()
 
 if TBOARD_LOG:
-    rateSum = tf.summary.scalar("learn_rate", learningRate)
+    #rateSum = tf.summary.scalar("learn_rate", learningRate)
     lossSum = tf.summary.scalar("train_loss", lossOp)
     accSum = tf.summary.scalar("train_accuracy", accuracy)
 
@@ -147,7 +147,7 @@ with tf.Session() as sess:
         #print(weights['final'].eval())
         #if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
-        lr = initLearningRate
+        #lr = initLearningRate
         batchX, batchY, batchId = training.next(batchSize)
     # see status.1
         #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
@@ -155,7 +155,8 @@ with tf.Session() as sess:
         if batchId == trainMaxIdx or step == 1:
             # end of epoch as signaled by SeqData
             # calculate current loss on training data
-            currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
+            #currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
+            tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
                     feed_dict={_data: batchX, _labels: batchY})
             # see status.1
             #        feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
