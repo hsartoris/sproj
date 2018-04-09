@@ -2,7 +2,6 @@
 import numpy as np
 import sys
 import tensorflow as tf
-from tensorflow.contrib import rnn
 import prettify
 import math
 from SeqData2 import seqData2
@@ -11,7 +10,7 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 2
+runNumber = 4
 batchSize = 64
 timesteps = 200
 baseRate = .0001
@@ -19,7 +18,7 @@ initLearningRate = .01
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
-prefix = "dataStaging/4neur1"
+prefix = "dataStaging/10neur2k"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
@@ -27,7 +26,7 @@ logPath = "/home/hsartoris/tflowlogs/"
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
 d = 2
-n = 4           # number of neurons
+n = 10           # number of neurons
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 #_data = tf.placeholder(tf.float32, [b, n])
