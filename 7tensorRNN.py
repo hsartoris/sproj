@@ -7,6 +7,7 @@ import math
 from SeqData2 import seqData2
 
 SAVE_CKPT = False
+TBOARD_LOG = False
 
 runNumber = 6
 batchSize = 64
@@ -22,7 +23,7 @@ logPath = "/home/hsartoris/tflowlogs/"
 
 
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
-d = 1           # metalayers. let's try restricting to 1
+d = 2           # metalayers. let's try restricting to 1
 n = 3           # number of neurons
 
 _data = tf.placeholder(tf.float32, [None, b, n])
@@ -89,13 +90,13 @@ with tf.name_scope("Model"):
     pred = tf.nn.tanh(logits)
 
 with tf.name_scope("Loss"):
-    lossOp = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=_labels))
+    #lossOp = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=pred, labels=_labels))
 #    lossOp = tf.reduce_mean(tf.losses.mean_squared_error(_labels, pred, reduction=tf.losses.Reduction.NONE))
-    #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.SUM))
+    lossOp = tf.reduce_sum(tf.losses.hinge_loss(_labels, logits, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
     #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
-#optimizer = tf.train.AdamOptimizer(initLearningRate)
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
+optimizer = tf.train.AdamOptimizer(initLearningRate)
 #optimizer = tf.train.MomentumOptimizer(initLearningRate, .001)
 #optimizer = tf.train.AdagradOptimizer(initLearningRate)
 
@@ -109,68 +110,81 @@ with tf.name_scope("Accuracy"):
 
 init = tf.global_variables_initializer()
 
-rateSum = tf.summary.scalar("learn_rate", learningRate)
-lossSum = tf.summary.scalar("train_loss", lossOp)
-accSum = tf.summary.scalar("train_accuracy", accuracy)
-#mergedSumOp = tf.summary.merge_all()
+if TBOARD_LOG:
+    rateSum = tf.summary.scalar("learn_rate", learningRate)
+    lossSum = tf.summary.scalar("train_loss", lossOp)
+    accSum = tf.summary.scalar("train_accuracy", accuracy)
 
-saver = tf.train.Saver()
+if SAVE_CKPT:
+    saver = tf.train.Saver()
 
-trainMax = 1280
-training = seqData2(0, trainMax, prefix)
-validation = seqData2(trainMax, 1600, prefix)
-testing = seqData2(1600, 2000, prefix)
-#training.crop(n)
-#validation.crop(n)
-#testing.crop(n)
-start = 1
+trainMaxIdx = 1280
+validMaxIdx = 1600
+testMaxIdx  = 2000
+training = seqData2(0, trainMaxIdx, prefix)
+validation = seqData2(trainMaxIdx, validMaxIdx, prefix)
+testing = seqData2(validMaxIdx, testMaxIdx, prefix)
 
 with tf.Session() as sess:
     sess.run(init)
+
+    if TBOARD_LOG:
+    # initialize log writers
     summWriter = tf.summary.FileWriter(logPath + "/train" + str(runNumber), graph=tf.get_default_graph())
     validWriter = tf.summary.FileWriter(logPath + "/validation" + str(runNumber))
-    #saver.restore(sess, "trained500.ckpt")
+
     if len(sys.argv) > 1:
+        if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on validation data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
         sys.exit()
-    #global_step += start
-    for step in range(start, trainingSteps+1):
+
+    for step in range(trainingSteps):
         global_step += 1
         #print(weights['final'].eval())
         #if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
         lr = initLearningRate
         batchX, batchY, batchId = training.next(batchSize)
-        sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
-        if batchId == trainMax or step == 1:
+    # see status.1
+        #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
+        sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
+        if batchId == trainMaxIdx or step == 1:
             # end of epoch as signaled by SeqData
             # calculate current loss on training data
             currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
-                    feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
-            summWriter.add_summary(currRate, step)
-            summWriter.add_summary(tLoss, step)
-            summWriter.add_summary(tAcc, step)
+                    feed_dict={_data: batchX, _labels: batchY})
+      # see status.1
+            #        feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
+
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
             vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], 
                     feed_dict={_data: validX, _labels: validY, learningRate: lr})
-            validWriter.add_summary(vloss, step)
-            validWriter.add_summary(vacc, step)
-            print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
-                    ", accuracy = " + "{:.3f}".format(acc))
+      
+           if TBOARD_LOG:
+           # log various data
+                 validWriter.add_summary(vloss, step)
+                 validWriter.add_summary(vacc, step)
+                 summWriter.add_summary(currRate, step)
+                 summWriter.add_summary(tLoss, step)
+                 summWriter.add_summary(tAcc, step)
+           print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
+                     ", accuracy = " + "{:.3f}".format(acc))
             #print(weights['final'].eval())
         #pretty.arrow(step%epochLen, epochLen)
-        pretty.arrow(batchId, trainMax)
+        pretty.arrow(batchId, trainMaxIdx)
 
         if step % 500 == 0 and SAVE_CKPT:
             save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + 
                     str(runNumber) + "/trained" + str(step) + ".ckpt")
             print("Saved checkpoint " + str(step))
-    save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + str(runNumber) + "/trained.ckpt")
-    print("Training complete; model saved in file %s" % save)
+
+    if SAVE_CKPT:
+        save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + str(runNumber) + "/trained.ckpt")
+        print("Training complete; model saved in file %s" % save)
     testData = testing.data
     testLabels = testing.labels
     print("Immediate OOM:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
