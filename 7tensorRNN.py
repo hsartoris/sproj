@@ -13,12 +13,17 @@ def dumpData(fname, printout=True):
     layer0w = weights['layer0'].eval()
     print(layer0w)
     print("Layer 2 in weights:")
-	layer2in = weights['layer2_in'].eval()
-    print(weights['layer2_in'].eval())
+    layer2in = weights['layer2_in'].eval()
+    print(layer2in)
     print("Layer 2 out weights:")
-    print(weights['layer2_out'].eval())
+    layer2out = weights['layer2_out'].eval()
+    print(layer2out)
     print("Final layer weights:")
-    print(weights['final'].eval())
+    finalw = weights['final'].eval()
+    print(finalw)
+
+    print(type(finalw))
+
 SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
@@ -152,6 +157,7 @@ with tf.Session() as sess:
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on testing data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
+        dumpData("dataDumps/dump1")
         sys.exit()
 
     for step in range(trainingSteps):
