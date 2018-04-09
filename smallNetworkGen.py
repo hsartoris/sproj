@@ -29,7 +29,7 @@ params = dict()
 spikeProb = .15
 params['spikeProb'] = spikeProb
 NUM_NEUR = 10
-TESTING = False
+TESTING = True
 
 def genMatrix(simple=True):
     global NUM_NEUR
@@ -139,10 +139,15 @@ if __name__ == "__main__":
         os.makedirs(dataDir)
         matrix = genMatrix3(not arguments['--complex'])
         if TESTING:
+            params['runs'] = int(arguments['<runs>'])
+            params['timesteps'] = int(arguments['<timesteps>'])
+            params['spikeProb'] = spikeProb
             for i in range(10):
-                matrix = perturb(matrix, .2)
+                matrix = perturb(matrix, .15)
                 if not os.path.exists(dataDir + str(i)): os.makedirs(dataDir + str(i))
                 np.savetxt(dataDir + str(i) + "/struct.csv", matrix, delimiter=',')
+                simulate(matrix, params, dataDir)
+            exit()
         np.savetxt(dataDir + structName, matrix, delimiter=',')
         params['runs'] = int(arguments['<runs>'])
         params['timesteps'] = int(arguments['<timesteps>'])
