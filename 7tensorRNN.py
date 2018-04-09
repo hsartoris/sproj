@@ -5,7 +5,7 @@ import tensorflow as tf
 from tensorflow.contrib import rnn
 import prettify
 import math
-from SeqData import seqData2
+from SeqData2 import seqData2
 
 runNumber = 6
 batchSize = 64
