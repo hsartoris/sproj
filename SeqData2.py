@@ -32,9 +32,13 @@ class seqData2(object):
         return self.data[self.batchId], self.labels[self.batchId]
 	
     def next(self, batchSize):
+        # returns data and label arrays, along with current batchId
         if self.batchId == len(self.data):
             self.batchId = 0
         batchData = self.data[self.batchId:min(self.batchId + batchSize, len(self.data))]
         batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, len(self.data))]
         self.batchId = min(self.batchId + batchSize, len(self.data))
-        return batchData, batchLabels
+        return batchData, batchLabels, batchId
+
+    def epochProgress(self):
+        return self.batchId, len(self.data)
