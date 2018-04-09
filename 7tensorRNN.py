@@ -38,13 +38,13 @@ dropout = tf.placeholder(tf.float32)
 weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 'final' : tf.Variable(tf.random_normal([1,d])) }
 #weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
 #biases = [tf.Variable(tf.random_normal([d])), tf.Variable(tf.random_normal([1]))]
-        biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
+biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
 
 expand = np.array([[1]*n + [0]*n*(n-1)])
-        for i in range(1, n):
-            expand = np.append(expand, [[0]*n*i + [1]*n + [0]*n*(n-1-i)], 0)
+    for i in range(1, n):
+        expand = np.append(expand, [[0]*n*i + [1]*n + [0]*n*(n-1-i)], 0)
 
-                expand = tf.constant(expand, tf.float32)
+expand = tf.constant(expand, tf.float32)
 
 tile = np.array([([1] + [0]*(n-1))*n])
         for i in range(1, n):
