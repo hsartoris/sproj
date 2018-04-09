@@ -47,15 +47,15 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 3
+runNumber = 4
 batchSize = 64
-timesteps = 25
+timesteps = 200
 baseRate = .0001
 initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
-prefix = "dataStaging/3neur8k"
+prefix = "dataStaging/10neur2k"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
@@ -63,7 +63,8 @@ logPath = "/home/hsartoris/tflowlogs/"
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
 d = 2
-n = 3           # number of neurons
+# number of neurons
+n = 10
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 #_data = tf.placeholder(tf.float32, [b, n])
@@ -153,9 +154,11 @@ if TBOARD_LOG:
 if SAVE_CKPT:
     saver = tf.train.Saver()
 
-trainMaxIdx = 5120
-validMaxIdx = 6400
-testMaxIdx  = 8000
+# 5120, 6400, 8000
+
+trainMaxIdx = 1280
+validMaxIdx = 1600
+testMaxIdx  = 2000
 if len(sys.argv) == 1:
     training = seqData2(0, trainMaxIdx, prefix, b)
     validation = seqData2(trainMaxIdx, validMaxIdx, prefix, b)
@@ -186,17 +189,12 @@ with tf.Session() as sess:
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
         lr = initLearningRate
         batchX, batchY, batchId = training.next(batchSize)
-    # see status.1
         sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
-        #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
         if batchId == trainMaxIdx or step == 1:
             # calculate current loss on training data
             # tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
             currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
                     feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
-            #        feed_dict={_data: batchX, _labels: batchY})
-            # see status.1
-
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
             vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], 
@@ -210,8 +208,6 @@ with tf.Session() as sess:
                  summWriter.add_summary(tAcc, step)
             print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
                    ", accuracy = " + "{:.3f}".format(acc))
-           #print(weights['final'].eval())
-        #pretty.arrow(step%epochLen, epochLen)
         pretty.arrow(batchId, trainMaxIdx)
 
         if step % 500 == 0 and SAVE_CKPT:
