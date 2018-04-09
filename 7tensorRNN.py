@@ -1,11 +1,23 @@
 #!/usr/bin/python3
 import numpy as np
+import signal
 import sys
 import tensorflow as tf
 import prettify
 import math
 import time
+import shutil
 from SeqData2 import seqData2
+
+def signal_handler(signal, frame):
+    clean = input("Clean up log dir? [Y/n]") or "Y"
+    if clean == "Y":
+        shutil.rmtree(logPath + "/checkpoints" + str(runNumber))
+        shutil.rmtree(logPath + "/train" + str(runNumber))
+        shutil.rmtree(logPAth + "/validation" + str(runNumber))
+    sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
+
 
 def dumpData(fdir, printout=True):
     global testing
