@@ -6,7 +6,6 @@ import prettify
 import math
 import time
 from SeqData2 import seqData2
-from scripts.TFSupport import dumpData
 
     
 
@@ -142,6 +141,7 @@ with tf.Session() as sess:
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
+        from scripts.TFSupport import dumpData
         testing = seqData2(0, 5, "dataStaging/3neur8k", b)
         testData = testing.data
         testLabels = testing.labels
