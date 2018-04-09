@@ -7,7 +7,8 @@ import math
 from SeqData2 import seqData2
 
 SAVE_CKPT = False
-TBOARD_LOG = False
+# if you set this to False it will break
+TBOARD_LOG = True
 
 runNumber = 6
 batchSize = 64
