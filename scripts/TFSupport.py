@@ -3,6 +3,7 @@ import tensorflow as tf
 import time
 
 def dumpData(fdir, printout=True):
+    global testing
     testX, testY, _ = testing.next(1)
     print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
     layer0w = weights['layer0'].eval()
