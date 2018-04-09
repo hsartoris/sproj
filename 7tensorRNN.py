@@ -59,11 +59,11 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 5
+runNumber = 6
 batchSize = 64
 timesteps = 200
 baseRate = .0001
-initLearningRate = .005
+initLearningRate = .001
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 prefix = "dataStaging/10neur4k"
