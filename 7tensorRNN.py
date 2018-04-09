@@ -11,7 +11,7 @@ runNumber = 6
 batchSize = 64
 numClasses = 2
 numInput = 3 # number of neurons
-timesteps = 1000
+timesteps = 200
 numHidden = 128
 baseRate = .0001
 initLearningRate = .05
@@ -25,8 +25,8 @@ numLayers = 2
 
 
 
-b = 200
-d = 25
+b = timesteps
+d = 9
 n = numInput
 
 _data = tf.placeholder(tf.float32, [None, b, numInput])
@@ -161,12 +161,12 @@ accSum = tf.summary.scalar("train_accuracy", accuracy)
 
 saver = tf.train.Saver()
 
-training = seqData(0, 639)
-validation = seqData(640, 799)
-testing = seqData(800, 999)
-training.crop(numInput)
-validation.crop(numInput)
-testing.crop(numInput)
+training = seqData2(0, 1280)
+validation = seqData(1280, 1600)
+testing = seqData(1600, 2000)
+#training.crop(numInput)
+#validation.crop(numInput)
+#testing.crop(numInput)
 start = 1
 
 with tf.Session() as sess:
