@@ -143,6 +143,9 @@ with tf.Session() as sess:
         print("Accuracy on validation data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
         testX, testY, _ = testing.next(1)
         print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
+        print(weights['layer0'].eval())
+        print(weights['layer2_in'].eval())
+        print(weights['layer2_out'].eval())
         print(weights['final'].eval())
         sys.exit()
 
