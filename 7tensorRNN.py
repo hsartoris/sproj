@@ -10,15 +10,15 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 1
+runNumber = 3
 batchSize = 64
-timesteps = 200
+timesteps = 25
 baseRate = .0001
 initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
-prefix = "dataSmall"
+prefix = "dataStaging/3neur8k"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
