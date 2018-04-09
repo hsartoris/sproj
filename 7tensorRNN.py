@@ -141,8 +141,7 @@ with tf.Session() as sess:
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on validation data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
-        testX = testing.data[0]
-        testY = testing.labels[0]
+        testX, testY = testing.next(1)
         print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
         sys.exit()
 
