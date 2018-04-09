@@ -37,10 +37,10 @@ def dumpData(fdir, printout=True):
     f.write("initLearningRate: " + str(initLearningRate))
     f.close()
 
-    np.savetxt(fdir + "/w_0.csv", delimiter=',')
-    np.savetxt(fdir + "/w_2_in.csv", delimiter=',')
-    np.savetxt(fdir + "/w_2_out.csv", delimiter=',')
-    np.savetxt(fdir + "/w_f.csv", delimiter=',')
+    np.savetxt(fdir + "/w_0.csv", layer0w, delimiter=',')
+    np.savetxt(fdir + "/w_2_in.csv", layer2in, delimiter=',')
+    np.savetxt(fdir + "/w_2_out.csv", layer2out, delimiter=',')
+    np.savetxt(fdir + "/w_f.csv", finalw, delimiter=',')
     
 
 SAVE_CKPT = True
