@@ -59,7 +59,7 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 4
+runNumber = 5
 batchSize = 64
 timesteps = 200
 baseRate = .0001
