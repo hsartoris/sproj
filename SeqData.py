@@ -8,6 +8,8 @@ timesteps = 1000
 prefix = "classifiertest2"
 pretty = prettify.pretty()
 
+'''
+# goddamn indentation is broken
 class seqData(object):
 	def __init__(self, minIdx = 0, maxIdx=499):
 		global prefix
@@ -53,33 +55,34 @@ class seqData(object):
 		batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, len(self.data))]
 		self.batchId = min(self.batchId + batchSize, len(self.data))
 		return batchData, batchLabels
-
+'''
 class seqData2(object):
-	def __init__(self, minIdx, maxIdx, dataDir):
-		self.data = []
-		self.labels = []
-                # this is fucking stupid
-                label = np.loadtxt(dataDir + "struct.csv", delimiter=',').flatten()
-                for i in range(minIdx, maxIdx):
-                    self.data.append(np.loadtxt(dataDir + "spikes/" + str(i) + ".csv", delimiter=','))
-                    self.labels.append(label)
-                    pretty.arrow(i, maxIdx - minIdx)
+    def __init__(self, minIdx, maxIdx, dataDir):
+        self.data = []
+    self.labels = []
+    # this is fucking stupid
+    label = np.loadtxt(dataDir + "struct.csv", delimiter=',').flatten()
+    for i in range(minIdx, maxIdx):
+        self.data.append(np.loadtxt(dataDir + "spikes/" + str(i) + ".csv", delimiter=','))
+        self.labels.append(label)
+        pretty.arrow(i, maxIdx - minIdx)
 
-		self.batchId = 0
+    self.batchId = 0
 
-	def crop(self, cropLen):
-		for i in range(len(self.data)):
-			self.data[i] = self.data[i][:cropLen,:200].transpose()
-	def nextSample(self):
-		self.batchId += 1
-		if self.batchId == len(self.data):
-			self.batchId = 0
-		return self.data[self.batchId], self.labels[self.batchId]
+    def crop(self, cropLen):
+        for i in range(len(self.data)):
+            self.data[i] = self.data[i][:cropLen,:200].transpose()
+
+    def nextSample(self):
+        self.batchId += 1
+        if self.batchId == len(self.data):
+            self.batchId = 0
+        return self.data[self.batchId], self.labels[self.batchId]
 	
-	def next(self, batchSize):
-		if self.batchId == len(self.data):
-			self.batchId = 0
-		batchData = self.data[self.batchId:min(self.batchId + batchSize, len(self.data))]
-		batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, len(self.data))]
-		self.batchId = min(self.batchId + batchSize, len(self.data))
-		return batchData, batchLabels
+    def next(self, batchSize):
+        if self.batchId == len(self.data):
+            self.batchId = 0
+        batchData = self.data[self.batchId:min(self.batchId + batchSize, len(self.data))]
+        batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, len(self.data))]
+        self.batchId = min(self.batchId + batchSize, len(self.data))
+        return batchData, batchLabels
