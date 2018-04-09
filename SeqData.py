@@ -61,9 +61,9 @@ class seqData2(object):
         self.data = []
         self.labels = []
         # this is fucking stupid
-        label = np.loadtxt(dataDir + "struct.csv", delimiter=',').flatten()
+        label = np.loadtxt(dataDir + "/struct.csv", delimiter=',').flatten()
         for i in range(minIdx, maxIdx):
-            self.data.append(np.loadtxt(dataDir + "spikes/" + str(i) + ".csv", delimiter=','))
+            self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=','))
             self.labels.append(label)
             pretty.arrow(i, maxIdx - minIdx)
     
