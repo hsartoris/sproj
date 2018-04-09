@@ -6,8 +6,9 @@ import prettify
 import math
 import time
 from SeqData2 import seqData2
+from scripts.TFSupport import dumpData
 
-def dumpData(fdir, printout=True):
+def dumpData2(fdir, printout=True):
     testX, testY, _ = testing.next(1)
     print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
     layer0w = weights['layer0'].eval()
