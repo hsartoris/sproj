@@ -161,9 +161,9 @@ accSum = tf.summary.scalar("train_accuracy", accuracy)
 
 saver = tf.train.Saver()
 
-training = seqData2(0, 1280)
-validation = seqData(1280, 1600)
-testing = seqData(1600, 2000)
+training = seqData2(0, 1280, prefix)
+validation = seqData(1280, 1600, prefix)
+testing = seqData(1600, 2000, prefix)
 #training.crop(numInput)
 #validation.crop(numInput)
 #testing.crop(numInput)
