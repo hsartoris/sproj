@@ -17,7 +17,7 @@ Options:
     -q --quiet      Suppresses debug output
     -t              Testing mode; delete all created files on exit
 """
-
+from scripts.GraphKit import perturb
 from docopt import docopt
 import os, shutil, prettify
 import numpy as np
@@ -29,6 +29,7 @@ params = dict()
 spikeProb = .15
 params['spikeProb'] = spikeProb
 NUM_NEUR = 10
+TESTING = False
 
 def genMatrix(simple=True):
     global NUM_NEUR
@@ -53,7 +54,7 @@ def genMatrix2(simple=True):
     return mat
 
 def genMatrix3(whocares):
-    return np.matrix(np.tril(np.zeros((NUM_NEUR,NUM_NEUR)), -1))
+    return np.matrix(np.tril(np.ones((NUM_NEUR,NUM_NEUR)), -1))
 
 
 def loadParams(dataDir):
@@ -133,10 +134,15 @@ if __name__ == "__main__":
     else:
         # from scratch
         if arguments['<runs>'] is None or arguments['<timesteps>'] is None:
-            print("No existing parameters found. Please supple <runs> and <timesteps>.")
+            print("No existing parameters found. Please supply <runs> and <timesteps>.")
             exit()
         os.makedirs(dataDir)
         matrix = genMatrix3(not arguments['--complex'])
+        if TESTING:
+            for i in range(10):
+                matrix = perturb(matrix, .2)
+                if not os.path.exists(dataDir + str(i)): os.makedirs(dataDir + str(i))
+                np.savetxt(dataDir + str(i) + "/struct.csv", matrix, delimiter=',')
         np.savetxt(dataDir + structName, matrix, delimiter=',')
         params['runs'] = int(arguments['<runs>'])
         params['timesteps'] = int(arguments['<timesteps>'])
