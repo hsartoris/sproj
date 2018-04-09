@@ -197,6 +197,7 @@ def spikeTimeArray(spikes, timesteps):
 
 def perturb(matrix, chance=.01):
 	# incomplete
+        # addendum: don't remember what this was going to do
 	for i in range(len(matrix)):
 		for j in range(len(matrix)):
 			if matrix[i,j] > 0 and np.random.random() > chance:
