@@ -17,7 +17,7 @@ class seqData2(object):
         for i in range(minIdx, maxIdx):
             self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=',').transpose())
             self.labels.append(label)
-            pretty.arrow(i, maxIdx - minIdx)
+        pretty.arrow(i, maxIdx - minIdx)
     
         self.batchId = 0
 
