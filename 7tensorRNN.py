@@ -187,7 +187,7 @@ with tf.Session() as sess:
         #if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
         lr = initLearningRate
-        batchX, batchY = training.next(1)
+        batchX, batchY = training.next(batchSize)
 #	batchY = batchY.transpose()
         sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
 
