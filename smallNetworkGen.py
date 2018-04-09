@@ -27,6 +27,7 @@ paramsName = "params"
 spikeDir = "spikes/"
 params = dict()
 spikeProb = .3
+params['spikeProb'] = spikeProb
 NUM_NEUR = 3
 
 def genMatrix(simple=True):
@@ -85,7 +86,10 @@ if __name__ == "__main__":
         if os.path.exists(dataDir + structName) and not overwriteAll:
             # structure already defined
             if verbose: print("Found network structure")
-            connMatrix = np.loadtxt(dataDir + structName, delimiter=',')
+            matrix = np.loadtxt(dataDir + structName, delimiter=',')
+        else:
+            if verbose: print("Generating new network structure")
+            matrix = genMatrix()
         
         if os.path.exists(dataDir + spikeDir) and (overwriteData or overwriteAll):
             if verbose: print("Deleting old spike directory")
@@ -107,7 +111,11 @@ if __name__ == "__main__":
                     params['runs'] = int(arguments['<runs>'])
                 if arguments['<timesteps>'] is not None:
                     params['timesteps'] = int(arguments['<timesteps>'])
+        # at this point, params are loaded and matrix is generated or loaded
+        # TODO: save params
+        simulate(matrix, params, dataDir)
     else:
+        # from scratch
         if arguments['<runs>'] is None or arguments['<timesteps>'] is None:
             print("No existing parameters found. Please supple <runs> and <timesteps>.")
             exit()
@@ -120,7 +128,7 @@ if __name__ == "__main__":
         p = open(dataDir + paramsName, 'w+')
         p.write("{}\n{}\n".format(params['runs'], params['timesteps']))
         p.close()
-        simulate(matrix, params['runs'], params['timesteps'], dataDir)
+        simulate(matrix, params, dataDir)
 
 
     if arguments['-t']:
