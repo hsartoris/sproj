@@ -203,7 +203,7 @@ with tf.Session() as sess:
             validWriter.add_summary(vacc, step)
 #loss, acc = sess.run([lossOp], feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
             print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + ", accuracy = " + "{:.3f}".format(acc))
-            print(weights['final'].eval())
+            #print(weights['final'].eval())
         pretty.arrow(step%epochLen, epochLen)
 
         if step % 500 == 0:
