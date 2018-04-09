@@ -176,7 +176,7 @@ with tf.Session() as sess:
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on testing data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
-        dumpData("dataDumps/dump1")
+        dumpData(logPath + "/checkpoints" + str(runNumber))
         sys.exit()
 
     for step in range(trainingSteps):
@@ -190,9 +190,8 @@ with tf.Session() as sess:
         sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
         #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
         if batchId == trainMaxIdx or step == 1:
-            # end of epoch as signaled by SeqData
             # calculate current loss on training data
-            #tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
+            # tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
             currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
                     feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
             #        feed_dict={_data: batchX, _labels: batchY})
