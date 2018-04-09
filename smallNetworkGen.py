@@ -28,7 +28,7 @@ spikeDir = "spikes/"
 params = dict()
 spikeProb = .15
 params['spikeProb'] = spikeProb
-NUM_NEUR = 3
+NUM_NEUR = 10
 
 def genMatrix(simple=True):
     global NUM_NEUR
@@ -51,6 +51,10 @@ def genMatrix2(simple=True):
     mat[3,2] = (1 if simple else np.random.random())
     mat[1,3] = (1 if simple else np.random.random())
     return mat
+
+def genMatrix3(whocares):
+    return np.matrix(np.tril(np.zeros((NUM_NEUR,NUM_NEUR)), -1))
+
 
 def loadParams(dataDir):
     f = open(dataDir + paramsName)
@@ -132,7 +136,7 @@ if __name__ == "__main__":
             print("No existing parameters found. Please supple <runs> and <timesteps>.")
             exit()
         os.makedirs(dataDir)
-        matrix = genMatrix(not arguments['--complex'])
+        matrix = genMatrix3(not arguments['--complex'])
         np.savetxt(dataDir + structName, matrix, delimiter=',')
         params['runs'] = int(arguments['<runs>'])
         params['timesteps'] = int(arguments['<timesteps>'])
