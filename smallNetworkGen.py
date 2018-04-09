@@ -54,7 +54,7 @@ def randSpikeCol(spikeProb):
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
 def simulate(matrix, params, dataDir, simple=True):
-    arrow = pretty()
+    arrow = prettify.pretty()
     global NUM_NEUR
     global verbose
     # for now this just overwrites, and assumes simple
@@ -63,9 +63,9 @@ def simulate(matrix, params, dataDir, simple=True):
         os.makedirs(dataDir + spikeDir)
     for run in range(params['runs']):
         arrow.arrow(run, params['runs'])
-        data = np.matrix(np.zeros((NUM_NEUR,params['steps'])))
+        data = np.matrix(np.zeros((NUM_NEUR,params['timesteps'])))
         data[:,0] = randSpikeCol(params['spikeProb'])
-        for step in range(1,params['steps']):
+        for step in range(1,params['timesteps']):
             data[:,step] = np.clip((matrix * data[:,step-1]) + 
                                     randSpikeCol(params['spikeProb']), 0, 1)
         np.savetxt(dataDir + spikeDir + str(run) + ".csv", data, delimiter=',', fmt='%i')
@@ -113,6 +113,7 @@ if __name__ == "__main__":
                     params['timesteps'] = int(arguments['<timesteps>'])
         # at this point, params are loaded and matrix is generated or loaded
         # TODO: save params
+        params['spikeProb'] = spikeProb
         simulate(matrix, params, dataDir)
     else:
         # from scratch

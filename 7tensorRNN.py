@@ -10,7 +10,7 @@ from SeqData import seqData
 runNumber = 6
 batchSize = 64
 numClasses = 2
-numInput = 100
+numInput = 3 # number of neurons
 timesteps = 1000
 numHidden = 128
 baseRate = .0001
@@ -18,7 +18,7 @@ initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 epochLen = 100
-prefix = "200neur"
+prefix = "dataSmall"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 numLayers = 2
