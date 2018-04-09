@@ -25,7 +25,7 @@ logPath = "/home/hsartoris/tflowlogs/"
 
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
-d = 10
+d = 15
 n = 3           # number of neurons
 
 _data = tf.placeholder(tf.float32, [None, b, n])
