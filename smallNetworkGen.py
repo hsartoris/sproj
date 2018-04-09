@@ -40,6 +40,15 @@ def genMatrix(simple=True):
     mat[2,1] = (1 if simple else np.random.random())
     return mat
 
+def genMatrix2(simple=True):
+    global NUM_NEUR
+    mat = np.matrix(np.zeros(shape=(NUM_NEUR,NUM_NEUR)))
+    # 0 -> 1 -> 2
+    # 0    ->   2
+    mat[1,0] = (1 if simple else np.random.random())
+    mat[2,0] = (1 if simple else np.random.random())
+    mat[1,2] = (1 if simple else np.random.random())
+    return mat
 
 def loadParams(dataDir):
     f = open(dataDir + paramsName)
@@ -121,7 +130,7 @@ if __name__ == "__main__":
             print("No existing parameters found. Please supple <runs> and <timesteps>.")
             exit()
         os.makedirs(dataDir)
-        matrix = genMatrix(not arguments['--complex'])
+        matrix = genMatrix2(not arguments['--complex'])
         np.savetxt(dataDir + structName, matrix, delimiter=',')
         params['runs'] = int(arguments['<runs>'])
         params['timesteps'] = int(arguments['<timesteps>'])
