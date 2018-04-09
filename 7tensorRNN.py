@@ -47,23 +47,23 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 3
+runNumber = 4
 batchSize = 64
-timesteps = 25
+timesteps = 200
 baseRate = .0001
 initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
-prefix = "dataStaging/3neur8k"
+prefix = "dataStaging/10neur4k"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
 
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
-d = 2
+d = 3
 # number of neurons
-n = 3
+n = 10
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 #_data = tf.placeholder(tf.float32, [b, n])
@@ -130,8 +130,8 @@ with tf.name_scope("Loss"):
     #lossOp = tf.reduce_mean(tf.losses.hinge_loss(_labels, pred, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
     #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=initLearningRate)
-#optimizer = tf.train.AdamOptimizer(initLearningRate)
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate=initLearningRate)
+optimizer = tf.train.AdamOptimizer(initLearningRate)
 #optimizer = tf.train.MomentumOptimizer(initLearningRate, .001)
 #optimizer = tf.train.AdagradOptimizer(initLearningRate)
 
@@ -175,7 +175,6 @@ with tf.Session() as sess:
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
-        from scripts.TFSupport import dumpData
         testing = seqData2(0, 5, "dataStaging/3neur8k", b)
         testData = testing.data
         testLabels = testing.labels
@@ -190,12 +189,14 @@ with tf.Session() as sess:
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
         lr = initLearningRate
         batchX, batchY, batchId = training.next(batchSize)
-        sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
+        #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
+        sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
         if batchId == trainMaxIdx or step == 1:
             # calculate current loss on training data
-            # tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
-            currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
-                    feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
+            #currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
+            tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
+                    feed_dict={_data: batchX, _labels: batchY})
+                    #feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
             vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], 
