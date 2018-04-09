@@ -25,7 +25,7 @@ def dumpData(fdir, printout=True):
         print(finalw)
     
     f = open(fdir + "/dump",  "w+")
-    f.write("Model trained on: " + prefix)
+    print("Model trained on:", prefix, file=f)
     t = time.localtime(time.time())
     f.write(str(t.tm_hour) + ":" + ("0"+str(t.tm_min) if t.tm_min < 10 else str(t.tm_min))
             + ":" + ("0"+str(t.tm_sec) if t.tm_sec < 10 else str(t.tm_sec))
