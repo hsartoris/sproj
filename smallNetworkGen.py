@@ -28,7 +28,7 @@ spikeDir = "spikes/"
 params = dict()
 spikeProb = .15
 params['spikeProb'] = spikeProb
-NUM_NEUR = 4
+NUM_NEUR = 3
 
 def genMatrix(simple=True):
     global NUM_NEUR
@@ -132,7 +132,7 @@ if __name__ == "__main__":
             print("No existing parameters found. Please supple <runs> and <timesteps>.")
             exit()
         os.makedirs(dataDir)
-        matrix = genMatrix2(not arguments['--complex'])
+        matrix = genMatrix(not arguments['--complex'])
         np.savetxt(dataDir + structName, matrix, delimiter=',')
         params['runs'] = int(arguments['<runs>'])
         params['timesteps'] = int(arguments['<timesteps>'])

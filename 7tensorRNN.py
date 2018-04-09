@@ -6,6 +6,19 @@ import prettify
 import math
 from SeqData2 import seqData2
 
+def dumpData(fname, printout=True):
+    testX, testY, _ = testing.next(1)
+    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
+    print("Layer 0 weights:")
+    layer0w = weights['layer0'].eval()
+    print(layer0w)
+    print("Layer 2 in weights:")
+	layer2in = weights['layer2_in'].eval()
+    print(weights['layer2_in'].eval())
+    print("Layer 2 out weights:")
+    print(weights['layer2_out'].eval())
+    print("Final layer weights:")
+    print(weights['final'].eval())
 SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
@@ -39,8 +52,6 @@ weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])),
         'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 
         'final' : tf.Variable(tf.random_normal([1,d])) }
 
-#weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
-#biases = [tf.Variable(tf.random_normal([d])), tf.Variable(tf.random_normal([1]))]
 # biases not currently in use
 biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
 
@@ -86,9 +97,7 @@ with tf.name_scope("rate"):
     learningRate = tf.placeholder(tf.float32, shape=[])
 
 logits = finalBatch(layer2batch(batchModel(_data, weights), weights), weights)
-#logits = final(layer2(model(_data, weights), weights), weights);
 with tf.name_scope("Model"):
-    #pred = tf.nn.softmax(logits)
     pred = tf.nn.tanh(logits)
 
 with tf.name_scope("Loss"):
@@ -97,7 +106,7 @@ with tf.name_scope("Loss"):
     #lossOp = tf.reduce_mean(tf.losses.hinge_loss(_labels, pred, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
     #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=initLearningRate)
 #optimizer = tf.train.AdamOptimizer(initLearningRate)
 #optimizer = tf.train.MomentumOptimizer(initLearningRate, .001)
 #optimizer = tf.train.AdagradOptimizer(initLearningRate)
@@ -113,16 +122,16 @@ with tf.name_scope("Accuracy"):
 init = tf.global_variables_initializer()
 
 if TBOARD_LOG:
-    #rateSum = tf.summary.scalar("learn_rate", learningRate)
+    rateSum = tf.summary.scalar("learn_rate", learningRate)
     lossSum = tf.summary.scalar("train_loss", lossOp)
     accSum = tf.summary.scalar("train_accuracy", accuracy)
 
 if SAVE_CKPT:
     saver = tf.train.Saver()
 
-trainMaxIdx = 1280
-validMaxIdx = 1600
-testMaxIdx  = 2000
+trainMaxIdx = 5120
+validMaxIdx = 6400
+testMaxIdx  = 8000
 if len(sys.argv) == 1:
     training = seqData2(0, trainMaxIdx, prefix, b)
     validation = seqData2(trainMaxIdx, validMaxIdx, prefix, b)
@@ -143,16 +152,6 @@ with tf.Session() as sess:
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on testing data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
-        testX, testY, _ = testing.next(1)
-        print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
-        print("Layer 0 weights:")
-        print(weights['layer0'].eval())
-        print("Layer 2 in weights:")
-        print(weights['layer2_in'].eval())
-        print("Layer 2 out weights:")
-        print(weights['layer2_out'].eval())
-        print("Final layer weights:")
-        print(weights['final'].eval())
         sys.exit()
 
     for step in range(trainingSteps):
@@ -160,19 +159,19 @@ with tf.Session() as sess:
         #print(weights['final'].eval())
         #if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
-        #lr = initLearningRate
+        lr = initLearningRate
         batchX, batchY, batchId = training.next(batchSize)
     # see status.1
-        #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
-        sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
+        sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
+        #sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY})
         if batchId == trainMaxIdx or step == 1:
             # end of epoch as signaled by SeqData
             # calculate current loss on training data
-            #currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
-            tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
-                    feed_dict={_data: batchX, _labels: batchY})
+            #tLoss, tAcc, loss= sess.run([lossSum, accSum, lossOp], 
+            currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
+                    feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
+            #        feed_dict={_data: batchX, _labels: batchY})
             # see status.1
-            #        feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
 
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
