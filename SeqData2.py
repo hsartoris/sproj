@@ -13,7 +13,7 @@ class seqData2(object):
         self.data = []
         self.labels = []
         # this is fucking stupid
-        label = np.loadtxt(dataDir + "/struct.csv", delimiter=',').flatten()
+        label = np.expand_dims(np.loadtxt(dataDir + "/struct.csv", delimiter=',').flatten(), axis=0)
         for i in range(minIdx, maxIdx):
             self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=',').transpose())
             self.labels.append(label)
