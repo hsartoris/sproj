@@ -4,25 +4,44 @@ import sys
 import tensorflow as tf
 import prettify
 import math
+import time
 from SeqData2 import seqData2
 
-def dumpData(fname, printout=True):
+def dumpData(fdir, printout=True):
     testX, testY, _ = testing.next(1)
     print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
-    print("Layer 0 weights:")
     layer0w = weights['layer0'].eval()
-    print(layer0w)
-    print("Layer 2 in weights:")
     layer2in = weights['layer2_in'].eval()
-    print(layer2in)
-    print("Layer 2 out weights:")
     layer2out = weights['layer2_out'].eval()
-    print(layer2out)
-    print("Final layer weights:")
     finalw = weights['final'].eval()
-    print(finalw)
+    if printout:
+        print("Layer 0 weights:")
+        print(layer0w)
+        print("Layer 2 in weights:")
+        print(layer2in)
+        print("Layer 2 out weights:")
+        print(layer2out)
+        print("Final layer weights:")
+        print(finalw)
+    
+    f = open(fdir + "/dump",  "w+")
+    f.write("Model trained on:", prefix)
+    t = time.localtime(time.time())
+    f.write(str(t.tm_hour) + ":" + ("0"+str(t.tm_min) if t.tm_min < 10 else str(t.tm_min))
+            + ":" + ("0"+str(t.tm_sec) if t.tm_sec < 10 else str(t.tm_sec))
+            + " " + str(t.tm_mon) + "/" + str(t.tm_mday) + "/" + str(t.tm_year))
+    f.write("batchSize:", batchSize)
+    f.write("timesteps:", timesteps)
+    f.write("trainingSteps:", trainingSteps)
+    f.write("runNumber:", runNumber)
+    f.write("initLearningRate:", initLearningRate)
+    f.close()
 
-    print(type(finalw))
+    np.savetxt(fdir + "/w_0.csv", delimiter=',')
+    np.savetxt(fdir + "/w_2_in.csv", delimiter=',')
+    np.savetxt(fdir + "/w_2_out.csv", delimiter=',')
+    np.savetxt(fdir + "/w_f.csv", delimiter=',')
+    
 
 SAVE_CKPT = True
 # if you set this to False it will break
