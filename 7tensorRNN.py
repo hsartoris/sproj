@@ -14,7 +14,7 @@ def signal_handler(signal, frame):
     if clean == "Y":
         shutil.rmtree(logPath + "/checkpoints" + str(runNumber))
         shutil.rmtree(logPath + "/train" + str(runNumber))
-        shutil.rmtree(logPAth + "/validation" + str(runNumber))
+        shutil.rmtree(logPath + "/validation" + str(runNumber))
     sys.exit(0)
 signal.signal(signal.SIGINT, signal_handler)
 
