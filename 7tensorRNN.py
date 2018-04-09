@@ -170,7 +170,6 @@ with tf.Session() as sess:
                 # log various data
                  validWriter.add_summary(vloss, step)
                  validWriter.add_summary(vacc, step)
-                 summWriter.add_summary(currRate, step)
                  summWriter.add_summary(tLoss, step)
                  summWriter.add_summary(tAcc, step)
             print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
