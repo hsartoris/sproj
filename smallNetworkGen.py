@@ -26,7 +26,7 @@ structName = "struct.csv"
 paramsName = "params"
 spikeDir = "spikes/"
 params = dict()
-spikeProb = .3
+spikeProb = .15
 params['spikeProb'] = spikeProb
 NUM_NEUR = 4
 
