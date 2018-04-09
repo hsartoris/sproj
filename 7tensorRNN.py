@@ -1,5 +1,4 @@
 import numpy as np
-import scripts.GraphKit as gk
 import sys
 import tensorflow as tf
 from tensorflow.contrib import rnn
@@ -7,12 +6,11 @@ import prettify
 import math
 from SeqData2 import seqData2
 
+SAVE_CKPT = False
+
 runNumber = 6
 batchSize = 64
-numClasses = 2
-numInput = 3 # number of neurons
 timesteps = 200
-numHidden = 128
 baseRate = .0001
 initLearningRate = .05
 #initLearningRate = 0.01 - baseRate
@@ -21,23 +19,26 @@ epochLen = 100
 prefix = "dataSmall"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
-numLayers = 2
 
 
+b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
+d = 1           # metalayers. let's try restricting to 1
+n = 3           # number of neurons
 
-b = timesteps
-d = 9
-n = numInput
-
-_data = tf.placeholder(tf.float32, [None, b, numInput])
-#_data = tf.placeholder(tf.float32, [b, numInput])
-_labels = tf.placeholder(tf.float32, [None, 1, numInput * numInput])
-#_labels = tf.placeholder(tf.float32, [1, numInput * numInput])
+_data = tf.placeholder(tf.float32, [None, b, n])
+#_data = tf.placeholder(tf.float32, [b, n])
+_labels = tf.placeholder(tf.float32, [None, 1, n * n])
+#_labels = tf.placeholder(tf.float32, [1, n * n])
 dropout = tf.placeholder(tf.float32)
 
-weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 'final' : tf.Variable(tf.random_normal([1,d])) }
+weights = { 'layer0': tf.Variable(tf.random_normal([d, 2*b])), 
+        'layer2_in': tf.Variable(tf.random_normal([d, 2*d])), 
+        'layer2_out': tf.Variable(tf.random_normal([d, 2*d])), 
+        'final' : tf.Variable(tf.random_normal([1,d])) }
+
 #weights = [tf.Variable(tf.random_normal([2*b, d])), tf.Variable(tf.random_normal([d, d])),  tf.Variable(tf.random_normal([d, 1]))]
 #biases = [tf.Variable(tf.random_normal([d])), tf.Variable(tf.random_normal([1]))]
+# biases not currently in use
 biases = { 'layer0' : tf.Variable(tf.random_normal([d])), 'final' : tf.Variable(tf.random_normal([1])) }
 
 expand = np.array([[1]*n + [0]*n*(n-1)])
@@ -55,68 +56,22 @@ tile = tf.constant(tile, tf.float32);
 def batchModel(x, weights):
     # effectively layer 0
     # this is a party
-    #	upper1 = tf.einsum('ijk,kl->ijl', x, expand) # this may well be the most simple part of this
-    #	print(upper1.get_shape().as_list())
-    #	lower1 = tf.tile(x, [1,1,n]) 				# uhhh
-    #	print(lower1.get_shape().as_list())
-    total = tf.concat([tf.einsum('ijk,kl->ijl',x,expand), tf.tile(x,[1,1,n])], 1) # 0 axis is now batches??
-    print(total.get_shape().as_list())
+    total = tf.concat([tf.einsum('ijk,kl->ijl',x,expand), tf.tile(x,[1,1,n])], 1)
+    #print(total.get_shape().as_list())
     layer1 = tf.nn.relu(tf.einsum('ij,kjl->kil', weights['layer0'], total))
-    print(layer1.get_shape().as_list())
-#	layer1 = [tf.nn.relu(tf.matmul(tf.expand_dims(tf.concat([x[int(i/n)], x[i%n]], 0), 0), weights['layer0']) + biases['layer0']) for i in range(n*n)]
-    print("Compiled first layer")
-#	out = tf.einsum('ij,kjl->kil', weights['final'], layer1)
-    out = layer1
-    print("first layer output size:",out.get_shape().as_list())
-    return out
+    #print(layer1.get_shape().as_list())
+    print("First layer output size:",layer1.get_shape().as_list())
+    return layer1
 
 def layer2batch(x, weights):
     a_total = tf.concat([tf.einsum('ijk,kl->ijl', tf.einsum('ijk,kl->ijl', x, tf.transpose(expand)), expand), x], 1)
-    print("A mat size", a_total.get_shape().as_list())
     a_total = tf.einsum('ij,ljk->lik', weights['layer2_out'], a_total)
     b_total = tf.concat([x, tf.einsum('ijk,kl->ijl', tf.einsum('ijk,kl->ijl', x, tf.transpose(tile)), tile)], 1)
-    print("B mat size", b_total.get_shape().as_list())
     b_total = tf.einsum('ij,ljk->lik', weights['layer2_in'], b_total)
     return tf.nn.relu(tf.add(a_total, b_total))
 
-
-def layer2(x, weights):
-    # non-batch model
-    a = tf.matmul(tf.matmul(x, tf.transpose(expand)), expand)
-    b = tf.matmul(tf.matmul(x, tf.transpose(tile)), tile)
-    a_total = tf.concat([a, x], 0)
-    b_total = tf.concat([x, b], 0)
-    total = tf.nn.relu(tf.add(tf.matmul(weights['layer2_out'], a_total), tf.matmul(weights['layer2_in'], b_total)))
-    return total;
-
 def finalBatch(x, weights):
     return tf.einsum('ij,ljk->lik', weights['final'], x)
-
-
-def model(x, weights):
-    upper1 = tf.matmul(x, expand)
-    lower1 = tf.tile(x, [1,n])
-    total = tf.concat([upper1, lower1], 0)
-    layer1 = tf.nn.relu(tf.matmul(weights['layer0'], total))
-#	layer1 = [tf.nn.relu(tf.matmul(tf.expand_dims(tf.concat([x[int(i/n)], x[i%n]], 0), 0), weights['layer0']) + biases['layer0']) for i in range(n*n)]
-    print("Compiled first layer")
-#	out = [(tf.matmul(layer1[i], weights['final']) + biases['final']) for i in range(len(layer1))]
-    return layer1
-
-def final(x, weights):
-    # non-batch model final layer
-    return tf.matmul(weights['final'], x)
-
-def RNN(x, weights, biases):
-#	x = tf.unstack(x, numInput, 1)
-    lstm_cell = rnn.GRUCell(numHidden)
-    lstm_cell = rnn.DropoutWrapper(lstm_cell, output_keep_prob=1.0-dropout)
-    lstm_cell = rnn.MultiRNNCell([lstm_cell] * numLayers)
-    output, _ = tf.nn.dynamic_rnn(cell=lstm_cell, inputs=tf.expand_dims(x, -1), dtype=tf.float32, time_major=False)
-    output = tf.transpose(output, [1,0,2])
-    last = tf.gather(output, int(output.get_shape()[0]) - 1)
-    weight, bias = _weight_and_bias(numHidden, int(_labels.get_shape()[1]))
-    return tf.matmul(last, weights['out']) + biases['out']
 
 #X, Y = iterator.get_next()
 global_step = tf.Variable(0, trainable=False)
@@ -161,12 +116,13 @@ accSum = tf.summary.scalar("train_accuracy", accuracy)
 
 saver = tf.train.Saver()
 
-training = seqData2(0, 1280, prefix)
-validation = seqData2(1280, 1600, prefix)
+trainMax = 1280
+training = seqData2(0, trainMax, prefix)
+validation = seqData2(trainMax, 1600, prefix)
 testing = seqData2(1600, 2000, prefix)
-#training.crop(numInput)
-#validation.crop(numInput)
-#testing.crop(numInput)
+#training.crop(n)
+#validation.crop(n)
+#testing.crop(n)
 start = 1
 
 with tf.Session() as sess:
@@ -187,30 +143,34 @@ with tf.Session() as sess:
         #if step < 1500: lr = baseRate + (initLearningRate * math.pow(.4, step/500.0))
         #else: lr = baseRate + (initLearningRate / (1 + .00975 * step))
         lr = initLearningRate
-        batchX, batchY = training.next(batchSize)
-#	batchY = batchY.transpose()
+        batchX, batchY, batchId = training.next(batchSize)
         sess.run(trainOp, feed_dict={_data: batchX,_labels: batchY, learningRate: lr})
-
-        if step % epochLen == 0 or step == 1:
-            currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
+        if batchId == trainMax or step == 1:
+            # end of epoch as signaled by SeqData
+            # calculate current loss on training data
+            currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
+                    feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
             summWriter.add_summary(currRate, step)
             summWriter.add_summary(tLoss, step)
             summWriter.add_summary(tAcc, step)
-#	validX, validY = validation.data, validation.labels
-            validX, validY = validation.next(batchSize*2)
-            vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], feed_dict={_data: validX, _labels: validY, learningRate: lr})
+            # calculate validation loss
+            validX, validY, _ = validation.next(batchSize*2)
+            vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], 
+                    feed_dict={_data: validX, _labels: validY, learningRate: lr})
             validWriter.add_summary(vloss, step)
             validWriter.add_summary(vacc, step)
-#loss, acc = sess.run([lossOp], feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
-            print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + ", accuracy = " + "{:.3f}".format(acc))
+            print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
+                    ", accuracy = " + "{:.3f}".format(acc))
             #print(weights['final'].eval())
-        pretty.arrow(step%epochLen, epochLen)
+        #pretty.arrow(step%epochLen, epochLen)
+        pretty.arrow(batchId, trainMax)
 
-        if step % 500 == 0:
-            save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + str(runNumber) + "/trained" + str(step) + ".ckpt")
+        if step % 500 == 0 and SAVE_CKPT:
+            save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + 
+                    str(runNumber) + "/trained" + str(step) + ".ckpt")
             print("Saved checkpoint " + str(step))
     save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + str(runNumber) + "/trained.ckpt")
-    print("Training complete; model save in file %s" % save)
+    print("Training complete; model saved in file %s" % save)
     testData = testing.data
     testLabels = testing.labels
     print("Immediate OOM:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
