@@ -129,7 +129,7 @@ with tf.Session() as sess:
     sess.run(init)
 
     if TBOARD_LOG:
-    # initialize log writers
+        # initialize log writers
     summWriter = tf.summary.FileWriter(logPath + "/train" + str(runNumber), graph=tf.get_default_graph())
     validWriter = tf.summary.FileWriter(logPath + "/validation" + str(runNumber))
 
@@ -156,24 +156,24 @@ with tf.Session() as sess:
             # calculate current loss on training data
             currRate, tLoss, tAcc, loss= sess.run([rateSum, lossSum, accSum, lossOp], 
                     feed_dict={_data: batchX, _labels: batchY})
-      # see status.1
+            # see status.1
             #        feed_dict={_data: batchX, _labels: batchY, learningRate: lr})
 
             # calculate validation loss
             validX, validY, _ = validation.next(batchSize*2)
             vloss, vacc, loss, acc= sess.run([lossSum, accSum, lossOp, accuracy], 
                     feed_dict={_data: validX, _labels: validY, learningRate: lr})
-      
-           if TBOARD_LOG:
-           # log various data
+
+            if TBOARD_LOG:
+                # log various data
                  validWriter.add_summary(vloss, step)
                  validWriter.add_summary(vacc, step)
                  summWriter.add_summary(currRate, step)
                  summWriter.add_summary(tLoss, step)
                  summWriter.add_summary(tAcc, step)
-           print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
-                     ", accuracy = " + "{:.3f}".format(acc))
-            #print(weights['final'].eval())
+         print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss) + 
+                   ", accuracy = " + "{:.3f}".format(acc))
+           #print(weights['final'].eval())
         #pretty.arrow(step%epochLen, epochLen)
         pretty.arrow(batchId, trainMaxIdx)
 
