@@ -6,7 +6,7 @@ import prettify
 import math
 from SeqData2 import seqData2
 
-SAVE_CKPT = False
+SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
@@ -141,6 +141,9 @@ with tf.Session() as sess:
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on validation data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
+        testX = testing.data[0]
+        testY = testing.labels[0]
+        print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
         sys.exit()
 
     for step in range(trainingSteps):
