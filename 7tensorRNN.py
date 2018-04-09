@@ -10,7 +10,7 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 6
+runNumber = 1
 batchSize = 64
 timesteps = 200
 baseRate = .0001
@@ -97,8 +97,8 @@ with tf.name_scope("Loss"):
     #lossOp = tf.reduce_mean(tf.losses.hinge_loss(_labels, pred, reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS))
     #lossOp = tf.reduce_sum(tf.losses.absolute_difference(_labels, pred, reduction=tf.losses.Reduction.NONE))
 
-#optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
-optimizer = tf.train.AdamOptimizer(initLearningRate)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
+#optimizer = tf.train.AdamOptimizer(initLearningRate)
 #optimizer = tf.train.MomentumOptimizer(initLearningRate, .001)
 #optimizer = tf.train.AdagradOptimizer(initLearningRate)
 
