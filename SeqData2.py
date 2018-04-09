@@ -15,7 +15,7 @@ class seqData2(object):
         # this is fucking stupid
         label = np.expand_dims(np.loadtxt(dataDir + "/struct.csv", delimiter=',').flatten(), axis=0)
         for i in range(minIdx, maxIdx):
-            self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=',').transpose()[:steps]
+            self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=',').transpose()[:steps])
             self.labels.append(label)
         pretty.arrow(i, maxIdx - minIdx)
     
