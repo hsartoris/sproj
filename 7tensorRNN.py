@@ -123,8 +123,9 @@ if SAVE_CKPT:
 trainMaxIdx = 1280
 validMaxIdx = 1600
 testMaxIdx  = 2000
-training = seqData2(0, trainMaxIdx, prefix)
-validation = seqData2(trainMaxIdx, validMaxIdx, prefix)
+if len(sys.argv) == 1:
+    training = seqData2(0, trainMaxIdx, prefix)
+    validation = seqData2(trainMaxIdx, validMaxIdx, prefix)
 testing = seqData2(validMaxIdx, testMaxIdx, prefix)
 
 with tf.Session() as sess:
@@ -138,6 +139,7 @@ with tf.Session() as sess:
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
+        testing = seqData2(0, 5, "dataSmallInvert1")
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on validation data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
