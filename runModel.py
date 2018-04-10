@@ -57,7 +57,7 @@ def signal_handler(signal, frame):
     if (input("Exit? [Y/n]") or "Y") == "Y":
         cleanup()
         sess.close()
-        sess.exit()
+        sys.exit()
 signal.signal(signal.SIGINT, signal_handler)
 
 def cleanup():
