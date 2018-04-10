@@ -10,9 +10,8 @@ import shutil
 from SeqData2 import seqData2
 
 def signal_handler(signal, frame):
-    global testing
-    testX, testY, _ = testing.next(1)
-    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}).reshape((10,10)))
+    #testX, testY, _ = testing.next(1)
+    #print(sess.run(pred, feed_dict={_data: testX, _labels: testY}).reshape((10,10)))
     clean = input("Clean up log dir? [Y/n]") or "Y"
     if clean == "Y":
         shutil.rmtree(logPath + "/checkpoints" + str(runNumber))
@@ -235,7 +234,7 @@ with tf.Session() as sess:
     if SAVE_CKPT:
         save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + str(runNumber) + "/trained.ckpt")
         print("Training complete; model saved in file %s" % save)
-	dumpData(logPath + "/checkpoints" + str(runNumber))
+    dumpData(logPath + "/checkpoints" + str(runNumber))
     testData = testing.data
     testLabels = testing.labels
     print("Immediate OOM:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
