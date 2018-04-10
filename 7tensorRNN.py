@@ -24,7 +24,7 @@ signal.signal(signal.SIGINT, signal_handler)
 def dumpData(fdir, printout=True):
     global testing
     testX, testY, _ = testing.next(1)
-    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}).reshape((10,10)))
+    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}).reshape((3,3)))
     layer0w = weights['layer0'].eval()
     layer2in = weights['layer2_in'].eval()
     layer2out = weights['layer2_out'].eval()
@@ -65,7 +65,7 @@ runNumber = 2
 batchSize = 64
 timesteps = 10
 baseRate = .0001
-initLearningRate = .002
+initLearningRate = .0025
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 prefix = "dataStaging/3neur16k"
@@ -75,7 +75,7 @@ logPath = "/home/hsartoris/tflowlogs/"
 
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
-d = 2
+d = 3
 # number of neurons
 n = 3
 
