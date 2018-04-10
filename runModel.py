@@ -15,7 +15,7 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-batchSize = 16
+batchSize = 32
 baseRate = .0001
 initLearnRate = .0025
 #initLearningRate = 0.01 - baseRate
@@ -29,7 +29,7 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 5
+b = 8
 # metalayers
 d = 8
 # number of neurons
@@ -82,35 +82,45 @@ def makePred(checkDir=None):
         feed_dict={_data: testX, _labels: testY})[0].reshape(n,n))
 
 # don't load data if given args
-if len(sys.argv) == 1: loadData()
+if len(sys.argv) == 1 or not sys.argv[1] == "prep": loadData()
+
+loadFrom = None
+trainable = None
+if len(sys.argv) > 2 and sys.argv[1] == "load": 
+    loadFrom = ckptDir + sys.argv[2] + "/"
+    if len(sys.argv) == 4:
+        trainArgs = sys.argv[3].split(',')
+        trainable = [arg == 'T' for arg in trainArgs]
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate)
+m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
+    matDir = loadFrom, trainable=trainable)
 
 init = tf.global_variables_initializer()
 
 if TBOARD_LOG:
     lossSum = tf.summary.scalar("train_loss", m.loss)
 
-if SAVE_CKPT and not len(sys.argv) > 1:
-    saver = tf.train.Saver()
-    saveDir = (ckptDir + runId + "/")
-    os.mkdir(saveDir)
 
 #-----------------------------MODEL TRAINING------------------------------------
 
 sess = tf.Session()
 sess.run(init)
 
+if len(sys.argv) > 1 and sys.argv[1] == "pred":
+    makePred(ckptDir + sys.argv[2] + "/")
+    sys.exit()
+elif SAVE_CKPT:
+    saver = tf.train.Saver()
+    saveDir = (ckptDir + runId + "/")
+    os.mkdir(saveDir)
+
 if TBOARD_LOG:
     # initialize log writers
     summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
     validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
-if len(sys.argv) > 1 and sys.argv[1] == "pred":
-    makePred(ckptDir + sys.argv[2] + "/")
-    sys.exit()
 
 for step in range(trainingSteps):
     batchX, batchY, batchId = training.next(batchSize)
@@ -141,6 +151,7 @@ for step in range(trainingSteps):
         f.close()
         print("Saved checkpoint " + str(step))
 makePred()
+m.saveMats(ckptDir + runId, sess)
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
     f = open(saveDir + "latest", "w+")

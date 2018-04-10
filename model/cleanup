@@ -1,3 +1,2 @@
 #!/bin/bash
-rm -r checkpoints/*
-
+rm -r /home/hsartoris/sproj/model/checkpoints/*
