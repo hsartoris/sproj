@@ -62,11 +62,11 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 1
+runNumber = 2
 batchSize = 64
-timesteps = 25
+timesteps = 10
 baseRate = .0001
-initLearningRate = .0025
+initLearningRate = .0015
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 prefix = "dataStaging/3neur16k"
@@ -235,6 +235,7 @@ with tf.Session() as sess:
     if SAVE_CKPT:
         save = saver.save(sess, "/home/hsartoris/tflowlogs/checkpoints" + str(runNumber) + "/trained.ckpt")
         print("Training complete; model saved in file %s" % save)
+	dumpData(logPath + "/checkpoints" + str(runNumber))
     testData = testing.data
     testLabels = testing.labels
     print("Immediate OOM:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
