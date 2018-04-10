@@ -32,6 +32,7 @@ class Model():
         self.weights = dict()
         # for layer 1, weights['layer1]'[0] is in, and 1 is out
         self.biases = dict()
+        self.initBias = .1
         if matDir is not None:
             # attempt to load matrices from previous run
             if os.path.exists(matDir):
@@ -75,8 +76,10 @@ class Model():
             tf.Variable(tf.random_normal([self.d, 2*self.d]))]
         self.weights['final'] = tf.Variable(tf.random_normal([1, self.d]))
 
-        self.biases['layer0'] = tf.Variable(tf.constant(.1, shape=[1, self.d,1]))
-        self.biases['layer1'] = tf.Variable(tf.constant(.1, shape=[1, self.d,1]))
+        self.biases['layer0'] = tf.Variable(tf.truncated_normal([1, self.d,1],
+            stddev=self.initBias))
+        self.biases['layer1'] = tf.Variable(tf.truncated_normal([1, self.d,1],
+            stddev=self.initBias))
 
     @lazy_property
     def layer0(self):

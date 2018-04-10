@@ -15,7 +15,7 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-batchSize = 64
+batchSize = 16
 baseRate = .0001
 initLearnRate = .0025
 #initLearningRate = 0.01 - baseRate
@@ -29,9 +29,9 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 10
-# metalayers. let's try restricting to 1
-d = 10
+b = 5
+# metalayers
+d = 8
 # number of neurons
 n = 3
 
@@ -105,8 +105,8 @@ sess.run(init)
 
 if TBOARD_LOG:
     # initialize log writers
-    summWriter = tf.summary.FileWriter(logPath + runId + "/train")
-    validWriter = tf.summary.FileWriter(logPath + runId + "/validation")
+    summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
+    validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
 if len(sys.argv) > 1 and sys.argv[1] == "pred":
     makePred(ckptDir + sys.argv[2] + "/")
@@ -140,7 +140,7 @@ for step in range(trainingSteps):
         f.write(str(step))
         f.close()
         print("Saved checkpoint " + str(step))
-
+makePred()
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
     f = open(saveDir + "latest", "w+")
