@@ -22,7 +22,7 @@ signal.signal(signal.SIGINT, signal_handler)
 def dumpData(fdir, printout=True):
     global testing
     testX, testY, _ = testing.next(1)
-    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}))
+    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}).reshape((10,10)))
     layer0w = weights['layer0'].eval()
     layer2in = weights['layer2_in'].eval()
     layer2out = weights['layer2_out'].eval()
@@ -187,7 +187,7 @@ with tf.Session() as sess:
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
-        testing = seqData2(0, 5, "dataStaging/3neur8k", b)
+        testing = seqData2(0, 5, "dataStaging/10neur4k", b)
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on testing data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
