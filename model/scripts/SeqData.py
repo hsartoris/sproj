@@ -1,12 +1,11 @@
 import numpy as np
-import scripts.GraphKit as gk
 import sys
-import prettify
+from . import Prettify
 import math
 
 timesteps = 1000
 prefix = "classifiertest2"
-pretty = prettify.pretty()
+pretty = Prettify.pretty()
 
 class seqData(object):
     def __init__(self, minIdx, maxIdx, dataDir, steps):
@@ -17,7 +16,7 @@ class seqData(object):
         for i in range(minIdx, maxIdx):
             self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=',').transpose()[:steps])
             self.labels.append(label)
-        pretty.arrow(i, maxIdx - minIdx)
+        pretty.arrow(i - minIdx, maxIdx - minIdx)
     
         self.batchId = 0
 
