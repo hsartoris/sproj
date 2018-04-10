@@ -48,36 +48,37 @@ def loadData():
     global testing
     # 5120, 6400, 8000
     # 1280, 1600, 2000
-    trainMaxIdx = 10240
-    validMaxIdx = 12800
     training = seqData(0, trainMaxIdx, prefix, b)
     validation = seqData(trainMaxIdx, validMaxIdx, prefix, b)
     testing = seqData(validMaxIdx, testMaxIdx, prefix, b)
 
 def signal_handler(signal, frame):
-    EXIT = True
+    makePred()
+    if (input("Exit? [Y/n]") or "Y") == "Y":
+        cleanup()
+        sess.close()
+        sess.exit()
 signal.signal(signal.SIGINT, signal_handler)
 
 def cleanup():
     clean = input("Clean up log dir? [Y/n]") or "Y"
     if clean == "Y":
-        shutil.rmtree(logPath + "/train" + runId)
-        shutil.rmtree(logPath + "/validation" + runId)
+        shutil.rmtree(logPath + runId)
 
 def makePred(checkDir=None):
+    global testing
+    global sess
     if checkDir is not None:
-        if not SAVE_CKPT: saver = tf.train.Saver()
+        saver = tf.train.Saver()
         f = open(checkDir + "latest")
-        saver.restore(sess, checkDir + f.readline + ".ckpt")
+        saver.restore(sess, checkDir + f.readline() + ".ckpt")
         f.close()
-        testing = seqData2(0, 5, prefix, b)
+        testing = seqData(0, 5, prefix, b)
         testData = testing.data
         testLabels = testing.labels
     testX, testY, _ = testing.next(1)
-    print(sess.run(model.prediction, 
-        feed_dict={_data: testX, _labels: testY}).reshape(n,n))
-    #dumpData(logPath + "/checkpoints" + runId)
-    sys.exit()
+    print(sess.run(m.prediction, 
+        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n))
 
 # don't load data if given args
 if len(sys.argv) == 1: loadData()
@@ -91,64 +92,58 @@ init = tf.global_variables_initializer()
 if TBOARD_LOG:
     lossSum = tf.summary.scalar("train_loss", m.loss)
 
-if SAVE_CKPT:
+if SAVE_CKPT and not len(sys.argv) > 1:
     saver = tf.train.Saver()
-    localtime = time.localtime()
-    saveDir = (ckptDir + str(localtime.tm_mday) + "_" + str(localtime.tm_hour) 
-        + str(localtime.tm_min) + "/")
+    saveDir = (ckptDir + runId + "/")
     os.mkdir(saveDir)
 
-with tf.Session() as sess:
-    sess.run(init)
+#-----------------------------MODEL TRAINING------------------------------------
 
-    if TBOARD_LOG:
-        # initialize log writers
-        summWriter = tf.summary.FileWriter(logPath + "/train" + runId)
-        validWriter = tf.summary.FileWriter(logPath + "/validation" + runId)
+sess = tf.Session()
+sess.run(init)
 
-    if len(sys.argv) > 1 and sys.argv[1] == "pred":
-        makePred(ckptDir + sys.argv[2])
-        sys.exit()
+if TBOARD_LOG:
+    # initialize log writers
+    summWriter = tf.summary.FileWriter(logPath + runId + "/train")
+    validWriter = tf.summary.FileWriter(logPath + runId + "/validation")
 
-    for step in range(trainingSteps):
-        if EXIT:
-            makePred()
-            cancelRun = input("Stop training? [Y/n]") or "Y"
-            if cancelRun == "Y":
-                sys.exit()
-            EXIT = False
+if len(sys.argv) > 1 and sys.argv[1] == "pred":
+    makePred(ckptDir + sys.argv[2] + "/")
+    sys.exit()
 
-        batchX, batchY, batchId = training.next(batchSize)
-        sess.run(m.optimize, feed_dict={_data: batchX, _labels: batchY})
-        if batchId == trainMaxIdx or step == 1:
-            # end of epoch
-            # calculate current loss on training data
-            tLoss, loss= sess.run([lossSum, m.loss], 
-                    feed_dict={_data: batchX, _labels: batchY})
-            # calculate validation loss
-            validX, validY, _ = validation.next(batchSize)
-            vloss, loss = sess.run([lossSum, m.loss], 
-                    feed_dict={_data: validX, _labels: validY})
+for step in range(trainingSteps):
+    batchX, batchY, batchId = training.next(batchSize)
+    sess.run(m.optimize, feed_dict={_data: batchX, _labels: batchY})
+    if batchId == trainMaxIdx or step == 1:
+        # end of epoch
+        # calculate current loss on training data
+        tLoss, loss= sess.run([lossSum, m.loss], 
+                feed_dict={_data: batchX, _labels: batchY})
+        # calculate validation loss
+        validX, validY, _ = validation.next(batchSize)
+        vloss, loss = sess.run([lossSum, m.loss], 
+                feed_dict={_data: validX, _labels: validY})
 
-            if TBOARD_LOG:
-                # log various data
-                 validWriter.add_summary(vloss, step)
-                 summWriter.add_summary(tLoss, step)
+        if TBOARD_LOG:
+            # log various data
+             validWriter.add_summary(vloss, step)
+             summWriter.add_summary(tLoss, step)
 
-            print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss))
+        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss))
 
-        pretty.arrow(batchId, trainMaxIdx)
+    pretty.arrow(batchId, trainMaxIdx)
 
-        if step % 500 == 0 and SAVE_CKPT:
-            save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
-            f = open(saveDir + "latest", "w+")
-            print(step, file=f)
-            f.close()
-            print("Saved checkpoint " + str(step))
-
-    if SAVE_CKPT:
-        save = saver.save(sess, saveDir + "final.ckpt")
+    if step % 500 == 0 and SAVE_CKPT:
+        save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
         f = open(saveDir + "latest", "w+")
-        print("final", file=f)
+        f.write(str(step))
         f.close()
-        print("Training complete; model saved in file %s" % save)
+        print("Saved checkpoint " + str(step))
+
+if SAVE_CKPT:
+    save = saver.save(sess, saveDir + "final.ckpt")
+    f = open(saveDir + "latest", "w+")
+    f.write("final")
+    f.close()
+    print("Training complete; model saved in file %s" % save)
+sess.close()
