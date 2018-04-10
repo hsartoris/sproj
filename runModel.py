@@ -61,9 +61,10 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 def cleanup():
-    clean = input("Clean up log dir? [Y/n]") or "Y"
+    clean = input("Clean up logs and checkpoints? [Y/n]") or "Y"
     if clean == "Y":
         shutil.rmtree(logPath + runId)
+        shutil.rmtree(ckptDir + runId)
 
 def makePred(checkDir=None):
     global testing
