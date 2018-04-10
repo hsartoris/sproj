@@ -10,6 +10,9 @@ import shutil
 from SeqData2 import seqData2
 
 def signal_handler(signal, frame):
+    global testing
+    testX, testY, _ = testing.next(1)
+    print(sess.run(pred, feed_dict={_data: testX, _labels: testY}).reshape((10,10)))
     clean = input("Clean up log dir? [Y/n]") or "Y"
     if clean == "Y":
         shutil.rmtree(logPath + "/checkpoints" + str(runNumber))
@@ -59,23 +62,23 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-runNumber = 6
+runNumber = 1
 batchSize = 64
-timesteps = 200
+timesteps = 25
 baseRate = .0001
 initLearningRate = .0025
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
-prefix = "dataStaging/10neur4k"
+prefix = "dataStaging/3neur16k"
 pretty = prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
 
 
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
-d = 3
+d = 2
 # number of neurons
-n = 10
+n = 3
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 #_data = tf.placeholder(tf.float32, [b, n])
@@ -168,9 +171,9 @@ if SAVE_CKPT:
 # 5120, 6400, 8000
 # 1280, 1600, 2000
 
-trainMaxIdx = 2560
-validMaxIdx = 3200
-testMaxIdx  = 4000
+trainMaxIdx = 10240
+validMaxIdx = 12800
+testMaxIdx  = 16000
 if len(sys.argv) == 1:
     training = seqData2(0, trainMaxIdx, prefix, b)
     validation = seqData2(trainMaxIdx, validMaxIdx, prefix, b)
@@ -187,7 +190,7 @@ with tf.Session() as sess:
     if len(sys.argv) > 1:
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
-        testing = seqData2(0, 5, "dataStaging/10neur4k", b)
+        testing = seqData2(0, 5, "dataStaging/3neur16k", b)
         testData = testing.data
         testLabels = testing.labels
         print("Accuracy on testing data:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
