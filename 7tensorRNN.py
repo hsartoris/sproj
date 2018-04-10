@@ -75,7 +75,7 @@ logPath = "/home/hsartoris/tflowlogs/"
 
 b = timesteps   # time dimension subsampling. ignored in this test case as we are using 200 step chunks
 # metalayers. let's try restricting to 1
-d = 3
+d = 10
 # number of neurons
 n = 3
 
@@ -186,7 +186,7 @@ with tf.Session() as sess:
         summWriter = tf.summary.FileWriter(logPath + "/train" + str(runNumber), graph=tf.get_default_graph())
         validWriter = tf.summary.FileWriter(logPath + "/validation" + str(runNumber))
 
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and sys.argv[1] == "pred":
         if not SAVE_CKPT: saver = tf.train.Saver()
         saver.restore(sess, sys.argv[1])
         testing = seqData2(0, 5, "dataStaging/3neur16k", b)

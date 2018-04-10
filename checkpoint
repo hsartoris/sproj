@@ -1,6 +1,0 @@
-model_checkpoint_path: "trained8000.ckpt"
-all_model_checkpoint_paths: "trained6000.ckpt"
-all_model_checkpoint_paths: "trained6500.ckpt"
-all_model_checkpoint_paths: "trained7000.ckpt"
-all_model_checkpoint_paths: "trained7500.ckpt"
-all_model_checkpoint_paths: "trained8000.ckpt"
