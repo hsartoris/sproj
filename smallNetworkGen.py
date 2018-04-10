@@ -29,7 +29,7 @@ params = dict()
 spikeProb = .15
 params['spikeProb'] = spikeProb
 NUM_NEUR = 10
-TESTING = True
+TESTING = False
 
 def genMatrix(simple=True):
     global NUM_NEUR
@@ -137,7 +137,7 @@ if __name__ == "__main__":
             print("No existing parameters found. Please supply <runs> and <timesteps>.")
             exit()
         os.makedirs(dataDir)
-        matrix = genMatrix3(not arguments['--complex'])
+        matrix = genMatrix(not arguments['--complex'])
         if TESTING:
             params['runs'] = int(arguments['<runs>'])
             params['timesteps'] = int(arguments['<timesteps>'])
