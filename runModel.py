@@ -88,9 +88,7 @@ m = model.Model(b, d, n)
 init = tf.global_variables_initializer()
 
 if TBOARD_LOG:
-    rateSum = tf.summary.scalar("learn_rate", learningRate)
-    lossSum = tf.summary.scalar("train_loss", lossOp)
-    accSum = tf.summary.scalar("train_accuracy", accuracy)
+    lossSum = tf.summary.scalar("train_loss", m.loss)
 
 if SAVE_CKPT:
     saver = tf.train.Saver()
@@ -143,14 +141,13 @@ with tf.Session() as sess:
         if step % 500 == 0 and SAVE_CKPT:
             save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
 			f = open(saveDir + "latest", "w+")
-			print("step", file=f)
+			print(step, file=f)
 			f.close()
             print("Saved checkpoint " + str(step))
 
     if SAVE_CKPT:
-        save = saver.save(sess, saveDir + "trained.ckpt")
+        save = saver.save(sess, saveDir + "final.ckpt")
+		f = open(saveDir + "latest", "w+")
+		print("final", file=f)
+		f.close()
         print("Training complete; model saved in file %s" % save)
-    dumpData(logPath + "/checkpoints" + str(runNumber))
-    testData = testing.data
-    testLabels = testing.labels
-    print("Immediate OOM:", sess.run(accuracy, feed_dict={_data: testData, _labels: testLabels}))
