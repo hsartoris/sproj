@@ -22,8 +22,9 @@ pred = np.expand_dims(np.loadtxt(visDir + "pred", delimiter=','), 0)
 outf = outf.reshape((inData.shape[1], inData.shape[1]))
 pred = pred.reshape((inData.shape[1], inData.shape[1]))
 
+n = 10
 matVis(inData, visDir + "input.png")
-matVis(out0, visDir + "out0.png", connections=True, n=3)
-matVis(out1, visDir + "out1.png", connections=True, n=3)
-matVis(outf, visDir + "outf.png", connections=True, n=3)
-matVis(pred, visDir + "pred.png", connections=True, n=3)
+matVis(out0, visDir + "out0.png", connections=True, n=10)
+matVis(out1, visDir + "out1.png", connections=True, n=10)
+matVis(outf, visDir + "outf.png", connections=True)
+matVis(pred, visDir + "pred.png", connections=True)
