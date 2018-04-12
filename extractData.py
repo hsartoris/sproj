@@ -48,7 +48,8 @@ dataX, dataY, _ = testing.next(batchSize)
 out0, out1, outf, pred = sess.run([m.layer0, m.layer1, m.layerFinal, m.prediction],
         feed_dict={_data:dataX})
 
-data = np.loadtxt(prefix + "spikes/" + dataIdx + ".csv", delimiter=',')[:,:b].transpose()
+data = np.loadtxt(prefix + "spikes/" + str(dataIdx) + ".csv", 
+    delimiter=',')[:,:b].transpose()
 print("Writing output data to", outDir)
 np.savetxt(outDir + "input", data, delimiter=',')
 np.savetxt(outDir + "out0", out0[0], delimiter=',')
