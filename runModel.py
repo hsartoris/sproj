@@ -29,7 +29,7 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 10
+b = 15
 # metalayers
 d = 6
 # number of neurons
@@ -67,7 +67,6 @@ signal.signal(signal.SIGINT, signal_handler)
 def cleanup():
     clean = input("Clean up logs and checkpoints? [Y/n]") or "Y"
     if clean == "Y":
-        shutil.rmtree(logPath + runId)
         shutil.rmtree(ckptDir + runId)
 
 def makePred(checkDir=None):
