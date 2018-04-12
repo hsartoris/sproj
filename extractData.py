@@ -24,14 +24,17 @@ outDir = sys.argv[3] + "/" + runId + "/"
 if not os.path.exists(outDir): os.mkdir(outDir)
 struct = np.loadtxt(prefix + "struct.csv", delimiter=',')
 n = struct.shape[0]
+print("num neurons:", n)
+struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
 
 # timesteps
 b = 10
 d = 6
 
 dataIdx = 5
+numData = 5
 
-testing = seqData(dataIdx, dataIdx+1, prefix, b)
+testing = seqData(dataIdx, dataIdx+numData, prefix, b)
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
@@ -44,16 +47,22 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 
-dataX, dataY, _ = testing.next(batchSize)
-out0, out1, outf, pred = sess.run([m.layer0, m.layer1, m.layerFinal, m.prediction],
-        feed_dict={_data:dataX})
-
-data = np.loadtxt(prefix + "spikes/" + str(dataIdx) + ".csv", 
-    delimiter=',')[:,:b].transpose()
-print("Writing output data to", outDir)
-np.savetxt(outDir + "input", data, delimiter=',')
-np.savetxt(outDir + "out0", out0[0], delimiter=',')
-np.savetxt(outDir + "out1", out1[0], delimiter=',')
-np.savetxt(outDir + "outf", outf[0], delimiter=',')
-np.savetxt(outDir + "pred", pred[0], delimiter=',')
+for i in range(numData):
+    dataX, dataY, _ = testing.next(batchSize)
+    out0, out1, outf, pred, loss = sess.run([m.layer0, m.layer1, m.layerFinal, 
+        m.prediction, m.loss], feed_dict={_data:dataX, _labels:struct})
+    runDir = outDir + str(dataIdx + i) + "/"
+    os.mkdir(runDir)
+    
+    data = np.loadtxt(prefix + "spikes/" + str(dataIdx + i) + ".csv", 
+        delimiter=',')[:,:b].transpose()
+    print("Writing output data to", runDir)
+    f = open(runDir + "loss", "w+")
+    f.write(str(loss))
+    f.close()
+    np.savetxt(runDir + "input", data, delimiter=',')
+    np.savetxt(runDir + "out0", out0[0], delimiter=',')
+    np.savetxt(runDir + "out1", out1[0], delimiter=',')
+    np.savetxt(runDir + "outf", outf[0], delimiter=',')
+    np.savetxt(runDir + "pred", pred[0], delimiter=',')
 sess.close()
