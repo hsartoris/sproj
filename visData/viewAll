@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "$1"
+feh "$1/input.png" &
+feh "$1/out0.png" &
+feh "$1/out1.png" &
+feh "$1/outf.png" &
+feh "$1/pred.png" &

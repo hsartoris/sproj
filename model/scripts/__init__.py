@@ -1,1 +1,1 @@
-from .Visualize import matViz
+from .Visualize import matVis, matVis2
