@@ -33,7 +33,11 @@ b = 10
 # metalayers
 d = 6
 # number of neurons
-n = 5
+n = 5 # subject to change; see below conditional
+
+if len(sys.argv) > 2 and sys.argv[1] == "run":
+    prefix = sys.argv[2] + "/"
+    n = np.loadtxt(prefix + "struct.csv", delimiter=',').shape[0]
 
 localtime = time.localtime()
 runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
@@ -158,4 +162,7 @@ if SAVE_CKPT:
     f.write("final")
     f.close()
     print("Training complete; model saved in file %s" % save)
+    f = open(saveDir + "runData", "w+")
+    f.write(b)
+    f.close()
 sess.close()
