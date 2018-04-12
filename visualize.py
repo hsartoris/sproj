@@ -15,10 +15,10 @@ visDir = "visData/" + runId + "/"
 
 out0 = np.loadtxt(visDir + "out0", delimiter=',')
 out1 = np.loadtxt(visDir + "out1", delimiter=',')
-outf = np.loadtxt(visDir + "outf", delimiter=',')
-pred = np.loadtxt(visDir + "pred", delimiter=',')
+outf = np.expand_dims(np.loadtxt(visDir + "outf", delimiter=','), 0)
+pred = np.expand_dims(np.loadtxt(visDir + "pred", delimiter=','), 0)
 
-matViz(out0)
-matViz(out1)
-matViz(outf)
-matViz(pred)
+matViz(out0, visDir + "out0.png")
+matViz(out1, visDir + "out1.png")
+matViz(outf, visDir + "outf.png")
+matViz(pred, visDir + "pred.png")

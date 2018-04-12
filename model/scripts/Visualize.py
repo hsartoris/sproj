@@ -14,4 +14,7 @@ def matViz(matrix, outFile = None, blockWidth=15):
             if i%blockWidth == 0:
                 #border
                 pixels[i,j] = (255,255,255,255)
-    matImg.show()
+    if outFile is None:
+        matImg.show()
+    else:
+        matImg.save(outFile)
