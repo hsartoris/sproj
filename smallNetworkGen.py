@@ -68,13 +68,13 @@ def loadParams(dataDir):
     f.close()
     return params
 
-def randSpikeCol(spikeProb, n = None):
-    if n: NUM_NEUR = n
-    else: global NUM_NEUR
+def randSpikeCol(spikeProb):
     # returns column matrix of 1/0 with spikeProb chance of 1
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
-def simulate(matrix, params, dataDir, simple=True):
+def simulate(matrix, params, dataDir, simple=True, verbose=True):
+    global NUM_NEUR
+    NUM_NEUR = matrix.shape[0]
     arrow = model.scripts.Prettify.pretty()
     # for now this just overwrites, and assumes simple
     if not os.path.exists(dataDir + spikeDir): 

@@ -20,7 +20,7 @@ baseRate = .0001
 initLearnRate = .0025
 #initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
-prefix = "dataStaging/3neur16k/"
+prefix = "dataStaging/5neur16k"
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
@@ -29,11 +29,11 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 8
+b = 10
 # metalayers
-d = 8
+d = 6
 # number of neurons
-n = 3
+n = 5
 
 localtime = time.localtime()
 runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
