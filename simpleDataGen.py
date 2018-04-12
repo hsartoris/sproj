@@ -12,7 +12,7 @@ neurons = int(sys.argv[2])
 steps = int(sys.argv[3])
 runs = int(sys.argv[4])
 
-spikeProb = (.15 if len(sys.argv) < 6 else float(sys.argv[5]))
+spikeProb = (.1 if len(sys.argv) < 6 else float(sys.argv[5]))
 
 params = { 'runs':runs, 'timesteps':steps, 'spikeProb':spikeProb}
 
