@@ -39,6 +39,7 @@ class Model():
             if os.path.exists(matDir):
                 self.loadMats(matDir, trainable)
             else:
+                print(matDir)
                 print("Matrix directory not found, exiting")
                 sys.exit()
         else:
