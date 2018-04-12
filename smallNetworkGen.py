@@ -32,6 +32,9 @@ params['spikeProb'] = spikeProb
 NUM_NEUR = 3
 TESTING = False
 
+def genSimplex(neur):
+    return np.matrix(np.tril(np.ones((neur,neur)), -1))
+
 def genMatrix(simple=True):
     global NUM_NEUR
     mat = np.matrix(np.zeros(shape=(NUM_NEUR,NUM_NEUR)))
@@ -65,22 +68,21 @@ def loadParams(dataDir):
     f.close()
     return params
 
-def randSpikeCol(spikeProb):
-    global NUM_NEUR
+def randSpikeCol(spikeProb, n = None):
+    if n: NUM_NEUR = n
+    else: global NUM_NEUR
     # returns column matrix of 1/0 with spikeProb chance of 1
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
 def simulate(matrix, params, dataDir, simple=True):
     arrow = model.scripts.Prettify.pretty()
-    global NUM_NEUR
-    global verbose
     # for now this just overwrites, and assumes simple
     if not os.path.exists(dataDir + spikeDir): 
         if verbose: print("creating spike directory" + dataDir + spikeDir)
         os.makedirs(dataDir + spikeDir)
     for run in range(params['runs']):
         arrow.arrow(run, params['runs'])
-        data = np.matrix(np.zeros((NUM_NEUR,params['timesteps'])))
+        data = np.matrix(np.zeros((matrix.shape[0],params['timesteps'])))
         data[:,0] = randSpikeCol(params['spikeProb'])
         for step in range(1,params['timesteps']):
             data[:,step] = np.clip((matrix * data[:,step-1]) + 
