@@ -17,9 +17,10 @@ Options:
     -q --quiet      Suppresses debug output
     -t              Testing mode; delete all created files on exit
 """
-from scripts.GraphKit import perturb
+from model.scripts.GraphKit import perturb
+import model.scripts.Prettify
 from docopt import docopt
-import os, shutil, prettify
+import os, shutil
 import numpy as np
 
 structName = "struct.csv"
@@ -70,7 +71,7 @@ def randSpikeCol(spikeProb):
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
 def simulate(matrix, params, dataDir, simple=True):
-    arrow = prettify.pretty()
+    arrow = model.scripts.Prettify.pretty()
     global NUM_NEUR
     global verbose
     # for now this just overwrites, and assumes simple

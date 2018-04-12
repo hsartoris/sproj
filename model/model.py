@@ -52,6 +52,9 @@ class Model():
         self.layer1
         self.layerFinal
         self.loss
+        self.output0
+        self.output1
+        self.outputFinal
         self.prediction
         self.optimize
 
@@ -142,6 +145,18 @@ class Model():
     @lazy_property
     def layerFinal(self):
         return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
+
+    @lazy_property
+    def output0(self):
+        return self.layer0
+
+    @lazy_property
+    def output1(self):
+        return self.layer1
+
+    @lazy_property
+    def outputFinal(self):
+        return self.layerFinal
 
     @lazy_property
     def prediction(self):
