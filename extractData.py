@@ -29,7 +29,9 @@ n = struct.shape[0]
 b = 10
 d = 6
 
-testing = seqData(0, 1, prefix, b)
+dataIdx = 5
+
+testing = seqData(dataIdx, dataIdx+1, prefix, b)
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
@@ -46,7 +48,7 @@ dataX, dataY, _ = testing.next(batchSize)
 out0, out1, outf, pred = sess.run([m.layer0, m.layer1, m.layerFinal, m.prediction],
         feed_dict={_data:dataX})
 
-data = np.loadtxt(prefix + "spikes/0.csv", delimiter=',')[:,:b].transpose()
+data = np.loadtxt(prefix + "spikes/" + dataIdx + ".csv", delimiter=',')[:,:b].transpose()
 print("Writing output data to", outDir)
 np.savetxt(outDir + "input", data, delimiter=',')
 np.savetxt(outDir + "out0", out0[0], delimiter=',')

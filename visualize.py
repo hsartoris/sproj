@@ -13,11 +13,14 @@ if not os.path.exists("visData/" + runId):
 
 visDir = "visData/" + runId + "/"
 
-inData = np.loadtxt(visDir + "input", delimiter=',')[:,:8].transpose()
+inData = np.loadtxt(visDir + "input", delimiter=',')[:,:10].transpose()
 out0 = np.loadtxt(visDir + "out0", delimiter=',')
 out1 = np.loadtxt(visDir + "out1", delimiter=',')
 outf = np.expand_dims(np.loadtxt(visDir + "outf", delimiter=','), 0)
 pred = np.expand_dims(np.loadtxt(visDir + "pred", delimiter=','), 0)
+
+outf = outf.reshape((inData.shape[1], inData.shape[1]))
+pred = pred.reshape((inData.shape[1], inData.shape[1]))
 
 matVis(inData, visDir + "input.png")
 matVis(out0, visDir + "out0.png", connections=True, n=3)
