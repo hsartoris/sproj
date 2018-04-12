@@ -13,7 +13,7 @@ if not os.path.exists("visData/" + runId):
 
 visDir = "visData/" + runId + "/"
 
-inData = np.loadtxt(visDir + "input", delimiter=',').transpose()
+inData = np.loadtxt(visDir + "input", delimiter=',')[:,:8].transpose()
 out0 = np.loadtxt(visDir + "out0", delimiter=',')
 out1 = np.loadtxt(visDir + "out1", delimiter=',')
 outf = np.expand_dims(np.loadtxt(visDir + "outf", delimiter=','), 0)
