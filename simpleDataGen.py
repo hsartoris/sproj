@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from smallNetworkGen import genSimplex, simulate
 import sys
+import numpy as np
 
 if len(sys.argv) < 5:
     print("Usage: simpleDataGen.py outDir neurons timesteps runs [spikeProb]")
