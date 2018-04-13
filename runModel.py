@@ -89,10 +89,14 @@ loadFrom = None
 trainable = None
 if len(sys.argv) > 2 and sys.argv[1] == "load": 
     loadFrom = ckptDir + sys.argv[2] + "/"
-    if len(sys.argv) == 4:
+    if len(sys.argv) >= 4:
         trainArgs = sys.argv[3].split(',')
         trainable = [arg == 'T' for arg in trainArgs]
-
+    if len(sys.argv) == 5:
+        prefix = sys.argv[4] + "/"
+        loadData()
+# REMOVE THIS LATER
+n = 10
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
 m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
