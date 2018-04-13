@@ -29,7 +29,7 @@ trainMaxIdx = int(validMaxIdx * .8)
 # timesteps
 b = 50
 # metalayers
-d = 15
+d = 40
 # number of neurons
 n = 5 # subject to change; see below conditional
 

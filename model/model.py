@@ -105,12 +105,12 @@ class Model():
         self.biases['layer2'] = tf.expand_dims(self.biases['layer2'], 0)
 
     def initMats(self):
-        self.weights['layer0'] = tf.Variable(tf.random_normal([self.d, 2*self.b]))
-        self.weights['layer1'] = [tf.Variable(tf.random_normal([self.d, 2*self.d])),
-            tf.Variable(tf.random_normal([self.d, 2*self.d]))]
-        self.weights['layer2'] = [tf.Variable(tf.random_normal([self.d, 2*self.d])),
-            tf.Variable(tf.random_normal([self.d, 2*self.d]))]
-        self.weights['final'] = tf.Variable(tf.random_normal([1, self.d]))
+        self.weights['layer0'] = tf.Variable(tf.random_normal([self.d, 2*self.b], stddev=.25))
+        self.weights['layer1'] = [tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25)),
+            tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25))]
+        self.weights['layer2'] = [tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25)),
+            tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25))]
+        self.weights['final'] = tf.Variable(tf.random_normal([1, self.d], stddev=.25))
 
         self.biases['layer0'] = tf.Variable(tf.truncated_normal([1, self.d,1],
             stddev=self.initBias))
@@ -201,6 +201,7 @@ class Model():
 
     @lazy_property
     def prediction(self):
+        #return tf.multiply(tf.nn.tanh(self.layerFinal),1.2)
         return tf.nn.tanh(self.layerFinal)
 
     @lazy_property

@@ -28,8 +28,8 @@ print("num neurons:", n)
 struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
 
 # timesteps
-b = 25
-d = 25
+b = 50
+d = 40
 
 dataIdx = 5
 numData = 5
