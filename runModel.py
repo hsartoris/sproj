@@ -17,7 +17,7 @@ TBOARD_LOG = True
 
 batchSize = 32
 initLearnRate = .0025
-trainingSteps = 10000
+trainingSteps = 20000
 prefix = "dataStaging/5neur16k"
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
@@ -29,7 +29,7 @@ trainMaxIdx = int(validMaxIdx * .8)
 # timesteps
 b = 15
 # metalayers
-d = 10
+d = 25
 # number of neurons
 n = 5 # subject to change; see below conditional
 
@@ -95,8 +95,6 @@ if len(sys.argv) > 2 and sys.argv[1] == "load":
     if len(sys.argv) == 5:
         prefix = sys.argv[4] + "/"
         loadData()
-# REMOVE THIS LATER
-n = 10
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
 m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
@@ -110,7 +108,7 @@ if TBOARD_LOG:
 
 #-----------------------------MODEL TRAINING------------------------------------
 
-sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+sess = tf.Session()
 sess.run(init)
 
 if len(sys.argv) > 1 and sys.argv[1] == "pred":

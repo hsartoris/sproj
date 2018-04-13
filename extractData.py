@@ -29,7 +29,7 @@ struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
 
 # timesteps
 b = 15
-d = 10
+d = 25
 
 dataIdx = 5
 numData = 5
