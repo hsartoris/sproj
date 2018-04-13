@@ -16,7 +16,7 @@ SAVE_CKPT = True
 TBOARD_LOG = True
 
 batchSize = 32
-initLearnRate = .0025
+initLearnRate = .001
 trainingSteps = 40000
 prefix = "dataStaging/5neur16k"
 ckptDir = "model/checkpoints/"

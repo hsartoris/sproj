@@ -201,12 +201,16 @@ class Model():
 
     @lazy_property
     def prediction(self):
-        return tf.nn.tanh(self.layerFinal)
+        #return tf.nn.tanh(self.layerFinal)
+        return tf.nn.sigmoid(self.layerFinal)
 
     @lazy_property
     def loss(self):
-        return tf.reduce_mean(tf.losses.mean_squared_error(self.labels, 
-            self.prediction, reduction=tf.losses.Reduction.NONE))
+        #return tf.reduce_mean(tf.losses.mean_squared_error(self.labels, 
+        #    self.prediction, reduction=tf.losses.Reduction.NONE))
+        return tf.divide(tf.reduce_sum(tf.losses.mean_squared_error(self.labels, 
+            self.prediction, reduction=tf.losses.Reduction.NONE)),
+            tf.reduce_sum(self.labels))
 
     @lazy_property
     def optimize(self):
