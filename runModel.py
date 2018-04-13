@@ -17,7 +17,7 @@ TBOARD_LOG = True
 
 batchSize = 32
 initLearnRate = .0025
-trainingSteps = 20000
+trainingSteps = 40000
 prefix = "dataStaging/5neur16k"
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
@@ -27,7 +27,7 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 15
+b = 25
 # metalayers
 d = 25
 # number of neurons
