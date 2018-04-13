@@ -27,7 +27,7 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 50
+b = 25
 # metalayers
 d = 40
 # number of neurons
