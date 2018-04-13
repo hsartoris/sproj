@@ -185,7 +185,7 @@ class Model():
     
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
 
     @lazy_property
     def output0(self):
