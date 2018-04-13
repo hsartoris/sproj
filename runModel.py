@@ -16,9 +16,7 @@ SAVE_CKPT = True
 TBOARD_LOG = True
 
 batchSize = 32
-baseRate = .0001
 initLearnRate = .0025
-#initLearningRate = 0.01 - baseRate
 trainingSteps = 10000
 prefix = "dataStaging/5neur16k"
 ckptDir = "model/checkpoints/"
@@ -31,7 +29,7 @@ trainMaxIdx = int(validMaxIdx * .8)
 # timesteps
 b = 15
 # metalayers
-d = 6
+d = 10
 # number of neurons
 n = 5 # subject to change; see below conditional
 
@@ -94,11 +92,11 @@ if len(sys.argv) > 2 and sys.argv[1] == "load":
     if len(sys.argv) == 4:
         trainArgs = sys.argv[3].split(',')
         trainable = [arg == 'T' for arg in trainArgs]
-
-_data = tf.placeholder(tf.float32, [None, b, n])
-_labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
-    matDir = loadFrom, trainable=trainable)
+with tf.device('/gpu:0'):
+    _data = tf.placeholder(tf.float32, [None, b, n])
+    _labels = tf.placeholder(tf.float32, [None, 1, n*n])
+    m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
+        matDir = loadFrom, trainable=trainable)
 
 init = tf.global_variables_initializer()
 
@@ -108,7 +106,7 @@ if TBOARD_LOG:
 
 #-----------------------------MODEL TRAINING------------------------------------
 
-sess = tf.Session()
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 sess.run(init)
 
 if len(sys.argv) > 1 and sys.argv[1] == "pred":
@@ -162,6 +160,6 @@ if SAVE_CKPT:
     f.close()
     print("Training complete; model saved in file %s" % save)
     f = open(saveDir + "runData", "w+")
-    f.write(b)
+    f.write(str(b))
     f.close()
 sess.close()

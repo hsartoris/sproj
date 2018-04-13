@@ -51,6 +51,7 @@ class Model():
         self.initTiles()
         self.layer0
         self.layer1
+        self.layer2
         self.layerFinal
         self.loss
         self.output0
@@ -79,6 +80,10 @@ class Model():
             delimiter=','), trainable = trainable[1], dtype="float32"),
             tf.Variable(np.loadtxt(matDir + "/l1out.weights", delimiter=','),
                 trainable = trainable[1], dtype = "float32")]
+        self.weights['layer2'] = [tf.Variable(np.loadtxt(matDir + "/l2in.weights", 
+            delimiter=','), trainable = trainable[1], dtype="float32"),
+            tf.Variable(np.loadtxt(matDir + "/l2out.weights", delimiter=','),
+                trainable = trainable[1], dtype = "float32")]
         self.weights['final'] = tf.Variable(np.loadtxt(matDir + "/final.weights", 
             delimiter=','), trainable = trainable[2], dtype = "float32")
         self.weights['final'] = tf.expand_dims(self.weights['final'], 0)
@@ -94,9 +99,16 @@ class Model():
         self.biases['layer1'] = tf.expand_dims(self.biases['layer1'], 1)
         self.biases['layer1'] = tf.expand_dims(self.biases['layer1'], 0)
 
+        self.biases['layer2'] = tf.Variable(np.loadtxt(matDir + "/l2.biases",
+            delimiter=','), trainable = trainable[1], dtype="float32")
+        self.biases['layer2'] = tf.expand_dims(self.biases['layer2'], 1)
+        self.biases['layer2'] = tf.expand_dims(self.biases['layer2'], 0)
+
     def initMats(self):
         self.weights['layer0'] = tf.Variable(tf.random_normal([self.d, 2*self.b]))
         self.weights['layer1'] = [tf.Variable(tf.random_normal([self.d, 2*self.d])),
+            tf.Variable(tf.random_normal([self.d, 2*self.d]))]
+        self.weights['layer2'] = [tf.Variable(tf.random_normal([self.d, 2*self.d])),
             tf.Variable(tf.random_normal([self.d, 2*self.d]))]
         self.weights['final'] = tf.Variable(tf.random_normal([1, self.d]))
 
@@ -104,20 +116,28 @@ class Model():
             stddev=self.initBias))
         self.biases['layer1'] = tf.Variable(tf.truncated_normal([1, self.d,1],
             stddev=self.initBias))
+        self.biases['layer2'] = tf.Variable(tf.truncated_normal([1, self.d,1],
+            stddev=self.initBias))
 
     def saveMats(self, matDir, sess):
         l0 = sess.run(self.weights['layer0'])
         l1in = sess.run(self.weights['layer1'][0])
-        l2in = sess.run(self.weights['layer1'][1])
+        l1out = sess.run(self.weights['layer1'][1])
+        l2in = sess.run(self.weights['layer2'][0])
+        l2out = sess.run(self.weights['layer2'][1])
         lf = sess.run(self.weights['final'])
         l0b = sess.run(self.biases['layer0'])[0]
         l1b = sess.run(self.biases['layer1'])[0]
+        l2b = sess.run(self.biases['layer2'])[0]
         np.savetxt(matDir + "/l0.weights", l0, delimiter=',')
         np.savetxt(matDir + "/l1in.weights", l1in, delimiter=',')
-        np.savetxt(matDir + "/l1out.weights", l2in, delimiter=',')
+        np.savetxt(matDir + "/l1out.weights", l1out, delimiter=',')
+        np.savetxt(matDir + "/l2in.weights", l2in, delimiter=',')
+        np.savetxt(matDir + "/l2out.weights", l2out, delimiter=',')
         np.savetxt(matDir + "/final.weights", lf, delimiter=',')
         np.savetxt(matDir + "/l0.biases", l0b, delimiter=',')
         np.savetxt(matDir + "/l1.biases", l1b, delimiter=',')
+        np.savetxt(matDir + "/l2.biases", l2b, delimiter=',')
             
 
     @lazy_property
@@ -131,21 +151,41 @@ class Model():
 
     @lazy_property
     def layer1(self):
+        #convolutional
         data = self.layer0
         a_total = tf.concat([tf.einsum('ijk,kl->ijl', 
             tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand)), 
             self.expand), data], 1)
         a_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], a_total)
+        a_total = tf.divide(a_total, 2*self.n)
         b_total = tf.concat([self.layer0, tf.einsum('ijk,kl->ijl', 
             tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile)), self.tile)], 1)
         b_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], b_total)
+        b_total = tf.divide(b_total, 2*self.n)
         return tf.nn.relu(tf.add(tf.add(a_total, b_total),
                 tf.tile(self.biases['layer1'], 
+                [self.batchSize,1,self.n*self.n])))
+
+    @lazy_property
+    def layer2(self):
+        #convolutional
+        data = self.layer1
+        a_total = tf.concat([tf.einsum('ijk,kl->ijl', 
+            tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand)), 
+            self.expand), data], 1)
+        a_total = tf.einsum('ij,ljk->lik', self.weights['layer2'][0], a_total)
+        a_total = tf.divide(a_total, 2 * self.n)
+        b_total = tf.concat([self.layer0, tf.einsum('ijk,kl->ijl', 
+            tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile)), self.tile)], 1)
+        b_total = tf.einsum('ij,ljk->lik', self.weights['layer2'][1], b_total)
+        b_total = tf.divide(b_total, 2 * self.n)
+        return tf.nn.relu(tf.add(tf.add(a_total, b_total),
+                tf.tile(self.biases['layer2'], 
                 [self.batchSize,1,self.n*self.n])))
     
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
 
     @lazy_property
     def output0(self):
