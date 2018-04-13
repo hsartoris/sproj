@@ -201,8 +201,7 @@ class Model():
 
     @lazy_property
     def prediction(self):
-        #return tf.nn.tanh(self.layerFinal)
-        return tf.nn.sigmoid(self.layerFinal)
+        return tf.nn.tanh(self.layerFinal)
 
     @lazy_property
     def loss(self):

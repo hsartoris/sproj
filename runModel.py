@@ -27,9 +27,9 @@ validMaxIdx = int(testMaxIdx * .8)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 25
+b = 50
 # metalayers
-d = 25
+d = 15
 # number of neurons
 n = 5 # subject to change; see below conditional
 
@@ -79,8 +79,8 @@ def makePred(checkDir=None):
         testData = testing.data
         testLabels = testing.labels
     testX, testY, _ = testing.next(1)
-    print(sess.run(m.prediction, 
-        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n))
+    print(np.round(sess.run(m.prediction, 
+        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
 
 # don't load data if given args
 if len(sys.argv) == 1 or not sys.argv[1] == "prep": loadData()
@@ -143,7 +143,8 @@ for step in range(trainingSteps):
              validWriter.add_summary(vloss, step)
              summWriter.add_summary(tLoss, step)
 
-        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss))
+        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss)
+            + ", percent loss = "  + "{:.4f}".format(np.sqrt(loss)))
 
     pretty.arrow(batchId, trainMaxIdx)
 
