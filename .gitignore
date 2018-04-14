@@ -1,3 +1,4 @@
 *.csv
 *.ckpt*
 *.npz
+model/checkpoints/*
