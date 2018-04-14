@@ -22,14 +22,14 @@ prefix = "dataStaging/5neur16k"
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
 logPath = "/home/hsartoris/tflowlogs/"
-testMaxIdx = 16000
-validMaxIdx = int(testMaxIdx * .8)
+testMaxIdx = 25000
+validMaxIdx = int(testMaxIdx * .9)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 25
+b = 50
 # metalayers
-d = 40
+d = 20
 # number of neurons
 n = 5 # subject to change; see below conditional
 
@@ -48,11 +48,17 @@ def loadData():
     global training
     global validation
     global testing
+    global trainMaxIdx
+    global validMaxIdx
+    global testMaxIdx
     # 5120, 6400, 8000
     # 1280, 1600, 2000
     training = seqData(0, trainMaxIdx, prefix, b)
+    trainMaxIdx -= training.crop(batchSize)
     validation = seqData(trainMaxIdx, validMaxIdx, prefix, b)
+    validMaxIdx -= validation.crop(batchSize)
     testing = seqData(validMaxIdx, testMaxIdx, prefix, b)
+    testMaxIdx -= testing.crop(batchSize)
 
 def signal_handler(signal, frame):
     makePred()
@@ -134,7 +140,7 @@ for step in range(trainingSteps):
         tLoss, loss= sess.run([lossSum, m.loss], 
                 feed_dict={_data: batchX, _labels: batchY})
         # calculate validation loss
-        validX, validY, _ = validation.next(batchSize)
+        validX, validY, _ = validation.next(batchSize, verbose=True)
         vloss, loss = sess.run([lossSum, m.loss], 
                 feed_dict={_data: validX, _labels: validY})
 
@@ -143,8 +149,7 @@ for step in range(trainingSteps):
              validWriter.add_summary(vloss, step)
              summWriter.add_summary(tLoss, step)
 
-        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss)
-            + ", percent loss = "  + "{:.4f}".format(np.sqrt(loss)))
+        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss))
 
     pretty.arrow(batchId, trainMaxIdx)
 

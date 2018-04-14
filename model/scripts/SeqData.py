@@ -12,31 +12,35 @@ class seqData(object):
         self.data = []
         self.labels = []
         # this is fucking stupid
-        label = np.expand_dims(np.loadtxt(dataDir + "/struct.csv", delimiter=',').flatten(), axis=0)
+        label = np.expand_dims(np.loadtxt(dataDir + "/struct.csv", delimiter=',').flatten(), 
+            axis=0)
         for i in range(minIdx, maxIdx):
             self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", delimiter=',').transpose()[:steps])
             self.labels.append(label)
-            pretty.arrow(i - minIdx, maxIdx - minIdx)
-    
+            pretty.arrow(i - minIdx, maxIdx - minIdx) 
         self.batchId = 0
+        print("Successfully loaded", maxIdx-minIdx, "samples")
 
-    def crop(self, cropLen):
-        for i in range(len(self.data)):
-            self.data[i] = self.data[i][:cropLen,:200].transpose()
-
+    def crop(self, batchSize):
+        cropLen = len(self.data) % batchSize
+        self.data = self.data[:len(self.data) - cropLen]
+        print("Cropped", cropLen, "samples to fit batch size")
+        return cropLen
+        
     def nextSample(self):
         self.batchId += 1
         if self.batchId == len(self.data):
             self.batchId = 0
         return self.data[self.batchId], self.labels[self.batchId]
 	
-    def next(self, batchSize):
+    def next(self, batchSize, verbose=False):
         # returns data and label arrays, along with current batchId
         if self.batchId == len(self.data):
             self.batchId = 0
         batchData = self.data[self.batchId:min(self.batchId + batchSize, len(self.data))]
         batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, len(self.data))]
         self.batchId = min(self.batchId + batchSize, len(self.data))
+        if verbose: print("Returning batch of size", len(batchData))
         return batchData, batchLabels, self.batchId
 
     def epochProgress(self):
