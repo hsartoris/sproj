@@ -3,7 +3,11 @@ import sys, os
 from model.scripts import matVis as matVis
 import numpy as np
 if len(sys.argv) < 2:
-    print("Usage: visualize.py <runId>")
+    print("Usage: visualize.py <runId>\n\tstruct <dataId>")
+    sys.exit()
+if len(sys.argv) > 2:
+    struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct.csv", delimiter=',')
+    matVis(struct, connections=True)
     sys.exit()
 
 runId = sys.argv[1]

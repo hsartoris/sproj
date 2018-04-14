@@ -50,6 +50,6 @@ if __name__=="__main__":
     
     #mat = genSimplex(neurons)
     #mat = tenNeurNet()
-    mat = complexMat(.9)
+    mat = complexMat(1)
     simulate(mat, params, outDir)
     np.savetxt(outDir + "struct.csv", mat, delimiter=',')

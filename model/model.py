@@ -1,6 +1,7 @@
 import numpy as np
 import signal, sys, math, shutil, os, functools
 import tensorflow as tf
+import scripts.MatrixGen
 
 def lazy_property(function):
     attribute = '_cache_' + function.__name__
@@ -32,18 +33,19 @@ class Model():
         self.weights = dict()
         # for layer 1, weights['layer1]'[0] is in, and 1 is out
         self.biases = dict()
-        self.initBias = .1
+        biases_stddev = .01
+        weights_stddev = .2
         if matDir is not None:
             if trainable is None: trainable = [True, True, True]
             # attempt to load matrices from previous run
             if os.path.exists(matDir):
-                self.loadMats(matDir, trainable)
+                self.weights, self.biases = MatrixGen.loadMats(matDir, trainable)
             else:
                 print(matDir)
                 print("Matrix directory not found, exiting")
                 sys.exit()
         else:
-            self.initMats()
+            self.weights, self.biases = MatrixGen.initMats(weights_stddev, biases_stddev)
         self.n = n
         self.lr = learnRate
         self.data = data
