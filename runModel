@@ -17,7 +17,7 @@ TBOARD_LOG = True
 
 batchSize = 16
 initLearnRate = .001
-trainingSteps = 17500
+trainingSteps = 40000
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
 testMaxIdx = 25000
@@ -27,7 +27,7 @@ trainMaxIdx = int(validMaxIdx * .8)
 # timesteps
 b = 25
 # metalayers
-d = 30
+d = 2
 
 if len(sys.argv) > 2 and sys.argv[1] == "run":
     prefix = "dataStaging/" + sys.argv[2] + "/"
