@@ -16,7 +16,7 @@ SAVE_CKPT = True
 TBOARD_LOG = True
 
 batchSize = 32
-initLearnRate = .0025
+initLearnRate = .001
 trainingSteps = 20000
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()

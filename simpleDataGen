@@ -17,15 +17,15 @@ def tenNeurNet():
     return mat
 
 def complexMat(spikeLevel):
-    mat = np.matrix(np.zeros((9,9)))
+    mat = np.matrix(np.zeros((6,6)))
     # 2-simplex
     mat[1,0] = spikeLevel
     mat[2,0] = spikeLevel
     mat[2,1] = spikeLevel
     # 3-cycle
-    mat[7,6] = spikeLevel
-    mat[6,8] = spikeLevel
-    mat[8,7] = spikeLevel
+    #mat[7,6] = spikeLevel
+    #mat[6,8] = spikeLevel
+    #mat[8,7] = spikeLevel
     #single connection
     mat[5,4] = spikeLevel
     return mat

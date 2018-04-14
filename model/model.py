@@ -119,6 +119,7 @@ class Model():
 
         total = tf.concat([horiz, vert], 1)
         total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], total)
+        #total = tf.add(total, data)
         return tf.nn.relu(tf.add(total,
                 tf.tile(self.biases['layer1'], 
                 [self.batchSize,1,self.n*self.n])))
