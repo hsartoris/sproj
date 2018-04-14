@@ -7,7 +7,7 @@ if len(sys.argv) < 2:
     sys.exit()
 if len(sys.argv) > 2:
     struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct.csv", delimiter=',')
-    matVis(struct, connections=True)
+    matVis(struct, "dataStaging/" + sys.argv[2] + "/struct.png", connections=True)
     sys.exit()
 
 runId = sys.argv[1]
