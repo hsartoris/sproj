@@ -76,7 +76,7 @@ def saveMats(weights, biases, matDir, sess):
     l0b = sess.run(biases['layer0'])[0]
     l1b = sess.run(biases['layer1'])[0]
     l2b = sess.run(biases['layer2'])[0]
-    l3b = sess.run(biases['layer3'])(0)
+    l3b = sess.run(biases['layer3'])[0]
     np.savetxt(matDir + "/l0.weights", l0, delimiter=',')
     np.savetxt(matDir + "/l1in.weights", l1in, delimiter=',')
     np.savetxt(matDir + "/l1out.weights", l1out, delimiter=',')

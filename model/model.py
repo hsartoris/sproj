@@ -119,7 +119,7 @@ class Model():
 
         total = tf.concat([horiz, vert], 1)
         total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], total)
-        #total = tf.add(total, data)
+        total = tf.add(total, data)
         return tf.nn.relu(tf.add(total,
                 tf.tile(self.biases['layer1'], 
                 [self.batchSize,1,self.n*self.n])))
@@ -138,7 +138,7 @@ class Model():
 
         total = tf.concat([horiz, vert], 1)
         total = tf.einsum('ij,ljk->lik', self.weights['layer2'][0], total)
-        #total = tf.add(total, data)
+        total = tf.add(total, data)
         return tf.nn.relu(tf.add(total,
                 tf.tile(self.biases['layer2'], 
                 [self.batchSize,1,self.n*self.n])))
@@ -157,9 +157,9 @@ class Model():
 
         total = tf.concat([horiz, vert], 1)
         total = tf.einsum('ij,ljk->lik', self.weights['layer3'], total)
-        #total = tf.add(total, data)
+        total = tf.add(total, data)
         return tf.nn.relu(tf.add(total,
-                tf.tile(self.biases['layer2'], 
+                tf.tile(self.biases['layer3'], 
                 [self.batchSize,1,self.n*self.n])))
 
     @lazy_property
