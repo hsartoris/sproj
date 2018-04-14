@@ -4,25 +4,27 @@ from model.scripts import matVis as matVis
 import numpy as np
 
 def wbVis(prefix, outdir = None):
-    if outDir is not None:
+    w0 = np.loadtxt(prefix + "l0.weights", delimiter=',')
+    w1in = np.loadtxt(prefix + "l1in.weights", delimiter=',')
+    w1out = np.loadtxt(prefix + "l1out.weights", delimiter=',')
+    wf = np.loadtxt(prefix + "final.weights", delimiter=',')
+    b0 = np.loadtxt(prefix + "l0.biases", delimiter=',')
+    b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
+    if outdir is not None:
         fullOut = outdir + "weights/"
         if not os.path.exists(outdir):
             os.mkdir(outdir)
             os.mkdir(fullOut)
-        elif not os.path.exists(fullOut)
+        elif not os.path.exists(fullOut):
             os.mkdir(fullOut)
+        matVis(w0, fullOut + "w0.png")
+        matVis(w1in, fullOut + "w1in.png")
+        matVis(w1out, fullOut + "w1out.png")
+        matVis(np.expand_dims(wf, 1), fullOut + "final.png")
+        matVis(np.expand_dims(b0, 1), fullOut + "b0.png")
+        matVis(np.expand_dims(b1, 1) , fullOut + "b1.png")
     
-    w0 = np.loadtxt(prefix + "l0.weights", delimiter=',')
-    w1in = np.loadtxt(prefix + "l1in.weights", delimiter=',')
-    w1out = np.loadtxt(prefix + "l1out.weights", delimiter=',')
-    b0 = np.loadtxt(prefix + "l0.biases", delimiter=',')
-    b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
 
-    matVis(w0, outdir)
-    matVis(w1in, outdir)
-    matVis(w1out, outdir)
-    matVis(b0, outdir)
-    matVis(b1, outdir)
 
 
 if len(sys.argv) < 2:
@@ -35,6 +37,7 @@ if len(sys.argv) > 2:
         sys.exit()
     elif sys.argv[1] == "mats":
         wbVis("model/checkpoints/" + sys.argv[2] + "/", "visData/" + sys.argv[2] + "/")
+        sys.exit()
 
 runId = sys.argv[1]
 if not os.path.exists("visData/" + runId):

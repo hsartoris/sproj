@@ -1,2 +1,5 @@
 from .Visualize import matVis, matVis2
-from .MatrixGen import loadMats, initMats, saveMats
+try:
+    from .MatrixGen import loadMats, initMats, saveMats
+except ModuleNotFoundError:
+    print("Couldn't load tensorflow")
