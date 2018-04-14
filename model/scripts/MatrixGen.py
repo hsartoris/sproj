@@ -4,6 +4,8 @@ import tensorflow as tf
 
 def loadMats(matDir, trainable):
     print("Loading matrices from", matDir)
+    weights = dict()
+    biases = dict()
     weights['layer0'] = tf.Variable(np.loadtxt(matDir + "/l0.weights", 
         delimiter=','), trainable = trainable[0], dtype="float32")
 
@@ -38,22 +40,24 @@ def loadMats(matDir, trainable):
     biases['layer2'] = tf.expand_dims(biases['layer2'], 0)
     return weights, biases
 
-def initMats(weights_stddev, biases_stddev):
-    weights['layer0'] = tf.Variable(tf.random_normal([self.d, 2*self.b], stddev=weights_stddev))
+def initMats(weights_stddev, biases_stddev, d, b):
+    weights = dict()
+    biases = dict()
+    weights['layer0'] = tf.Variable(tf.random_normal([d, 2*b], stddev=weights_stddev))
 
-    weights['layer1'] = [tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=weights_stddev)),
-        tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=weights_stddev))]
+    weights['layer1'] = [tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev)),
+        tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev))]
 
-    weights['layer2'] = [tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=weights_stddev)),
-        tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=weights_stddev))]
+    weights['layer2'] = [tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev)),
+        tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev))]
 
-    weights['final'] = tf.Variable(tf.random_normal([1, self.d], stddev=weights_stddev))
+    weights['final'] = tf.Variable(tf.random_normal([1, d], stddev=weights_stddev))
 
-    biases['layer0'] = tf.Variable(tf.truncated_normal([1, self.d,1],
+    biases['layer0'] = tf.Variable(tf.truncated_normal([1, d,1],
         stddev=biases_stddev))
-    biases['layer1'] = tf.Variable(tf.truncated_normal([1, self.d,1],
+    biases['layer1'] = tf.Variable(tf.truncated_normal([1, d,1],
         stddev=biases_stddev))
-    biases['layer2'] = tf.Variable(tf.truncated_normal([1, self.d,1],
+    biases['layer2'] = tf.Variable(tf.truncated_normal([1, d,1],
         stddev=biases_stddev))
     return weights, biases
 

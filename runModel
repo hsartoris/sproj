@@ -15,9 +15,9 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
-batchSize = 32
-initLearnRate = .0025
-trainingSteps = 40000
+batchSize = 16
+initLearnRate = .001
+trainingSteps = 17500
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
 testMaxIdx = 25000
@@ -30,7 +30,7 @@ b = 25
 d = 30
 
 if len(sys.argv) > 2 and sys.argv[1] == "run":
-    prefix = sys.argv[2] + "/"
+    prefix = "dataStaging/" + sys.argv[2] + "/"
     n = np.loadtxt(prefix + "struct.csv", delimiter=',').shape[0]
 
 localtime = time.localtime()

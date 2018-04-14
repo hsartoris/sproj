@@ -2,13 +2,39 @@
 import sys, os
 from model.scripts import matVis as matVis
 import numpy as np
+
+def wbVis(prefix, outdir = None):
+    if outDir is not None:
+        fullOut = outdir + "weights/"
+        if not os.path.exists(outdir):
+            os.mkdir(outdir)
+            os.mkdir(fullOut)
+        elif not os.path.exists(fullOut)
+            os.mkdir(fullOut)
+    
+    w0 = np.loadtxt(prefix + "l0.weights", delimiter=',')
+    w1in = np.loadtxt(prefix + "l1in.weights", delimiter=',')
+    w1out = np.loadtxt(prefix + "l1out.weights", delimiter=',')
+    b0 = np.loadtxt(prefix + "l0.biases", delimiter=',')
+    b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
+
+    matVis(w0, outdir)
+    matVis(w1in, outdir)
+    matVis(w1out, outdir)
+    matVis(b0, outdir)
+    matVis(b1, outdir)
+
+
 if len(sys.argv) < 2:
     print("Usage: visualize.py <runId>\n\tstruct <dataId>")
     sys.exit()
 if len(sys.argv) > 2:
-    struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct.csv", delimiter=',')
-    matVis(struct, "dataStaging/" + sys.argv[2] + "/struct.png", connections=True)
-    sys.exit()
+    if sys.argv[1] == "struct":
+        struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct.csv", delimiter=',')
+        matVis(struct, "dataStaging/" + sys.argv[2] + "/struct.png", connections=True)
+        sys.exit()
+    elif sys.argv[1] == "mats":
+        wbVis("model/checkpoints/" + sys.argv[2] + "/", "visData/" + sys.argv[2] + "/")
 
 runId = sys.argv[1]
 if not os.path.exists("visData/" + runId):

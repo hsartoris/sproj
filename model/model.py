@@ -1,7 +1,7 @@
 import numpy as np
 import signal, sys, math, shutil, os, functools
 import tensorflow as tf
-import scripts.MatrixGen
+from .scripts import loadMats, initMats, saveMats
 
 def lazy_property(function):
     attribute = '_cache_' + function.__name__
@@ -34,18 +34,18 @@ class Model():
         # for layer 1, weights['layer1]'[0] is in, and 1 is out
         self.biases = dict()
         biases_stddev = .01
-        weights_stddev = .2
+        weights_stddev = .1
         if matDir is not None:
             if trainable is None: trainable = [True, True, True]
             # attempt to load matrices from previous run
             if os.path.exists(matDir):
-                self.weights, self.biases = MatrixGen.loadMats(matDir, trainable)
+                self.weights, self.biases = loadMats(matDir, trainable)
             else:
                 print(matDir)
                 print("Matrix directory not found, exiting")
                 sys.exit()
         else:
-            self.weights, self.biases = MatrixGen.initMats(weights_stddev, biases_stddev)
+            self.weights, self.biases = initMats(weights_stddev, biases_stddev, d, b)
         self.n = n
         self.lr = learnRate
         self.data = data
@@ -62,6 +62,9 @@ class Model():
         self.prediction
         self.optimize
 
+    def saveMats(self, outDir, sess):
+        saveMats(self.weights, self.biases, outDir, sess)
+
     def initTiles(self):
         n = self.n
         expand = np.array([[1]*n + [0]*n*(n-1)])
@@ -73,74 +76,6 @@ class Model():
         for i in range(1, n):
             tile = np.append(tile, [([0]*i + [1] + [0]*(n-1-i))*n], 0)
         self.tile = tf.constant(tile, tf.float32);
-
-    def loadMats(self, matDir, trainable):
-        print("Loading matrices from", matDir)
-        self.weights['layer0'] = tf.Variable(np.loadtxt(matDir + "/l0.weights", 
-            delimiter=','), trainable = trainable[0], dtype="float32")
-        self.weights['layer1'] = [tf.Variable(np.loadtxt(matDir + "/l1in.weights", 
-            delimiter=','), trainable = trainable[1], dtype="float32"),
-            tf.Variable(np.loadtxt(matDir + "/l1out.weights", delimiter=','),
-                trainable = trainable[1], dtype = "float32")]
-        self.weights['layer2'] = [tf.Variable(np.loadtxt(matDir + "/l2in.weights", 
-            delimiter=','), trainable = trainable[1], dtype="float32"),
-            tf.Variable(np.loadtxt(matDir + "/l2out.weights", delimiter=','),
-                trainable = trainable[1], dtype = "float32")]
-        self.weights['final'] = tf.Variable(np.loadtxt(matDir + "/final.weights", 
-            delimiter=','), trainable = trainable[2], dtype = "float32")
-        self.weights['final'] = tf.expand_dims(self.weights['final'], 0)
-
-        
-        self.biases['layer0'] = tf.Variable(np.loadtxt(matDir + "/l0.biases",
-            delimiter=','), trainable = trainable[0], dtype="float32")
-        self.biases['layer0'] = tf.expand_dims(self.biases['layer0'], 1)
-        self.biases['layer0'] = tf.expand_dims(self.biases['layer0'], 0)
-
-        self.biases['layer1'] = tf.Variable(np.loadtxt(matDir + "/l1.biases",
-            delimiter=','), trainable = trainable[1], dtype="float32")
-        self.biases['layer1'] = tf.expand_dims(self.biases['layer1'], 1)
-        self.biases['layer1'] = tf.expand_dims(self.biases['layer1'], 0)
-
-        self.biases['layer2'] = tf.Variable(np.loadtxt(matDir + "/l2.biases",
-            delimiter=','), trainable = trainable[1], dtype="float32")
-        self.biases['layer2'] = tf.expand_dims(self.biases['layer2'], 1)
-        self.biases['layer2'] = tf.expand_dims(self.biases['layer2'], 0)
-
-    def initMats(self):
-        self.weights['layer0'] = tf.Variable(tf.random_normal([self.d, 2*self.b], stddev=.25))
-        self.weights['layer1'] = [tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25)),
-            tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25))]
-        self.weights['layer2'] = [tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25)),
-            tf.Variable(tf.random_normal([self.d, 2*self.d], stddev=.25))]
-        self.weights['final'] = tf.Variable(tf.random_normal([1, self.d], stddev=.25))
-
-        self.biases['layer0'] = tf.Variable(tf.truncated_normal([1, self.d,1],
-            stddev=self.initBias))
-        self.biases['layer1'] = tf.Variable(tf.truncated_normal([1, self.d,1],
-            stddev=self.initBias))
-        self.biases['layer2'] = tf.Variable(tf.truncated_normal([1, self.d,1],
-            stddev=self.initBias))
-
-    def saveMats(self, matDir, sess):
-        l0 = sess.run(self.weights['layer0'])
-        l1in = sess.run(self.weights['layer1'][0])
-        l1out = sess.run(self.weights['layer1'][1])
-        l2in = sess.run(self.weights['layer2'][0])
-        l2out = sess.run(self.weights['layer2'][1])
-        lf = sess.run(self.weights['final'])
-        l0b = sess.run(self.biases['layer0'])[0]
-        l1b = sess.run(self.biases['layer1'])[0]
-        l2b = sess.run(self.biases['layer2'])[0]
-        np.savetxt(matDir + "/l0.weights", l0, delimiter=',')
-        np.savetxt(matDir + "/l1in.weights", l1in, delimiter=',')
-        np.savetxt(matDir + "/l1out.weights", l1out, delimiter=',')
-        np.savetxt(matDir + "/l2in.weights", l2in, delimiter=',')
-        np.savetxt(matDir + "/l2out.weights", l2out, delimiter=',')
-        np.savetxt(matDir + "/final.weights", lf, delimiter=',')
-        np.savetxt(matDir + "/l0.biases", l0b, delimiter=',')
-        np.savetxt(matDir + "/l1.biases", l1b, delimiter=',')
-        np.savetxt(matDir + "/l2.biases", l2b, delimiter=',')
-            
 
     @lazy_property
     def layer0(self):
@@ -187,7 +122,7 @@ class Model():
     
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
 
     @lazy_property
     def output0(self):
