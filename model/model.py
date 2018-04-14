@@ -85,21 +85,40 @@ class Model():
         return tf.nn.relu(tf.add(tf.einsum('ij,kjl->kil', self.weights['layer0'], total),
                 tf.tile(self.biases['layer0'], 
                 [self.batchSize,1,self.n*self.n])))
+    @lazy_property
+    def layer1revised(self):
+        #convolutional
+        data = self.layer0
+        horizCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand))
+        horizCompress = tf.divide(horizCompress, self.n)
+        horiz = tf.einsum('ijk,kl->ijl', horizCompress, self.tile)
+        in_total = tf.concat([horiz, data], 1)
+        in_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], in_total)
+        
+        vertCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile))
+        vertCompress = tf.divide(vertCompress, self.n)
+        vert = tf.einsum('ijk,kl->ijl', vertCompress, self.expand)
+        out_total = tf.concat([data, vert], 1)
+        out_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], out_total)
+        return tf.nn.relu(tf.add(tf.add(in_total, out_total),
+                tf.tile(self.biases['layer1'], 
+                [self.batchSize,1,self.n*self.n])))
 
     @lazy_property
     def layer1(self):
         #convolutional
         data = self.layer0
-        a_total = tf.concat([tf.einsum('ijk,kl->ijl', 
+        in_total = tf.concat([tf.einsum('ijk,kl->ijl', 
             tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand)), 
             self.expand), data], 1)
-        a_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], a_total)
-        a_total = tf.divide(a_total, 2*self.n)
-        b_total = tf.concat([self.layer0, tf.einsum('ijk,kl->ijl', 
+        in_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], in_total)
+        in_total = tf.divide(in_total, 2*self.n)
+        
+        out_total = tf.concat([self.layer0, tf.einsum('ijk,kl->ijl', 
             tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile)), self.tile)], 1)
-        b_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], b_total)
-        b_total = tf.divide(b_total, 2*self.n)
-        return tf.nn.relu(tf.add(tf.add(a_total, b_total),
+        out_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], out_total)
+        out_total = tf.divide(out_total, 2*self.n)
+        return tf.nn.relu(tf.add(tf.add(in_total, out_total),
                 tf.tile(self.biases['layer1'], 
                 [self.batchSize,1,self.n*self.n])))
 
@@ -122,7 +141,7 @@ class Model():
     
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1revised)
 
     @lazy_property
     def output0(self):
