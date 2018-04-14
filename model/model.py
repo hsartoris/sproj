@@ -125,6 +125,44 @@ class Model():
                 [self.batchSize,1,self.n*self.n])))
 
     @lazy_property
+    def layer2revised2(self):
+        #convolutional
+        data = self.layer1revised2
+        horizCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand))
+        horizCompress = tf.divide(horizCompress, self.n)
+        horiz = tf.einsum('ijk,kl->ijl', horizCompress, self.tile)
+        
+        vertCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile))
+        vertCompress = tf.divide(vertCompress, self.n)
+        vert = tf.einsum('ijk,kl->ijl', vertCompress, self.expand)
+
+        total = tf.concat([horiz, vert], 1)
+        total = tf.einsum('ij,ljk->lik', self.weights['layer2'][0], total)
+        #total = tf.add(total, data)
+        return tf.nn.relu(tf.add(total,
+                tf.tile(self.biases['layer2'], 
+                [self.batchSize,1,self.n*self.n])))
+
+    @lazy_property
+    def layer3revised2(self):
+        #convolutional
+        data = self.layer2revised2
+        horizCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand))
+        horizCompress = tf.divide(horizCompress, self.n)
+        horiz = tf.einsum('ijk,kl->ijl', horizCompress, self.tile)
+        
+        vertCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile))
+        vertCompress = tf.divide(vertCompress, self.n)
+        vert = tf.einsum('ijk,kl->ijl', vertCompress, self.expand)
+
+        total = tf.concat([horiz, vert], 1)
+        total = tf.einsum('ij,ljk->lik', self.weights['layer3'], total)
+        #total = tf.add(total, data)
+        return tf.nn.relu(tf.add(total,
+                tf.tile(self.biases['layer2'], 
+                [self.batchSize,1,self.n*self.n])))
+
+    @lazy_property
     def layer1(self):
         #convolutional
         data = self.layer0
@@ -161,7 +199,7 @@ class Model():
     
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1revised2)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer3revised2)
 
     @lazy_property
     def output0(self):

@@ -50,6 +50,8 @@ def initMats(weights_stddev, biases_stddev, d, b):
 
     weights['layer2'] = [tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev)),
         tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev))]
+    
+    weights['layer3'] = tf.Variable(tf.random_normal([d,2*d], stddev=weights_stddev))
 
     weights['final'] = tf.Variable(tf.random_normal([1, d], stddev=weights_stddev))
 
@@ -59,6 +61,8 @@ def initMats(weights_stddev, biases_stddev, d, b):
         stddev=biases_stddev))
     biases['layer2'] = tf.Variable(tf.truncated_normal([1, d,1],
         stddev=biases_stddev))
+    biases['layer3'] = tf.Variable(tf.truncated_normal([1, d,1],
+        stddev=biases_stddev))
     return weights, biases
 
 def saveMats(weights, biases, matDir, sess):
@@ -67,16 +71,20 @@ def saveMats(weights, biases, matDir, sess):
     l1out = sess.run(weights['layer1'][1])
     l2in = sess.run(weights['layer2'][0])
     l2out = sess.run(weights['layer2'][1])
+    l3 = sess.run(weights['layer3'])
     lf = sess.run(weights['final'])
     l0b = sess.run(biases['layer0'])[0]
     l1b = sess.run(biases['layer1'])[0]
     l2b = sess.run(biases['layer2'])[0]
+    l3b = sess.run(biases['layer3'])(0)
     np.savetxt(matDir + "/l0.weights", l0, delimiter=',')
     np.savetxt(matDir + "/l1in.weights", l1in, delimiter=',')
     np.savetxt(matDir + "/l1out.weights", l1out, delimiter=',')
     np.savetxt(matDir + "/l2in.weights", l2in, delimiter=',')
     np.savetxt(matDir + "/l2out.weights", l2out, delimiter=',')
+    np.savetxt(matDir + "/l3.weights", l3, delimiter=',')
     np.savetxt(matDir + "/final.weights", lf, delimiter=',')
     np.savetxt(matDir + "/l0.biases", l0b, delimiter=',')
     np.savetxt(matDir + "/l1.biases", l1b, delimiter=',')
     np.savetxt(matDir + "/l2.biases", l2b, delimiter=',')
+    np.savetxt(matDir + "/l3.biases", l3b, delimiter=',')
