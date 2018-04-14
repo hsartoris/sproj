@@ -16,8 +16,8 @@ SAVE_CKPT = True
 TBOARD_LOG = True
 
 batchSize = 32
-initLearnRate = .0005
-trainingSteps = 17500
+initLearnRate = .0025
+trainingSteps = 20000
 ckptDir = "model/checkpoints/"
 pretty = Prettify.pretty()
 testMaxIdx = 25000
@@ -25,7 +25,7 @@ validMaxIdx = int(testMaxIdx * .9)
 trainMaxIdx = int(validMaxIdx * .8)
 
 # timesteps
-b = 25
+b = 50
 # metalayers
 d = 30
 
