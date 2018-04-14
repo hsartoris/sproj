@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+try: import tensorflow as tf
+except ModuleNotFoundError:
+    print("Wrong computer, bozo!")
+    exit()
 import numpy as np
 import signal
 import sys
