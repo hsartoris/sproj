@@ -84,10 +84,10 @@ class Model():
         return [tf.add(kMat, tf.concat([dik*dkj, dik*djk, dki*dkj, dki*djk], 1)),
                 dataIn, i, j, tf.add(k, 1)]
 
-    def lessThanN2(self, dataIn, dataOut, idx, zeros):
+    def lessThanN2(self, dataIn, idx, zeros):
         return idx < tf.square(self.n)
 
-    def outerLoop(self, dataIn, dataOut, idx, zeros):
+    def outerLoop(self, dataIn, idx, zeros):
         i = tf.floordiv(idx, self.n)
         j = tf.floormod(idx, self.n)
         k = tf.constant(0)
@@ -99,10 +99,8 @@ class Model():
         print(dataOut[:,:i*self.n+j].get_shape().as_list())
         print(kMat.get_shape().as_list())
         print(dataOut[:,i*self.n+j+1:].get_shape().as_list())
-        
-        return [dataIn, 
-            tf.concat([dataOut[:,:i*self.n+j], kMat], 1) + , 
-            tf.add(idx, 1)]
+        self.dataOut = tf.concat([self.dataOut, kMat], 1)
+        return [dataIn, tf.add(idx, 1)]
 
 
     @lazy_property
@@ -110,9 +108,13 @@ class Model():
         dataIn = self.layer0
         # first run the fucking inner loop because fuck everything
         k = tf.constant(0)
-        kMat
+        kMat = tf.zeros([self.d, 4], tf.float32)
+        kMat, _, _, _, k = tf.while_loop(self.lessThanN, self.perKcompute,
+                [kMat, dataIn, 0, 0, k])
+        self.dataOut = tf.matmul(kMat, self.weights['layer2'])
+        
         idx = tf.constant(0)
-        _, idx, _ = tf.while_loop(self.lessThanN2, self.outerLoop, 
+        _, idx = tf.while_loop(self.lessThanN2, self.outerLoop, 
             [dataIn, idx])
         return dataOut
 
