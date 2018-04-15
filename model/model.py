@@ -75,7 +75,7 @@ class Model():
         tile = np.array([([1] + [0]*(n-1))*n])
         for i in range(1, n):
             tile = np.append(tile, [([0]*i + [1] + [0]*(n-1-i))*n], 0)
-        self.tile = tf.constant(tile, tf.float32);
+        self.tile = tf.constant(tile, tf.float32)
 
     @lazy_property
     def layer0(self):
@@ -199,7 +199,7 @@ class Model():
     
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer3revised2)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1revised)
 
     @lazy_property
     def output0(self):
