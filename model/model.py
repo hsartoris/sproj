@@ -125,7 +125,7 @@ class Model():
         return tf.nn.relu(tf.add(tf.add(in_total, out_total),
                 tf.tile(self.biases['layer1'], 
                 [self.batchSize,1,self.n*self.n])))
-
+'''
     @lazy_property
     def layer1revised2(self):
         #convolutional
@@ -217,7 +217,7 @@ class Model():
         return tf.nn.relu(tf.add(tf.add(a_total, b_total),
                 tf.tile(self.biases['layer2'], 
                 [self.batchSize,1,self.n*self.n])))
-    
+''' 
     @lazy_property
     def layerFinal(self):
         return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1revised)
