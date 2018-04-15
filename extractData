@@ -19,7 +19,7 @@ prefix = "dataStaging/3neur16k/"
 ckptDir = "model/checkpoints/"
 
 if len(sys.argv) < 2:
-    print("Usage: extractData.py runId [prefix]"
+    print("Usage: extractData.py runId [prefix]")
     sys.exit()
 
 runId = sys.argv[1]
@@ -46,7 +46,7 @@ testing = seqData(dataIdx, dataIdx+numData, prefix, b)
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m = Model(b, d, n, _data, _labels, batchSize, matDir = ckptDir + runId + "/")
+m = Model(b, d, n, _data, _labels, batchSize, matDir = ckptDir + runId + "/mats/")
 
 init = tf.global_variables_initializer()
 
@@ -57,8 +57,8 @@ sess.run(init)
 
 for i in range(numData):
     dataX, dataY, _ = testing.next(batchSize)
-    out0, out1, outf, pred, loss = sess.run([m.layer0, m.layer1revised, m.layerFinal, 
-        m.prediction, m.loss], feed_dict={_data:dataX, _labels:struct})
+    out0, out1, out2, outf, pred, loss = sess.run([m.layer0, m.layer1, m.layer2, 
+        m.layerFinal, m.prediction, m.loss], feed_dict={_data:dataX, _labels:struct})
     runDir = outDir + str(dataIdx + i) + "/"
     os.mkdir(runDir)
     
@@ -71,6 +71,7 @@ for i in range(numData):
     np.savetxt(runDir + "input", data, delimiter=',')
     np.savetxt(runDir + "out0", out0[0], delimiter=',')
     np.savetxt(runDir + "out1", out1[0], delimiter=',')
+    np.savetxt(runDir + "out2", out2[0], delimiter=',')
     np.savetxt(runDir + "outf", outf[0], delimiter=',')
     np.savetxt(runDir + "pred", pred[0], delimiter=',')
 sess.close()
