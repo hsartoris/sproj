@@ -44,44 +44,76 @@ class Model():
         self.lr = learnRate
         self.data = data
         self.labels = labels
+        self.initTiles()
         self.layer0
+        self.lessThanN2
         self.layer2
         self.layerFinal
         self.loss
         self.prediction
         self.optimize
 
-    def lessThanN2(self, dataIn, dataOut, idx):
-        return idx < tf.square(self.n)
+    def initTiles(self):
+        n = self.n
+        expand = np.array([[1]*n + [0]*n*(n-1)])
+        for i in range(1, n):
+            expand = np.append(expand, [[0]*n*i + [1]*n + [0]*n*(n-1-i)], 0)
+        self.expand = tf.constant(expand, tf.float32)
+        
+        tile = np.array([([1] + [0]*(n-1))*n])
+        for i in range(1, n):
+            tile = np.append(tile, [([0]*i + [1] + [0]*(n-1-i))*n], 0)
+        self.tile = tf.constant(tile, tf.float32)
+
+    @lazy_property
+    def layer0(self):
+        # print(<thing>.get_shape().as_list()
+        total = tf.concat([tf.matmul(self.data,self.expand), 
+            tf.tile(self.data, [1,self.n])], 0)
+        return tf.nn.relu(tf.matmul(self.weights['layer0'] , total))
+
 
     def lessThanN(self, kMat, dataIn, i, j, k):
         return k < self.n
 
     def perKcompute(self, kMat, dataIn, i, j, k):
-        dik = dataIn[:,i*n + k]
-        dki = dataIn[:,k*n + i]
-        dkj = dataIn[:,k*n + j]
-        djk = dataIn[:,j*n + k]
+        dik = tf.expand_dims(dataIn[:,i*self.n + k], 1)
+        dki = tf.expand_dims(dataIn[:,k*self.n + i], 1)
+        dkj = tf.expand_dims(dataIn[:,k*self.n + j], 1)
+        djk = tf.expand_dims(dataIn[:,j*self.n + k], 1)
         return [tf.add(kMat, tf.concat([dik*dkj, dik*djk, dki*dkj, dki*djk], 1)),
                 dataIn, i, j, tf.add(k, 1)]
 
+    def lessThanN2(self, dataIn, dataOut, idx, zeros):
+        return idx < tf.square(self.n)
 
-    def outerLoop(self, dataIn, dataOut, idx):
+    def outerLoop(self, dataIn, dataOut, idx, zeros):
         i = tf.floordiv(idx, self.n)
         j = tf.floormod(idx, self.n)
         k = tf.constant(0)
-        kMat = tf.constant(0, shape=[self.d, 4])
-        kMat, _, _, _, k = tf.while_loop(lessThanN, perKcompute, [kMat, dataIn, i, j, k])
-        kMat = kMat * weights['layer2']
-        return [dataIn, dataOut[:, i*n + k].assign(kMat), tf.add(idx, 1)]
+        kMat = tf.zeros([self.d, 4], tf.float32)
+        kMat, _, _, _, k = tf.while_loop(self.lessThanN, self.perKcompute, 
+            [kMat, dataIn, i, j, k])
+        kMat = tf.matmul(kMat, self.weights['layer2'])
+        print(dataOut.get_shape().as_list())
+        print(dataOut[:,:i*self.n+j].get_shape().as_list())
+        print(kMat.get_shape().as_list())
+        print(dataOut[:,i*self.n+j+1:].get_shape().as_list())
+        
+        return [dataIn, 
+            tf.concat([dataOut[:,:i*self.n+j], kMat], 1) + , 
+            tf.add(idx, 1)]
 
 
     @lazy_property
     def layer2(self):
         dataIn = self.layer0
-        dataOut = tf.constant(0, shape=[d, self.n*self.n])
+        # first run the fucking inner loop because fuck everything
+        k = tf.constant(0)
+        kMat
         idx = tf.constant(0)
-        _, dataOut, idx = tf.while_loop(lessThanN2, dataIn, dataOut, idx)
+        _, idx, _ = tf.while_loop(self.lessThanN2, self.outerLoop, 
+            [dataIn, idx])
         return dataOut
 
 
