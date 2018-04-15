@@ -14,7 +14,7 @@ def wbVis(prefix, outdir = None):
     wf = np.loadtxt(prefix + "final.weights", delimiter=',')
     b0 = np.loadtxt(prefix + "l0.biases", delimiter=',')
     b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
-    b1 = np.loadtxt(prefix + "l2.biases", delimiter=',')
+    b2 = np.loadtxt(prefix + "l2.biases", delimiter=',')
     if outdir is not None:
         fullOut = outdir + "weights/"
         if not os.path.exists(outdir):
