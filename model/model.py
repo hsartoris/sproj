@@ -34,7 +34,7 @@ class Model():
         # for layer 1, weights['layer1]'[0] is in, and 1 is out
         self.biases = dict()
         biases_stddev = .01
-        weights_stddev = .5
+        weights_stddev = .25
         if matDir is not None:
             if trainable is None: trainable = [True, True, True]
             # attempt to load matrices from previous run
@@ -51,6 +51,9 @@ class Model():
             stddev=weights_stddev))
         self.weights['layer1'][1] = tf.Variable(tf.random_normal([d,d],
             stddev=weights_stddev))
+        #this matrix controls addition of input/output to make final mat
+        self.weights['layer1'][2] = tf.Variable(tf.random_normal([d, 2*d],
+            stddev=.5))
         ###
         self.n = n
         self.lr = learnRate
@@ -121,9 +124,10 @@ class Model():
         #out_total = tf.concat([data, vert], 1)
         out_total = vert*data
         out_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], out_total)
-        return tf.nn.relu(tf.add(tf.add(in_total, out_total),
-                tf.tile(self.biases['layer1'], 
-                [self.batchSize,1,self.n*self.n])))
+        output = tf.concat([in_total, out_total], 1)
+        output = tf.einsum('ij,kjl->kil', self.weights['layer1'][2], output)
+        return tf.nn.relu(tf.add(output, tf.tile(self.biases['layer1'], 
+                    [self.batchSize,1,self.n*self.n])))
     '''
     @lazy_property
     def layer1revised2(self):
