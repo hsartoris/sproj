@@ -47,9 +47,9 @@ class Model():
         else:
             self.weights, self.biases = initMats(weights_stddev, biases_stddev, d, b)
         #### for mods made to layer1revised
-        self.weights['layer1'][0] = tf.Variable(tf.random_normal([2,1],
+        self.weights['layer1'][0] = tf.Variable(tf.random_normal([d,d]
             stddev=weights_stddev))
-        self.weights['layer1'][1] = tf.Variable(tf.random_normal([2,1],
+        self.weights['layer1'][1] = tf.Variable(tf.random_normal([d,d],
             stddev=weights_stddev))
         ###
         self.n = n
@@ -99,26 +99,28 @@ class Model():
         horizCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand))
         horizCompress = tf.divide(horizCompress, self.n)
         horiz = tf.einsum('ijk,kl->ijl', horizCompress, self.tile)
-        horiz = tf.reshape(tf.transpose(horiz, [0,2,1]), 
-                [self.batchSize, self.n*self.n, self.d, 1])
-        in_total = tf.concat([horiz, dataFlip], 3)
-        in_total = tf.einsum('ijkl,lx->ijkx', in_total, self.weights['layer1'][0])
-        in_total = tf.transpose(tf.reshape(in_total, 
-            [self.batchSize, self.n*self.n, self.d]), [0,2,1])
+        #horiz = tf.reshape(tf.transpose(horiz, [0,2,1]), 
+        #        [self.batchSize, self.n*self.n, self.d, 1])
+        #in_total = tf.concat([horiz, dataFlip], 3)
+        #in_total = tf.einsum('ijkl,lx->ijkx', in_total, self.weights['layer1'][0])
+        #in_total = tf.transpose(tf.reshape(in_total, 
+        #    [self.batchSize, self.n*self.n, self.d]), [0,2,1])
+        in_total = horiz*data
         #in_total = tf.concat([horiz, data], 1)
-        #in_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], in_total)
+        in_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][0], in_total)
         
         vertCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.tile))
         vertCompress = tf.divide(vertCompress, self.n)
         vert = tf.einsum('ijk,kl->ijl', vertCompress, self.expand)
-        vert = tf.reshape(tf.transpose(vert, [0,2,1]),
-                [self.batchSize, self.n*self.n, self.d, 1])
-        out_total = tf.concat([dataFlip, vert], 3)
-        out_total = tf.einsum('ijkl,lx->ijkx', out_total, self.weights['layer1'][1])
-        out_total = tf.transpose(tf.reshape(out_total, 
-            [self.batchSize, self.n*self.n, self.d]), [0,2,1])
+        #vert = tf.reshape(tf.transpose(vert, [0,2,1]),
+        #        [self.batchSize, self.n*self.n, self.d, 1])
+        #out_total = tf.concat([dataFlip, vert], 3)
+        #out_total = tf.einsum('ijkl,lx->ijkx', out_total, self.weights['layer1'][1])
+        #out_total = tf.transpose(tf.reshape(out_total, 
+        #    [self.batchSize, self.n*self.n, self.d]), [0,2,1])
         #out_total = tf.concat([data, vert], 1)
-        #out_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], out_total)
+        out_total = vert*data
+        out_total = tf.einsum('ij,ljk->lik', self.weights['layer1'][1], out_total)
         return tf.nn.relu(tf.add(tf.add(in_total, out_total),
                 tf.tile(self.biases['layer1'], 
                 [self.batchSize,1,self.n*self.n])))
