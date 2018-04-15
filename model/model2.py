@@ -112,7 +112,9 @@ class Model():
         idx = tf.constant(0)
         _, idx = tf.while_loop(self.lessThanN2, self.outerLoop, 
             [dataIn, idx])
-        return tf.identity(self.dataOut)
+        dataOut = tf.Variable(tf.zeros([self.d, self.n*self.n], tf.float32))
+        dataOut.assign(self.dataOut)
+        return dataOut
 
 
     @lazy_property
