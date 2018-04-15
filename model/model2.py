@@ -117,7 +117,7 @@ class Model():
 
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
+        return tf.matmul(self.weights['final'], self.layer2)
 
     @lazy_property
     def prediction(self):
