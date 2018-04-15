@@ -105,10 +105,6 @@ _labels = tf.placeholder(tf.float32, [None, 1, n*n])
 m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
     matDir = loadFrom, trainable=trainable)
 
-if TBOARD_LOG:
-    lossSum = tf.summary.scalar("train_loss", m.loss)
-    summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
-    validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
 # save some data
 if len(sys.argv) > 1 and sys.argv[1] == "pred":
@@ -133,6 +129,10 @@ elif SAVE_CKPT:
     f.write(prefix)
     f.close()
 
+if TBOARD_LOG:
+    lossSum = tf.summary.scalar("train_loss", m.loss)
+    summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
+    validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
 init = tf.global_variables_initializer()
 
