@@ -7,9 +7,10 @@ def wbVis(prefix, outdir = None):
     w0 = np.loadtxt(prefix + "l0.weights", delimiter=',')
     w1in = np.loadtxt(prefix + "l1in.weights", delimiter=',')
     w1out = np.loadtxt(prefix + "l1out.weights", delimiter=',')
+    w1f = np.loadtxt(prefix + "l1f.weights", delimiter=',')
     wf = np.loadtxt(prefix + "final.weights", delimiter=',')
     b0 = np.loadtxt(prefix + "l0.biases", delimiter=',')
-    b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
+    #b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
     if outdir is not None:
         fullOut = outdir + "weights/"
         if not os.path.exists(outdir):
@@ -20,9 +21,10 @@ def wbVis(prefix, outdir = None):
         matVis(w0, fullOut + "w0.png")
         matVis(w1in, fullOut + "w1in.png")
         matVis(w1out, fullOut + "w1out.png")
+        matVis(w1f, fullOut + "w1f.png")
         matVis(np.expand_dims(wf, 1), fullOut + "final.png")
         matVis(np.expand_dims(b0, 1), fullOut + "b0.png")
-        matVis(np.expand_dims(b1, 1) , fullOut + "b1.png")
+        #matVis(np.expand_dims(b1, 1) , fullOut + "b1.png")
     
 
 
@@ -36,7 +38,8 @@ if len(sys.argv) > 2:
         matVis(struct, "dataStaging/" + sys.argv[2] + "/struct.png", connections=True)
         sys.exit()
     elif sys.argv[1] == "mats":
-        wbVis("model/checkpoints/" + sys.argv[2] + "/", "visData/" + sys.argv[2] + "/")
+        wbVis("model/checkpoints/" + sys.argv[2] + "/mats/", 
+                "visData/" + sys.argv[2] + "/")
         sys.exit()
 
 runId = sys.argv[1]
