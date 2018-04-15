@@ -8,9 +8,13 @@ def wbVis(prefix, outdir = None):
     w1in = np.loadtxt(prefix + "l1in.weights", delimiter=',')
     w1out = np.loadtxt(prefix + "l1out.weights", delimiter=',')
     w1f = np.loadtxt(prefix + "l1f.weights", delimiter=',')
+    w2in = np.loadtxt(prefix + "l2in.weights", delimiter=',')
+    w2out = np.loadtxt(prefix + "l2out.weights", delimiter=',')
+    w2f = np.loadtxt(prefix + "l2f.weights", delimiter=',')
     wf = np.loadtxt(prefix + "final.weights", delimiter=',')
     b0 = np.loadtxt(prefix + "l0.biases", delimiter=',')
-    #b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
+    b1 = np.loadtxt(prefix + "l1.biases", delimiter=',')
+    b1 = np.loadtxt(prefix + "l2.biases", delimiter=',')
     if outdir is not None:
         fullOut = outdir + "weights/"
         if not os.path.exists(outdir):
@@ -22,9 +26,13 @@ def wbVis(prefix, outdir = None):
         matVis(w1in, fullOut + "w1in.png")
         matVis(w1out, fullOut + "w1out.png")
         matVis(w1f, fullOut + "w1f.png")
+        matVis(w2in, fullOut + "w2in.png")
+        matVis(w2out, fullOut + "w2out.png")
+        matVis(w2f, fullOut + "w2f.png")
         matVis(np.expand_dims(wf, 1), fullOut + "final.png")
         matVis(np.expand_dims(b0, 1), fullOut + "b0.png")
-        #matVis(np.expand_dims(b1, 1) , fullOut + "b1.png")
+        matVis(np.expand_dims(b1, 1) , fullOut + "b1.png")
+        matVis(np.expand_dims(b2, 1) , fullOut + "b2.png")
     
 
 
@@ -52,15 +60,17 @@ visDir = "visData/" + runId + "/"
 inData = np.loadtxt(visDir + "input", delimiter=',')
 out0 = np.loadtxt(visDir + "out0", delimiter=',')
 out1 = np.loadtxt(visDir + "out1", delimiter=',')
+out2 = np.loadtxt(visDir + "out2", delimiter=',')
 outf = np.expand_dims(np.loadtxt(visDir + "outf", delimiter=','), 0)
 pred = np.expand_dims(np.loadtxt(visDir + "pred", delimiter=','), 0)
 
 outf = outf.reshape((inData.shape[1], inData.shape[1]))
 pred = pred.reshape((inData.shape[1], inData.shape[1]))
 
-n = 10
+n = 6
 matVis(inData, visDir + "input.png")
-matVis(out0, visDir + "out0.png", connections=True, n=10)
-matVis(out1, visDir + "out1.png", connections=True, n=10)
+matVis(out0, visDir + "out0.png", connections=True, n=n)
+matVis(out1, visDir + "out1.png", connections=True, n=n)
+matVis(out1, visDir + "out2.png", connections=True, n=n)
 matVis(outf, visDir + "outf.png", connections=True)
 matVis(pred, visDir + "pred.png", connections=True)
