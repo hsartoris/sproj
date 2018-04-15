@@ -35,66 +35,59 @@ class Model():
         self.biases = dict()
         biases_stddev = .01
         weights_stddev = .1
-        if matDir is not None:
-            if trainable is None: trainable = [True, True, True]
-            # attempt to load matrices from previous run
-            if os.path.exists(matDir):
-                self.weights, self.biases = loadMats(matDir, trainable)
-            else:
-                print(matDir)
-                print("Matrix directory not found, exiting")
-                sys.exit()
-        else:
-            self.weights, self.biases = initMats(weights_stddev, biases_stddev, d, b)
+        self.weights['layer0'] = tf.Variable(tf.random_normal([d, 2*b], 
+            stddev=weights_stddev))
+        self.weights['layer2'] = tf.Variable(tf.random_normal([4,1]))
+        self.weights['final'] = tf.Variable(tf.random_normal([1,d], 
+            stddev=weights_stddev))
         self.n = n
         self.lr = learnRate
         self.data = data
         self.labels = labels
-        self.initTiles()
         self.layer0
-        self.layer1
         self.layer2
         self.layerFinal
         self.loss
-        self.output0
-        self.output1
-        self.outputFinal
         self.prediction
         self.optimize
 
-    def saveMats(self, outDir, sess):
-        saveMats(self.weights, self.biases, outDir, sess)
+    def lessThanN2(self, dataIn, dataOut, idx):
+        return idx < tf.square(self.n)
 
-    def initTiles(self):
-        n = self.n
-        expand = np.array([[1]*n + [0]*n*(n-1)])
-        for i in range(1, n):
-            expand = np.append(expand, [[0]*n*i + [1]*n + [0]*n*(n-1-i)], 0)
-        self.expand = tf.constant(expand, tf.float32)
-        
-        tile = np.array([([1] + [0]*(n-1))*n])
-        for i in range(1, n):
-            tile = np.append(tile, [([0]*i + [1] + [0]*(n-1-i))*n], 0)
-        self.tile = tf.constant(tile, tf.float32)
+    def lessThanN(self, kMat, dataIn, i, j, k):
+        return k < self.n
+
+    def perKcompute(self, kMat, dataIn, i, j, k):
+        dik = dataIn[:,i*n + k]
+        dki = dataIn[:,k*n + i]
+        dkj = dataIn[:,k*n + j]
+        djk = dataIn[:,j*n + k]
+        return [tf.add(kMat, tf.concat([dik*dkj, dik*djk, dki*dkj, dki*djk], 1)),
+                dataIn, i, j, tf.add(k, 1)]
+
+
+    def outerLoop(self, dataIn, dataOut, idx):
+        i = tf.floordiv(idx, self.n)
+        j = tf.floormod(idx, self.n)
+        k = tf.constant(0)
+        kMat = tf.constant(0, shape=[self.d, 4])
+        kMat, _, _, _, k = tf.while_loop(lessThanN, perKcompute, [kMat, dataIn, i, j, k])
+        kMat = kMat * weights['layer2']
+        return [dataIn, dataOut[:, i*n + k].assign(kMat), tf.add(idx, 1)]
+
 
     @lazy_property
-    
+    def layer2(self):
+        dataIn = self.layer0
+        dataOut = tf.constant(0, shape=[d, self.n*self.n])
+        idx = tf.constant(0)
+        _, dataOut, idx = tf.while_loop(lessThanN2, dataIn, dataOut, idx)
+        return dataOut
+
 
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1revised)
-
-    @lazy_property
-    def output0(self):
-        return self.layer0
-
-    @lazy_property
-    def output1(self):
-        return self.layer1
-
-    @lazy_property
-    def outputFinal(self):
-        return self.layerFinal
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
 
     @lazy_property
     def prediction(self):
