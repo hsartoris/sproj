@@ -95,10 +95,6 @@ class Model():
         kMat, _, _, _, k = tf.while_loop(self.lessThanN, self.perKcompute, 
             [kMat, dataIn, i, j, k])
         kMat = tf.matmul(kMat, self.weights['layer2'])
-        print(dataOut.get_shape().as_list())
-        print(dataOut[:,:i*self.n+j].get_shape().as_list())
-        print(kMat.get_shape().as_list())
-        print(dataOut[:,i*self.n+j+1:].get_shape().as_list())
         self.dataOut = tf.concat([self.dataOut, kMat], 1)
         return [dataIn, tf.add(idx, 1)]
 
