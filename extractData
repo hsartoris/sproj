@@ -18,13 +18,17 @@ batchSize = 1
 prefix = "dataStaging/3neur16k/"
 ckptDir = "model/checkpoints/"
 
-if len(sys.argv) < 4:
-    print("Usage: extractData.py runId prefix outdir")
+if len(sys.argv) < 2:
+    print("Usage: extractData.py runId [prefix]"
     sys.exit()
 
 runId = sys.argv[1]
-prefix = sys.argv[2] + "/"
-outDir = sys.argv[3] + "/" + runId + "/"
+if len(sys.argv) > 2: prefix = "dataStaging/" + sys.argv[2] + "/"
+else:
+    f = open(ckptDir + runId + "/prefix")
+    prefix = f.readline()
+    f.close()
+outDir = "visData/" + runId + "/"
 if not os.path.exists(outDir): os.mkdir(outDir)
 struct = np.loadtxt(prefix + "struct.csv", delimiter=',')
 n = struct.shape[0]
@@ -32,7 +36,7 @@ print("num neurons:", n)
 struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
 
 # timesteps
-b = 25
+b = 50
 d = 30
 
 dataIdx = 5
@@ -53,7 +57,7 @@ sess.run(init)
 
 for i in range(numData):
     dataX, dataY, _ = testing.next(batchSize)
-    out0, out1, outf, pred, loss = sess.run([m.layer0, m.layer1, m.layerFinal, 
+    out0, out1, outf, pred, loss = sess.run([m.layer0, m.layer1revised, m.layerFinal, 
         m.prediction, m.loss], feed_dict={_data:dataX, _labels:struct})
     runDir = outDir + str(dataIdx + i) + "/"
     os.mkdir(runDir)

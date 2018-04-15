@@ -15,6 +15,8 @@ SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
+dataFile = "runData"
+epochsToSave = 2 # directly dependent on batchsize of course
 batchSize = 32
 initLearnRate = .001
 trainingSteps = 20000
@@ -86,6 +88,7 @@ def makePred(checkDir=None):
 
 # don't load data if given args
 if len(sys.argv) == 1 or not sys.argv[1] == "prep": loadData()
+# what on earth is prep lol
 
 loadFrom = None
 trainable = None
@@ -102,17 +105,12 @@ _labels = tf.placeholder(tf.float32, [None, 1, n*n])
 m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
     matDir = loadFrom, trainable=trainable)
 
-init = tf.global_variables_initializer()
-
 if TBOARD_LOG:
     lossSum = tf.summary.scalar("train_loss", m.loss)
+    summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
+    validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
-
-#-----------------------------MODEL TRAINING------------------------------------
-
-sess = tf.Session()
-sess.run(init)
-
+# save some data
 if len(sys.argv) > 1 and sys.argv[1] == "pred":
     makePred(ckptDir + sys.argv[2] + "/")
     sys.exit()
@@ -120,50 +118,75 @@ elif SAVE_CKPT:
     saver = tf.train.Saver()
     saveDir = (ckptDir + runId + "/")
     os.mkdir(saveDir)
+    f = open(saveDir + dataFile, "w+")
+    f.write("# b\n" + str(b) + "\n")
+    f.write("# d\n" + str(d) + "\n")
+    f.write("# n\n" + str(n) + "\n")
+    f.write("# batchSize\n" + str(batchSize) + "\n")
+    f.write("# initLearnRate\n" + str(initLearnRate) + "\n")
+    f.write("# trainingSteps\n" + str(trainingSteps) + "\n")
+    f.write("# prefix\n" + prefix + "\n")
+    f.write("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
+            str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
+    f.close()
+    f = open(saveDir + "prefix", "w+")
+    f.write(prefix)
+    f.close()
 
-if TBOARD_LOG:
-    # initialize log writers
-    summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
-    validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
+init = tf.global_variables_initializer()
 
+#-----------------------------MODEL TRAINING------------------------------------
+
+sess = tf.Session()
+sess.run(init)
+
+# step, loss
+minLoss = (0,100) 
+
+epochCount = 0
 for step in range(trainingSteps):
     batchX, batchY, batchId = training.next(batchSize)
     sess.run(m.optimize, feed_dict={_data: batchX, _labels: batchY})
     if batchId == trainMaxIdx or step == 1:
         # end of epoch
         # calculate current loss on training data
-        tLoss, loss= sess.run([lossSum, m.loss], 
+        tLoss = sess.run([lossSum], 
                 feed_dict={_data: batchX, _labels: batchY})
         # calculate validation loss
         validX, validY, _ = validation.next(batchSize, verbose=True)
         vloss, loss = sess.run([lossSum, m.loss], 
                 feed_dict={_data: validX, _labels: validY})
+        if loss < minLoss[1]: minLoss = (step, loss)
 
         if TBOARD_LOG:
             # log various data
              validWriter.add_summary(vloss, step)
              summWriter.add_summary(tLoss, step)
-
+        if not step == 1: epochCount += 1
         print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss))
+
+        if epochCount % epochsToSave == 0 and SAVE_CKPT:
+            save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
+            f = open(saveDir + "latest", "w+")
+            f.write(str(step))
+            f.close()
+            print("Saved checkpoint " + str(step))
 
     pretty.arrow(batchId, trainMaxIdx)
 
-    if step % 500 == 0 and SAVE_CKPT:
-        save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
-        f = open(saveDir + "latest", "w+")
-        f.write(str(step))
-        f.close()
-        print("Saved checkpoint " + str(step))
 makePred()
-m.saveMats(ckptDir + runId, sess)
+os.mkdir(ckptDir + runId + "/mats"
+m.saveMats(ckptDir + runId + "/mats/", sess)
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
     f = open(saveDir + "latest", "w+")
     f.write("final")
     f.close()
+
     print("Training complete; model saved in file %s" % save)
-    f = open(saveDir + "runData", "w+")
-    f.write(str(b))
+    print("Minimum loss:", str(minLoss))
+    f = open(saveDir + dataFile, 'a')
+    f.write("# (step, loss)\n" + str(minLoss) + "\n")
     f.close()
 sess.close()
