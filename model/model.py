@@ -51,14 +51,15 @@ class Model():
             stddev=weights_stddev))
         self.weights['layer1'][1] = tf.Variable(tf.random_normal([2,1],
             stddev=weights_stddev))
+        ###
         self.n = n
         self.lr = learnRate
         self.data = data
         self.labels = labels
         self.initTiles()
         self.layer0
-        self.layer1
-        self.layer2
+        #self.layer1 # doesn't work with new weights
+        #self.layer2
         self.layerFinal
         self.loss
         self.output0
