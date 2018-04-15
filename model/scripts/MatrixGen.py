@@ -81,4 +81,4 @@ def saveMats(weights, biases, matDir, sess):
     np.savetxt(matDir + "/l1f.weights", l1f, delimiter=',')
     np.savetxt(matDir + "/final.weights", lf, delimiter=',')
     np.savetxt(matDir + "/l0.biases", l0b, delimiter=',')
-    np.savetxt(matDir + "/l2.biases", l2b, delimiter=',')
+    np.savetxt(matDir + "/l1.biases", l1b, delimiter=',')

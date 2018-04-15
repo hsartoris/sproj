@@ -176,8 +176,6 @@ for step in range(trainingSteps):
     pretty.arrow(batchId, trainMaxIdx)
 
 makePred()
-os.mkdir(ckptDir + runId + "/mats")
-m.saveMats(ckptDir + runId + "/mats/", sess)
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
     f = open(saveDir + "latest", "w+")
@@ -189,4 +187,6 @@ if SAVE_CKPT:
     f = open(saveDir + dataFile, 'a')
     f.write("# (step, loss)\n" + str(minLoss) + "\n")
     f.close()
+os.mkdir(ckptDir + runId + "/mats")
+m.saveMats(ckptDir + runId + "/mats/", sess)
 sess.close()
