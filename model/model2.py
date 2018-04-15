@@ -84,10 +84,10 @@ class Model():
         return [tf.add(kMat, tf.concat([dik*dkj, dik*djk, dki*dkj, dki*djk], 1)),
                 dataIn, i, j, tf.add(k, 1)]
 
-    def lessThanN2(self, dataIn, idx, zeros):
+    def lessThanN2(self, dataIn, idx):
         return idx < tf.square(self.n)
 
-    def outerLoop(self, dataIn, idx, zeros):
+    def outerLoop(self, dataIn, idx):
         i = tf.floordiv(idx, self.n)
         j = tf.floormod(idx, self.n)
         k = tf.constant(0)
