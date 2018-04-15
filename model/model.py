@@ -47,7 +47,7 @@ class Model():
         else:
             self.weights, self.biases = initMats(weights_stddev, biases_stddev, d, b)
         #### for mods made to layer1revised
-        self.weights['layer1'][0] = tf.Variable(tf.random_normal([d,d]
+        self.weights['layer1'][0] = tf.Variable(tf.random_normal([d,d],
             stddev=weights_stddev))
         self.weights['layer1'][1] = tf.Variable(tf.random_normal([d,d],
             stddev=weights_stddev))
