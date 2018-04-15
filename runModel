@@ -151,7 +151,7 @@ for step in range(trainingSteps):
     if batchId == trainMaxIdx or step == 1:
         # end of epoch
         # calculate current loss on training data
-        tLoss = sess.run([lossSum], 
+        tLoss, loss = sess.run([lossSum, m.loss], 
                 feed_dict={_data: batchX, _labels: batchY})
         # calculate validation loss
         validX, validY, _ = validation.next(batchSize, verbose=True)
