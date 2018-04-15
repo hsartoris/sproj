@@ -66,6 +66,7 @@ class Model():
         #self.layer1 # doesn't work with new weights
         #self.layer2
         self.layer1
+        self.layer1dumb
         self.layer2
         self.layerFinal
         self.loss
@@ -95,6 +96,12 @@ class Model():
         return tf.nn.relu(tf.add(tf.einsum('ij,kjl->kil', self.weights['layer0'], total),
                 tf.tile(self.biases['layer0'], 
                 [self.batchSize,1,self.n*self.n])))
+
+    @lazy_property
+    def layer1dumb(self):
+        return tf.nn.relu(tf.add(tf.einsum('ij,kjl->kil', 
+            self.weights['layer1'][0], self.layer0), tf.tile(self.biases['layer1'],
+                [self.batchSize, 1, self.n*self.n])))
 
     @lazy_property
     def layer1(self):
@@ -142,7 +149,7 @@ class Model():
 
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1dumb)
 
     @lazy_property
     def prediction(self):
