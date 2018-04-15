@@ -154,7 +154,7 @@ for step in range(trainingSteps):
         tLoss, loss = sess.run([lossSum, m.loss], 
                 feed_dict={_data: batchX, _labels: batchY})
         # calculate validation loss
-        validX, validY, _ = validation.next(batchSize, verbose=True)
+        validX, validY, _ = validation.next(batchSize)
         vloss, loss = sess.run([lossSum, m.loss], 
                 feed_dict={_data: validX, _labels: validY})
         if loss < minLoss[1]: minLoss = (step, loss)
