@@ -52,8 +52,8 @@ class Model():
         self.weights['layer1'][1] = tf.Variable(tf.random_normal([d,d],
             stddev=weights_stddev))
         #this matrix controls addition of input/output to make final mat
-        self.weights['layer1'][2] = tf.Variable(tf.random_normal([d, 2*d],
-            stddev=.5))
+        self.weights['layer1'].append(tf.Variable(tf.random_normal([d, 2*d],
+            stddev=.5)))
         ###
         self.n = n
         self.lr = learnRate
@@ -63,6 +63,7 @@ class Model():
         self.layer0
         #self.layer1 # doesn't work with new weights
         #self.layer2
+        self.layer1revised
         self.layerFinal
         self.loss
         self.prediction
