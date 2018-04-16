@@ -1,0 +1,5 @@
+This model is not yet functional. Getting it there will require either some
+serious math magic, or an understanding of Tensorflow and its interactions
+with while loops that I do not yet have.
+
+16/04/2018

@@ -17,7 +17,7 @@ def lazy_property(function):
 
 class Model():
     def __init__(self, b, d, n, data, labels, batchSize, structure=[1,1], 
-            learnRate=.0025, matDir=None, trainable=None):
+            learnRate=.0025, matDir=None, trainable=None, dumb=False):
         # Reference:
         # b: timesteps of input slices
         # d: metalayer size
@@ -27,6 +27,7 @@ class Model():
         # structure[1]: num of layer 2s (not implemented >1)
         # TODO: use structure at all
 
+        self.dumb = dumb
         self.batchSize = batchSize
         self.b = b
         self.d = d
@@ -149,7 +150,9 @@ class Model():
 
     @lazy_property
     def layerFinal(self):
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1dumb)
+        if self.dumb:
+            return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1dumb)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
 
     @lazy_property
     def prediction(self):
