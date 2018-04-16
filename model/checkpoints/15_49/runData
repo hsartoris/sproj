@@ -16,3 +16,4 @@ dataStaging/6neur25k/
 24992, 22496, 17984
 # (step, loss)
 (12363, 0.1492392)
+# created with 1 dumb layer
