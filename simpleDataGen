@@ -58,7 +58,7 @@ if __name__=="__main__":
     #print("Optimized spike rate for this matrix:", spikeProb)
     simulate(mat, params, outDir)
     f = open(outDir + "runData", "w+")
-    f.write("Neurons: " + str(n) + "\n")
+    f.write("Neurons: " + str(neurons) + "\n")
     f.write("Timesteps: " + str(steps) + "\n")
     f.write("Run count: " + str(runs) + "\n")
     f.close()
