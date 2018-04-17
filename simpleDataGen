@@ -41,7 +41,7 @@ if __name__=="__main__":
     
     outDir = "dataStaging/" + sys.argv[1] + "/"
     #neurons = int(sys.argv[2])
-    neurons = 9
+    neurons = 3
     steps = int(sys.argv[2])
     runs = int(sys.argv[3])
     
@@ -49,9 +49,10 @@ if __name__=="__main__":
     
     params = { 'runs':runs, 'timesteps':steps, 'spikeProb':spikeProb}
     
-    #mat = genSimplex(neurons)
+    # for 2-simplex, .25 is probably a good rate
+    mat = genSimplex(neurons)
     #mat = tenNeurNet()
-    mat = complexMat(1)
+    #mat = complexMat(1)
     # finds optimal spike rate for data generation
     #spikeProb = optimizeSpike(mat, .05)
     #print("Optimized spike rate for this matrix:", spikeProb)
