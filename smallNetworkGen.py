@@ -89,6 +89,42 @@ def simulate(matrix, params, dataDir, simple=True, verbose=True):
                                     randSpikeCol(params['spikeProb']), 0, 1)
         np.savetxt(dataDir + spikeDir + str(run) + ".csv", data, delimiter=',', fmt='%i')
     
+def optimizeSpike(matrix, lowSpike, threshold=1):
+    # finds lowest spike rate producing >threshold spikes over two timesteps
+    spikeRate = lowSpike
+    global NUM_NEUR 
+    NUM_NEUR = matrix.shape[0]
+    data = randSpikeCol(spikeRate)
+    print(matrix.shape)
+    print(data.shape)
+    print((matrix*data).shape)
+    step = np.clip((matrix * data) + randSpikeCol(spikeRate), 0, 1)
+    sumAvg = np.sum(data) + np.sum(step)
+    count = 0
+
+    while(True):
+        # advance simulation one step and recompute running average
+        data = step
+        step = np.clip((matrix * data) + randSpikeCol(spikeRate), 0, 1)
+        sumAvg = (sumAvg + np.sum(data) + np.sum(step))/2
+
+        if sumAvg >= threshold and count == 0:
+            # running average is acceptable; trial run
+            count = 25
+            continue
+
+        if count > 0:
+            # doing trial run
+            count -= 1
+            if sumAvg >= threshold and count == 0:
+                # we're done
+                return spikeRate
+            elif not sumAvg >= threshold:
+                # average dropped; cancel trial
+                count = 0
+        # if either sumAvg is disappointing or failed trial, increment spike rate
+        spikeRate += .005
+
 
 if __name__ == "__main__":
     arguments = docopt(__doc__)

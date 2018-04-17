@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from smallNetworkGen import genSimplex, simulate
+from smallNetworkGen import genSimplex, simulate, optimizeSpike
 import sys
 import numpy as np
 
@@ -17,6 +17,7 @@ def tenNeurNet():
     return mat
 
 def complexMat(spikeLevel):
+    # .15 is probably a good spike rate for this net
     mat = np.matrix(np.zeros((6,6)))
     # 2-simplex
     mat[1,0] = spikeLevel
@@ -34,22 +35,25 @@ def level1mat():
     mat = np.matrix(np.zeros((3,3)))
 
 if __name__=="__main__":
-    if len(sys.argv) < 5:
-        print("Usage: simpleDataGen.py outDir neurons timesteps runs [spikeProb]")
+    if len(sys.argv) < 4:
+        print("Usage: simpleDataGen.py outDir timesteps runs [spikeProb]\n\tNote: assumes dataStaging")
         sys.exit()
     
-    outDir = sys.argv[1] + "/"
+    outDir = "dataStaging/" + sys.argv[1] + "/"
     #neurons = int(sys.argv[2])
     neurons = 9
-    steps = int(sys.argv[3])
-    runs = int(sys.argv[4])
+    steps = int(sys.argv[2])
+    runs = int(sys.argv[3])
     
-    spikeProb = (.1 if len(sys.argv) < 6 else float(sys.argv[5]))
+    spikeProb = (.05 if len(sys.argv) < 5 else float(sys.argv[4]))
     
     params = { 'runs':runs, 'timesteps':steps, 'spikeProb':spikeProb}
     
     #mat = genSimplex(neurons)
     #mat = tenNeurNet()
     mat = complexMat(1)
+    # finds optimal spike rate for data generation
+    #spikeProb = optimizeSpike(mat, .05)
+    #print("Optimized spike rate for this matrix:", spikeProb)
     simulate(mat, params, outDir)
     np.savetxt(outDir + "struct.csv", mat, delimiter=',')
