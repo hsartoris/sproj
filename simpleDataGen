@@ -62,4 +62,4 @@ if __name__=="__main__":
     f.write("Timesteps: " + str(steps) + "\n")
     f.write("Run count: " + str(runs) + "\n")
     f.close()
-    np.savetxt(outDir + "struct.csv", mat, delimiter=',')
+    np.savetxt(outDir + "struct", mat, delimiter=',')
