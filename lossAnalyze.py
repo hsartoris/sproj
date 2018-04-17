@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 minIdx = 1
-maxIdx = 29
+maxIdx = 99
 saveDir = "model/checkpoints/3neurdata/"
 
 def loadLosses():
@@ -26,6 +26,7 @@ def maxLoss(losses):
     return temp[0], temp[1]
 
 def avgLoss(losses):
+    print("Note that this method doesn't work")
     idxs = np.array([losses[0,:,0], np.mean(losses[:,:,1], axis=2)])
     return idxs
 
@@ -33,6 +34,7 @@ convLosses, simpleLosses = loadLosses()
 #convLosses = np.array(sorted(convLosses, key=lambda i: np.sum(i[:,1])))
 #simpleLosses = np.array(sorted(simpleLosses, key=lambda i: np.sum(i[:,1])))
 #print(convLosses[0])
+'''
 print(avgLoss(np.array(convLosses)))
 avgLoss(simpleLosses)
 
@@ -44,11 +46,16 @@ plt.subplot(212)
 for data in simpleLosses:
     plt.semilogy(data[:,0], data[:,1])
 plt.show()
+'''
 
 
 minSimpleIdx, minSimpleLoss = minLoss(simpleLosses)
-maxSimpleIdx, maxSimpleLoss = maxLoss(simpleLosses)
+minConvIdx, minConvLoss = minLoss(convLosses)
 
+simpleGraph, = plt.semilogy(minSimpleLoss[:,0], minSimpleLoss[:,1], label="simple")
+convGraph, = plt.semilogy(minConvLoss[:,0], minConvLoss[:,1], label="conv")
+plt.legend(handles=[simpleGraph, convGraph])
+plt.show()
 
 #print(minConvLoss)
 #print(avgConvLoss)
