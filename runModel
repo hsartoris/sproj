@@ -34,9 +34,15 @@ d = 30
 if len(sys.argv) > 2 and sys.argv[1] == "run":
     prefix = "dataStaging/" + sys.argv[2] + "/"
     n = np.loadtxt(prefix + "struct.csv", delimiter=',').shape[0]
+    if len(sys.argv) > 3:
+        # eg runModel run <prefix> simple
+        if not os.path.exists(ckptDir + sys.argv[3]):
+            os.mkdir(ckptDir + sys.argv[3])
+        ckptDir += sys.argv[3] + "/"
 
 localtime = time.localtime()
 runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
+
 
 training = None
 validation = None
