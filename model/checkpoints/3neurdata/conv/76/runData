@@ -1,0 +1,18 @@
+# b
+10
+# d
+4
+# n
+3
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+20000
+# prefix
+dataStaging/2simplex25k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+24992, 22496, 17984
+# (step, loss)
+(19107, 0.08408895)
