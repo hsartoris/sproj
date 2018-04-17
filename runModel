@@ -142,7 +142,7 @@ sess = tf.Session()
 sess.run(init)
 
 # step, loss
-minLoss = (0,100) 
+losses = []
 
 epochCount = 0
 for step in range(trainingSteps):
@@ -157,7 +157,8 @@ for step in range(trainingSteps):
         validX, validY, _ = validation.next(batchSize)
         vloss, loss = sess.run([lossSum, m.loss], 
                 feed_dict={_data: validX, _labels: validY})
-        if loss < minLoss[1]: minLoss = (step, loss)
+
+        losses.append((step, loss))
 
         if TBOARD_LOG:
             # log various data
@@ -182,11 +183,14 @@ if SAVE_CKPT:
     f.write("final")
     f.close()
 
+    minLoss = min(losses, key = lambda t: t[1])
     print("Training complete; model saved in file %s" % save)
     print("Minimum loss:", str(minLoss))
     f = open(saveDir + dataFile, 'a')
     f.write("# (step, loss)\n" + str(minLoss) + "\n")
     f.close()
+
 os.mkdir(ckptDir + runId + "/mats")
 m.saveMats(ckptDir + runId + "/mats/", sess)
+np.savetxt(ckptDir + runId + "/losses", np.array(losses), delimiter=',')
 sess.close()
