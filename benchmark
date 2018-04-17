@@ -1,2 +1,4 @@
 #!/bin/bash
-
+for i in `seq 1 100`; do
+    runModel run 2simplex25k simple $i
+    runModel run 2simplex25k conv $i
