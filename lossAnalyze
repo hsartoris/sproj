@@ -1,0 +1,17 @@
+#!/usr/bin/python3
+import numpy as np
+minIdx = 1
+maxIdx = 20
+saveDir = "model/checkpoints/3neurdata/"
+
+if __name__=="__main__":
+    convLosses = []
+    simpleLosses = []
+    for i in range(minIdx, maxIdx):
+        convLosses.append(np.loadtxt(saveDir + "conv/" + str(i) + "/losses", 
+            delimiter=','))
+        simpleLosses.append(np.loadtxt(saveDir + "simple/" + str(i) + "/losses",
+            delimiter=','))
+
+    print(convLosses[0])
+    print(simpleLosses[0])
