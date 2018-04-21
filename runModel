@@ -18,9 +18,9 @@ TBOARD_LOG = True
 dataFile = "runData"
 epochsToSave = 2 # directly dependent on batchsize of course
 batchSize = 32
-initLearnRate = .001
-trainingSteps = 20000
-ckptDir = "model/checkpoints/3neurdata/"
+initLearnRate = .0005
+trainingSteps = 15000
+ckptDir = "model/checkpoints/visOut/"
 pretty = Prettify.pretty()
 testMaxIdx = 25000
 validMaxIdx = int(testMaxIdx * .9)
@@ -30,9 +30,9 @@ trainMaxIdx = int(validMaxIdx * .8)
 runId = None
 
 # timesteps
-b = 10
+b = 7
 # metalayers
-d = 4
+d = 5
 
 if len(sys.argv) > 2 and sys.argv[1] == "run":
     print("running")
