@@ -1,7 +1,0 @@
-PWD /home/hsartoris/sproj/writeup
-INPUT /usr/share/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT chapter2.tex
-OUTPUT chapter2.log
-INPUT /usr/share/texmf-dist/fonts/map/fontname/texfonts.map
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm

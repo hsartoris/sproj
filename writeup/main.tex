@@ -3,7 +3,7 @@
 \usepackage{titlesec, amsmath, amsfonts}
 
 \titleformat{\chapter}[hang]
-{\normalfont\huge\bfseries}{\chapternumber\ \thechapter}{1em}{}
+{\normalfont\huge\bfseries}{\ \thechapter}{1em}{}
 % for some reason this leaves the chapter number slightly bumped to the right
 
 \title{
@@ -16,13 +16,11 @@
 \begin{document}
 
 \maketitle
-\frontmatter
 \tableofcontents
 
-\mainmatter
-\include{chapters/chapter1}
+\input{chapters/chapter1}
 
-\include{chapters/chapter2}
+\input{chapters/chapter2}
 
 
 \end{document}
