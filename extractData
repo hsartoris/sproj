@@ -30,7 +30,7 @@ else:
     f.close()
 outDir = "visData/" + runId + "/"
 if not os.path.exists(outDir): os.mkdir(outDir)
-struct = np.loadtxt(prefix + "struct.csv", delimiter=',')
+struct = np.loadtxt(prefix + "struct", delimiter=',')
 n = struct.shape[0]
 print("num neurons:", n)
 struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
