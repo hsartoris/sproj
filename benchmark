@@ -5,9 +5,7 @@ if [ "$response" == "y" ]; then
     for i in `seq 1 100`; do
         echo "Running iteration $i"
         runModel run 2simplex25k simple $i
-        cp model/checkpoints/3neurdata/simple/$i/losses model/checkpoints/3neurdata/losses/simple/
         runModel run 2simplex25k conv $i
-        cp model/checkpoints/3neurdata/conv/$i/losses model/checkpoints/3neurdata/losses/conv/
     done
 else
     echo "Not running benchmark."
