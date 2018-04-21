@@ -20,6 +20,10 @@ def loadLosses():
 def minLoss(losses):
     temp = min(enumerate(losses), key = lambda i: np.sum(i[1][:,1]))
     return temp[0], temp[1]
+
+def minFinalLoss(losses):
+    temp = min(enumerate(losses), key = lambda i: i[1][-1,1])
+    return temp[0], temp[1]
     
 def maxLoss(losses):
     temp =  max(enumerate(losses), key = lambda i: np.sum(i[1][:,1]))
@@ -49,11 +53,14 @@ plt.show()
 '''
 
 
-minSimpleIdx, minSimpleLoss = minLoss(simpleLosses)
-minConvIdx, minConvLoss = minLoss(convLosses)
+#minSimpleIdx, minSimpleLoss = minLoss(simpleLosses)
+#minConvIdx, minConvLoss = minLoss(convLosses)
 
-simpleGraph, = plt.semilogy(minSimpleLoss[:,0], minSimpleLoss[:,1], label="simple")
-convGraph, = plt.semilogy(minConvLoss[:,0], minConvLoss[:,1], label="conv")
+minSimpleIdx, minSimpleLoss = minFinalLoss(simpleLosses)
+minConvIdx, minConvLoss = minFinalLoss(convLosses)
+
+simpleGraph, = plt.semilogy(minSimpleLoss[:,0], minSimpleLoss[:,1], label="simple " + str(minSimpleIdx))
+convGraph, = plt.semilogy(minConvLoss[:,0], minConvLoss[:,1], label="conv" + str(minConvIdx))
 plt.legend(handles=[simpleGraph, convGraph])
 plt.show()
 
