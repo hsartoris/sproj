@@ -1,0 +1,6 @@
+\contentsline {chapter}{\numberline {1}Model}{3}
+\contentsline {section}{\numberline {1.1}Data}{3}
+\contentsline {subsection}{\numberline {1.1.1}Generation}{3}
+\contentsline {subsection}{\numberline {1.1.2}Restructuring}{4}
+\contentsline {chapter}{\numberline {2}Architecture}{5}
+\contentsline {chapter}{\numberline {3}Training Methods}{6}

@@ -1,0 +1,23 @@
+I. Background
+	- what are biological neural nets?
+	- what is graph locality?
+	- what is standard convolution?
+	- how do we harmonize these aspects? (final bg section)
+II. Model
+	- general overview
+		* data - type, generation, limitations
+	- loss, optimizer, and other misc data
+	- architecture, minus some detail for Appendix (final model section)
+III. Implementation and benchmarking
+	- exploration of 3-neuron case to exposit structure (first III section)
+	- evaluation process for larger n nets
+	- larger-view statistical comparison of dumb vs conv nets @ higher n
+IV. Benefits
+	- matrix transferability & demonstration
+V. Improvements
+	- losing unique k-comparisons in the current transforms
+		* propose new algorithm
+	- more realistic data
+		* note that this is a proof of concept for the algorithm in general
+
+

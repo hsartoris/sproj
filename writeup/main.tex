@@ -1,5 +1,10 @@
 \documentclass[12pt,twoside]{report}
 \usepackage[utf8]{inputenc}
+\usepackage{titlesec, amsmath, amsfonts}
+
+\titleformat{\chapter}[hang]
+{\normalfont\huge\bfseries}{\chapternumber\ \thechapter}{1em}{}
+% for some reason this leaves the chapter number slightly bumped to the right
 
 \title{
     {Sproj -- TODO}\\
@@ -11,22 +16,13 @@
 \begin{document}
 
 \maketitle
+\frontmatter
+\tableofcontents
 
-\section{Introduction}
-\section{Model}
-In order to train a neural network, ground truth structure must be known
-for all spiking data provided for the network to learn. 
-\subsection{Data}
-The model accepts data from a generator network in the form of a
-spike-time raster plot, wherein each column contains the data for a given
-node in the generator graph, and each row represents one step forward in
-time.
+\mainmatter
+\include{chapters/chapter1}
 
-FIGURE HERE
-
-In order to generate SOME BULLSHIT
-\subsection{Training methods}
-\subsection{Architecture}
+\include{chapters/chapter2}
 
 
 \end{document}
