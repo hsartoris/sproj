@@ -1,5 +1,5 @@
 # b
-7
+8
 # d
 5
 # n
@@ -15,4 +15,4 @@ dataStaging/2simplex25k/
 # testMaxIdx, validMaxIdx, trainMaxIdx
 24992, 22496, 17984
 # (step, loss)
-(10115, 0.046092268)
+(10115, 0.024657303)

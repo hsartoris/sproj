@@ -30,7 +30,7 @@ trainMaxIdx = int(validMaxIdx * .8)
 runId = None
 
 # timesteps
-b = 7
+b = 8
 # metalayers
 d = 5
 
