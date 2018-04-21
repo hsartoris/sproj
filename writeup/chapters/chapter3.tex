@@ -1,12 +1,33 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
 
 \chapter{Results}
+\label{results}
 \section{3-neuron generator}
+\label{results_3neur}
 We first consider a generator network consisting of three nodes connected as in 
 FIGURE HERE (should contain visual structure and adjacency matrix). All weights 
-are binary, and a spike rate of .25 was used.
+are binary, and a spike rate of .25 was used.\footnote{SEE APPENDIX	for 
+information on spike rates}
 
+\begin{table}[h]
+	\centering
+	\input{../resources/2simplex.tex}\hspace{2em}
+	\begin{tabular}{l|lll}
+		  & 0 & 1 & 2\\
+		\hline
+		0 & 0 & 0 & 0\\
+		1 & 1 & 0 & 0\\
+		2 & 1 & 1 & 0
+	\end{tabular}
+	\captionof{figure}{Network structure and adjacency matrix of the generator.}
+	\label{fig:2simplex+adjacency}
+\end{table}
 
 While reconstructing a graph comprising only three nodes is not much of a feat, 
 this simplified case allows us to demonstrate that our convolutional approach is 
-capable of reconstruction at all. Furthermore, 
+capable of reconstruction at all. Furthermore, the small network size requires 
+few timesteps and a small interlayer featurespace; i.e., $b,d<10$. This results 
+in a relatively simple set of transitions, allowing us to explore and understand 
+the inner workings of the network.
+
+

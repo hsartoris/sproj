@@ -41,8 +41,8 @@ matrix:
 	= \underset{n \times 1}{\mathbb{S}^{t+1}}
 \]
 Additonally, $\mathbb{S}^{t+1}$ may have one or more neurons spike randomly, as 
-determined by the spike rate of the simulation. All values are clipped to the 
-range $[0,1]$, to avoid double spiking.
+determined by the spike rate of the simulation.\footnote{SEE APPENDIX} All 
+values are clipped to the range $[0,1]$, to avoid double spiking.
 
 At each step, $\mathbb{S}$ is appended to an output matrix, which is saved after 
 simulation is complete. For $t$ simulation steps, the completed output has shape 
