@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1524336379 "main.tex" "main.pdf" "main" 1524338630
+["pdflatex"] 1524338838 "main.tex" "build/main.pdf" "main" 1524338839
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1520157226 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1520157226 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -137,18 +137,14 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1520157258 32585 d82bbcf7626b7842c87671687479e852 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1524269316 334286 7d54d57af850f32d2e4cd0d3222731c3 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1524093766 7738161 119ac6b4546f50fc714b9a79eba30ccb ""
+  "build/main.aux" 1524338838 812 232430184c88e7c6ca2021b39d6b7021 ""
+  "build/main.toc" 1524338838 395 3a935f0439c01debcb90e7c3023d0c83 ""
   "chapters/chapter1.tex" 1524279927 3713 491f91956cfc252f3352bafa2edeb33a ""
   "chapters/chapter2.tex" 1524279945 468 982d254c1d7b4245b67515a40d9e107e ""
   "chapters/chapter3.tex" 1524335720 522 62834abf2188b8f97bc0ee4b341e2289 ""
-  "main.aux" 1524336379 812 232430184c88e7c6ca2021b39d6b7021 ""
   "main.tex" 1524338531 569 b6a506eccfb27f161b243a832e42e48c ""
-  "main.toc" 1524336379 395 3a935f0439c01debcb90e7c3023d0c83 ""
   (generated)
-  "main.toc"
-  "main.aux"
-  "main.pdf"
-  "chapter1.aux"
-  "chapters/chapter2.aux"
-  "main.log"
-  "chapter2.aux"
-  "chapters/chapter1.aux"
+  "build/main.toc"
+  "build/main.log"
+  "build/main.aux"
+  "build/main.pdf"
