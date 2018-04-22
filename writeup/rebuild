@@ -1,0 +1,4 @@
+#!/bin/bash
+rm build/main.pdf
+latexmk -pdf
+zathura build/main.pdf

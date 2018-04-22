@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  21 APR 2018 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  22 APR 2018 15:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -654,82 +654,132 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \sift@deathcycles=\count121
 \@vwid@loff=\dimen173
 \@vwid@roff=\dimen174
-)) (/usr/share/texmf-dist/tex/latex/caption/caption.sty
+)) (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2017/06/05 v1.15 Data Visualization (1.15)
+ (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks37
+\t@pgfplots@tokb=\toks38
+\t@pgfplots@tokc=\toks39
+\pgfplots@tmpa=\dimen175
+\c@pgfplots@coordindex=\count122
+\c@pgfplots@scanlineindex=\count123
+ (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
+Package pgfplots: loading complementary arithmetics for your pgf version...
+(/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgflibraryfpu.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count124
+)) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count125
+) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count126
+\t@pgfplotstable@a=\toks40
+) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count127
+ (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen176
+\pgfdecoratedremainingdistance=\dimen177
+\pgfdecoratedinputsegmentcompleteddistance=\dimen178
+\pgfdecoratedinputsegmentremainingdistance=\dimen179
+\pgf@decorate@distancetomove=\dimen180
+\pgf@decorate@repeatstate=\count128
+\pgfdecorationsegmentamplitude=\dimen181
+\pgfdecorationsegmentlength=\dimen182
+)
+\tikz@lib@dec@box=\box42
+) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/share/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/share/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count129
+\pgfplots@xmin@reg=\dimen183
+\pgfplots@xmax@reg=\dimen184
+\pgfplots@ymin@reg=\dimen185
+\pgfplots@ymax@reg=\dimen186
+\pgfplots@zmin@reg=\dimen187
+\pgfplots@zmax@reg=\dimen188
+) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+ (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+))) (/usr/share/texmf-dist/tex/latex/filecontents/filecontents.sty
+Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaTeX document
+) (/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
-
-(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+ (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen175
-\captionmargin@=\dimen176
-\captionwidth=\dimen177
-\caption@tempdima=\dimen178
-\caption@indent=\dimen179
-\caption@parindent=\dimen180
-\caption@hangindent=\dimen181
+\captionmargin=\dimen189
+\captionmargin@=\dimen190
+\captionwidth=\dimen191
+\caption@tempdima=\dimen192
+\caption@indent=\dimen193
+\caption@parindent=\dimen194
+\caption@hangindent=\dimen195
 )
-\c@ContinuedFloat=\count122
+\c@ContinuedFloat=\count130
+) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count131
+\c@subtable=\count132
 ) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen182
+\arrowsize=\dimen196
 )) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
 File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
  (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-\pgfnodepartlowerbox=\box42
-\pgfnodeparttwobox=\box43
-\pgfnodepartthreebox=\box44
-\pgfnodepartfourbox=\box45
-\pgfnodeparttwentybox=\box46
-\pgfnodepartnineteenbox=\box47
-\pgfnodeparteighteenbox=\box48
-\pgfnodepartseventeenbox=\box49
-\pgfnodepartsixteenbox=\box50
-\pgfnodepartfifteenbox=\box51
-\pgfnodepartfourteenbox=\box52
-\pgfnodepartthirteenbox=\box53
-\pgfnodeparttwelvebox=\box54
-\pgfnodepartelevenbox=\box55
-\pgfnodeparttenbox=\box56
-\pgfnodepartninebox=\box57
-\pgfnodeparteightbox=\box58
-\pgfnodepartsevenbox=\box59
-\pgfnodepartsixbox=\box60
-\pgfnodepartfivebox=\box61
+\pgfnodepartlowerbox=\box43
+\pgfnodeparttwobox=\box44
+\pgfnodepartthreebox=\box45
+\pgfnodepartfourbox=\box46
+\pgfnodeparttwentybox=\box47
+\pgfnodepartnineteenbox=\box48
+\pgfnodeparteighteenbox=\box49
+\pgfnodepartseventeenbox=\box50
+\pgfnodepartsixteenbox=\box51
+\pgfnodepartfifteenbox=\box52
+\pgfnodepartfourteenbox=\box53
+\pgfnodepartthirteenbox=\box54
+\pgfnodeparttwelvebox=\box55
+\pgfnodepartelevenbox=\box56
+\pgfnodeparttenbox=\box57
+\pgfnodepartninebox=\box58
+\pgfnodeparteightbox=\box59
+\pgfnodepartsevenbox=\box60
+\pgfnodepartsixbox=\box61
+\pgfnodepartfivebox=\box62
 ))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 ) (build/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
  ABD: EveryShipout initializing macros (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count123
-\scratchdimen=\dimen183
-\scratchbox=\box62
-\nofMPsegments=\count124
-\nofMParguments=\count125
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count126
-\MPscratchDim=\dimen184
-\MPnumerator=\count127
-\makeMPintoPDFobject=\count128
-\everyMPtoPDFconversion=\toks38
+\scratchcounter=\count133
+\scratchdimen=\dimen197
+\scratchbox=\box63
+\nofMPsegments=\count134
+\nofMParguments=\count135
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count136
+\MPscratchDim=\dimen198
+\MPnumerator=\count137
+\makeMPintoPDFobject=\count138
+\everyMPtoPDFconversion=\toks42
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
@@ -771,13 +821,17 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into your preamble.
+ on input line 20.
+
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Try loading font information for U+msa on input line 22.
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 22.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -798,22 +852,45 @@ Chapter 2.
 
 ]
 Chapter 3.
-(build/../resources/2simplex.tex (build/../resources/tikzheader.tex))) [6
+(build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) (build/../resources/models/3neurEx/plot.tex
+PGFPlots: reading {../resources/models/3neurEx/losses}
+) [6
 
-] (build/main.aux) ) 
+]
+<resources/models/3neurEx/9/in.png, id=37, 90.3375pt x 240.9pt>
+File: resources/models/3neurEx/9/in.png Graphic file (type png)
+<use resources/models/3neurEx/9/in.png>
+Package pdftex.def Info: resources/models/3neurEx/9/in.png  used on input line 52.
+(pdftex.def)             Requested size: 43.87321pt x 116.99442pt.
+<resources/models/3neurEx/9/out0.png, id=39, 271.0125pt x 150.5625pt>
+File: resources/models/3neurEx/9/out0.png Graphic file (type png)
+<use resources/models/3neurEx/9/out0.png>
+Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 57.
+(pdftex.def)             Requested size: 117.00119pt x 65.00021pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]\OT1/cmr/m/n/10.95 (b) |Data af-ter first
+ []
+
+<resources/models/3neurEx/9/out1.png, id=40, 271.0125pt x 150.5625pt>
+File: resources/models/3neurEx/9/out1.png Graphic file (type png)
+<use resources/models/3neurEx/9/out1.png>
+Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 62.
+(pdftex.def)             Requested size: 117.00119pt x 65.00021pt.
+) [7 <./resources/models/3neurEx/9/in.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/main.aux) ) 
 Here is how much of TeX's memory you used:
- 15600 strings out of 492982
- 311959 string characters out of 6138579
- 356613 words of memory out of 5000000
- 18832 multiletter control sequences out of 15000+600000
+ 25795 strings out of 492982
+ 653353 string characters out of 6138579
+ 793056 words of memory out of 5000000
+ 28876 multiletter control sequences out of 15000+600000
  14647 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,10n,92p,430b,852s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,96p,746b,1974s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (6 pages, 130766 bytes).
+Output written on build/main.pdf (7 pages, 141879 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 90 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

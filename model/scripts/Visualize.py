@@ -1,4 +1,5 @@
 def matVis(matrix, outFile = None, width=30, connections=False, n=None):
+    drawText = False
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np
     matImg = Image.new('RGBA', tuple(dim*width for dim in matrix.shape[::-1]),
@@ -21,24 +22,29 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None):
                 maxBlock = (i,j)
     matImg = Image.fromarray(matArr)
     matImg = Image.alpha_composite(white, matImg)
-    font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSansCondensed.ttf')
+    if drawText:
+        font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSansCondensed.ttf')
 
-    draw = ImageDraw.Draw(matImg)
+        draw = ImageDraw.Draw(matImg)
 
-    vertIdx = (matrix.shape[0] - 1) * width + int(width/2)
-    for j in range(matrix.shape[1]):
-        if connections and n: text = "[" + str(int(j/n)) + "," + str(j%n) + "]"
-        else: text = str(j)
-        tw, th = draw.textsize(text, font=font)
-        #if connections: tw = tw/1.5
-        draw.text((j*width + int(width/2) - tw/2, vertIdx - th/2), 
-                text, font=font, fill=(0,0,0,255))
+        vertIdx = (matrix.shape[0] - 1) * width + int(width/2)
+        for j in range(matrix.shape[1]):
+            if connections and n: text = "[" + str(int(j/n)) + "," + str(j%n) + "]"
+            else: text = str(j)
+            tw, th = draw.textsize(text, font=font)
+            #if connections: tw = tw/1.5
+            draw.text((j*width + int(width/2) - tw/2, vertIdx - th/2), 
+                    text, font=font, fill=(0,0,0,255))
 
-    if maxBlock:
-        text = str(np.round(matrix[maxBlock], 2))
-        tw, th = draw.textsize(text, font=font)
-        draw.text((maxBlock[1]*width + tw/2, maxBlock[0]*width + th/2), text, font=font,
-                fill=(0,0,0,255))
+        if maxBlock:
+            text = str(np.round(matrix[maxBlock], 2))
+            tw, th = draw.textsize(text, font=font)
+            draw.text((maxBlock[1]*width + tw/2, maxBlock[0]*width + th/2), text, font=font,
+                    fill=(0,0,0,255))
+    elif not outFile is None:
+        f = open(outFile + ".max", "w+")
+        f.write(str(np.round(matrix[maxBlock], 2)) + "\n")
+        f.close()
 
     if outFile is None:
         matImg.show()

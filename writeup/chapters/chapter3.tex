@@ -1,4 +1,5 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
+\graphicspath{ {resources/models/3neurEx/9/} } 
 
 \chapter{Results}
 \label{results}
@@ -11,7 +12,8 @@ information on spike rates}
 
 \begin{table}[h]
 	\centering
-	\input{../resources/2simplex.tex}\hspace{2em}
+	\input{../resources/2simplex.tex}
+	\hspace{2em}
 	\begin{tabular}{l|lll}
 		  & 0 & 1 & 2\\
 		\hline
@@ -30,4 +32,36 @@ few timesteps and a small interlayer featurespace; i.e., $b,d<10$. This results
 in a relatively simple set of transitions, allowing us to explore and understand 
 the inner workings of the network.
 
+\subsection{Example Model}
+\label{subsec:3neurex}
+The following data are pulled from a model trained on data produced by the 
+generator in figure \ref{fig:2simplex+adjacency}. Figure 
+\ref{fig:3neur_loss+params} demonstrates the model's loss over time. In this 
+example, \textit{b} and \textit{d} were pushed down in order to allow for better 
+comprehension of the internal mechanics; the loss tends to converge more 
+effectively and evenly given more computation power.
+\input{../resources/models/3neurEx/plot.tex}
 
+\subsubsection{Trained Network Operation}
+Here, we examine the internal operation of the trained model over a single 
+input.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.15\textwidth}
+		\centering
+		\includegraphics[width=.75\textwidth]{in.png}
+		\caption{Input}
+	\end{subfigure}
+	\hspace{1em}
+	\begin{subfigure}{.3\textwidth}
+		\includegraphics[width=\textwidth]{out0.png}
+		\caption{Data after first transform}
+	\end{subfigure}
+	\hspace{1em}
+	\begin{subfigure}{.3\textwidth}
+		\includegraphics[width=\textwidth]{out1.png}
+		\caption{Data after convolutional layer}
+	\end{subfigure}
+	\caption{Path of data through network, up to final transform}
+	\label{fig:3neur_input}
+\end{figure}

@@ -1,0 +1,28 @@
+\begin{table}[ht]
+	\centering
+	\begin{minipage}{.48\textwidth}
+	\resizebox{\textwidth}{!}{
+		\begin{tikzpicture}
+			\begin{axis} [xlabel=Step, ylabel=Loss, scaled x ticks=false,
+				xtick={1,3750,7500,11250,15000},
+				ytick={0,.1,.5,1}]
+				\addplot [color=black] table [x=Step, y=Loss, col sep=comma, 
+			mark=none, smooth] {../resources/models/3neurEx/losses};
+			\end{axis}
+		\end{tikzpicture}
+	}
+	\end{minipage}
+	\begin{minipage}{.48\textwidth}
+		\begin{tabular}{ll}
+			b (timesteps) & 8\\
+			d& 5\\
+			Batch size& 32\\
+			Learning rate& .0005\\
+			Training samples& 17984\\
+			Validation samples& 4512
+		\end{tabular}
+	\end{minipage}
+	\captionof{figure}{Training loss and parameters for model described in 
+		\ref{subsec:3neurex}}
+	\label{fig:3neur_loss+params}
+\end{table}
