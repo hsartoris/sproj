@@ -1,5 +1,6 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
-\graphicspath{ {resources/models/3neurEx/9/} } 
+\graphicspath{ {resources/models/3neurEx/9/} {resources/models/3neurEx/weights/} 
+} 
 
 \chapter{Results}
 \label{results}
@@ -43,13 +44,14 @@ effectively and evenly given more computation power.
 \input{../resources/models/3neurEx/plot.tex}
 
 \subsubsection{Trained Network Operation}
-Here, we examine the internal operation of the trained model over a single 
-input.
+Here, we examine in brief the internal operation of the trained model over a 
+single input. For a complete look through the procedure of reconstruction for 
+this network, please see APPENDIX.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{.15\textwidth}
 		\centering
-		\includegraphics[width=.75\textwidth]{in.png}
+		\includegraphics[width=.75\textwidth]{input.png}
 		\caption{Input}
 	\end{subfigure}
 	\hspace{1em}
@@ -61,8 +63,21 @@ input.
 	\begin{subfigure}{.3\textwidth}
 		\includegraphics[width=\textwidth]{out1.png}
 		\caption{Data after convolutional layer}
+		\label{subfig:3neur_out1}
 	\end{subfigure}
 	\caption{Path of data through network, up to final transform}
 	\label{fig:3neur_input}
 \end{figure}
 
+The last transformation of the network involves a matrix multiplication of the 
+final layer weights\footnote{see appendix} with the data in 
+\ref{subfig:3neur_out1}. This produces an adjacency matrix matching that of 
+\ref{fig:2simplex+adjacency}.
+
+\section{Applicability Beyond Training Data}
+As described in \ref{subsubsec:hotswap}, the fact that our model is trained on 
+data produced by only one generator is of little consequence; due to its 
+structure, the only information it can learn is relational; i.e., 
+per-neuron-pair. Consider the following examples, in which data was produced 
+from several generator networks and fed into the model described in 
+\ref{results_3neur}:

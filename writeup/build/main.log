@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  22 APR 2018 22:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  23 APR 2018 00:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -701,55 +701,63 @@ File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
 ))) (/usr/share/texmf-dist/tex/latex/filecontents/filecontents.sty
 Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaTeX document
+) (/home/hsartoris/texmf/tex/latex/local/wrapfig.sty
+\wrapoverhang=\dimen189
+\WF@size=\dimen190
+\c@WF@wrappedlines=\count130
+\WF@box=\box43
+\WF@everypar=\toks41
+Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
  (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen189
-\captionmargin@=\dimen190
-\captionwidth=\dimen191
-\caption@tempdima=\dimen192
-\caption@indent=\dimen193
-\caption@parindent=\dimen194
-\caption@hangindent=\dimen195
+\captionmargin=\dimen191
+\captionmargin@=\dimen192
+\captionwidth=\dimen193
+\caption@tempdima=\dimen194
+\caption@indent=\dimen195
+\caption@parindent=\dimen196
+\caption@hangindent=\dimen197
 )
-\c@ContinuedFloat=\count130
+\c@ContinuedFloat=\count131
+Package caption Info: wrapfig package is loaded.
 ) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
-\c@subfigure=\count131
-\c@subtable=\count132
+\c@subfigure=\count132
+\c@subtable=\count133
 ) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen196
+\arrowsize=\dimen198
 )) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
 File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
  (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-\pgfnodepartlowerbox=\box43
-\pgfnodeparttwobox=\box44
-\pgfnodepartthreebox=\box45
-\pgfnodepartfourbox=\box46
-\pgfnodeparttwentybox=\box47
-\pgfnodepartnineteenbox=\box48
-\pgfnodeparteighteenbox=\box49
-\pgfnodepartseventeenbox=\box50
-\pgfnodepartsixteenbox=\box51
-\pgfnodepartfifteenbox=\box52
-\pgfnodepartfourteenbox=\box53
-\pgfnodepartthirteenbox=\box54
-\pgfnodeparttwelvebox=\box55
-\pgfnodepartelevenbox=\box56
-\pgfnodeparttenbox=\box57
-\pgfnodepartninebox=\box58
-\pgfnodeparteightbox=\box59
-\pgfnodepartsevenbox=\box60
-\pgfnodepartsixbox=\box61
-\pgfnodepartfivebox=\box62
+\pgfnodepartlowerbox=\box44
+\pgfnodeparttwobox=\box45
+\pgfnodepartthreebox=\box46
+\pgfnodepartfourbox=\box47
+\pgfnodeparttwentybox=\box48
+\pgfnodepartnineteenbox=\box49
+\pgfnodeparteighteenbox=\box50
+\pgfnodepartseventeenbox=\box51
+\pgfnodepartsixteenbox=\box52
+\pgfnodepartfifteenbox=\box53
+\pgfnodepartfourteenbox=\box54
+\pgfnodepartthirteenbox=\box55
+\pgfnodeparttwelvebox=\box56
+\pgfnodepartelevenbox=\box57
+\pgfnodeparttenbox=\box58
+\pgfnodepartninebox=\box59
+\pgfnodeparteightbox=\box60
+\pgfnodepartsevenbox=\box61
+\pgfnodepartsixbox=\box62
+\pgfnodepartfivebox=\box63
 ))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 ) (build/main.aux)
@@ -769,17 +777,17 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
  ABD: EveryShipout initializing macros (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count133
-\scratchdimen=\dimen197
-\scratchbox=\box63
-\nofMPsegments=\count134
-\nofMParguments=\count135
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count136
-\MPscratchDim=\dimen198
-\MPnumerator=\count137
-\makeMPintoPDFobject=\count138
-\everyMPtoPDFconversion=\toks42
+\scratchcounter=\count134
+\scratchdimen=\dimen199
+\scratchbox=\box64
+\nofMPsegments=\count135
+\nofMParguments=\count136
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count137
+\MPscratchDim=\dimen256
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
+\everyMPtoPDFconversion=\toks43
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
@@ -857,40 +865,40 @@ PGFPlots: reading {../resources/models/3neurEx/losses}
 ) [6
 
 ]
-<resources/models/3neurEx/9/in.png, id=37, 90.3375pt x 240.9pt>
-File: resources/models/3neurEx/9/in.png Graphic file (type png)
-<use resources/models/3neurEx/9/in.png>
-Package pdftex.def Info: resources/models/3neurEx/9/in.png  used on input line 52.
+<resources/models/3neurEx/9/input.png, id=37, 90.3375pt x 240.9pt>
+File: resources/models/3neurEx/9/input.png Graphic file (type png)
+<use resources/models/3neurEx/9/input.png>
+Package pdftex.def Info: resources/models/3neurEx/9/input.png  used on input line 54.
 (pdftex.def)             Requested size: 43.87321pt x 116.99442pt.
 <resources/models/3neurEx/9/out0.png, id=39, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out0.png Graphic file (type png)
 <use resources/models/3neurEx/9/out0.png>
-Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 57.
+Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 59.
 (pdftex.def)             Requested size: 117.00119pt x 65.00021pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
+Underfull \hbox (badness 10000) in paragraph at lines 60--60
 []\OT1/cmr/m/n/10.95 (b) |Data af-ter first
  []
 
 <resources/models/3neurEx/9/out1.png, id=40, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out1.png Graphic file (type png)
 <use resources/models/3neurEx/9/out1.png>
-Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 62.
+Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 64.
 (pdftex.def)             Requested size: 117.00119pt x 65.00021pt.
-) [7 <./resources/models/3neurEx/9/in.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/main.aux) ) 
+) [7 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] [8] (build/main.aux) ) 
 Here is how much of TeX's memory you used:
- 25795 strings out of 492982
- 653353 string characters out of 6138579
- 793056 words of memory out of 5000000
- 28876 multiletter control sequences out of 15000+600000
+ 25854 strings out of 492982
+ 654131 string characters out of 6138579
+ 794383 words of memory out of 5000000
+ 28931 multiletter control sequences out of 15000+600000
  14647 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,16n,96p,746b,1974s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (7 pages, 141879 bytes).
+Output written on build/main.pdf (8 pages, 148084 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 93 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

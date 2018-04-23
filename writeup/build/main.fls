@@ -213,6 +213,8 @@ INPUT /usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.t
 INPUT /usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 INPUT /usr/share/texmf-dist/tex/latex/filecontents/filecontents.sty
 INPUT /usr/share/texmf-dist/tex/latex/filecontents/filecontents.sty
+INPUT /home/hsartoris/texmf/tex/latex/local/wrapfig.sty
+INPUT /home/hsartoris/texmf/tex/latex/local/wrapfig.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
@@ -323,9 +325,9 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT build/../resources/models/3neurEx/plot.tex
 INPUT build/../resources/models/3neurEx/plot.tex
 INPUT build/../resources/models/3neurEx/losses
-INPUT resources/models/3neurEx/9/in.png
-INPUT ./resources/models/3neurEx/9/in.png
-INPUT ./resources/models/3neurEx/9/in.png
+INPUT resources/models/3neurEx/9/input.png
+INPUT ./resources/models/3neurEx/9/input.png
+INPUT ./resources/models/3neurEx/9/input.png
 INPUT resources/models/3neurEx/9/out0.png
 INPUT ./resources/models/3neurEx/9/out0.png
 INPUT ./resources/models/3neurEx/9/out0.png
