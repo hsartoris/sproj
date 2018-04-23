@@ -57,7 +57,7 @@ sess.run(init)
 
 for i in range(numData):
     dataX, dataY, _ = testing.next(batchSize)
-    out0, out1, out2, outf, pred, loss = sess.run([m.layer0, m.layer1dumb, m.layer2, 
+    out0, out1,  outf, pred, loss = sess.run([m.layer0, m.layer1, 
         m.layerFinal, m.prediction, m.loss], feed_dict={_data:dataX, _labels:struct})
     runDir = outDir + str(dataIdx + i) + "/"
     os.mkdir(runDir)

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1524424670 "main.tex" "build/main.pdf" "main" 1524424670
+["pdflatex"] 1524449670 "main.tex" "build/main.pdf" "main" 1524449671
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1520157226 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1520157226 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -205,17 +205,17 @@
   "build/../resources/models/3neurEx/losses" 1524350012 313 57b9e030d44319cfbc7ac48cb2b48e48 ""
   "build/../resources/models/3neurEx/plot.tex" 1524353588 780 c15c8b3459eb1366a0934fb0a66339d2 ""
   "build/../resources/tikzheader.tex" 1524341309 167 4f8ce466adf258832d387dab2de30530 ""
-  "build/main.aux" 1524424670 1727 a88a3d11cc7a3b481c0724a41d9d6e70 ""
-  "build/main.toc" 1524424670 519 7023488fffcc2ea58f26b0e40e01180b ""
+  "build/main.aux" 1524449671 1727 a88a3d11cc7a3b481c0724a41d9d6e70 ""
+  "build/main.toc" 1524449671 519 7023488fffcc2ea58f26b0e40e01180b ""
   "chapters/chapter1.tex" 1524339939 3736 bf67bfa7c18fe8d3f154c5f752eac082 ""
   "chapters/chapter2.tex" 1524279945 468 982d254c1d7b4245b67515a40d9e107e ""
-  "chapters/chapter3.tex" 1524424669 2419 9f5c7cb360071398781e14ca0e65e24f ""
-  "main.tex" 1524423820 720 2b681ae2d45d1a3efc41d3e9de60e37e ""
+  "chapters/chapter3.tex" 1524434798 2420 e2e5101fba82a5d195bcf387397195b1 ""
+  "main.tex" 1524449669 724 677fe3ce89424a90921db9750047086a ""
   "resources/models/3neurEx/9/in.png" 1524377866 659 402f2371cc98396abac034c6ce03d78f ""
   "resources/models/3neurEx/9/out0.png" 1524377866 785 58ef1d7428fb157da95dc4e6587253cb ""
   "resources/models/3neurEx/9/out1.png" 1524377866 681 f67868053dc2836705e9af16fdc4f927 ""
   (generated)
-  "build/main.pdf"
   "build/main.log"
+  "build/main.pdf"
   "build/main.aux"
   "build/main.toc"
