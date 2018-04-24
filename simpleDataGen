@@ -40,10 +40,10 @@ def smallNetVar1():
 
 def smallNetVar2():
     # loop
-    mat = np.matrix(np.zeros((3,3)))
-    mat[0,1] = 1
+    mat = np.matrix(np.zeros((5,5)))
+    mat[1,4] = 1
     mat[1,2] = 1
-    mat[2,0] = 1
+    mat[2,4] = 1
     return mat
 
 def runData():
