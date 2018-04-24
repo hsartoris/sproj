@@ -38,6 +38,13 @@ def smallNetVar1():
     mat[0,1] = 1
     return mat
 
+def smallNetVar3():
+    mat = np.matrix(np.zeros((3,3)))
+    mat[2,0] = 1
+    mat[1,2] = 1
+    mat[0,1] = 1
+    return mat
+
 def smallNetVar2():
     # loop
     mat = np.matrix(np.zeros((5,5)))
@@ -73,7 +80,7 @@ if __name__=="__main__":
     
     # for 2-simplex, .25 is probably a good rate
     #mat = genSimplex(neurons)
-    mat = smallNetVar2()
+    mat = smallNetVar3()
     #mat = tenNeurNet()
     #mat = complexMat(1)
     # finds optimal spike rate for data generation
