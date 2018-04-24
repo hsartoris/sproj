@@ -9,3 +9,5 @@
 \contentsline {subsection}{\numberline {3.1.1}Example Model}{6}
 \contentsline {subsubsection}{Trained Network Operation}{7}
 \contentsline {section}{\numberline {3.2}Applicability Beyond Training Data}{8}
+\contentsline {subsection}{\numberline {3.2.1}Inverted Network}{8}
+\contentsline {subsection}{\numberline {3.2.2}Cyclical Network}{8}

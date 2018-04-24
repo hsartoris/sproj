@@ -81,3 +81,32 @@ structure, the only information it can learn is relational; i.e.,
 per-neuron-pair. Consider the following examples, in which data was produced 
 from several generator networks and fed into the model described in 
 \ref{results_3neur}:
+
+\subsection{Inverted Network}
+Despite being a complete inversion of the generator used to train the model in 
+\ref{results_3neur}, reconstruction of this network is simple.
+\begin{table}[h]
+	\centering
+	\input{../resources/tikzheader.tex}
+		\node[state] (0) {0};
+		\node[state] (1) [right of=0] {1};
+		\node[state] (2) [below right of=0] {2};
+	
+		\path 	(2) edge node {} (1)
+				(2) edge node {} (0)
+				(1) edge node {} (0);
+	\end{tikzpicture}
+	\hspace{2em}
+	\begin{tabular}{l|lll}
+		  & 0 & 1 & 2\\
+		\hline
+		0 & 0 & 1 & 1\\
+		1 & 0 & 0 & 1\\
+		2 & 0 & 0 & 0
+	\end{tabular}
+	\captionof{figure}{Inverted version of figure \ref{fig:2simplex+adjacency}}
+	\label{fig:2simplexVar1}
+\end{table}
+
+\subsection{Cyclical Network}
+
