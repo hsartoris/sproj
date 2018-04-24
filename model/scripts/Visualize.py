@@ -1,5 +1,6 @@
 def matVis(matrix, outFile = None, width=30, connections=False, n=None):
-    drawText = False
+    drawText = True
+    drawMax = False
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np
     matImg = Image.new('RGBA', tuple(dim*width for dim in matrix.shape[::-1]),
@@ -20,10 +21,14 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None):
             matArr[0:matrix.shape[0]*width, pixW] = [(0, 0, 0, 255)]
             if matVal == pixRange or abs(matVal) == pixRange:
                 maxBlock = (i,j)
+    matArr[:, 0] = [(0,0,0,255)]
+    matArr[:, len(matArr[0])-1] = [(0,0,0,255)]
+    matArr[0, :] = [(0,0,0,255)]
+    matArr[len(matArr) - 1, :] = [(0,0,0,255)]
     matImg = Image.fromarray(matArr)
     matImg = Image.alpha_composite(white, matImg)
     if drawText:
-        font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSansCondensed.ttf')
+        font = ImageFont.truetype('/usr/share/fonts/TTF/cmr10.ttf')
 
         draw = ImageDraw.Draw(matImg)
 
@@ -36,7 +41,7 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None):
             draw.text((j*width + int(width/2) - tw/2, vertIdx - th/2), 
                     text, font=font, fill=(0,0,0,255))
 
-        if maxBlock:
+        if maxBlock and drawMax:
             text = str(np.round(matrix[maxBlock], 2))
             tw, th = draw.textsize(text, font=font)
             draw.text((maxBlock[1]*width + tw/2, maxBlock[0]*width + th/2), text, font=font,

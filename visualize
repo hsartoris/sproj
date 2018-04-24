@@ -29,7 +29,7 @@ def wbVis(prefix, outdir = None):
         matVis(w2in, fullOut + "w2in.png")
         matVis(w2out, fullOut + "w2out.png")
         matVis(w2f, fullOut + "w2f.png")
-        matVis(np.expand_dims(wf, 1), fullOut + "final.png")
+        matVis(np.expand_dims(wf, 0), fullOut + "final.png")
         matVis(np.expand_dims(b0, 1), fullOut + "b0.png")
         matVis(np.expand_dims(b1, 1) , fullOut + "b1.png")
         matVis(np.expand_dims(b2, 1) , fullOut + "b2.png")
@@ -60,7 +60,6 @@ visDir = "visData/" + runId + "/"
 inData = np.loadtxt(visDir + "input", delimiter=',')
 out0 = np.loadtxt(visDir + "out0", delimiter=',')
 out1 = np.loadtxt(visDir + "out1", delimiter=',')
-out2 = np.loadtxt(visDir + "out2", delimiter=',')
 outf = np.expand_dims(np.loadtxt(visDir + "outf", delimiter=','), 0)
 pred = np.expand_dims(np.loadtxt(visDir + "pred", delimiter=','), 0)
 

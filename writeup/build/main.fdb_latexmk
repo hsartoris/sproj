@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1524457970 "main.tex" "build/main.pdf" "main" 1524457970
+["pdflatex"] 1524457970 "main.tex" "build/main.pdf" "main" 1524533334
   "/home/hsartoris/texmf/tex/latex/local/wrapfig.sty" 1524457044 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1520157226 1004 54797486969f23fa377b128694d548df ""
@@ -216,7 +216,7 @@
   "resources/models/3neurEx/9/out0.png" 1524456098 3336 646fd76fc0a9dfddeb0e505afcd429e8 ""
   "resources/models/3neurEx/9/out1.png" 1524456098 3155 e29696f77d318782a7f0cf6c9dbbf812 ""
   (generated)
-  "build/main.log"
-  "build/main.pdf"
   "build/main.toc"
+  "build/main.pdf"
   "build/main.aux"
+  "build/main.log"
