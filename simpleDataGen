@@ -31,6 +31,13 @@ def complexMat(spikeLevel):
     mat[5,4] = spikeLevel
     return mat
 
+def smallNetVar1():
+    mat = np.matrix(np.zeros(3,3))
+    mat[0,2] = 1
+    mat[1,2] = 1
+    mat[0,1] = 1
+    return mat
+
 def runData():
     out = "Neurons: " + str(neurons) + "\n"
     out += "Timesteps: " + str(steps) + "\n"
@@ -57,7 +64,8 @@ if __name__=="__main__":
     params = { 'runs':runs, 'timesteps':steps, 'spikeProb':spikeProb}
     
     # for 2-simplex, .25 is probably a good rate
-    mat = genSimplex(neurons)
+    #mat = genSimplex(neurons)
+    mat = smallNetVar1()
     #mat = tenNeurNet()
     #mat = complexMat(1)
     # finds optimal spike rate for data generation
