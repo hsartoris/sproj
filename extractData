@@ -39,7 +39,7 @@ struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
 b = 8
 d = 5
 
-dataIdx = 5
+dataIdx = 0
 numData = 5
 
 testing = seqData(dataIdx, dataIdx+numData, prefix, b)

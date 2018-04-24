@@ -32,7 +32,7 @@ def complexMat(spikeLevel):
     return mat
 
 def smallNetVar1():
-    mat = np.matrix(np.zeros(3,3))
+    mat = np.matrix(np.zeros((3,3)))
     mat[0,2] = 1
     mat[1,2] = 1
     mat[0,1] = 1
@@ -74,6 +74,6 @@ if __name__=="__main__":
     print(runData())
     simulate(mat, params, outDir)
     f = open(outDir + "runData", "w+")
-    f.write(runData)
+    f.write(runData())
     f.close()
     np.savetxt(outDir + "struct", mat, delimiter=',')
