@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1524535417 "main.tex" "build/main.pdf" "main" 1524535418
+["pdflatex"] 1524539523 "main.tex" "build/main.pdf" "main" 1524539524
   "/home/hsartoris/texmf/tex/latex/local/wrapfig.sty" 1524457044 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1520157226 1004 54797486969f23fa377b128694d548df ""
@@ -206,17 +206,17 @@
   "build/../resources/models/3neurEx/losses" 1524350012 313 57b9e030d44319cfbc7ac48cb2b48e48 ""
   "build/../resources/models/3neurEx/plot.tex" 1524353588 780 c15c8b3459eb1366a0934fb0a66339d2 ""
   "build/../resources/tikzheader.tex" 1524341309 167 4f8ce466adf258832d387dab2de30530 ""
-  "build/main.aux" 1524535418 2348 0313ab3450873a972c67ba92a90169dd ""
-  "build/main.toc" 1524535418 784 85ceba651014dab8fb8f9044e47383fb ""
+  "build/main.aux" 1524539524 2740 ebd230cdcce26759df71984797655aed ""
+  "build/main.toc" 1524539524 784 85ceba651014dab8fb8f9044e47383fb ""
   "chapters/chapter1.tex" 1524457535 3795 2fe670c98716b5f71dadc511220c079f ""
   "chapters/chapter2.tex" 1524279945 468 982d254c1d7b4245b67515a40d9e107e ""
-  "chapters/chapter3.tex" 1524535416 4005 aef5e4c7c6755ed9b45e8e68df8d97b3 ""
+  "chapters/chapter3.tex" 1524539521 5214 a6fc17dc0b7b6fe7ad32d293c0807d3b ""
   "main.tex" 1524457854 733 7d6063d638b06ef0689155b095f2912b ""
   "resources/models/3neurEx/9/input.png" 1524456098 979 6010ba46d33631109ec345b569adc366 ""
   "resources/models/3neurEx/9/out0.png" 1524456098 3336 646fd76fc0a9dfddeb0e505afcd429e8 ""
   "resources/models/3neurEx/9/out1.png" 1524456098 3155 e29696f77d318782a7f0cf6c9dbbf812 ""
   (generated)
-  "build/main.toc"
+  "build/main.log"
   "build/main.pdf"
   "build/main.aux"
-  "build/main.log"
+  "build/main.toc"

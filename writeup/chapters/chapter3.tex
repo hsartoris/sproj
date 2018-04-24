@@ -53,6 +53,7 @@ this network, please see APPENDIX.
 		\centering
 		\includegraphics[width=.75\textwidth]{input.png}
 		\caption{Input}
+		\label{subfig:3neur_in}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.3\textwidth}
@@ -71,8 +72,21 @@ this network, please see APPENDIX.
 
 The last transformation of the network involves a matrix multiplication of the 
 final layer weights\footnote{see appendix} with the data in 
-\ref{subfig:3neur_out1}. This produces an adjacency matrix matching that of 
-\ref{fig:2simplex+adjacency}.
+\ref{subfig:3neur_out1}. This produces the adjacency matrix found in figure 
+\ref{fig:3neur_pred}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|lll}
+		  & 0 & 1 & 2\\
+		\hline
+		0 & .02 & .03 & .01\\
+		1 & .99 & .01 & -.01\\
+		2 & 1.00 & 1.00 & .02
+	\end{tabular}
+	\captionof{figure}{Output for input data in figure \ref{subfig:3neur_in}}
+	\label{fig:3neur_pred}
+\end{table}
 
 \section{Applicability Beyond Training Data}
 As described in \ref{subsubsec:hotswap}, the fact that our model is trained on 
@@ -81,6 +95,9 @@ structure, the only information it can learn is relational; i.e.,
 per-neuron-pair. Consider the following examples, in which data was produced 
 from several generator networks and fed into the model described in 
 \ref{results_3neur}:
+
+
+TODO: add examples of input and output data to 3.2.1 and 3.2.2.
 
 \subsection{Inverted Network}
 Despite being a complete inversion of the generator used to train the model in 
@@ -109,4 +126,33 @@ Despite being a complete inversion of the generator used to train the model in
 \end{table}
 
 \subsection{Cyclical Network}
+For a cyclical network, the situation is not quite so simple. Due to the 
+perpetual propagation of spikes through the generator, additional random spiking 
+can cause the input data to become an impenetrable mess. Tempering the spike 
+rate to 0.05 produces workable data, but the results are neither so clean nor
+consistent as for terminating networks.  
+
+\begin{table}[h]
+	\centering
+	\input{../resources/tikzheader.tex}
+		\node[state] (0) {0};
+		\node[state] (1) [right of=0] {1};
+		\node[state] (2) [below right of=0] {2};
+	
+		\path 	(2) edge node {} (1)
+				(0) edge node {} (2)
+				(1) edge node {} (0);
+	\end{tikzpicture}
+	\hspace{2em}
+	\begin{tabular}{l|lll}
+		  & 0 & 1 & 2\\
+		\hline
+		0 & 0 & 1 & 0\\
+		1 & 0 & 0 & 1\\
+		2 & 1 & 0 & 0
+	\end{tabular}
+	\captionof{figure}{Cyclical 3-neuron network}
+	\label{fig:2simplexVar2}
+\end{table}
+
 

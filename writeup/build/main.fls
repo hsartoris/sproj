@@ -336,6 +336,8 @@ INPUT ./resources/models/3neurEx/9/out1.png
 INPUT ./resources/models/3neurEx/9/out1.png
 INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
+INPUT build/../resources/tikzheader.tex
+INPUT build/../resources/tikzheader.tex
 INPUT build/main.aux
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
