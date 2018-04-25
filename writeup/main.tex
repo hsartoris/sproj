@@ -1,9 +1,11 @@
 \documentclass[12pt,twoside]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{titlesec, amsmath, amsfonts, pgf, tikz, adjustbox, pgfplots, 
-filecontents, graphicx, wrapfig}
+filecontents, graphicx, wrapfig, relsize}
 \usepackage[font=small, labelfont=it]{caption}
 \usepackage[font=small, labelfont=normalfont]{subcaption}
+\usepackage[margin=1.5in]{geometry}
+\renewcommand{\baselinestretch}{1.5}
 \usetikzlibrary{arrows, automata, positioning}
 
 \titleformat{\chapter}[hang]
@@ -21,6 +23,7 @@ filecontents, graphicx, wrapfig}
 
 \maketitle
 \tableofcontents
+\listoffigures
 
 \input{chapters/chapter1}
 

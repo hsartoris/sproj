@@ -1,0 +1,9 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Network structure and adjacency matrix of the generator.\relax }}{8}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Training loss and parameters for model described in 3.1.1\hbox {}\relax }}{9}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Path of data through network, up to final transform\relax }}{10}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Output for input data in figure 3.3a\hbox {}\relax }}{10}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Inverted version of figure 3.1\hbox {}\relax }}{11}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Cyclical 3-neuron network\relax }}{11}

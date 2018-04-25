@@ -1,6 +1,5 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
-\graphicspath{ {resources/models/3neurEx/9/} {resources/models/3neurEx/weights/} 
-} 
+\graphicspath{ {resources/models/3neurEx/} {resources/models/3neurEx/weights/} } 
 
 \chapter{Results}
 \label{results}
@@ -51,18 +50,18 @@ this network, please see APPENDIX.
 	\centering
 	\begin{subfigure}{.15\textwidth}
 		\centering
-		\includegraphics[width=.75\textwidth]{input.png}
+		\includegraphics[width=.75\textwidth]{9/input.png}
 		\caption{Input}
 		\label{subfig:3neur_in}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.3\textwidth}
-		\includegraphics[width=\textwidth]{out0.png}
+		\includegraphics[width=\textwidth]{9/out0.png}
 		\caption{Data after first transform}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.3\textwidth}
-		\includegraphics[width=\textwidth]{out1.png}
+		\includegraphics[width=\textwidth]{9/out1.png}
 		\caption{Data after convolutional layer}
 		\label{subfig:3neur_out1}
 	\end{subfigure}
@@ -100,8 +99,6 @@ from several generator networks and fed into the model described in
 TODO: add examples of input and output data to 3.2.1 and 3.2.2.
 
 \subsection{Inverted Network}
-Despite being a complete inversion of the generator used to train the model in 
-\ref{results_3neur}, reconstruction of this network is simple.
 \begin{table}[h]
 	\centering
 	\input{../resources/tikzheader.tex}
@@ -124,14 +121,27 @@ Despite being a complete inversion of the generator used to train the model in
 	\captionof{figure}{Inverted version of figure \ref{fig:2simplex+adjacency}}
 	\label{fig:2simplexVar1}
 \end{table}
+\noindent Despite being a complete inversion of the generator used to train the 
+model in \ref{results_3neur}, reconstruction of this network is simple.
+
+\begin{table}[h]
+	\centering
+	\begin{minipage}{.1\textwidth}
+		\includegraphics[width=\textwidth]{var1/input.png}
+	\end{minipage}
+	\hspace{2em}
+	$\Rightarrow$
+	\hspace{2em}
+	\begin{tabular}{l|lll}
+		  & 0 & 1 & 2\\
+		\hline
+		0 & .01 & 1.00 & 1.00\\
+		1 & .01 & .02 & 1.00\\
+		2 & 0 & .02 & .01
+	\end{tabular}
+\end{table}
 
 \subsection{Cyclical Network}
-For a cyclical network, the situation is not quite so simple. Due to the 
-perpetual propagation of spikes through the generator, additional random spiking 
-can cause the input data to become an impenetrable mess. Tempering the spike 
-rate to 0.05 produces workable data, but the results are neither so clean nor
-consistent as for terminating networks.  
-
 \begin{table}[h]
 	\centering
 	\input{../resources/tikzheader.tex}
@@ -154,5 +164,12 @@ consistent as for terminating networks.
 	\captionof{figure}{Cyclical 3-neuron network}
 	\label{fig:2simplexVar2}
 \end{table}
+
+\noindent For a cyclical network, the situation is not quite so simple. Due to 
+the perpetual propagation of spikes through the generator, additional random 
+spiking can cause the input data to become an impenetrable mess. Tempering the 
+spike rate to 0.05 produces workable data, but the results are neither so clean 
+nor
+consistent as for terminating networks.  
 
 
