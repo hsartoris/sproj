@@ -80,9 +80,9 @@ if __name__=="__main__":
     
     # for 2-simplex, .25 is probably a good rate
     #mat = genSimplex(neurons)
-    mat = smallNetVar3()
+    #mat = smallNetVar3()
     #mat = tenNeurNet()
-    #mat = complexMat(1)
+    mat = complexMat(1)
     # finds optimal spike rate for data generation
     #spikeProb = optimizeSpike(mat, .05)
     #print("Optimized spike rate for this matrix:", spikeProb)

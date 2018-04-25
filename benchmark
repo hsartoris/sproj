@@ -4,8 +4,8 @@ read response
 if [ "$response" == "y" ]; then
     for i in `seq 1 100`; do
         echo "Running iteration $i"
-        runModel run 2simplex25k simple $i
-        runModel run 2simplex25k conv $i
+        runModel run 6neur25k simple $i
+        runModel run 6neur25k conv $i
     done
 else
     echo "Not running benchmark."
