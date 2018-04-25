@@ -18,11 +18,11 @@ TBOARD_LOG = True
 dataFile = "runData"
 epochsToSave = 2 # directly dependent on batchsize of course
 batchSize = 32
-initLearnRate = .0005
-trainingSteps = 15000
-ckptDir = "model/checkpoints/6neur/"
+initLearnRate = .001
+trainingSteps = 20000
+ckptDir = "model/checkpoints/6neur2/"
 pretty = Prettify.pretty()
-testMaxIdx = 25000
+testMaxIdx = 50000
 validMaxIdx = int(testMaxIdx * .9)
 trainMaxIdx = int(validMaxIdx * .8)
 
