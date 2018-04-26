@@ -87,7 +87,6 @@ if runId is None:
     localtime = time.localtime()
     runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
 
-
 training = None
 validation = None
 testing = None
@@ -147,6 +146,18 @@ m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate,
 m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
     matDir = loadFrom, trainable=trainable, dumb=False)
 
+def dumpData():
+    out = "# b\n" + str(b) + "\n"
+    out += "# d\n" + str(d) + "\n"
+    out += "# n\n" + str(n) + "\n"
+    out += "# batchSize\n" + str(batchSize) + "\n"
+    out += "# initLearnRate\n" + str(initLearnRate) + "\n"
+    out += "# trainingSteps\n" + str(trainingSteps) + "\n"
+    out += "# prefix\n" + prefix + "\n")
+    out += ("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
+            str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
+    return out
+
 
 # save some data
 if SAVE_CKPT:
@@ -167,6 +178,8 @@ if SAVE_CKPT:
     f = open(saveDir + "prefix", "w+")
     f.write(prefix)
     f.close()
+
+print(dumpData())
 
 if TBOARD_LOG:
     lossSum = tf.summary.scalar("train_loss", m.loss)
@@ -219,7 +232,8 @@ for step in range(trainingSteps):
              validWriter.add_summary(vloss, step)
              summWriter.add_summary(tLoss, step)
         if not step == 1: epochCount += 1
-        print("Step " + str(step) + ", batch loss = " + "{:.4f}".format(loss))
+        print("Step " + str(step) + "\n\tdumb batch loss = {:.4f}".format(vloss_dumb) + 
+            "\n\tconv batch loss = {:.4f}".format(vloss_conv))
 
         if epochCount % epochsToSave == 0 and SAVE_CKPT:
             save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
