@@ -107,7 +107,7 @@ if __name__=="__main__":
     spikeDir = outDir + "/spikes"
     
     #spikeProb = (.05 if len(sys.argv) < 5 else float(sys.argv[4]))
-    runBlocks = 10
+    runBlocks = 8
     runBlockSize = int(runs/runBlocks)
 
     if not os.path.exists(outDir + "/spikes"):
