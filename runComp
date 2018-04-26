@@ -1,4 +1,28 @@
 #!/usr/bin/python3
+"""
+Simultaneously runs dumb & conv networks and logs both.
+
+Usage: 
+    runComp <dataDir> [--r=<runs>] [--s=<samples>] [--lr=<lr>]
+        [--outDir=<outDir>] [--runId=<runId>] [--bs=<batchSize>]
+        [--ts=<trainingSteps>] [--b=<b>] [--d=<d>]
+    runComp -h | --help
+
+Options:
+    -h --help           Show this screen
+    <dataDir>           Where to load inputs from. Assumes format dataStaging/!
+    --r=<runs>          How many runs. [default: 1]
+    --s=<samples>       How many samples to load from <dataDir> [default: 25000].
+    --lr=<lr>           Init learning rate [default: .001].
+    --outDir=<outDir>   Checkpoint & log directory.
+    --runId=<runId>     Specify runId. Defaults to timestamp.
+    --bs=<batchSize>    Batch size [default: 32].
+    --ts=<trainingSteps> Max training steps [default: 20000].
+    --b=<b>             Time truncation [default: 30].
+    --d=<d>             Featurespace depth [default: 20].
+"""
+
+from docopt import docopt
 import numpy as np
 import signal
 import sys
@@ -9,40 +33,55 @@ import time
 import shutil, os
 from model.scripts.SeqData import seqData
 from model.model import Model
+pretty = Prettify.pretty()
 
-EXIT = False
+arguments = docopt(__doc__)
+
 SAVE_CKPT = True
 # if you set this to False it will break
 TBOARD_LOG = True
 
 dataFile = "runData"
 epochsToSave = 2 # directly dependent on batchsize of course
-batchSize = 32
-initLearnRate = .001
-trainingSteps = 40000
-ckptDir = "model/checkpoints/6neur2/"
+
+# default 32
+batchSize = int(arguments['--bs'])
+
+# default .001
+initLearnRate = float(arguments['--lr'])
+
+# default 20000
+trainingSteps = int(arguments['--ts'])
+
+# obvious default
 ckptDir = "model/checkpoints/"
-pretty = Prettify.pretty()
-testMaxIdx = 50000
+if arguments['--outDir']: ckptDir += arguments['--outDir']
+if not os.path.exists(ckptDir):
+    try: os.makedirs(ckptDir)
+    except OSError as err:
+        print("OSError while creating ckptDir " + ckptDir + ": {0}".format(err))
+
+
+# default 25000
+testMaxIdx = int(arguments['--s'])
 validMaxIdx = int(testMaxIdx * .9)
 trainMaxIdx = int(validMaxIdx * .8)
 
+# timesteps (default 30)
+b = int(arguments['--b'])
+# metalayers (default 20)
+d = int(arguments['--d'])
 
-runId = None
+prefix = "dataStaging/" + arguments['<dataDir>'] + "/"
+if not os.path.exists(prefix):
+    print("dataDir '" + prefix + "' not found, exiting.")
+    sys.exit()
 
-# timesteps
-b = 30
-# metalayers
-d = 20
+n = np.loadtxt(prefix + "struct", delimiter=',').shape[0]
 
-if len(sys.argv) > 1:
-    print("running")
-    prefix = "dataStaging/" + sys.argv[1] + "/"
-    n = np.loadtxt(prefix + "struct", delimiter=',').shape[0]
-    if len(sys.argv) > 2:
-        runs = int(sys.argv[2])
-else:
-    print("runComp <dataDir> [runs]")
+if int(arguments['--r']) > 1:
+    print("Doesn't support multiple runs yet LOL")
+    sys.exit()
 
 if runId is None:
     localtime = time.localtime()
@@ -82,7 +121,7 @@ def cleanup():
     if clean == "Y":
         shutil.rmtree(ckptDir + runId)
 
-def makePred(model, checkDir=None):
+def makePred(checkDir=None):
     global testing
     global sess
     if checkDir is not None:
@@ -94,23 +133,13 @@ def makePred(model, checkDir=None):
         testData = testing.data
         testLabels = testing.labels
     testX, testY, _ = testing.next(1)
-    print(np.round(sess.run(model.prediction, 
+    print("Dumb model prediction:")
+    print(np.round(sess.run(m_dumb.prediction, 
+        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
+    print("Conv model prediction:")
+    print(np.round(sess.run(m_conv.prediction,
         feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
 
-# don't load data if given args
-if len(sys.argv) == 1 or not sys.argv[1] == "prep": loadData()
-# what on earth is prep lol
-
-loadFrom = None
-trainable = None
-if len(sys.argv) > 2 and sys.argv[1] == "load": 
-    loadFrom = ckptDir + sys.argv[2] + "/"
-    if len(sys.argv) >= 4:
-        trainArgs = sys.argv[3].split(',')
-        trainable = [arg == 'T' for arg in trainArgs]
-    if len(sys.argv) == 5:
-        prefix = sys.argv[4] + "/"
-        loadData()
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
 m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
@@ -120,10 +149,7 @@ m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate,
 
 
 # save some data
-if len(sys.argv) > 1 and sys.argv[1] == "pred":
-    makePred(ckptDir + sys.argv[2] + "/")
-    sys.exit()
-elif SAVE_CKPT:
+if SAVE_CKPT:
     saver = tf.train.Saver()
     saveDir = (ckptDir + runId + "/")
     os.mkdir(saveDir)
@@ -154,24 +180,39 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 
-# step, loss
-losses = []
+steps = []
+losses_dumb = []
+losses_conv = []
+vlosses_dumb = []
+vlosses_conv = []
 
 epochCount = 0
 for step in range(trainingSteps):
     batchX, batchY, batchId = training.next(batchSize)
-    sess.run(m.optimize, feed_dict={_data: batchX, _labels: batchY})
+    sess.run(m_dumb.optimize, feed_dict={_data: batchX, _labels: batchY})
+    sess.run(m_conv.optimize, feed_dict={_data: batchX, _labels: batchY})
     if batchId == trainMaxIdx or step == 1:
         # end of epoch
         # calculate current loss on training data
-        tLoss, loss = sess.run([lossSum, m.loss], 
+        loss_dumb = sess.run([m_dumb.loss], 
                 feed_dict={_data: batchX, _labels: batchY})
+
+        loss_conv = sess.run([m_conv.loss], 
+                feed_dict={_data: batchX, _labels: batchY})
+
         # calculate validation loss
         validX, validY, _ = validation.next(batchSize)
-        vloss, loss = sess.run([lossSum, m.loss], 
+        vloss_dumb = sess.run([m_dumb.loss], 
                 feed_dict={_data: validX, _labels: validY})
 
-        losses.append((step, loss))
+        vloss_conv = sess.run([m_conv.loss], 
+                feed_dict={_data: validX, _labels: validY})
+
+        steps.append(step)
+        losses_dumb.append(loss_dumb)
+        losses_conv.append(loss_conv)
+        vlosses_dumb.append(vloss_dumb)
+        vlosses_conv.append(vloss_conv)
 
         if TBOARD_LOG:
             # log various data
@@ -189,7 +230,6 @@ for step in range(trainingSteps):
 
     pretty.arrow(batchId, trainMaxIdx)
 
-makePred()
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
     f = open(saveDir + "latest", "w+")
@@ -203,7 +243,17 @@ if SAVE_CKPT:
     f.write("# (step, loss)\n" + str(minLoss) + "\n")
     f.close()
 
-os.mkdir(ckptDir + runId + "/mats")
-m.saveMats(ckptDir + runId + "/mats/", sess)
-np.savetxt(ckptDir + runId + "/losses", np.array(losses), delimiter=',')
+makePred()
+
+os.mkdir(ckptDir + runId + "/conv")
+os.mkdir(ckptDir + runId + "/dumb")
+os.mkdir(ckptDir + runId + "/conv/mats")
+os.mkdir(ckptDir + runId + "/dumb/mats")
+m_conv.saveMats(ckptDir + runId + "/conv/mats/", sess)
+m_dumb.saveMats(ckptDir + runId + "/dumb/mats/", sess)
+np.savetxt(ckptDir + runId + "/steps", np.array(steps), delimiter=',')
+np.savetxt(ckptDir + runId + "/conv/losses", np.array(losses_conv), delimiter=',')
+np.savetxt(ckptDir + runId + "/conv/vlosses", np.array(vlosses_conv), delimiter=',')
+np.savetxt(ckptDir + runId + "/dumb/losses", np.array(losses_dumb), delimiter=',')
+np.savetxt(ckptDir + runId + "/dumb/vlosses", np.array(vlosses_dumb), delimiter=',')
 sess.close()
