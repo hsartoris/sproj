@@ -14,3 +14,5 @@
 dataStaging/6neur50k/
 # testMaxIdx, validMaxIdx, trainMaxIdx
 49984, 44992, 36000
+# (step, loss)
+(16874, 0.078499496)
