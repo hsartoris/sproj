@@ -2,8 +2,11 @@
 from smallNetworkGen import genSimplex, simulate, optimizeSpike
 import sys
 import numpy as np
+from multiprocessing import Process
+import subprocess
+import os
 
-def tenNeurNet():
+def tenNeurNet2():
     mat = np.matrix(np.zeros((10,10)))
     mat[1:3,0] = 1
     mat[2,1] = 1
@@ -15,6 +18,23 @@ def tenNeurNet():
     mat[9,8] = 1
     mat[6,9] = 1
     return mat
+
+def tenNeurNet():
+    # optimal rate is probably .18
+    # 2-simplex at 0-2
+    # no connection at 3
+    # 4->5
+    # 6->7->8
+    # no connection at 9
+    mat = np.matrix(np.zeros((10,10)))
+    mat[1:3,0] = 1
+    mat[2,1] = 1
+
+    mat[5,4] = 1
+
+    mat[7,6] = 1
+    mat[8,7] = 1
+    return mat, .18
 
 def complexMat(spikeLevel):
     # .15 is probably a good spike rate for this net
@@ -63,31 +83,58 @@ def runData():
 def level1mat():
     mat = np.matrix(np.zeros((3,3)))
 
+def watchCount(spikeDir):
+    subprocess.call('watch -n 1 "ls ' + spikeDir + ' | wc -l"', shell=True)
+
 if __name__=="__main__":
+
+    mat, spikeProb = tenNeurNet()
+    if len(sys.argv) == 2 and sys.argv[1] == "optimize":
+        spikeProb = optimizeSpike(mat, .05)
+        print("Optimized rate:", spikeProb)
+        exit()
+
     if len(sys.argv) < 4:
         print("Usage: simpleDataGen.py outDir timesteps runs [spikeProb]\n\tNote: assumes dataStaging")
         sys.exit()
     
     outDir = "dataStaging/" + sys.argv[1] + "/"
     #neurons = int(sys.argv[2])
-    neurons = 3
+    neurons = mat.shape[0]
     steps = int(sys.argv[2])
     runs = int(sys.argv[3])
+    spikeDir = outDir + "/spikes"
     
-    spikeProb = (.05 if len(sys.argv) < 5 else float(sys.argv[4]))
-    
-    params = { 'runs':runs, 'timesteps':steps, 'spikeProb':spikeProb}
-    
+    #spikeProb = (.05 if len(sys.argv) < 5 else float(sys.argv[4]))
+    runBlocks = 10
+    runBlockSize = int(runs/runBlocks)
+
+    if not os.path.exists(outDir + "/spikes"):
+        os.makedirs(outDir + "/spikes")
+    threads = []
+
+    for i in range(runBlocks):
+        start = i * runBlockSize
+        if i < runBlocks - 1:
+            runCount = runBlockSize
+        else:
+            runCount = runs - start
+        params = { 'startIdx':start, 'runs':runCount, 'timesteps':steps, 
+            'spikeProb':spikeProb}
+        threads.append(Process(target=simulate, args=(mat, params, outDir)))
+    # mat now defined above, look at it dumbass
     # for 2-simplex, .25 is probably a good rate
     #mat = genSimplex(neurons)
     #mat = smallNetVar3()
     #mat = tenNeurNet()
-    mat = complexMat(1)
-    # finds optimal spike rate for data generation
-    #spikeProb = optimizeSpike(mat, .05)
-    #print("Optimized spike rate for this matrix:", spikeProb)
+    #mat = complexMat(1)
+    threads.append(Process(target=watchCount, args=(spikeDir, )))
+    for i in range(len(threads)):
+        threads[i].start()
+
+    for i in range(len(threads)):
+        threads[i].join()
     print(runData())
-    simulate(mat, params, outDir)
     f = open(outDir + "runData", "w+")
     f.write(runData())
     f.close()

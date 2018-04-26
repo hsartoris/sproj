@@ -2,8 +2,8 @@
 import sys
 import numpy as np
 
-if not len(sys.argv) == 2:
-    print("Usage: termVisInput <spikeTimeRaster>")
+if not len(sys.argv) >= 2:
+    print("Usage: termVisInput <spikeTimeRaster> [timesteps]")
     sys.exit()
 
 trunc = None

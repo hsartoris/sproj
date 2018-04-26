@@ -14,3 +14,7 @@
 dataStaging/6neur50k/
 # testMaxIdx, validMaxIdx, trainMaxIdx
 50000, 45000, 36000
+# min dumb loss
+(26999, 0.07279905)
+# min conv loss
+(26999, 0.07286838)

@@ -73,21 +73,24 @@ def randSpikeCol(spikeProb):
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
 def simulate(matrix, params, dataDir, simple=True, verbose=True):
+    # heavily modified for use with simpleDataGen
     global NUM_NEUR
     NUM_NEUR = matrix.shape[0]
-    arrow = model.scripts.Prettify.pretty()
+    #arrow = model.scripts.Prettify.pretty()
+    startIdx = params['startIdx']
     # for now this just overwrites, and assumes simple
-    if not os.path.exists(dataDir + spikeDir): 
-        if verbose: print("creating spike directory" + dataDir + spikeDir)
-        os.makedirs(dataDir + spikeDir)
+    #if not os.path.exists(dataDir + spikeDir): 
+    #    if verbose: print("creating spike directory" + dataDir + spikeDir)
+    #    os.makedirs(dataDir + spikeDir)
     for run in range(params['runs']):
-        arrow.arrow(run, params['runs'])
+        #arrow.arrow(run, params['runs'])
         data = np.matrix(np.zeros((matrix.shape[0],params['timesteps'])))
         data[:,0] = randSpikeCol(params['spikeProb'])
         for step in range(1,params['timesteps']):
             data[:,step] = np.clip((matrix * data[:,step-1]) + 
                                     randSpikeCol(params['spikeProb']), 0, 1)
-        np.savetxt(dataDir + spikeDir + str(run) + ".csv", data, delimiter=',', fmt='%i')
+        np.savetxt(dataDir + spikeDir + str(run + startIdx) + ".csv", 
+            data, delimiter=',', fmt='%i')
     
 def optimizeSpike(matrix, lowSpike, threshold=1):
     # finds lowest spike rate producing >threshold spikes over two timesteps
