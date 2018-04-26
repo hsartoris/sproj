@@ -150,4 +150,4 @@ if __name__=="__main__":
     f = open(outDir + "runData", "w+")
     f.write(runData())
     f.close()
-    np.savetxt(outDir + "struct", mat, delimiter=',', fmt='%i')
+    np.savetxt(outDir + "struct", mat, delimiter=',')
