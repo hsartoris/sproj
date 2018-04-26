@@ -5,6 +5,7 @@ import numpy as np
 from multiprocessing import Process, Queue
 import subprocess
 import os
+import model.scripts.Prettify
 
 def tenNeurNet2():
     mat = np.matrix(np.zeros((10,10)))
@@ -133,14 +134,16 @@ if __name__=="__main__":
     for i in range(len(threads)):
         threads[i].start()
 
-    maxIdx = 0
-    while maxIdx < runs - 1:
+    arrow = model.scripts.Prettify.pretty()
+    count = 0
+    while count < runs :
         try:
-            idx = q.get()
-            if idx > maxIdx: maxIdx = idx
+            q.get()
+            count += 1
+            arrow.arrow(count, runs)
+            sleep(.5)
         except Exception:
             pass
-        print(maxIdx, end="", flush=True)
     for i in range(len(threads)):
         threads[i].join()
     print(runData())
