@@ -14,7 +14,7 @@ Options:
     --r=<runs>          How many runs. [default: 1]
     --s=<samples>       How many samples to load from <dataDir> [default: 25k].
     --lr=<lr>           Init learning rate [default: .001].
-    --outDir=<outDir>   Checkpoint & log directory. If not specified, leaves ckptDir to model/checkpoints/comp/
+    --outDir=<outDir>   Checkpoint & log directory. If not specified, leaves ckptDir to model/checkpoints/comp/; otherwise that + outDir
     --runId=<runId>     Specify runId. Defaults to timestamp.
     --bs=<batchSize>    Batch size [default: 32].
     --ts=<trainingSteps> Max training steps [default: 20k].
@@ -58,7 +58,7 @@ else:
     trainingSteps = int(ts)
 
 # obvious default
-ckptDir = "model/checkpoints/comp"
+ckptDir = "model/checkpoints/comp/"
 if arguments['--outDir']: ckptDir += arguments['--outDir'] + "/"
 if not os.path.exists(ckptDir):
     try: os.makedirs(ckptDir)
