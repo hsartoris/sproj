@@ -89,7 +89,7 @@ def simulate(matrix, params, dataDir, q, simple=True, verbose=True):
         for step in range(1,params['timesteps']):
             data[:,step] = np.clip((matrix * data[:,step-1]) + 
                                     randSpikeCol(params['spikeProb']), 0, 1)
-        q.push(run+startIdx)
+        q.put(run+startIdx)
         np.savetxt(dataDir + spikeDir + str(run + startIdx) + ".csv", 
             data, delimiter=',', fmt='%i')
     
