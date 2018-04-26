@@ -99,6 +99,14 @@ class Model():
                 [self.batchSize,1,self.n*self.n])))
 
     @lazy_property
+    def layer0_1(self):
+        data = self.layer0
+        total = tf.concat([tf.einsum('ijk,kl->ijl', data, self.expand),
+            tf.tile(data, [1,1,self.n])], 1)
+        return tf.nn.relu(tf.add(tf.einsum('ij,kjl->kil', self.weights['layer0_1'], 
+            total), tf.tile(self.biases['layer0_1'], [self.batchSize,1,self.n*self.n])))
+
+    @lazy_property
     def layer1dumb(self):
         return tf.nn.relu(tf.add(tf.einsum('ij,kjl->kil', 
             self.weights['layer1'][0], self.layer0), tf.tile(self.biases['layer1'],
