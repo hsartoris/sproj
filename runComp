@@ -35,22 +35,14 @@ b = 30
 # metalayers
 d = 20
 
-if len(sys.argv) > 2 and sys.argv[1] == "run":
+if len(sys.argv) > 1:
     print("running")
-    prefix = "dataStaging/" + sys.argv[2] + "/"
+    prefix = "dataStaging/" + sys.argv[1] + "/"
     n = np.loadtxt(prefix + "struct", delimiter=',').shape[0]
-    if len(sys.argv) > 3:
-        # eg runModel run <prefix> simple runId
-        if not os.path.exists(ckptDir + sys.argv[3]):
-            os.mkdir(ckptDir + sys.argv[3])
-        ckptDir += sys.argv[3] + "/"
-        if sys.argv[3] == "simple": dumb = True
-        elif sys.argv[3] == "conv": dumb = False
-        runId = sys.argv[4]
-    else:
-        dumb = False
+    if len(sys.argv) > 2:
+        runs = int(sys.argv[2])
 else:
-    print("runModel run <prefix> <simple/conv> <runId>")
+    print("runComp <dataDir> [runs]")
 
 if runId is None:
     localtime = time.localtime()
@@ -90,7 +82,7 @@ def cleanup():
     if clean == "Y":
         shutil.rmtree(ckptDir + runId)
 
-def makePred(checkDir=None):
+def makePred(model, checkDir=None):
     global testing
     global sess
     if checkDir is not None:
@@ -102,7 +94,7 @@ def makePred(checkDir=None):
         testData = testing.data
         testLabels = testing.labels
     testX, testY, _ = testing.next(1)
-    print(np.round(sess.run(m.prediction, 
+    print(np.round(sess.run(model.prediction, 
         feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
 
 # don't load data if given args
@@ -121,8 +113,10 @@ if len(sys.argv) > 2 and sys.argv[1] == "load":
         loadData()
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
-    matDir = loadFrom, trainable=trainable, dumb=dumb)
+m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
+    matDir = loadFrom, trainable=trainable, dumb=True)
+m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
+    matDir = loadFrom, trainable=trainable, dumb=False)
 
 
 # save some data
