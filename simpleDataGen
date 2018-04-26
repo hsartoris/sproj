@@ -2,7 +2,7 @@
 from smallNetworkGen import genSimplex, simulate, optimizeSpike
 import sys
 import numpy as np
-from multiprocessing import Process
+from multiprocessing import Process, Queue
 import subprocess
 import os
 
@@ -112,6 +112,7 @@ if __name__=="__main__":
     if not os.path.exists(outDir + "/spikes"):
         os.makedirs(outDir + "/spikes")
     threads = []
+    q = Queue()
 
     for i in range(runBlocks):
         start = i * runBlockSize
@@ -121,17 +122,25 @@ if __name__=="__main__":
             runCount = runs - start
         params = { 'startIdx':start, 'runs':runCount, 'timesteps':steps, 
             'spikeProb':spikeProb}
-        threads.append(Process(target=simulate, args=(mat, params, outDir)))
+        threads.append(Process(target=simulate, args=(mat, params, outDir, q)))
     # mat now defined above, look at it dumbass
     # for 2-simplex, .25 is probably a good rate
     #mat = genSimplex(neurons)
     #mat = smallNetVar3()
     #mat = tenNeurNet()
     #mat = complexMat(1)
-    threads.append(Process(target=watchCount, args=(spikeDir, )))
+    #threads.append(Process(target=watchCount, args=(spikeDir, )))
     for i in range(len(threads)):
         threads[i].start()
 
+    maxIdx = 0
+    while maxIdx < runs - 1:
+        try:
+            idx = q.get()
+            if idx > maxIdx: maxIdx = idx
+        except Exception:
+            pass
+        print(maxIdx, end="", flush=True)
     for i in range(len(threads)):
         threads[i].join()
     print(runData())

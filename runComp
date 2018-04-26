@@ -88,9 +88,7 @@ if not os.path.exists(prefix):
 
 n = np.loadtxt(prefix + "struct", delimiter=',').shape[0]
 
-if int(arguments['--r']) > 1:
-    print("Doesn't support multiple runs yet LOL")
-    sys.exit()
+runs = int(arguments['--r'])
 
 if arguments['--runId'] is None:
     localtime = time.localtime()
@@ -153,11 +151,6 @@ def makePred(checkDir=None):
     print(np.round(sess.run(m_conv.prediction,
         feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
 
-_data = tf.placeholder(tf.float32, [None, b, n])
-_labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=True)
-m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=False)
-
 def dumpData():
     out = "# b\n" + str(b) + "\n"
     out += "# d\n" + str(d) + "\n"
@@ -169,6 +162,11 @@ def dumpData():
     out += ("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
             str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
     return out
+
+_data = tf.placeholder(tf.float32, [None, b, n])
+_labels = tf.placeholder(tf.float32, [None, 1, n*n])
+m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=True)
+m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=False)
 
 
 # save some data

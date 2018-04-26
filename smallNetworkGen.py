@@ -72,7 +72,7 @@ def randSpikeCol(spikeProb):
     # returns column matrix of 1/0 with spikeProb chance of 1
     return np.matrix(np.random.choice(2, NUM_NEUR, p=[1-spikeProb, spikeProb])).transpose()
 
-def simulate(matrix, params, dataDir, simple=True, verbose=True):
+def simulate(matrix, params, dataDir, q, simple=True, verbose=True):
     # heavily modified for use with simpleDataGen
     global NUM_NEUR
     NUM_NEUR = matrix.shape[0]
@@ -89,6 +89,7 @@ def simulate(matrix, params, dataDir, simple=True, verbose=True):
         for step in range(1,params['timesteps']):
             data[:,step] = np.clip((matrix * data[:,step-1]) + 
                                     randSpikeCol(params['spikeProb']), 0, 1)
+        q.push(run+startIdx)
         np.savetxt(dataDir + spikeDir + str(run + startIdx) + ".csv", 
             data, delimiter=',', fmt='%i')
     

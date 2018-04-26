@@ -22,6 +22,9 @@ class seqData(object):
         self.batchId = 0
         print("Successfully loaded", maxIdx-minIdx, "samples")
 
+    def resetCount(self):
+        self.batchId = 0
+
     def crop(self, batchSize):
         cropLen = len(self.data) % batchSize
         self.data = self.data[:len(self.data) - cropLen]
