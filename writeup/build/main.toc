@@ -1,13 +1,28 @@
-\contentsline {chapter}{\numberline {1}Model}{4}
-\contentsline {section}{\numberline {1.1}Data}{4}
-\contentsline {subsection}{\numberline {1.1.1}Generation}{5}
-\contentsline {subsubsection}{Generalizability}{5}
-\contentsline {subsection}{\numberline {1.1.2}Restructuring}{6}
-\contentsline {chapter}{\numberline {2}Architecture}{7}
-\contentsline {chapter}{\numberline {3}Results}{8}
-\contentsline {section}{\numberline {3.1}3-neuron generator}{8}
-\contentsline {subsection}{\numberline {3.1.1}Example Model}{9}
-\contentsline {subsubsection}{Trained Network Operation}{9}
-\contentsline {section}{\numberline {3.2}Applicability Beyond Training Data}{10}
-\contentsline {subsection}{\numberline {3.2.1}Inverted Network}{11}
-\contentsline {subsection}{\numberline {3.2.2}Cyclical Network}{11}
+\contentsline {chapter}{\numberline {1}Background}{5}
+\contentsline {section}{\numberline {1.1}Biological Neural Networks}{5}
+\contentsline {section}{\numberline {1.2}Graph Structures}{5}
+\contentsline {subsection}{\numberline {1.2.1}Graph Locality}{5}
+\contentsline {section}{\numberline {1.3}Convolutional Neural Networks}{5}
+\contentsline {section}{\numberline {1.4}Concepts and Terms}{5}
+\contentsline {subsection}{\numberline {1.4.1}Adjacency Matrices}{5}
+\contentsline {chapter}{\numberline {2}Model}{7}
+\contentsline {section}{\numberline {2.1}Data}{7}
+\contentsline {subsection}{\numberline {2.1.1}Generation}{8}
+\contentsline {subsubsection}{Generalizability}{8}
+\contentsline {subsection}{\numberline {2.1.2}Restructuring}{9}
+\contentsline {section}{\numberline {2.2}Architecture}{10}
+\contentsline {subsection}{\numberline {2.2.1}First Transition}{10}
+\contentsline {subsection}{\numberline {2.2.2}Convolutional Layer}{11}
+\contentsline {chapter}{\numberline {3}Training}{12}
+\contentsline {section}{\numberline {3.1}Datasets}{12}
+\contentsline {section}{\numberline {3.2}Matrix Initialization}{12}
+\contentsline {section}{\numberline {3.3}Loss Optimization}{12}
+\contentsline {subsection}{\numberline {3.3.1}Loss Function}{12}
+\contentsline {subsection}{\numberline {3.3.2}Optimizer Function}{12}
+\contentsline {chapter}{\numberline {4}Results}{13}
+\contentsline {section}{\numberline {4.1}3-neuron generator}{13}
+\contentsline {subsection}{\numberline {4.1.1}Example Model}{14}
+\contentsline {subsubsection}{Trained Network Operation}{14}
+\contentsline {section}{\numberline {4.2}Applicability Beyond Training Data}{15}
+\contentsline {subsection}{\numberline {4.2.1}Inverted Network}{16}
+\contentsline {subsection}{\numberline {4.2.2}Cyclical Network}{16}

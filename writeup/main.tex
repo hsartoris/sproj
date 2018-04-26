@@ -6,7 +6,8 @@ filecontents, graphicx, wrapfig, relsize}
 \usepackage[font=small, labelfont=normalfont]{subcaption}
 \usepackage[margin=1.5in]{geometry}
 \renewcommand{\baselinestretch}{1.5}
-\usetikzlibrary{arrows, automata, positioning}
+\usetikzlibrary{arrows, automata, positioning, quotes, arrows.meta}
+\input{resources/tikzpics.tex}
 
 \titleformat{\chapter}[hang]
 {\normalfont\huge\bfseries}{\ \thechapter}{1em}{}
@@ -25,11 +26,13 @@ filecontents, graphicx, wrapfig, relsize}
 \tableofcontents
 \listoffigures
 
-\input{chapters/chapter1}
+\input{chapters/chapter_bg.tex}
 
-\input{chapters/chapter2}
+\input{chapters/chapter_model.tex}
 
-\input{chapters/chapter3}
+\input{chapters/chapter_train.tex}
+
+\input{chapters/chapter_results.tex}
 
 
 \end{document}

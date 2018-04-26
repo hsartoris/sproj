@@ -1,0 +1,50 @@
+%! TEX root = /home/hsartoris/sproj/writeup/main.tex
+
+\chapter{Background}
+
+\section{Biological Neural Networks}
+
+\section{Graph Structures}
+
+\subsection{Graph Locality}
+
+\section{Convolutional Neural Networks}
+
+
+\section{Concepts and Terms}
+Before diving into the specifics of data production, model architecture, and 
+training, it's important to establish several important concepts.
+
+\subsection{Adjacency Matrices}
+The representation of neural network connectivity that we will focus on is the 
+adjacency matrix. For \textit{n} neurons, an adjacency matrix $\mathbb{M}$ will 
+be of dimensions $(n \times n)$. A simplistic method of predicting network 
+activity, and one that we will use to produce our data, is to multiply this 
+matrix by an \textit{n}-vector representing current activity at each neuron.  
+Such an operation appears as follows for $n=3$:
+\[ \begin{bmatrix}
+		a & b & c\\
+		d & e & f\\
+		g & h & i
+	\end{bmatrix}
+	\times
+	\begin{bmatrix}
+		x\\
+		y\\
+		z
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		ax + by + cz\\
+		dx + ey + fz\\
+		gx + hy + iz
+	\end{bmatrix}
+\]
+Thus the activity for a given neuron is defined entirely in terms of network 
+activity at the previous timestep and the weights in the adjacency matrix in the 
+row corresponding to the neuron. We thereby arrive at a simple expression of the 
+mechanics of adjacency matrices: weights in some row \textit{i} define inputs to 
+neuron \textit{i}, weights in some column \textit{j} define outputs from neuron 
+\textit{j}, and the singular weight at $\mathbb{M}_{ij}$ defines the connection 
+from neuron \textit{j} to neuron \textit{i}. Keeping this inverse relationship 
+in mind will help prevent confusion in later chapters.
