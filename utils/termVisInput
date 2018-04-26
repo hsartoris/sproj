@@ -1,2 +1,25 @@
 #!/usr/bin/python3
+import sys
+import numpy as np
+
+if not len(sys.argv) == 2:
+    print("Usage: termVisInput <spikeTimeRaster>")
+    sys.exit()
+
+trunc = None
+if len(sys.argv) == 3:
+    trunc = int(sys.argv[2])
+    print("Truncating data at " + str(trunc) + " timesteps")
+
+spikes = np.loadtxt(sys.argv[1], delimiter=',', dtype=int)
+if trunc:
+    spikes = spikes[:,:trunc]
+
+n = len(spikes)
+spikes = spikes.transpose()
+
+print("-"*(n+2))
+for step in spikes:
+    print("|" + "".join([("#" if i == 1 else " ") for i in step]) + "|")
+print("-"*(n+2))
 
