@@ -1,0 +1,16 @@
+# b
+30
+# d
+20
+# n
+6
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+10000
+# prefix
+dataStaging/6neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+20000, 18000, 14400

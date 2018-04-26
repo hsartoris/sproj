@@ -12,12 +12,12 @@ Options:
     -h --help           Show this screen
     <dataDir>           Where to load inputs from. Assumes format dataStaging/!
     --r=<runs>          How many runs. [default: 1]
-    --s=<samples>       How many samples to load from <dataDir> [default: 25000].
+    --s=<samples>       How many samples to load from <dataDir> [default: 25k].
     --lr=<lr>           Init learning rate [default: .001].
     --outDir=<outDir>   Checkpoint & log directory.
     --runId=<runId>     Specify runId. Defaults to timestamp.
     --bs=<batchSize>    Batch size [default: 32].
-    --ts=<trainingSteps> Max training steps [default: 20000].
+    --ts=<trainingSteps> Max training steps [default: 20k].
     --b=<b>             Time truncation [default: 30].
     --d=<d>             Featurespace depth [default: 20].
 """
@@ -39,7 +39,7 @@ arguments = docopt(__doc__)
 
 SAVE_CKPT = True
 # if you set this to False it will break
-TBOARD_LOG = True
+TBOARD_LOG = False
 
 dataFile = "runData"
 epochsToSave = 2 # directly dependent on batchsize of course
@@ -51,11 +51,15 @@ batchSize = int(arguments['--bs'])
 initLearnRate = float(arguments['--lr'])
 
 # default 20000
-trainingSteps = int(arguments['--ts'])
+ts = arguments['--ts'].lower()
+if 'k' in ts:
+    trainingSteps = int(ts.split('k')[0]) * 1000
+else:
+    trainingSteps = int(ts)
 
 # obvious default
 ckptDir = "model/checkpoints/"
-if arguments['--outDir']: ckptDir += arguments['--outDir']
+if arguments['--outDir']: ckptDir += arguments['--outDir'] + "/"
 if not os.path.exists(ckptDir):
     try: os.makedirs(ckptDir)
     except OSError as err:
@@ -63,7 +67,12 @@ if not os.path.exists(ckptDir):
 
 
 # default 25000
-testMaxIdx = int(arguments['--s'])
+samples = arguments['--s'].lower()
+if 'k' in samples:
+    testMaxIdx = int(samples.split('k')[0]) * 1000
+else:
+    testMaxIdx = int(samples)
+
 validMaxIdx = int(testMaxIdx * .9)
 trainMaxIdx = int(validMaxIdx * .8)
 
@@ -83,9 +92,11 @@ if int(arguments['--r']) > 1:
     print("Doesn't support multiple runs yet LOL")
     sys.exit()
 
-if runId is None:
+if arguments['--runId'] is None:
     localtime = time.localtime()
     runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
+else:
+    runId = arguments['--runId']
 
 training = None
 validation = None
@@ -100,10 +111,13 @@ def loadData():
     global testMaxIdx
     # 5120, 6400, 8000
     # 1280, 1600, 2000
+    print("Loading training data")
     training = seqData(0, trainMaxIdx, prefix, b)
     trainMaxIdx -= training.crop(batchSize)
+    print("Loading validation data")
     validation = seqData(trainMaxIdx, validMaxIdx, prefix, b)
     validMaxIdx -= validation.crop(batchSize)
+    print("Loading testing data")
     testing = seqData(validMaxIdx, testMaxIdx, prefix, b)
     testMaxIdx -= testing.crop(batchSize)
 
@@ -141,10 +155,8 @@ def makePred(checkDir=None):
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
-    matDir = loadFrom, trainable=trainable, dumb=True)
-m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, 
-    matDir = loadFrom, trainable=trainable, dumb=False)
+m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=True)
+m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=False)
 
 def dumpData():
     out = "# b\n" + str(b) + "\n"
@@ -153,7 +165,7 @@ def dumpData():
     out += "# batchSize\n" + str(batchSize) + "\n"
     out += "# initLearnRate\n" + str(initLearnRate) + "\n"
     out += "# trainingSteps\n" + str(trainingSteps) + "\n"
-    out += "# prefix\n" + prefix + "\n")
+    out += "# prefix\n" + prefix + "\n"
     out += ("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
             str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
     return out
@@ -163,17 +175,18 @@ def dumpData():
 if SAVE_CKPT:
     saver = tf.train.Saver()
     saveDir = (ckptDir + runId + "/")
-    os.mkdir(saveDir)
+    try: os.mkdir(saveDir)
+    except OSError as err:
+        print(err)
+        cont = input("Do you wish to overwrite and continue? [Y/n]") or "Y"
+        if cont.upper() == "Y":
+            shutil.rmtree(saveDir)
+            os.mkdir(saveDir)
+        else:
+            print("exiting")
+            sys.exit()
     f = open(saveDir + dataFile, "w+")
-    f.write("# b\n" + str(b) + "\n")
-    f.write("# d\n" + str(d) + "\n")
-    f.write("# n\n" + str(n) + "\n")
-    f.write("# batchSize\n" + str(batchSize) + "\n")
-    f.write("# initLearnRate\n" + str(initLearnRate) + "\n")
-    f.write("# trainingSteps\n" + str(trainingSteps) + "\n")
-    f.write("# prefix\n" + prefix + "\n")
-    f.write("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
-            str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
+    f.write(dumpData())
     f.close()
     f = open(saveDir + "prefix", "w+")
     f.write(prefix)
@@ -186,11 +199,15 @@ if TBOARD_LOG:
     summWriter = tf.summary.FileWriter(ckptDir + runId + "/train")
     validWriter = tf.summary.FileWriter(ckptDir + runId + "/validation")
 
+loadData()
+
 init = tf.global_variables_initializer()
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
 
 #-----------------------------MODEL TRAINING------------------------------------
 
-sess = tf.Session()
+sess = tf.Session(config=config)
 sess.run(init)
 
 steps = []
@@ -207,19 +224,19 @@ for step in range(trainingSteps):
     if batchId == trainMaxIdx or step == 1:
         # end of epoch
         # calculate current loss on training data
-        loss_dumb = sess.run([m_dumb.loss], 
+        loss_dumb, loss_conv = sess.run([m_dumb.loss, m_conv.loss], 
                 feed_dict={_data: batchX, _labels: batchY})
 
-        loss_conv = sess.run([m_conv.loss], 
-                feed_dict={_data: batchX, _labels: batchY})
+        #loss_conv = sess.run([m_conv.loss], 
+        #        feed_dict={_data: batchX, _labels: batchY})
 
         # calculate validation loss
         validX, validY, _ = validation.next(batchSize)
-        vloss_dumb = sess.run([m_dumb.loss], 
+        vloss_dumb, vloss_conv = sess.run([m_dumb.loss, m_conv.loss], 
                 feed_dict={_data: validX, _labels: validY})
 
-        vloss_conv = sess.run([m_conv.loss], 
-                feed_dict={_data: validX, _labels: validY})
+        #vloss_conv = sess.run([m_conv.loss], 
+        #        feed_dict={_data: validX, _labels: validY})
 
         steps.append(step)
         losses_dumb.append(loss_dumb)
@@ -232,8 +249,8 @@ for step in range(trainingSteps):
              validWriter.add_summary(vloss, step)
              summWriter.add_summary(tLoss, step)
         if not step == 1: epochCount += 1
-        print("Step " + str(step) + "\n\tdumb batch loss = {:.4f}".format(vloss_dumb) + 
-            "\n\tconv batch loss = {:.4f}".format(vloss_conv))
+        print("Step " + str(step) + "\tdumb batch loss = {:.4f}".format(vloss_dumb) + 
+            "; conv batch loss = {:.4f}".format(vloss_conv))
 
         if epochCount % epochsToSave == 0 and SAVE_CKPT:
             save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
@@ -250,11 +267,16 @@ if SAVE_CKPT:
     f.write("final")
     f.close()
 
-    minLoss = min(losses, key = lambda t: t[1])
+    minLossDumb = min(enumerate(vlosses_dumb), key = lambda t: t[1])
+    minLossDumb = (steps[minLossDumb[0]], minLossDumb[1])
+    minLossConv = min(enumerate(vlosses_conv), key = lambda t: t[1])
+    minLossConv = (steps[minLossConv[0]], minLossConv[1])
     print("Training complete; model saved in file %s" % save)
-    print("Minimum loss:", str(minLoss))
+    print("Minimum dumb loss:", str(minLossDumb))
+    print("Minimum conv loss:", str(minLossConv))
     f = open(saveDir + dataFile, 'a')
-    f.write("# (step, loss)\n" + str(minLoss) + "\n")
+    f.write("# min dumb loss\n" + str(minLossDumb) + "\n")
+    f.write("# min conv loss\n" + str(minLossConv) + "\n")
     f.close()
 
 makePred()
