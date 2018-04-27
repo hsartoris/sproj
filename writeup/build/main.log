@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  27 APR 2018 04:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  27 APR 2018 17:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -747,6 +747,11 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_below_intertext_sep=\dimen197
 \l_MT_above_shortintertext_sep=\dimen198
 \l_MT_below_shortintertext_sep=\dimen199
+) (/usr/share/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count136
+\c@@ppsavesec=\count137
+\c@@ppsaveapp=\count138
 ) (/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
  (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
@@ -760,13 +765,13 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@parindent=\dimen261
 \caption@hangindent=\dimen262
 )
-\c@ContinuedFloat=\count136
+\c@ContinuedFloat=\count139
 Package caption Info: float package is loaded.
 Package caption Info: wrapfig package is loaded.
 ) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
-\c@subfigure=\count137
-\c@subtable=\count138
+\c@subfigure=\count140
+\c@subtable=\count141
 ) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
  (/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
@@ -777,9 +782,9 @@ Package ifvtex Info: VTeX not detected.
 ) (/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count139
-\Gm@cntv=\count140
-\c@Gm@tempcnt=\count141
+\Gm@cnth=\count142
+\Gm@cntv=\count143
+\c@Gm@tempcnt=\count144
 \Gm@bindingoffset=\dimen263
 \Gm@wd@mp=\dimen264
 \Gm@odd@mp=\dimen265
@@ -794,10 +799,10 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
 \arrowsize=\dimen271
-)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
 File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
-
-(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
+ (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
@@ -834,30 +839,30 @@ File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 ) (./resources/tikzpics.tex) (build/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
  ABD: EveryShipout initializing macros (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
+\scratchcounter=\count145
 \scratchdimen=\dimen276
 \scratchbox=\box66
-\nofMPsegments=\count143
-\nofMParguments=\count144
+\nofMPsegments=\count146
+\nofMParguments=\count147
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count145
+\MPscratchCnt=\count148
 \MPscratchDim=\dimen277
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
+\MPnumerator=\count149
+\makeMPintoPDFobject=\count150
 \everyMPtoPDFconversion=\toks46
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -899,7 +904,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into your preamble.
- on input line 25.
+ on input line 27.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -937,11 +942,11 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 29.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 29.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -956,110 +961,53 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- (./chapters/bg.tex [4
+ (./chapters/abstract.tex [4
 
-]
+] [1]) (./chapters/bg.tex
 Chapter 1.
-[5
+[2
 
-]) (./chapters/model.tex [6]
+]) (./chapters/model.tex [3]
 Chapter 2.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7
+ [4
 
-] (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) [8] [9] [10]
+] (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) [5] [6]
 <resources/3outex.png, id=51, 90.3375pt x 120.45pt>
 File: resources/3outex.png Graphic file (type png)
 <use resources/3outex.png>
-Package pdftex.def Info: resources/3outex.png  used on input line 165.
+Package pdftex.def Info: resources/3outex.png  used on input line 159.
 (pdftex.def)             Requested size: 66.77805pt x 89.03786pt.
- [11 <./resources/3outex.png>] [12]
+ [7] [8 <./resources/3outex.png>] [9]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
+ [10] [11]
+Underfull \vbox (badness 3942) has occurred while \output is active []
 
-./chapters/model.tex:290: Package amsmath Error: Multiple \label's: label 'eq:ID' will be lost.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.290 \end{gather}
-                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-./chapters/model.tex:290: Package amsmath Error: Multiple \label's: label 'eq:IDOD' will be lost.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.290 \end{gather}
-                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-./chapters/model.tex:307: Undefined control sequence.
-l.307 $\mathbb{W}_{tot}^\primt
-                              $, are trained on by the optimizer\footnote{SEE
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./chapters/model.tex:307: Missing { inserted.
-<to be read again> 
-                   $
-l.307 $\mathbb{W}_{tot}^\primt$
-                               , are trained on by the optimizer\footnote{SEE
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-./chapters/model.tex:307: Missing } inserted.
-<inserted text> 
-                }
-l.307 $\mathbb{W}_{tot}^\primt$
-                               , are trained on by the optimizer\footnote{SEE
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-[14]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]) (./chapters/train.tex [16]
+ [12]) (./chapters/train.tex [13]
 Chapter 3.
-) (./chapters/results.tex [17
+) (./chapters/results.tex [14
 
 ]
 Chapter 4.
 (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) (build/../resources/models/3neurEx/plot.tex
 PGFPlots: reading {../resources/models/3neurEx/losses}
-) [18
+) [15
 
 ]
-<resources/models/3neurEx/9/input.png, id=79, 90.3375pt x 240.9pt>
+<resources/models/3neurEx/9/input.png, id=83, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/9/input.png Graphic file (type png)
 <use resources/models/3neurEx/9/input.png>
 Package pdftex.def Info: resources/models/3neurEx/9/input.png  used on input line 52.
 (pdftex.def)             Requested size: 44.71523pt x 119.24034pt.
-<resources/models/3neurEx/9/out0.png, id=80, 271.0125pt x 150.5625pt>
+<resources/models/3neurEx/9/out0.png, id=84, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out0.png Graphic file (type png)
 <use resources/models/3neurEx/9/out0.png>
 Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 58.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
-<resources/models/3neurEx/9/out1.png, id=81, 271.0125pt x 150.5625pt>
+<resources/models/3neurEx/9/out1.png, id=85, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out1.png Graphic file (type png)
 <use resources/models/3neurEx/9/out1.png>
 Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 63.
@@ -1072,13 +1020,13 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `subsubsec:hotswap' on page 19 undefined on input line 90.
+LaTeX Warning: Reference `subsubsec:hotswap' on page 16 undefined on input line 90.
 
-[19] (build/../resources/tikzheader.tex)
+[16] (build/../resources/tikzheader.tex)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<resources/models/3neurEx/var1/input.png, id=86, 90.3375pt x 240.9pt>
+<resources/models/3neurEx/var1/input.png, id=89, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/var1/input.png Graphic file (type png)
 <use resources/models/3neurEx/var1/input.png>
 Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 129.
@@ -1086,24 +1034,37 @@ Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [20 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/../resources/tikzheader.tex) [21 <./resources/models/3neurEx/var1/input.png>]) [22] (build/main.aux)
+ [17 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/../resources/tikzheader.tex) [18 <./resources/models/3neurEx/var1/input.png>]) (./chapters/appendix.tex [19]
+Appendix A.
+
+Overfull \hbox (16.86209pt too wide) in paragraph at lines 3--3
+|[]\OT1/cmr/bx/n/24.88 Parameter Op-ti-miza-tion Mis-
+ []
+
+[20
+
+]
+Appendix B.
+) [21
+
+] (build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 27574 strings out of 492982
- 687320 string characters out of 6138579
- 840611 words of memory out of 5000000
- 30593 multiletter control sequences out of 15000+600000
+ 27674 strings out of 492982
+ 688782 string characters out of 6138579
+ 841007 words of memory out of 5000000
+ 30686 multiletter control sequences out of 15000+600000
  16241 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,19n,96p,746b,2068s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,96p,746b,2068s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (22 pages, 201020 bytes).
+Output written on build/main.pdf (25 pages, 206660 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
+ 156 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

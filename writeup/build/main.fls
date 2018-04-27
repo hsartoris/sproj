@@ -225,6 +225,8 @@ INPUT /usr/share/texmf-dist/tex/latex/tools/calc.sty
 INPUT /usr/share/texmf-dist/tex/latex/tools/calc.sty
 INPUT /usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
 INPUT /usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
+INPUT /usr/share/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT /usr/share/texmf-dist/tex/latex/appendix/appendix.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
@@ -329,6 +331,8 @@ OUTPUT build/main.toc
 INPUT build/main.lof
 INPUT build/main.lof
 OUTPUT build/main.lof
+INPUT chapters/abstract.tex
+INPUT chapters/abstract.tex
 INPUT chapters/bg.tex
 INPUT chapters/bg.tex
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
@@ -382,6 +386,8 @@ INPUT ./resources/models/3neurEx/var1/input.png
 INPUT ./resources/models/3neurEx/var1/input.png
 INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
+INPUT chapters/appendix.tex
+INPUT chapters/appendix.tex
 INPUT build/main.aux
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

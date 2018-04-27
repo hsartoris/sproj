@@ -64,9 +64,9 @@ $(n \times t)$.
 \subsubsection{Example Data Generation}
 Consider the network defined in figure \ref{fig:toyex}. Supposing that we 
 randomly spike neuron 0 at the first step, our initial state appears as such, 
-where $\mathbb{O}$ is the output matrix and $\mathbb{R}$ is an \textit{n}-vector 
-wherein each element has been randomly assigned 0 or 1, based on the spike rate 
-of the simulation:
+where $\mathbb{O}$ is the output matrix and $\mathbb{R}^0$ is an 
+\textit{n}-vector wherein each element has been randomly assigned 0 or 1, based 
+on the spike rate of the simulation:
 \[
 	\mathbb{M} = \begin{bmatrix}
 		0 & 0 & 0 \\
@@ -74,11 +74,12 @@ of the simulation:
 		1 & 1 & 0
 	\end{bmatrix} \qquad
 	\mathbb{S}^0 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \qquad
-	\mathbb{O} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
+	\mathbb{O} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \qquad
+	\mathbb{R}^0 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}
 \]
 We now compute $\mathbb{S}^1$ as above:
 \[
-	\mathbb{S}^1 = (\mathbb{M} \times \mathbb{S}^0) + \mathbb{R} = 
+	\mathbb{S}^1 = (\mathbb{M} \times \mathbb{S}^0) + \mathbb{R}^0 = 
 		\left(\begin{bmatrix}
 		0 & 0 & 0 \\
 		1 & 0 & 0 \\
@@ -105,7 +106,9 @@ If we were to repeat this process several more times, we might end up with an
 output matrix such as in figure \ref{fig:exoutput}.
 \begin{figure}[H]
 \[
-	\mathbb{O} = \begin{bmatrix}
+	\mathbb{O} = \left[ \mathbb{S}^0 \mid
+		\mathbb{S}^1 \mid \mathbb{S}^2 \mid \mathbb{S}^3 \mid \mathbb{S}^4 
+	\right] = \begin{bmatrix}
 		1 & 0 & 1 & 0 & 0\\
 		0 & 1 & 0 & 1 & 0\\
 		0 & 1 & 1 & 1 & 1
@@ -117,15 +120,6 @@ output matrix such as in figure \ref{fig:exoutput}.
 We can clearly see the effects of neuron 2 having inputs from both other 
 neurons. Practically, the number of iterations was usually set to 50.
 
-\subsection{Generalizability}
-\label{subsec:hotswap}
-In most ANN implementations, feeding various data with the same label attached 
-to it results in the network learning to ignore the input data and always return 
-the desired label, rendering it useless. However, due to the unique structure of 
-our model, this sort of overfitting is impossible (SEE SOME ARCHITECTURE 
-SECTION).  Therefore, we must merely construct a suitably representative 
-generator network, meaning that it contains all of the inter-neuron 
-relationships we expect to see in the data we ultimately feed in to test.
 
 \subsection{Restructuring}
 The model accepts data in the form of a spike-time raster plot of dimensions $(n 
@@ -171,6 +165,16 @@ truncating the time dimension to four, results in the following:
 The representation of the matrix in \ref{subfig:3outexgraph} is an example of 
 the method we will use to depict matrices containing real values.
 
+\subsection{Generalizability}
+\label{subsec:hotswap}
+In most ANN implementations, feeding various data with the same label attached 
+to it results in the network learning to ignore the input data and always return 
+the desired label, rendering it useless. However, due to the unique structure of 
+our model, this sort of overfitting is impossible (SEE SOME ARCHITECTURE 
+SECTION).  Therefore, we must merely construct a suitably representative 
+generator network, meaning that it contains all of the inter-neuron 
+relationships we expect to see in the data we ultimately feed in to test.
+
 \section{Architecture}
 We will first describe the architecture in terms that, while accurate on the 
 macro level, do not fully reflect the actual transformations occuring in the 
@@ -184,7 +188,7 @@ Only two values characterize the matrices and transitions involved in the model.
 They are as follows:
 \begin{description}
 	\item \textit{b}: The number of steps of input data the model considers in a 
-		given piece of data.
+		given segment of data.
 	\item \textit{d}: The length of the vectors characterizing each potential 
 		connection \textit{ij}. This restricts the maximum information about 
 		each potential neuron pair that the model can maintain across layer 
@@ -234,7 +238,8 @@ In this layer, we incorporate information from all nodes potentially adjacent to
 each edge \textit{ij}. From our previous layer, we have a matrix of shape $(d 
 \times n^2)$ that we will refer to as $\mathbb{D}^{\prime}$, but it will be 
 useful to keep in mind an alternate representation of that matrix, one in three 
-dimensions, which we shall refer to as $\mathbb{D}_N^{\prime}$.
+dimensions, which we shall refer to as $\mathbb{D}_N^{\prime}$. This 
+transformation is demonstrated in figure \ref{fig:transform}.
 
 \begin{figure}[H]
 \begin{tikzpicture}
@@ -251,7 +256,8 @@ xlabel=n, ylabel=n, zlabel=d, scale=\scale}};
 	\node at (6.3, -3) {\scalebox{1.5}{$\mathbb{D}_N^{\prime}$}};
 \end{tikzpicture}
 \caption{Relationship between $\mathbb{D}^{\prime}$ and 
-$\mathbb{D}^{\prime}_N$.}
+	$\mathbb{D}^{\prime}_N$.}
+\label{fig:transform}
 \end{figure}\noindent
 Consider some $d_{ij}^{\prime}$ in $\mathbb{D}^{\prime}_N$. Then we can say the 
 following:
@@ -267,10 +273,11 @@ following:
 In our determination of the presence or absence of a connection from \textit{j} 
 to \textit{i}, we wish to incorporate information from these potentially 
 connected nodes; i.e., these inputs and outputs represent potential neighbors in 
-a graph locality sense. To achieve this, we perform the following 
+terms of graph locality. To achieve this, we perform the following 
 computations\footnote{Actually, it's much more elegant.} for each $\underset{d 
 \times 1}{d_{ij}}$:
-\begin{gather}
+\begin{subequations}
+	\centering
 	\begin{align}
 		\label{eq:ID}
 		\underset{d \times 1}{\mathbb{I}} &= \frac{1}{n} \sum_{k=0}^{n-1} 
@@ -283,11 +290,12 @@ d_{ij}^{\prime}\right) & \underset{d \times 1}{\mathbb{O_D}} &= \underset{d
 \times d}{\mathbb{W}_{out}^\prime} \times \left(\mathbb{O} \odot 
 d_{ij}^{\prime}\right)
 	\end{align}
-	\shortintertext{\centering Here we arrive at the output,
-	$d_{ij}^{\prime\prime}$:}
-	d_{ij}^{\prime\prime} = \underset{d \times 2d}{\mathbb{W}_{tot}^\prime} 
-	\times \left(\frac{\mathbb{I_D}}{\mathbb{O_D}}\right) \label{eq:dijO}
-\end{gather}
+	\text{Here we arrive at the output, $d_{ij}^{\prime\prime}$:}
+	\begin{equation}
+		d_{ij}^{\prime\prime} = \underset{d \times 2d}{\mathbb{W}_{tot}^\prime} 
+		\times \left(\frac{\mathbb{I_D}}{\mathbb{O_D}}\right) \label{eq:dijO}
+\end{equation}
+\end{subequations}
 Conceptually, in \eqref{eq:ID} we first average all potential inputs to and 
 outputs from potential edge \textit{ij}. Then, we compute an entrywise product 
 ($\odot$) of these vectors with the vector describing the edge in question, 
@@ -304,11 +312,11 @@ matrix $\mathbb{W}_{tot}^\prime$, allows the network to optimize for whichever
 elements in $\mathbb{I_D}$ and $\mathbb{O_D}$ are most important in the 
 prediction of \textit{ij}. The three matrices involved, 
 $\mathbb{W}_{in}^\prime$, $\mathbb{W}_{out}^\prime$, and 
-$\mathbb{W}_{tot}^\primt$, are trained on by the optimizer\footnote{SEE 
+$\mathbb{W}_{tot}^\prime$, are trained on by the optimizer\footnote{SEE 
 OPTIMIZER SECION IN TRAINING}, allowing the model to learn optimal processing 
 and combinations to facilitate predictions.
 
-Our concatenation approacb in \eqref{eq:dijO} stands in contrast to the strategy 
+Our concatenation approach in \eqref{eq:dijO} stands in contrast to the strategy 
 taken in \eqref{eq:IDOD}, where integration of the input and output data is 
 forced via entrywise product computation. While we considered the same 
 concatenation process for use in \eqref{eq:IDOD}, the apparent difficulty of 

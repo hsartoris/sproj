@@ -1,14 +1,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Example of 3-neuron network and adjacency matrix.\relax }}{8}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Example output matrix for a 3-neuron network simulated for five steps.\relax }}{10}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Transposed and truncated matrix and associated visualization.\relax }}{11}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Relationship between $\mathbb {D}^{\prime }$ and $\mathbb {D}^{\prime }_N$.\relax }}{14}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Example of 3-neuron network and adjacency matrix.\relax }}{5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Example output matrix for a 3-neuron network simulated for five steps.\relax }}{7}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Transposed and truncated matrix and associated visualization.\relax }}{8}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Relationship between $\mathbb {D}^{\prime }$ and $\mathbb {D}^{\prime }_N$.\relax }}{11}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{18}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Training loss and parameters for model described in 4.1.1\hbox {}\relax }}{19}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Path of data through network, up to final transform\relax }}{20}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Output for input data in figure 4.3a\hbox {}\relax }}{20}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Inverted version of figure 4.1\hbox {}\relax }}{21}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Cyclical 3-neuron network\relax }}{21}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{15}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Training loss and parameters for model described in 4.1.1\hbox {}\relax }}{16}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Path of data through network, up to final transform\relax }}{17}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Output for input data in figure 4.3a\hbox {}\relax }}{17}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Inverted version of figure 4.1\hbox {}\relax }}{18}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Cyclical 3-neuron network\relax }}{18}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

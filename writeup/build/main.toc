@@ -1,34 +1,39 @@
-\contentsline {chapter}{\numberline {1}Background}{5}
-\contentsline {section}{\numberline {1.1}Biological Neural Networks}{5}
-\contentsline {section}{\numberline {1.2}Graph Structures}{5}
-\contentsline {subsection}{\numberline {1.2.1}Graph Locality}{5}
-\contentsline {section}{\numberline {1.3}Convolutional Neural Networks}{5}
-\contentsline {section}{\numberline {1.4}Concepts and Terms}{5}
-\contentsline {subsection}{\numberline {1.4.1}Adjacency Matrices}{5}
-\contentsline {chapter}{\numberline {2}Model}{7}
-\contentsline {section}{\numberline {2.1}Data}{7}
-\contentsline {subsection}{\numberline {2.1.1}Generation}{8}
-\contentsline {subsubsection}{Example Data Generation}{9}
-\contentsline {subsection}{\numberline {2.1.2}Generalizability}{10}
-\contentsline {subsection}{\numberline {2.1.3}Restructuring}{10}
-\contentsline {section}{\numberline {2.2}Architecture}{11}
-\contentsline {subsection}{\numberline {2.2.1}Structure \& Computation Details}{12}
-\contentsline {subsubsection}{Dimensionality-defining Variables}{12}
-\contentsline {subsubsection}{Activation Functions}{12}
-\contentsline {subsection}{\numberline {2.2.2}First Transition}{13}
-\contentsline {subsection}{\numberline {2.2.3}Convolutional Layer}{13}
-\contentsline {subsection}{\numberline {2.2.4}Final Transition}{16}
-\contentsline {chapter}{\numberline {3}Training}{17}
-\contentsline {section}{\numberline {3.1}Datasets}{17}
-\contentsline {section}{\numberline {3.2}Matrix Initialization}{17}
-\contentsline {section}{\numberline {3.3}Hyperparameter Optimization}{17}
-\contentsline {subsection}{\numberline {3.3.1}Loss Optimization}{17}
-\contentsline {subsubsection}{Loss Function}{17}
-\contentsline {subsubsection}{Optimizer Function}{17}
-\contentsline {chapter}{\numberline {4}Results}{18}
-\contentsline {section}{\numberline {4.1}3-neuron generator}{18}
-\contentsline {subsection}{\numberline {4.1.1}Example Model}{19}
-\contentsline {subsubsection}{Trained Network Operation}{19}
-\contentsline {section}{\numberline {4.2}Applicability Beyond Training Data}{20}
-\contentsline {subsection}{\numberline {4.2.1}Inverted Network}{21}
-\contentsline {subsection}{\numberline {4.2.2}Cyclical Network}{21}
+\contentsline {chapter}{\numberline {1}Background}{2}
+\contentsline {section}{\numberline {1.1}Biological Neural Networks}{2}
+\contentsline {section}{\numberline {1.2}Graph Structures}{2}
+\contentsline {subsection}{\numberline {1.2.1}Graph Locality}{2}
+\contentsline {section}{\numberline {1.3}Convolutional Neural Networks}{2}
+\contentsline {section}{\numberline {1.4}Concepts and Terms}{2}
+\contentsline {subsection}{\numberline {1.4.1}Adjacency Matrices}{2}
+\contentsline {chapter}{\numberline {2}Model}{4}
+\contentsline {section}{\numberline {2.1}Data}{4}
+\contentsline {subsection}{\numberline {2.1.1}Generation}{5}
+\contentsline {subsubsection}{Example Data Generation}{6}
+\contentsline {subsection}{\numberline {2.1.2}Restructuring}{7}
+\contentsline {subsection}{\numberline {2.1.3}Generalizability}{8}
+\contentsline {section}{\numberline {2.2}Architecture}{8}
+\contentsline {subsection}{\numberline {2.2.1}Structure \& Computation Details}{9}
+\contentsline {subsubsection}{Dimensionality-defining Variables}{9}
+\contentsline {subsubsection}{Activation Functions}{9}
+\contentsline {subsection}{\numberline {2.2.2}First Transition}{10}
+\contentsline {subsection}{\numberline {2.2.3}Convolutional Layer}{10}
+\contentsline {subsection}{\numberline {2.2.4}Final Transition}{13}
+\contentsline {chapter}{\numberline {3}Training}{14}
+\contentsline {section}{\numberline {3.1}Datasets}{14}
+\contentsline {section}{\numberline {3.2}Matrix Initialization}{14}
+\contentsline {section}{\numberline {3.3}Hyperparameter Optimization}{14}
+\contentsline {subsection}{\numberline {3.3.1}Loss Optimization}{14}
+\contentsline {subsubsection}{Loss Function}{14}
+\contentsline {subsubsection}{Optimizer Function}{14}
+\contentsline {chapter}{\numberline {4}Results}{15}
+\contentsline {section}{\numberline {4.1}3-neuron generator}{15}
+\contentsline {subsection}{\numberline {4.1.1}Example Model}{16}
+\contentsline {subsubsection}{Trained Network Operation}{16}
+\contentsline {section}{\numberline {4.2}Applicability Beyond Training Data}{17}
+\contentsline {subsection}{\numberline {4.2.1}Inverted Network}{18}
+\contentsline {subsection}{\numberline {4.2.2}Cyclical Network}{18}
+\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{20}
+\contentsline {section}{\numberline {A.1}Data}{20}
+\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{20}
+\contentsline {chapter}{\numberline {B}Model}{21}
+\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{21}
