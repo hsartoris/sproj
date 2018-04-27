@@ -1,4 +1,0 @@
-1. choose two random nodes and add an edge
-2. choose random node in network & random node out of network; add edge between. repeat until all nodes are in network.
-
-for some 2d weight array w, w[i] is an array of weights inputting to node i

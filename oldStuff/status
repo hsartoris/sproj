@@ -1,6 +1,0 @@
-1. moving back to adam optimizer
-	a. removing specified learning rates
-
-2. disabling saving and logging until things are worth doing either of those for
-
-

@@ -1,4 +1,0 @@
-#!/bin/bash
-python test.py
-./GraphCSV.py neurotop/runMe.csv
-feh neurotop/runMe.png
