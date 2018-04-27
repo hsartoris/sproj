@@ -9,9 +9,8 @@ if not len(sys.argv) == 2:
 struct = np.loadtxt(sys.argv[1], delimiter=',')
 
 n = struct.shape[0]
-print("-"*(n+2))
+print(" " + "-"*(n+2))
 for i in range(n):
-    print("".join([("#" if x > 0 else " ") for x in struct[n]]))
-
-print("-"*(n+2))
+    print(i,"|" + "".join([("#" if x > 0 else " ") for x in struct[i]]) + "|")
+print(" " + "-"*(n+2))
 
