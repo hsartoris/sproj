@@ -87,6 +87,9 @@ def level1mat():
 def watchCount(spikeDir):
     subprocess.call('watch -n 1 "ls ' + spikeDir + ' | wc -l"', shell=True)
 
+def emptyData():
+
+
 if __name__=="__main__":
 
     mat, spikeProb = tenNeurNet()
