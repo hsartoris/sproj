@@ -1,13 +1,15 @@
 \documentclass[12pt,twoside]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{titlesec, amsmath, amsfonts, pgf, tikz, adjustbox, pgfplots, 
-filecontents, graphicx, wrapfig, relsize}
+filecontents, graphicx, wrapfig, relsize, float, mathtools}
 \usepackage[font=small, labelfont=it]{caption}
 \usepackage[font=small, labelfont=normalfont]{subcaption}
 \usepackage[margin=1.5in]{geometry}
 \renewcommand{\baselinestretch}{1.5}
 \usetikzlibrary{arrows, automata, positioning, quotes, arrows.meta}
 \input{resources/tikzpics.tex}
+
+\renewcommand\theequation{\bfseries\thechapter.\arabic{equation}}
 
 \titleformat{\chapter}[hang]
 {\normalfont\huge\bfseries}{\ \thechapter}{1em}{}
@@ -26,13 +28,13 @@ filecontents, graphicx, wrapfig, relsize}
 \tableofcontents
 \listoffigures
 
-\input{chapters/chapter_bg.tex}
+\input{chapters/bg.tex}
 
-\input{chapters/chapter_model.tex}
+\input{chapters/model.tex}
 
-\input{chapters/chapter_train.tex}
+\input{chapters/train.tex}
 
-\input{chapters/chapter_results.tex}
+\input{chapters/results.tex}
 
 
 \end{document}

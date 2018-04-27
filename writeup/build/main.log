@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  26 APR 2018 14:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  27 APR 2018 00:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -710,25 +710,63 @@ Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaTe
 Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/share/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
+) (/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count131
+\float@exts=\toks42
+\float@box=\box44
+\@float@everytoks=\toks43
+\@floatcapt=\box45
+) (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+ (/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count132
+\calc@Bcount=\count133
+\calc@Adimen=\dimen191
+\calc@Bdimen=\dimen192
+\calc@Askip=\skip48
+\calc@Bskip=\skip49
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count134
+\calc@Cskip=\skip50
+) (/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count135
+\l_MT_multwidth_dim=\dimen193
+\origjot=\skip51
+\l_MT_shortvdotswithinadjustabove_dim=\dimen194
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen195
+\l_MT_above_intertext_sep=\dimen196
+\l_MT_below_intertext_sep=\dimen197
+\l_MT_above_shortintertext_sep=\dimen198
+\l_MT_below_shortintertext_sep=\dimen199
 ) (/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
  (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen191
-\captionmargin@=\dimen192
-\captionwidth=\dimen193
-\caption@tempdima=\dimen194
-\caption@indent=\dimen195
-\caption@parindent=\dimen196
-\caption@hangindent=\dimen197
+\captionmargin=\dimen256
+\captionmargin@=\dimen257
+\captionwidth=\dimen258
+\caption@tempdima=\dimen259
+\caption@indent=\dimen260
+\caption@parindent=\dimen261
+\caption@hangindent=\dimen262
 )
-\c@ContinuedFloat=\count131
+\c@ContinuedFloat=\count136
+Package caption Info: float package is loaded.
 Package caption Info: wrapfig package is loaded.
 ) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
-\c@subfigure=\count132
-\c@subtable=\count133
+\c@subfigure=\count137
+\c@subtable=\count138
 ) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
  (/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
@@ -739,88 +777,88 @@ Package ifvtex Info: VTeX not detected.
 ) (/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count134
-\Gm@cntv=\count135
-\c@Gm@tempcnt=\count136
-\Gm@bindingoffset=\dimen198
-\Gm@wd@mp=\dimen199
-\Gm@odd@mp=\dimen256
-\Gm@even@mp=\dimen257
-\Gm@layoutwidth=\dimen258
-\Gm@layoutheight=\dimen259
-\Gm@layouthoffset=\dimen260
-\Gm@layoutvoffset=\dimen261
-\Gm@dimlist=\toks42
+\Gm@cnth=\count139
+\Gm@cntv=\count140
+\c@Gm@tempcnt=\count141
+\Gm@bindingoffset=\dimen263
+\Gm@wd@mp=\dimen264
+\Gm@odd@mp=\dimen265
+\Gm@even@mp=\dimen266
+\Gm@layoutwidth=\dimen267
+\Gm@layoutheight=\dimen268
+\Gm@layouthoffset=\dimen269
+\Gm@layoutvoffset=\dimen270
+\Gm@dimlist=\toks44
 ) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen262
+\arrowsize=\dimen271
 )) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
 File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
- (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
+
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-\pgfnodepartlowerbox=\box44
-\pgfnodeparttwobox=\box45
-\pgfnodepartthreebox=\box46
-\pgfnodepartfourbox=\box47
-\pgfnodeparttwentybox=\box48
-\pgfnodepartnineteenbox=\box49
-\pgfnodeparteighteenbox=\box50
-\pgfnodepartseventeenbox=\box51
-\pgfnodepartsixteenbox=\box52
-\pgfnodepartfifteenbox=\box53
-\pgfnodepartfourteenbox=\box54
-\pgfnodepartthirteenbox=\box55
-\pgfnodeparttwelvebox=\box56
-\pgfnodepartelevenbox=\box57
-\pgfnodeparttenbox=\box58
-\pgfnodepartninebox=\box59
-\pgfnodeparteightbox=\box60
-\pgfnodepartsevenbox=\box61
-\pgfnodepartsixbox=\box62
-\pgfnodepartfivebox=\box63
-)))
-(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+\pgfnodepartlowerbox=\box46
+\pgfnodeparttwobox=\box47
+\pgfnodepartthreebox=\box48
+\pgfnodepartfourbox=\box49
+\pgfnodeparttwentybox=\box50
+\pgfnodepartnineteenbox=\box51
+\pgfnodeparteighteenbox=\box52
+\pgfnodepartseventeenbox=\box53
+\pgfnodepartsixteenbox=\box54
+\pgfnodepartfifteenbox=\box55
+\pgfnodepartfourteenbox=\box56
+\pgfnodepartthirteenbox=\box57
+\pgfnodeparttwelvebox=\box58
+\pgfnodepartelevenbox=\box59
+\pgfnodeparttenbox=\box60
+\pgfnodepartninebox=\box61
+\pgfnodeparteightbox=\box62
+\pgfnodepartsevenbox=\box63
+\pgfnodepartsixbox=\box64
+\pgfnodepartfivebox=\box65
+))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 ) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
 File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
 ) (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
-\pgfarrowinset=\dimen263
-\pgfarrowlength=\dimen264
-\pgfarrowwidth=\dimen265
-\pgfarrowlinewidth=\dimen266
+\pgfarrowinset=\dimen272
+\pgfarrowlength=\dimen273
+\pgfarrowwidth=\dimen274
+\pgfarrowlinewidth=\dimen275
 ) (./resources/tikzpics.tex) (build/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
  ABD: EveryShipout initializing macros (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count137
-\scratchdimen=\dimen267
-\scratchbox=\box64
-\nofMPsegments=\count138
-\nofMParguments=\count139
-\everyMPshowfont=\toks43
-\MPscratchCnt=\count140
-\MPscratchDim=\dimen268
-\MPnumerator=\count141
-\makeMPintoPDFobject=\count142
-\everyMPtoPDFconversion=\toks44
+\scratchcounter=\count142
+\scratchdimen=\dimen276
+\scratchbox=\box66
+\nofMPsegments=\count143
+\nofMParguments=\count144
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count145
+\MPscratchDim=\dimen277
+\MPnumerator=\count146
+\makeMPintoPDFobject=\count147
+\everyMPtoPDFconversion=\toks46
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
@@ -861,7 +899,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into your preamble.
- on input line 23.
+ on input line 25.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -899,11 +937,11 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 25.
+LaTeX Font Info:    Try loading font information for U+msa on input line 27.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 25.
+LaTeX Font Info:    Try loading font information for U+msb on input line 27.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -918,55 +956,113 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- (./chapters/chapter_bg.tex [4
+ (./chapters/bg.tex [4
 
 ]
 Chapter 1.
 [5
 
-]) (./chapters/chapter_model.tex [6]
+]) (./chapters/model.tex [6]
 Chapter 2.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7
 
-] [8]
+] (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) [8] [9] [10]
+<resources/3outex.png, id=51, 90.3375pt x 120.45pt>
+File: resources/3outex.png Graphic file (type png)
+<use resources/3outex.png>
+Package pdftex.def Info: resources/3outex.png  used on input line 165.
+(pdftex.def)             Requested size: 66.77805pt x 89.03786pt.
+ [11 <./resources/3outex.png>] [12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-Underfull \vbox (badness 2961) has occurred while \output is active []
+ [13]
 
- [10]
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
+./chapters/model.tex:290: Package amsmath Error: Multiple \label's: label 'eq:ID' will be lost.
 
- []
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.290 \end{gather}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-) (./chapters/chapter_train.tex [11]
+
+./chapters/model.tex:290: Package amsmath Error: Multiple \label's: label 'eq:IDOD' will be lost.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.290 \end{gather}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./chapters/model.tex:307: Undefined control sequence.
+l.307 $\mathbb{W}_{tot}^\primt
+                              $, are trained on by the optimizer\footnote{SEE
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/model.tex:307: Missing { inserted.
+<to be read again> 
+                   $
+l.307 $\mathbb{W}_{tot}^\primt$
+                               , are trained on by the optimizer\footnote{SEE
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./chapters/model.tex:307: Missing } inserted.
+<inserted text> 
+                }
+l.307 $\mathbb{W}_{tot}^\primt$
+                               , are trained on by the optimizer\footnote{SEE
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15]) (./chapters/train.tex [16]
 Chapter 3.
-) (./chapters/chapter_results.tex [12
+) (./chapters/results.tex [17
 
 ]
 Chapter 4.
 (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) (build/../resources/models/3neurEx/plot.tex
 PGFPlots: reading {../resources/models/3neurEx/losses}
-) [13
+) [18
 
 ]
-<resources/models/3neurEx/9/input.png, id=61, 90.3375pt x 240.9pt>
+<resources/models/3neurEx/9/input.png, id=79, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/9/input.png Graphic file (type png)
 <use resources/models/3neurEx/9/input.png>
-Package pdftex.def Info: resources/models/3neurEx/9/input.png  used on input line 53.
+Package pdftex.def Info: resources/models/3neurEx/9/input.png  used on input line 52.
 (pdftex.def)             Requested size: 44.71523pt x 119.24034pt.
-<resources/models/3neurEx/9/out0.png, id=63, 271.0125pt x 150.5625pt>
+<resources/models/3neurEx/9/out0.png, id=80, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out0.png Graphic file (type png)
 <use resources/models/3neurEx/9/out0.png>
-Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 59.
+Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 58.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
-<resources/models/3neurEx/9/out1.png, id=64, 271.0125pt x 150.5625pt>
+<resources/models/3neurEx/9/out1.png, id=81, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out1.png Graphic file (type png)
 <use resources/models/3neurEx/9/out1.png>
-Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 64.
+Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 63.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
 
 
@@ -975,32 +1071,39 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] (build/../resources/tikzheader.tex)
+
+LaTeX Warning: Reference `subsubsec:hotswap' on page 19 undefined on input line 90.
+
+[19] (build/../resources/tikzheader.tex)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<resources/models/3neurEx/var1/input.png, id=68, 90.3375pt x 240.9pt>
+<resources/models/3neurEx/var1/input.png, id=86, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/var1/input.png Graphic file (type png)
 <use resources/models/3neurEx/var1/input.png>
-Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 130.
+Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 129.
 (pdftex.def)             Requested size: 39.75092pt x 106.00366pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/../resources/tikzheader.tex) [16 <./resources/models/3neurEx/var1/input.png>]) [17] (build/main.aux) ) 
+ [20 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/../resources/tikzheader.tex) [21 <./resources/models/3neurEx/var1/input.png>]) [22] (build/main.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 26964 strings out of 492982
- 676746 string characters out of 6138579
- 824450 words of memory out of 5000000
- 30003 multiletter control sequences out of 15000+600000
- 14993 words of font info for 57 fonts, out of 8000000 for 9000
+ 27574 strings out of 492982
+ 687320 string characters out of 6138579
+ 840609 words of memory out of 5000000
+ 30593 multiletter control sequences out of 15000+600000
+ 16241 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,16n,96p,746b,2064s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,19n,96p,746b,2068s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (17 pages, 177430 bytes).
+Output written on build/main.pdf (22 pages, 200697 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
+ 145 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

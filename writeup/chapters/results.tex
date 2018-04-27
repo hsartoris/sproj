@@ -6,9 +6,8 @@
 \section{3-neuron generator}
 \label{results_3neur}
 We first consider a generator network consisting of three nodes connected as in 
-FIGURE HERE (should contain visual structure and adjacency matrix). All weights 
-are binary, and a spike rate of .25 was used.\footnote{SEE APPENDIX	for 
-information on spike rates}
+figure \ref{fig:2simplex+adjacency}. All weights are binary, and a spike rate of 
+.25 was used.\footnote{SEE APPENDIX	for information on spike rates}
 
 \begin{table}[h]
 	\centering
@@ -21,10 +20,10 @@ information on spike rates}
 		1 & 1 & 0 & 0\\
 		2 & 1 & 1 & 0
 	\end{tabular}
-	\captionof{figure}{Network structure and adjacency matrix of the generator.}
+	\captionof{figure}{Network structure and adjacency matrix of the generator.  
+	(Reproduced from Figure \ref{fig:toyex})}
 	\label{fig:2simplex+adjacency}
-\end{table}
-
+\end{table}\noindent
 While reconstructing a graph comprising only three nodes is not much of a feat, 
 this simplified case allows us to demonstrate that our convolutional approach is 
 capable of reconstruction at all. Furthermore, the small network size requires 
