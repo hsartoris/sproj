@@ -58,6 +58,7 @@ class Model():
             stddev=.5)))
         ###
         '''
+        self.activation = tf.nn.relu
         self.n = n
         self.lr = learnRate
         self.data = data
@@ -94,9 +95,8 @@ class Model():
         # print(<thing>.get_shape().as_list()
         total = tf.concat([tf.einsum('ijk,kl->ijl',self.data,self.expand), 
             tf.tile(self.data,[1,1,self.n])], 1)
-        return tf.nn.relu(tf.add(tf.einsum('ij,kjl->kil', self.weights['layer0'], total),
-                tf.tile(self.biases['layer0'], 
-                [self.batchSize,1,self.n*self.n])))
+        return self.activation(tf.add(tf.einsum('ij,kjl->kil', self.weights['layer0'], 
+                total), tf.tile(self.biases['layer0'], [self.batchSize,1,self.n*self.n])))
 
     @lazy_property
     def layer0_1(self):
