@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1524801743 "main.tex" "build/main.pdf" "main" 1524801743
+["pdflatex"] 1524816299 "main.tex" "build/main.pdf" "main" 1524816299
   "/home/hsartoris/texmf/tex/latex/local/wrapfig.sty" 1524457044 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1520157226 1004 54797486969f23fa377b128694d548df ""
@@ -218,13 +218,13 @@
   "build/../resources/models/3neurEx/losses" 1524350012 313 57b9e030d44319cfbc7ac48cb2b48e48 ""
   "build/../resources/models/3neurEx/plot.tex" 1524353588 780 c15c8b3459eb1366a0934fb0a66339d2 ""
   "build/../resources/tikzheader.tex" 1524341309 167 4f8ce466adf258832d387dab2de30530 ""
-  "build/main.aux" 1524801739 5484 3afa6e86f45a588df61fe8074d1c7b89 ""
-  "build/main.lof" 1524801739 1340 587ea0226ccf3c153c9f8cf29cb2ab15 ""
-  "build/main.toc" 1524801739 2122 07ea7f0428b9bcad653bafe2198be2ed ""
+  "build/main.aux" 1524816239 5484 3afa6e86f45a588df61fe8074d1c7b89 ""
+  "build/main.lof" 1524816239 1340 587ea0226ccf3c153c9f8cf29cb2ab15 ""
+  "build/main.toc" 1524816239 2122 07ea7f0428b9bcad653bafe2198be2ed ""
   "chapters/bg.tex" 1524789024 1723 0817b3ba00ec7ab6b39641b28640a64c ""
   "chapters/model.tex" 1524801741 15736 3074b711c2c4a7972a164ab8df4a0365 ""
-  "chapters/results.tex" 1524788406 5581 50cb883547c9fbf0554862c7112d21e9 ""
-  "chapters/train.tex" 1524766192 163 de929791bc9d53d958779f2c607a9814 ""
+  "chapters/results.tex" 1524816235 5584 1a4a34d08fad773fdf69b5f6741ab3fb ""
+  "chapters/train.tex" 1524816299 211 3f7b23cd71ec867c0c1d9f39bed67045 ""
   "main.tex" 1524797404 997 d9760fa1707256827645fc1d98728489 ""
   "resources/3outex.png" 1524791845 710 b24f286ebfc92bbe19efe2f981e41554 ""
   "resources/models/3neurEx/9/input.png" 1524456098 979 6010ba46d33631109ec345b569adc366 ""
@@ -233,8 +233,8 @@
   "resources/models/3neurEx/var1/input.png" 1524599058 999 e677c5526140cf2d7fc5d3e22a399130 ""
   "resources/tikzpics.tex" 1524697271 1742 ed1b8bd77672ccd7694aa12f450a3ee3 ""
   (generated)
+  "build/main.log"
+  "build/main.aux"
   "build/main.pdf"
   "build/main.lof"
-  "build/main.log"
   "build/main.toc"
-  "build/main.aux"
