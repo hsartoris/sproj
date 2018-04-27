@@ -129,11 +129,21 @@ if __name__=="__main__":
         threads.append(Process(target=simulate, args=(mat, params, outDir, q)))
     # mat now defined above, look at it dumbass
     # for 2-simplex, .25 is probably a good rate
-    #mat = genSimplex(neurons)
+    mat = genSimplex(3)
     #mat = smallNetVar3()
     #mat = tenNeurNet()
     #mat = complexMat(1)
     #threads.append(Process(target=watchCount, args=(spikeDir, )))
+    empty = True
+    if empty:
+        mat = genSimplex(3)
+        spikes = np.zeros((3, steps))
+        for i in range(runs):
+            np.savetxt(outDir + "spikes/" + str(i) + ".csv", spikes,
+                    delimiter=',', fmt='%i')
+        np.savetxt(outDir + "struct", mat, delimiter=',')
+        exit()
+
     for i in range(len(threads)):
         threads[i].start()
 
