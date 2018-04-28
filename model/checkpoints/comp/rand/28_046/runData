@@ -14,3 +14,7 @@
 dataStaging/rand25k/
 # testMaxIdx, validMaxIdx, trainMaxIdx
 25000, 22500, 18000
+# min dumb loss
+(16859, 0.48756027)
+# min conv loss
+(16859, 0.50206774)

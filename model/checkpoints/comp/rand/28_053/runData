@@ -1,0 +1,20 @@
+# b
+8
+# d
+5
+# n
+3
+# batchSize
+32
+# initLearnRate
+0.0005
+# trainingSteps
+20000
+# prefix
+dataStaging/rand25k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+25000, 22500, 18000
+# min dumb loss
+(10677, 0.49639806)
+# min conv loss
+(16859, 0.5056311)
