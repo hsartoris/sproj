@@ -151,7 +151,7 @@ if __name__=="__main__":
         if not random:
             threads.append(Process(target=simulate, args=(mat, params, outDir, q)))
         else:
-            thread.append(Process(target=saveRandomData, args=(3, params, outDir, q)))
+            threads.append(Process(target=saveRandomData, args=(3, params, outDir, q)))
     # mat now defined above, look at it dumbass
     # for 2-simplex, .25 is probably a good rate
     #mat = genSimplex(3)
