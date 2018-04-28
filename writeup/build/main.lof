@@ -9,12 +9,12 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Sigmoid function definition and graph\relax }}{14}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces \linespread {1.2}\selectfont {}Training parameters for null hypothesis network\relax }}{17}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{18}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Training loss and parameters for model described in 4.2.1\hbox {}\relax }}{19}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Path of data through network, up to final transform\relax }}{19}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Output for input data in figure 4.4a\hbox {}\relax }}{20}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Inverted version of figure 4.2\hbox {}\relax }}{20}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Cyclical 3-neuron network\relax }}{21}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{18}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Training loss and parameters for model described in 4.2.1\hbox {}\relax }}{19}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network, up to final transform\relax }}{20}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Output for input data in figure 4.5a\hbox {}\relax }}{20}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Inverted version of figure 4.3\hbox {}\relax }}{21}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Cyclical 3-neuron network\relax }}{21}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

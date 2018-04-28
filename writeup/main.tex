@@ -11,8 +11,18 @@ filecontents, graphicx, wrapfig, relsize, float, mathtools, appendix, array}
 
 \def\arraystretch{.8}
 
+\newcommand{\mc}[1]{\multicolumn{1}{c|}{#1}}
 \newcommand{\figref}[1]{figure \ref{#1}}
 \newcommand{\Figref}[1]{Figure \ref{#1}}
+
+\newcommand{\adjacencyT}[3]{%
+	\begin{tabular}{cccc}
+		& 0 & 1 & 2\\\cline{2-4}
+		\mc{0} & #1\\
+		\mc{1} & #2\\
+		\mc{2} & #3
+	\end{tabular}
+	}
 
 \renewcommand\theequation{\bfseries\thechapter.\arabic{equation}}
 

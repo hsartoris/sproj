@@ -31,10 +31,11 @@
 \contentsline {subsubsection}{Optimizer Function}{16}
 \contentsline {chapter}{\numberline {4}Results}{17}
 \contentsline {section}{\numberline {4.1}Overfitting}{17}
-\contentsline {section}{\numberline {4.2}3-neuron generator}{17}
-\contentsline {subsection}{\numberline {4.2.1}Example Model}{18}
-\contentsline {subsubsection}{Trained Network Operation}{18}
-\contentsline {section}{\numberline {4.3}Applicability Beyond Training Data}{19}
+\contentsline {subsection}{\numberline {4.1.1}Empty Data}{17}
+\contentsline {section}{\numberline {4.2}3-neuron generator}{18}
+\contentsline {subsection}{\numberline {4.2.1}Example Model}{19}
+\contentsline {subsubsection}{Trained Network Operation}{19}
+\contentsline {section}{\numberline {4.3}Applicability Beyond Training Data}{20}
 \contentsline {subsection}{\numberline {4.3.1}Inverted Network}{20}
 \contentsline {subsection}{\numberline {4.3.2}Cyclical Network}{21}
 \contentsline {chapter}{\numberline {5}Discussion}{22}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  27 APR 2018 22:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.18)  28 APR 2018 00:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1022,18 +1022,18 @@ File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 ) (./resources/tikzpics.tex) (build/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
 
 ABD: EveryShipout initializing macros
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1105,7 +1105,7 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into 
 your preamble.
- on input line 32.
+ on input line 42.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -1143,11 +1143,11 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1159,12 +1159,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [3] (build/main.lof)
+ [3] [4] (build/main.lof)
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
 
-(./chapters/abstract.tex [4
+(./chapters/abstract.tex [5
 
 ] [1]) (./chapters/bg.tex
 Chapter 1.
@@ -1184,7 +1184,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) [5]
 [6]
-<resources/3outex.png, id=51, 90.3375pt x 120.45pt>
+<resources/3outex.png, id=54, 90.3375pt x 120.45pt>
 File: resources/3outex.png Graphic file (type png)
 <use resources/3outex.png>
 Package pdftex.def Info: resources/3outex.png  used on input line 166.
@@ -1196,57 +1196,58 @@ Chapter 3.
 
 ] [14] [15]) (./chapters/results.tex [16]
 Chapter 4.
-(build/../resources/2simplex.tex (build/../resources/tikzheader.tex))
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [17
 
-] (build/../resources/models/3neurEx/plot.tex
+] (build/../resources/2simplex.tex (build/../resources/tikzheader.tex))
+(build/../resources/models/3neurEx/plot.tex
 PGFPlots: reading {../resources/models/3neurEx/losses}
-)
-<resources/models/3neurEx/9/input.png, id=89, 90.3375pt x 240.9pt>
+) [18]
+<resources/models/3neurEx/9/input.png, id=96, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/9/input.png Graphic file (type png)
 <use resources/models/3neurEx/9/input.png>
 Package pdftex.def Info: resources/models/3neurEx/9/input.png  used on input li
-ne 78.
+ne 109.
 (pdftex.def)             Requested size: 44.71523pt x 119.24034pt.
-<resources/models/3neurEx/9/out0.png, id=90, 271.0125pt x 150.5625pt>
+<resources/models/3neurEx/9/out0.png, id=97, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out0.png Graphic file (type png)
 <use resources/models/3neurEx/9/out0.png>
 Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input lin
-e 84.
+e 115.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
-<resources/models/3neurEx/9/out1.png, id=91, 271.0125pt x 150.5625pt>
+<resources/models/3neurEx/9/out1.png, id=98, 271.0125pt x 150.5625pt>
 File: resources/models/3neurEx/9/out1.png Graphic file (type png)
 <use resources/models/3neurEx/9/out1.png>
 Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input lin
-e 89.
+e 120.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Reference `subsubsec:hotswap' on page 19 undefined on input line
- 116.
+ 141.
 
-[19 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0
-.png> <./resources/models/3neurEx/9/out1.png>]
-(build/../resources/tikzheader.tex)
-<resources/models/3neurEx/var1/input.png, id=101, 90.3375pt x 240.9pt>
+[19] (build/../resources/tikzheader.tex)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<resources/models/3neurEx/var1/input.png, id=102, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/var1/input.png Graphic file (type png)
 <use resources/models/3neurEx/var1/input.png>
 Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input
- line 155.
+ line 180.
 (pdftex.def)             Requested size: 39.75092pt x 106.00366pt.
- (build/../resources/tikzheader.tex)
-[20 <./resources/models/3neurEx/var1/input.png>]) (./chapters/discussion.tex
-[21]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(build/../resources/tikzheader.tex) [20 <./resources/models/3neurEx/9/input.png
+> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.pn
+g>]) (./chapters/discussion.tex [21 <./resources/models/3neurEx/var1/input.png>
+]
 Chapter 5.
 ) (./chapters/appendix.tex [22
 
@@ -1269,29 +1270,30 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 27792 strings out of 492982
- 690789 string characters out of 6138579
- 843875 words of memory out of 5000000
- 30799 multiletter control sequences out of 15000+600000
+ 27795 strings out of 492982
+ 690817 string characters out of 6138579
+ 846979 words of memory out of 5000000
+ 30802 multiletter control sequences out of 15000+600000
  16241 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,16n,96p,746b,2162s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
-sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (28 pages, 214909 bytes).
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/symbols/msbm10.pfb>
+Output written on build/main.pdf (29 pages, 223242 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
+ 172 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 
