@@ -87,6 +87,16 @@ def level1mat():
 def watchCount(spikeDir):
     subprocess.call('watch -n 1 "ls ' + spikeDir + ' | wc -l"', shell=True)
 
+def randomData(n, timesteps):
+    return np.random.randint(2, size=(n, timesteps))
+
+def saveRandomData(n, params, dataDir, q):
+    startIdx = params['startIdx']
+    for run in range(params['runs']):
+        q.put(run + startIdx)
+        np.savetxt(dataDir + "/spikes/" + str(run+startIdx) + ".csv",
+                randomData(n, params['timesteps']), delimiter=',', fmt='%i')
+
 
 if __name__=="__main__":
     mat, spikeProb = tenNeurNet()
@@ -112,26 +122,11 @@ if __name__=="__main__":
 
     if not os.path.exists(outDir + "/spikes"):
         os.makedirs(outDir + "/spikes")
-    threads = []
-    q = Queue()
 
-    for i in range(runBlocks):
-        start = i * runBlockSize
-        if i < runBlocks - 1:
-            runCount = runBlockSize
-        else:
-            runCount = runs - start
-        params = { 'startIdx':start, 'runs':runCount, 'timesteps':steps, 
-            'spikeProb':spikeProb}
-        threads.append(Process(target=simulate, args=(mat, params, outDir, q)))
-    # mat now defined above, look at it dumbass
-    # for 2-simplex, .25 is probably a good rate
-    #mat = genSimplex(3)
-    #mat = smallNetVar3()
-    #mat = tenNeurNet()
-    #mat = complexMat(1)
-    #threads.append(Process(target=watchCount, args=(spikeDir, )))
-    empty = True
+    # pretty much unrelated code for making random or empty matrices
+
+    empty = False
+    random = True
     if empty:
         mat = genSimplex(3)
         spikes = np.zeros((3, steps))
@@ -140,6 +135,29 @@ if __name__=="__main__":
                     delimiter=',', fmt='%i')
         np.savetxt(outDir + "struct", mat, delimiter=',')
         exit()
+    elif random:
+        mat = genSimplex(3)
+
+
+    threads = []
+    q = Queue()
+
+    for i in range(runBlocks):
+        start = i * runBlockSize
+        if i < runBlocks - 1: runCount = runBlockSize
+        else: runCount = runs - start
+        params = { 'startIdx':start, 'runs':runCount, 'timesteps':steps, 
+            'spikeProb':spikeProb}
+        if not random:
+            threads.append(Process(target=simulate, args=(mat, params, outDir, q)))
+        else:
+            thread.append(Process(target=saveRandomData, args=(3, params, outDir, q)))
+    # mat now defined above, look at it dumbass
+    # for 2-simplex, .25 is probably a good rate
+    #mat = genSimplex(3)
+    #mat = smallNetVar3()
+    #mat = tenNeurNet()
+    #mat = complexMat(1)
 
     for i in range(len(threads)):
         threads[i].start()
