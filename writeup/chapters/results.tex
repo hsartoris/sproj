@@ -3,14 +3,40 @@
 
 \chapter{Results}
 \label{results}
+\section{Overfitting}
+\setlength{\columnsep}{20pt}
+\begin{wraptable}[7]{r}{.4\textwidth}
+	\captionsetup{justification=centering}
+	\vspace{-20pt}
+	\begin{tabular}{lr}
+		b (timesteps) & 8\\
+		d& 5\\
+		Batch size& 32\\
+		Learning rate& .0005\\
+		Training samples& 18000\\
+		Validation samples& 4500
+	\end{tabular}
+	\vspace{-5pt}
+	\captionof{figure}{\linespread{1.2}\selectfont{}Training parameters for 
+		null hypothesis network}
+\end{wraptable}
+As discussed in \ref{subsec:hotswap} and ARCHITECTURE SECTION, the unique 
+structure of our model prevents it from overfitting to a particular generator 
+topology, allowing us to create a single generator containing connections 
+representative of the types of data we expect to analyze with the trained model.
+We demonstrate this aspect of our architecture by training a network on an empty 
+dataset paired with the same adjacency matrix (as in 
+\figref{fig:2simplex+adjacency}) throughout.
+
 \section{3-neuron generator}
 \label{results_3neur}
 We first consider a generator network consisting of three nodes connected as in 
-figure \ref{fig:2simplex+adjacency}. All weights are binary, and a spike rate of 
-.25 was used.\footnote{SEE APPENDIX	for information on spike rates}
+\figref{fig:2simplex+adjacency}. All weights are binary, and a spike rate of 
+.25 was used.\footnote{SEE APPENDIX	for information on spike rates} 
 
 \begin{table}[h]
 	\centering
+	\captionsetup{margin=5em}
 	\input{../resources/2simplex.tex}
 	\hspace{2em}
 	\begin{tabular}{l|lll}
@@ -34,7 +60,7 @@ the inner workings of the network.
 \subsection{Example Model}
 \label{subsec:3neurex}
 The following data are pulled from a model trained on data produced by the 
-generator in figure \ref{fig:2simplex+adjacency}. Figure 
+generator in \figref{fig:2simplex+adjacency}. Figure 
 \ref{fig:3neur_loss+params} demonstrates the model's loss over time. In this 
 example, \textit{b} and \textit{d} were pushed down in order to allow for better 
 comprehension of the internal mechanics; the loss tends to converge more 
@@ -82,7 +108,7 @@ final layer weights\footnote{see appendix} with the data in
 		1 & .99 & .01 & -.01\\
 		2 & 1.00 & 1.00 & .02
 	\end{tabular}
-	\captionof{figure}{Output for input data in figure \ref{subfig:3neur_in}}
+	\captionof{figure}{Output for input data in \figref{subfig:3neur_in}}
 	\label{fig:3neur_pred}
 \end{table}
 
@@ -117,7 +143,7 @@ TODO: add examples of input and output data to 3.2.1 and 3.2.2.
 		1 & 0 & 0 & 1\\
 		2 & 0 & 0 & 0
 	\end{tabular}
-	\captionof{figure}{Inverted version of figure \ref{fig:2simplex+adjacency}}
+	\captionof{figure}{Inverted version of \figref{fig:2simplex+adjacency}}
 	\label{fig:2simplexVar1}
 \end{table}
 \noindent Despite being a complete inversion of the generator used to train the 
@@ -129,7 +155,7 @@ model in \ref{results_3neur}, reconstruction of this network is simple.
 		\includegraphics[width=\textwidth]{var1/input.png}
 	\end{minipage}
 	\hspace{2em}
-	$\Rightarrow$
+	{\scalebox{2}{$\Rightarrow$}}
 	\hspace{2em}
 	\begin{tabular}{l|lll}
 		  & 0 & 1 & 2\\

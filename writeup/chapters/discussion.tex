@@ -1,0 +1,14 @@
+%! TEX root = /home/hsartoris/sproj/writeup/main.tex
+\chapter{Discussion}
+
+\section{Potential Improvements}
+
+\subsection{Algorithm}
+Detail issues with summing inputs and outputs, and propose alternative algorithm 
+here. Note issues with implementation.
+
+\subsection{Optimizer}
+I think it's in the paper about ELU or SELU that they use a ramping up learn 
+rate and then decline. That might be ideal for the original, concatenation-based 
+implemenation of the network, to avoid pushing it down the gradient too fast and 
+zeroing out the convolutional matrix sections.

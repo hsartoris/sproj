@@ -227,6 +227,8 @@ INPUT /usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
 INPUT /usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
 INPUT /usr/share/texmf-dist/tex/latex/appendix/appendix.sty
 INPUT /usr/share/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT /usr/share/texmf-dist/tex/latex/tools/array.sty
+INPUT /usr/share/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/share/texmf-dist/tex/latex/caption/caption3.sty
@@ -386,6 +388,8 @@ INPUT ./resources/models/3neurEx/var1/input.png
 INPUT ./resources/models/3neurEx/var1/input.png
 INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
+INPUT chapters/discussion.tex
+INPUT chapters/discussion.tex
 INPUT chapters/appendix.tex
 INPUT chapters/appendix.tex
 INPUT build/main.aux

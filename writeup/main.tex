@@ -1,13 +1,18 @@
 \documentclass[12pt,twoside]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{titlesec, amsmath, amsfonts, pgf, tikz, adjustbox, pgfplots, 
-filecontents, graphicx, wrapfig, relsize, float, mathtools, appendix}
+filecontents, graphicx, wrapfig, relsize, float, mathtools, appendix, array}
 \usepackage[font=small, labelfont=it]{caption}
 \usepackage[font=small, labelfont=normalfont]{subcaption}
 \usepackage[margin=1.5in]{geometry}
 \renewcommand{\baselinestretch}{1.5}
 \usetikzlibrary{arrows, automata, positioning, quotes, arrows.meta}
 \input{resources/tikzpics.tex}
+
+\def\arraystretch{.8}
+
+\newcommand{\figref}[1]{figure \ref{#1}}
+\newcommand{\Figref}[1]{Figure \ref{#1}}
 
 \renewcommand\theequation{\bfseries\thechapter.\arabic{equation}}
 
@@ -40,7 +45,10 @@ filecontents, graphicx, wrapfig, relsize, float, mathtools, appendix}
 
 \input{chapters/results.tex}
 
+\input{chapters/discussion.tex}
+
 \input{chapters/appendix.tex}
+
 
 
 \end{document}

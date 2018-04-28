@@ -55,18 +55,24 @@ is the adjacency matrix:
 \]
 Additonally, $\mathbb{S}^{t+1}$ may have one or more neurons spike randomly, as 
 determined by the spike rate of the simulation.\footnote{SEE APPENDIX} All 
-values are clipped to the range $[0,1]$, to avoid double spiking.
+values are clipped to the range $[0,1]$, to avoid double spiking. At each step, 
+$\mathbb{S}$ is appended to an output matrix, which is saved after simulation is 
+complete. For $t$ simulation steps, the completed output has shape $(n \times 
+t)$.
 
-At each step, $\mathbb{S}$ is appended to an output matrix, which is saved after 
-simulation is complete. For $t$ simulation steps, the completed output has shape 
-$(n \times t)$.
+Generally, we ran simulations as described for 50 steps\footnote{See 
+\ref{subsec:restructuring}}, then saved the resulting output matrix. As many as 
+fifty thousand simulations were run for each generator network.
+As well as saving the simulated spike trains, we save the adjacency matrix 
+describing the generator, in order to provide a target for the model to converge 
+towards.
 
 \subsubsection{Example Data Generation}
-Consider the network defined in figure \ref{fig:toyex}. Supposing that we 
-randomly spike neuron 0 at the first step, our initial state appears as such, 
-where $\mathbb{O}$ is the output matrix and $\mathbb{R}^0$ is an 
-\textit{n}-vector wherein each element has been randomly assigned 0 or 1, based 
-on the spike rate of the simulation:
+Consider the network defined in \figref{fig:toyex}. Supposing that we randomly 
+spike neuron 0 at the first step, our initial state appears as such, where 
+$\mathbb{O}$ is the output matrix and $\mathbb{R}^0$ is an \textit{n}-vector 
+wherein each element has been randomly assigned 0 or 1, based on the spike rate 
+of the simulation:
 \[
 	\mathbb{M} = \begin{bmatrix}
 		0 & 0 & 0 \\
@@ -103,7 +109,7 @@ Thus we have our final value for $\mathbb{S}^1$, and append it to $\mathbb{O}$.
 		0 & 1 \end{bmatrix}
 \]
 If we were to repeat this process several more times, we might end up with an 
-output matrix such as in figure \ref{fig:exoutput}.
+output matrix such as in \figref{fig:exoutput}.
 \begin{figure}[H]
 \[
 	\mathbb{O} = \left[ \mathbb{S}^0 \mid
@@ -122,6 +128,7 @@ neurons. Practically, the number of iterations was usually set to 50.
 
 
 \subsection{Restructuring}
+\label{subsec:restructuring}
 The model accepts data in the form of a spike-time raster plot of dimensions $(n 
 \times t)$, where \textit{n} is the number of neurons and \textit{t} is the 
 number of timesteps being considered. The axes are reversed in comparison to the 
@@ -139,7 +146,7 @@ the data fed into the network takes the following form:
 		\vdots & \vdots & \ddots & \vdots\\
 		x_{t1} & x_{t2} & \dots & x_{tn}
 	\end{bmatrix} \]
-Applying this process to the data in figure \ref{fig:exoutput}, including 
+Applying this process to the data in \figref{fig:exoutput}, including 
 truncating the time dimension to four, results in the following:
 \begin{figure}[H]
 	\centering
@@ -196,21 +203,12 @@ They are as follows:
 \end{description}
 We determined effective values for these parameters through experimentation.
 
-Additionally, we use the number of nodes in the generator graph, \textit{n}, to 
-calculate summations and averages, but the structure of our calculations is such 
+While we use the number of nodes in the generator graph, \textit{n}, to 
+calculate summations and averages, the structure of our calculations is such 
 that no aspects of the model are defined in terms of \textit{n}.
 
-\subsubsection{Activation Functions}
-At the end of each transition, an elementwise activation function\footnote{SEE 
-THE PART OF THE BG WHERE I TALK ABOUT NN PRINCIPLES} is applied following 
-completion of all computations.  For all but the final layer, that function is 
-ReLU\footnote{NEEDS CITATION}, which is defined as follows:
-\begin{equation}
-	relu(x) = \begin{cases}
-		0 & x < 0\\
-		x & x \geq 0
-	\end{cases}
-\end{equation}
+Finally, an elementwise activation function\footnote{SEE NN PRINCIPLES} is 
+applied to the matrix outputs each layer (see \ref{sec:activation}).
 
 \subsection{First Transition}
 To generate the first layer of the network, we inspect every pair of neurons in 
@@ -239,25 +237,26 @@ each edge \textit{ij}. From our previous layer, we have a matrix of shape $(d
 \times n^2)$ that we will refer to as $\mathbb{D}^{\prime}$, but it will be 
 useful to keep in mind an alternate representation of that matrix, one in three 
 dimensions, which we shall refer to as $\mathbb{D}_N^{\prime}$. This 
-transformation is demonstrated in figure \ref{fig:transform}.
+transformation is demonstrated in \figref{fig:transform}.
 
 \begin{figure}[H]
-\begin{tikzpicture}
-    \pgfmathsetmacro{\n}{20}
-    \pgfmathsetmacro{\t}{40}
-    \pgfmathsetmacro{\d}{12}
-    \pgfmathsetmacro{\scale}{.07}
-	\pic at (2,-1) {annotated cuboid={width=\n*4, height=3, depth=\d, xlabel=n, 
-	ylabel=1, zlabel=d, scale=\scale}};
-    \node at (3.7,-1) {\scalebox{2}{$\Leftrightarrow$}};
-	\pic at (6.8,-.27) {annotated cuboid={width=\n, height=\n, depth=\d, 
-xlabel=n, ylabel=n, zlabel=d, scale=\scale}};
-	\node at (-.8, -3)  {\scalebox{1.5}{$\mathbb{D}^{\prime}$}};
-	\node at (6.3, -3) {\scalebox{1.5}{$\mathbb{D}_N^{\prime}$}};
-\end{tikzpicture}
-\caption{Relationship between $\mathbb{D}^{\prime}$ and 
-	$\mathbb{D}^{\prime}_N$.}
-\label{fig:transform}
+	\centering
+	\begin{tikzpicture}
+	    \pgfmathsetmacro{\n}{20}
+	    \pgfmathsetmacro{\t}{40}
+	    \pgfmathsetmacro{\d}{12}
+	    \pgfmathsetmacro{\scale}{.07}
+		\pic at (2,-1) {annotated cuboid={width=\n*4, height=3, depth=\d, xlabel=n, 
+		ylabel=1, zlabel=d, scale=\scale}};
+	    \node at (3.7,-1) {\scalebox{2}{$\Leftrightarrow$}};
+		\pic at (6.8,-.27) {annotated cuboid={width=\n, height=\n, depth=\d, 
+	xlabel=n, ylabel=n, zlabel=d, scale=\scale}};
+		\node at (-.8, -3)  {\scalebox{1.5}{$\mathbb{D}^{\prime}$}};
+		\node at (6.3, -3) {\scalebox{1.5}{$\mathbb{D}_N^{\prime}$}};
+	\end{tikzpicture}
+	\caption{Relationship between $\mathbb{D}^{\prime}$ and 
+		$\mathbb{D}^{\prime}_N$.}
+	\label{fig:transform}
 \end{figure}\noindent
 Consider some $d_{ij}^{\prime}$ in $\mathbb{D}^{\prime}_N$. Then we can say the 
 following:
