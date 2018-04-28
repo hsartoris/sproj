@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+import os
+import numpy as np
+
+lossName = "/conv/vlosses"
+folders = os.listdir(os.getcwd())
+skipped = 0
+minLoss = (-1, 100)
+for idx, folder in enumerate(folders):
+    if os.path.exists(folder + lossName):
+        loss = np.min(np.loadtxt(folder + lossName))
+        if loss < minLoss[1]: minLoss = (idx, loss)
+        print(folder + ": \t%.4f" % loss)
+    else:
+        skipped += 1
+        print("Skipping " + folder)
+print("Processed", len(folders), "folders; skipped", skipped)
+print("Minimum loss at", minLoss[0], "of", minLoss[1])

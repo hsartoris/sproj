@@ -87,11 +87,8 @@ def level1mat():
 def watchCount(spikeDir):
     subprocess.call('watch -n 1 "ls ' + spikeDir + ' | wc -l"', shell=True)
 
-def emptyData():
-
 
 if __name__=="__main__":
-
     mat, spikeProb = tenNeurNet()
     if len(sys.argv) == 2 and sys.argv[1] == "optimize":
         spikeProb = optimizeSpike(mat, .05)
@@ -129,7 +126,7 @@ if __name__=="__main__":
         threads.append(Process(target=simulate, args=(mat, params, outDir, q)))
     # mat now defined above, look at it dumbass
     # for 2-simplex, .25 is probably a good rate
-    mat = genSimplex(3)
+    #mat = genSimplex(3)
     #mat = smallNetVar3()
     #mat = tenNeurNet()
     #mat = complexMat(1)
