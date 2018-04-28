@@ -7,5 +7,6 @@ function! LoadChapters()
 	tabe chapters/model.tex
 	tabe chapters/train.tex
 	tabe chapters/results.tex
+	tabe chapters/discussion.tex
 	tabn
 endfunction

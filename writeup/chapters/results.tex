@@ -4,14 +4,16 @@
 \chapter{Results}
 \label{results}
 \section{Overfitting}
+\label{sec:overfitting}
 \setlength{\columnsep}{20pt}
-\begin{wraptable}[7]{r}{.4\textwidth}
+\begin{wraptable}[8]{r}{.4\textwidth}
 	\captionsetup{justification=centering}
 	\vspace{-20pt}
 	\begin{tabular}{lr}
 		b (timesteps) & 8\\
 		d& 5\\
 		Batch size& 32\\
+		Training steps& 20000\\
 		Learning rate& .0005\\
 		Training samples& 18000\\
 		Validation samples& 4500
@@ -21,7 +23,7 @@
 		null hypothesis network}
 	\label{fig:nullparams}
 \end{wraptable}
-As discussed in \ref{subsec:hotswap} and ARCHITECTURE SECTION, the unique 
+As discussed in \ref{subsec:hotswap} and \ref{subsec:n-independence}, the unique 
 structure of our model prevents it from overfitting to a particular generator 
 topology, allowing us to create a single generator containing connections 
 representative of the types of data we expect to analyze with the trained model.
@@ -34,7 +36,8 @@ We ran a combined 100 training sessions of the benchmark model and our
 convolutional model, with parameters as defined in \figref{fig:nullparams}, on a 
 dataset whose inputs contained only zeroes and whose target was the adjacency 
 matrix in \figref{fig:2simplex+adjacency}. For both models, exactly two losses 
-and corresponding outputs occurred:
+and corresponding outputs repeatedly occurred (\figref{fig:empty_loss}), with 
+the models demonstrating a total inability to memorize the target data.
 
 \begin{figure}[h]
 	\centering
@@ -58,6 +61,8 @@ and corresponding outputs occurred:
 		\end{tabular}
 		\caption{loss: 1.0}
 	\end{subfigure}
+	\caption{Predictions and losses when training on an empty dataset}
+	\label{fig:empty_loss}
 \end{figure}
 
 \section{3-neuron generator}
@@ -83,7 +88,7 @@ We first consider a generator network consisting of three nodes connected as in
 \end{table}\noindent
 While reconstructing a graph comprising only three nodes is not much of a feat, 
 this simplified case allows us to demonstrate that our convolutional approach is 
-capable of reconstruction at all. Furthermore, the small network size requires 
+capable of reconstruction at all. Furthermore, the small generator size requires 
 few timesteps and a small interlayer featurespace; i.e., $b,d<10$. This results 
 in a relatively simple set of transitions, allowing us to explore and understand 
 the inner workings of the network.

@@ -32,13 +32,7 @@ small-\textit{n} toy networks.
 	\centering
 	\input{../resources/2simplex.tex}
 	\hspace{2em}
-	\begin{tabular}{l|lll}
-		  & 0 & 1 & 2\\
-		\hline
-		0 & 0 & 0 & 0\\
-		1 & 1 & 0 & 0\\
-		2 & 1 & 1 & 0
-	\end{tabular}
+	\adjacencyT{0 & 0 & 0}{1 & 0 & 0}{1 & 1 & 0}
 	\captionof{figure}{Example of 3-neuron network and adjacency matrix.}
 	\label{fig:toyex}
 \end{table}\noindent
@@ -48,7 +42,6 @@ data, we create an \textit{n}-vector $\mathbb{S}$ representing the current state
 of the toy network, with random neurons already spiking based on a chosen spike 
 rate. From here, the process is as in \ref{subsec:adjacency}, where $\mathbb{M}$ 
 is the adjacency matrix:
-
 \[
 	\underset{n \times n}{\mathbb{M}} \times \underset{n \times 1}{\mathbb{S}^t} 
 	= \underset{n \times 1}{\mathbb{S}^{t+1}}
@@ -146,8 +139,8 @@ the data fed into the network takes the following form:
 		\vdots & \vdots & \ddots & \vdots\\
 		x_{t1} & x_{t2} & \dots & x_{tn}
 	\end{bmatrix} \]
-Applying this process to the data in \figref{fig:exoutput}, including 
-truncating the time dimension to four, results in the following:
+Applying this process to the data in \figref{fig:exoutput}, including truncating 
+the time dimension to four, produces the data in \figref{fig:data+vis}.
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}{.48\textwidth}
@@ -168,6 +161,7 @@ truncating the time dimension to four, results in the following:
 		\label{subfig:3outexgraph}
 	\end{subfigure}
 	\caption{Transposed and truncated matrix and associated visualization.}
+	\label{fig:data+vis}
 \end{figure}\noindent
 The representation of the matrix in \ref{subfig:3outexgraph} is an example of 
 the method we will use to depict matrices containing real values.
@@ -177,10 +171,11 @@ the method we will use to depict matrices containing real values.
 In most ANN implementations, feeding various data with the same label attached 
 to it results in the network learning to ignore the input data and always return 
 the desired label, rendering it useless. However, due to the unique structure of 
-our model, this sort of overfitting is impossible (SEE SOME ARCHITECTURE 
-SECTION).  Therefore, we must merely construct a suitably representative 
-generator network, meaning that it contains all of the inter-neuron 
-relationships we expect to see in the data we ultimately feed in to test.
+our model, this sort of overfitting is impossible.\footnote{See 
+\ref{subsec:n-independence}} Therefore, we must merely construct a suitably 
+representative generator network, meaning that it contains all of the 
+inter-neuron relationships we expect to see in the data we ultimately feed in to 
+test.
 
 \section{Architecture}
 We will first describe the architecture in terms that, while accurate on the 
@@ -207,18 +202,28 @@ While we use the number of nodes in the generator graph, \textit{n}, to
 calculate summations and averages, the structure of our calculations is such 
 that no aspects of the model are defined in terms of \textit{n}.
 
-Finally, an elementwise activation function\footnote{SEE NN PRINCIPLES} is 
-applied to the matrix outputs each layer (see \ref{sec:activation}).
+\subsubsection{Omitted Calculations}
+An elementwise activation function\footnote{SEE NN PRINCIPLES} is applied to the 
+matrix outputs from each layer. While this is crucial to network function, our 
+primary focus in this section is the underlying principles and mathematical 
+expressions thereof, and activation is somewhat trivial in comparison. For 
+details on the activation functions used, see \ref{sec:activation}.
 
-\subsection{First Transition}
+\subsection{Conceptual Model}
+\label{subsec:conceptualmodel}
+The operations we describe here represent a per-edge approach to our 
+architecture; i.e., the layer transitions are defined in terms of calculations 
+applied to single pairs of nodes, as opposed to the whole-matrix operations that 
+the architecture as implemented relies on.
+
+\subsubsection{First Transition}
 To generate the first layer of the network, we inspect every pair of neurons in 
 the input data. Since no pair of neurons is distinguishable from another, the 
 comparison applied is the same in all cases: we apply the same convolutional 
 filter to all pairs. We achieve this by concatenating the spike train of each 
 neuron \textit{i} individually with every other neuron \textit{j}, then 
-multiplying by a matrix $\mathbb{W}$ of dimensionality $(d \times 
-2b)$.\footnote{Recall that the time dimension fed into the network is 
-characterized by \textit{b}.}
+multiplying by a matrix $\mathbb{W}$ of dimensionality $(d \times 2b)$. To this 
+product we add a bias vector, $\mathbb{B}$, of dimensionality $(d \times 1)$.
 
 $\mathbb{W}$ is trained on, and thus the comparison of each pair of spike trains 
 is left up to the network. The transition appears as follows, where $\underset{b 
@@ -226,12 +231,13 @@ is left up to the network. The transition appears as follows, where $\underset{b
 \[
 	\mathlarger\forall i,j \mid 0 \leq i,j < n: \underset{d \times 
 	1}{d_{ij}^\prime} = \underset{d \times 2b}{\mathbb{W}} \times 
-	\left(\frac{\mathbb{I}_i}{\mathbb{I}_j}\right)
+	\left(\frac{\mathbb{I}_i}{\mathbb{I}_j}\right) + \underset{d \times 
+	1}{\mathbb{B}}
 \]
 This leaves us with $n^2$ \textit{d}-vectors, each characterizing one potential 
 edge \textit{ij}.
 
-\subsection{Convolutional Layer}
+\subsubsection{Convolutional Layer}
 In this layer, we incorporate information from all nodes potentially adjacent to 
 each edge \textit{ij}. From our previous layer, we have a matrix of shape $(d 
 \times n^2)$ that we will refer to as $\mathbb{D}^{\prime}$, but it will be 
@@ -291,9 +297,12 @@ d_{ij}^{\prime}\right)
 	\end{align}
 	\text{Here we arrive at the output, $d_{ij}^{\prime\prime}$:}
 	\begin{equation}
-		d_{ij}^{\prime\prime} = \underset{d \times 2d}{\mathbb{W}_{tot}^\prime} 
-		\times \left(\frac{\mathbb{I_D}}{\mathbb{O_D}}\right) \label{eq:dijO}
-\end{equation}
+		\underset{d \times 1}{d_{ij}^{\prime\prime}} = \underset{d \times 
+		2d}{\mathbb{W}_{tot}^\prime} \times 
+		\left(\frac{\mathbb{I_D}}{\mathbb{O_D}}\right) + \underset{d \times 
+		1}{\mathbb{B}^\prime}
+		\label{eq:dijO} 
+	\end{equation}
 \end{subequations}
 Conceptually, in \eqref{eq:ID} we first average all potential inputs to and 
 outputs from potential edge \textit{ij}. Then, we compute an entrywise product 
@@ -304,16 +313,18 @@ which we rectify by multiplying the input and output vectors with separate
 dimensionality-preserving $(d \times d)$ matrices. We thus arrive at 
 \eqref{eq:IDOD}, with vectors $\mathbb{I_D}$ and $\mathbb{O_D}$ representing 
 edge \textit{ij} with inputs and outputs, respectively, taken into 
-consideration. In \eqref{eq:dijO}, we arrive at $d_{ij}^{\prime\prime}$ as it 
-will be seen by the next layer of the network by multiplying a third weight 
-matrix by the vertical concatenation of $\mathbb{I_D}$ and $\mathbb{O_D}$.  This 
-matrix $\mathbb{W}_{tot}^\prime$, allows the network to optimize for whichever 
-elements in $\mathbb{I_D}$ and $\mathbb{O_D}$ are most important in the 
-prediction of \textit{ij}. The three matrices involved, 
-$\mathbb{W}_{in}^\prime$, $\mathbb{W}_{out}^\prime$, and 
-$\mathbb{W}_{tot}^\prime$, are trained on by the optimizer\footnote{SEE 
-OPTIMIZER SECION IN TRAINING}, allowing the model to learn optimal processing 
-and combinations to facilitate predictions.
+consideration. In \eqref{eq:dijO}, we arrive at $d_{ij}^{\prime\prime}$ by 
+multiplying a third weight matrix by the vertical concatenation of 
+$\mathbb{I_D}$ and $\mathbb{O_D}$.  This matrix, $\mathbb{W}_{tot}^\prime$, 
+allows the network to optimize for whichever elements in $\mathbb{I_D}$ and 
+$\mathbb{O_D}$ are most important in the prediction of \textit{ij}.  
+Additionally, a bias vector, $\mathbb{B}^\prime$, is added to this product, and 
+at this point we have $d_{ij}^{\prime\prime}$ as it will be seen by the next 
+layer of the network.\footnote{Disregarding activation}
+%The three matrices involved, $\mathbb{W}_{in}^\prime$, 
+%$\mathbb{W}_{out}^\prime$, and $\mathbb{W}_{tot}^\prime$, are trained on by the 
+%optimizer\footnote{SEE OPTIMIZER SECION IN TRAINING}, allowing the model to 
+%learn optimal processing and combinations to facilitate predictions.
 
 Our concatenation approach in \eqref{eq:dijO} stands in contrast to the strategy 
 taken in \eqref{eq:IDOD}, where integration of the input and output data is 
@@ -329,7 +340,7 @@ resultant vectors will be of similar magnitude for any number of neurons under
 consideration. After executing this algorithm for each $d_{ij}^{\prime}$, we are 
 left with another $(d \times n^2)$ output matrix, $\mathbb{D}^{\prime\prime}$.
 
-\subsection{Final Transition}
+\subsubsection{Final Transition}
 The shift from $(d \times n^2)$ is comparatively simple, being only a 
 dimensionality reduction:
 \begin{equation}
@@ -337,6 +348,55 @@ dimensionality reduction:
 	\underset{1 \times 1}{d_{ij}^f} = \underset{1 \times d}{\mathbb{W}^f} \times 
 	\underset{d \times 1}{d_{ij}^{\prime\prime}}
 \end{equation}
-This leaves us with a $(1 \times n^2)$ matrix, which, following application of a 
-hyperbolic tangent activation function and transposition to $(n \times n)$, we 
-treat as the adjacency matrix of the generator associated with the input data.
+This leaves us with a $(1 \times n^2)$ matrix, which, following application of 
+an activation function as defined in \ref{subsec:finalactivation} and 
+transposition to $(n \times n)$, we treat as the adjacency matrix of the 
+generator associated with the input data.
+
+\subsection{Matrix Model}
+\label{subsec:matmodel}
+
+\subsection{\textit{n}-independence}
+\label{subsec:n-independence}
+\subsubsection{Trainable Values}
+Between all of the operations defined in \ref{subsec:matmodel} (and equivalently 
+in \ref{subsec:conceptualmodel}), the following matrices are the only trainable 
+values:
+\subparagraph{First Layer}
+\begin{itemize}
+	\item[$\ubb{W}{d}{2b}$:] weight matrix used to merge columns of input data
+	\item[$\ubb{B}{d}{1}$:] bias vector added to every $d_{ij}^\prime$
+\end{itemize}
+
+\subparagraph{Convolutional Layer}
+\begin{itemize}
+	\item[$\underset{d \times d}{\mathbb{W}_{in}^\prime}$:] weight matrix used 
+		to process data entering an edge
+	\item[$\underset{d \times d}{\mathbb{W}_{out}^\prime}$:] weight matrix used 
+		to process data exiting an edge
+	\item[$\underset{d \times 2d}{\mathbb{W}_{tot}^\prime}$:] weight matrix used 
+		to merge the data produced by $\underset{d \times 
+			d}{\mathbb{W}_{out}^\prime}$ and $\underset{d \times
+			d}{\mathbb{W}_{in}^\prime}$
+	\item[$\underset{d \times 1}{\mathbb{B}^\prime}$:] bias vector added to 
+		every $d_{ij}^{\prime\prime}$
+\end{itemize}
+
+\subparagraph{Final Layer}
+\begin{itemize}
+	\item[$\underset{1 \times d}{\mathbb{W}}^f$:] weight matrix used to collapse 
+		previous outputs into one value
+\end{itemize}
+\subsubsection{Implications}
+As noted previously, none of these matrices are dependent on \textit{n}.  
+Furthermore, even in the matrix model (\ref{subsec:matmodel}), the weight 
+matrices operate individually on each \textit{ij} vector, and the same bias is 
+added to each vector.  Because the network is not provided any trainable 
+\textit{n}-scale values, all calculation and training is done per node pair.  
+This obviates the typical neural network problem of overfitting to its training 
+dataset to the point it simply memorizes appropriate outputs.\footnote{See 
+\ref{sec:overfitting}} Additionally, this allows for application of a trained 
+model to data produced by generators of a different size than those used to 
+train the model. Because our model operates entirely on local graph features, 
+the only requirement for such an application is that the training data contain a 
+set of features also representative of the new data.
