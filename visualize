@@ -40,7 +40,7 @@ def wbVis(prefix, outdir = None):
 if len(sys.argv) < 2:
     print("Usage: visualize.py <runId>\n\tstruct <dataId>\n\tmats <runId>")
     sys.exit()
-if len(sys.argv) > 2:
+if len(sys.argv) >= 2:
     if sys.argv[1] == "struct":
         struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct.csv", delimiter=',')
         matVis(struct, "dataStaging/" + sys.argv[2] + "/struct.png", connections=True)
@@ -48,6 +48,9 @@ if len(sys.argv) > 2:
     elif sys.argv[1] == "mats":
         wbVis("model/checkpoints/" + sys.argv[2] + "/mats/", 
                 "visData/" + sys.argv[2] + "/")
+        sys.exit()
+    elif sys.argv[1] == "matshere":
+        wbVis("./", "./")
         sys.exit()
 
 runId = sys.argv[1]

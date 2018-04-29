@@ -92,6 +92,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces \linespread  {1.2}\selectfont  {}Example adjacency matrix\relax }}{19}}
 \newlabel{fig:loss_ex}{{3.4}{19}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Optimizer Function}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Adam decay function over 100 steps. Converges asymptotically to 1.\relax }}{20}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Datasets}{21}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Matrix Initialization}{21}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Hyperparameter Optimization}{21}}
@@ -102,51 +103,61 @@
 \newlabel{results}{{4}{22}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Overfitting}{22}}
 \newlabel{sec:overfitting}{{4.1}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces \linespread  {1.2}\selectfont  {}Training parameters for null hypothesis network\relax }}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces \linespread  {1.2}\selectfont  {}Training parameters for null hypothesis networks\relax }}{22}}
 \newlabel{fig:nullparams}{{4.1}{22}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Empty Data}{22}}
+\newlabel{subsec:empty}{{4.1.1}{22}}
+\newlabel{subfig:empty_loss0}{{4.2a}{23}}
+\newlabel{sub@subfig:empty_loss0}{{a}{23}}
+\newlabel{subfig:empty_loss1}{{4.2b}{23}}
+\newlabel{sub@subfig:empty_loss1}{{b}{23}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{23}}
 \newlabel{fig:empty_loss}{{4.2}{23}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}3-neuron generator}{23}}
-\newlabel{results_3neur}{{4.2}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{23}}
-\newlabel{fig:2simplex+adjacency}{{4.3}{23}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Example Model}{24}}
-\newlabel{subsec:3neurex}{{4.2.1}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Training loss and parameters for model described in 4.2.1\hbox {}. The loss here is somewhat choppier than usual, due to the limited matrix size made available to the model.\relax }}{24}}
-\newlabel{fig:3neur_loss+params}{{4.4}{24}}
-\@writefile{toc}{\contentsline {subsubsection}{Trained Network Operation}{24}}
-\newlabel{subfig:3neur_in}{{4.5a}{25}}
-\newlabel{sub@subfig:3neur_in}{{a}{25}}
-\newlabel{subfig:3neur_out1}{{4.5c}{25}}
-\newlabel{sub@subfig:3neur_out1}{{c}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network, up to final transform\relax }}{25}}
-\newlabel{fig:3neur_input}{{4.5}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Output for input data in Figure 4.5a\hbox {}\relax }}{25}}
-\newlabel{fig:3neur_pred}{{4.6}{25}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Applicability Beyond Training Data}{25}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Inverted Network}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Inverted version of Figure 4.3\hbox {}\relax }}{26}}
-\newlabel{fig:2simplexVar1}{{4.7}{26}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Cyclical Network}{26}}
-\newlabel{subsec:cyclical}{{4.3.2}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Cyclical 3-neuron network\relax }}{26}}
-\newlabel{fig:2simplexVar2}{{4.8}{26}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Discussion}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Random Data}{23}}
+\newlabel{subsec:random}{{4.1.2}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{23}}
+\newlabel{fig:random_output}{{4.3}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Analysis}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}3-neuron generator}{24}}
+\newlabel{results_3neur}{{4.2}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{24}}
+\newlabel{fig:2simplex+adjacency}{{4.4}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Example Model}{25}}
+\newlabel{subsec:3neurex}{{4.2.1}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Training loss and parameters for model described in 4.2.1\hbox {}. The loss here is somewhat choppier than usual, due to the limited matrix size made available to the model.\relax }}{25}}
+\newlabel{fig:3neur_loss+params}{{4.5}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{Trained Network Operation}{25}}
+\newlabel{subfig:3neur_in}{{4.6a}{26}}
+\newlabel{sub@subfig:3neur_in}{{a}{26}}
+\newlabel{subfig:3neur_out1}{{4.6c}{26}}
+\newlabel{sub@subfig:3neur_out1}{{c}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Path of data through network, up to final transform\relax }}{26}}
+\newlabel{fig:3neur_input}{{4.6}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Model prediction for input data in Figure 4.6a\hbox {}\relax }}{26}}
+\newlabel{fig:3neur_pred}{{4.7}{26}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Applicability Beyond Training Data}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Inverted Network}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{27}}
+\newlabel{fig:2simplexVar1}{{4.8}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Cyclical Network}{27}}
+\newlabel{subsec:cyclical}{{4.3.2}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Cyclical 3-neuron network\relax }}{27}}
+\newlabel{fig:2simplexVar2}{{4.9}{27}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Discussion}{29}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Potential Improvements}{27}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Algorithm}{27}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Optimizer}{27}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Potential Improvements}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Algorithm}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Optimizer}{29}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{30}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Data}{28}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{28}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Model}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Data}{30}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{30}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Model}{31}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{31}}

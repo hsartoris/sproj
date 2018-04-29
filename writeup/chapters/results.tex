@@ -19,8 +19,8 @@
 		Validation samples& 4500
 	\end{tabular}
 	\vspace{-5pt}
-	\captionof{figure}{\linespread{1.2}\selectfont{}Training parameters for 
-		null hypothesis network}
+	\captionof{figure}{\linespread{1.2}\selectfont{}Training parameters for null 
+		hypothesis networks}
 	\label{fig:nullparams}
 \end{wraptable}
 As discussed in \ref{subsec:hotswap} and \ref{subsec:n-independence}, the unique 
@@ -32,6 +32,7 @@ models on an empty dataset paired with one adjacency matrix throughout, and
 training with a random dataset paired with that same adjacency matrix.
 
 \subsection{Empty Data}
+\label{subsec:empty}
 We ran a combined 100 training sessions of the benchmark model and our 
 convolutional model, with parameters as defined in \figref{fig:nullparams}, on a 
 dataset whose inputs contained only zeroes and whose target was the adjacency 
@@ -50,6 +51,7 @@ the models demonstrating a total inability to memorize the target data.
 			\mc{2} & .3 & .3 & .3
 		\end{tabular}
 		\caption{loss: $0.\overline{6}$}
+		\label{subfig:empty_loss0}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
 		\centering
@@ -60,16 +62,57 @@ the models demonstrating a total inability to memorize the target data.
 			\mc{2} & 0 & 0 & 0
 		\end{tabular}
 		\caption{loss: 1.0}
+		\label{subfig:empty_loss1}
 	\end{subfigure}
 	\caption{Predictions and losses when training on an empty dataset}
 	\label{fig:empty_loss}
 \end{figure}
 
+\subsection{Random Data}
+\label{subsec:random}
+\begin{wrapfigure}[7]{r}{.25\textwidth}
+	\vspace{-20pt}
+	\adjacencyT{0 & .5 & .5}{.5 & 0 & .5}{.5 & .5 & 0}
+	\caption{Average prediction for random data. loss: 0.5}
+	\label{fig:random_output}
+\end{wrapfigure}
+For this trial, all model parameters were identical to those in 
+\ref{subsec:empty}. In this case, however, the data fed into the network 
+consisted of raster plots whose items had been randomly assigned to 0 or 1.  
+While the results were somewhat less consistent, over the course of 100 training 
+sessions, the models that were able to converge to a minimum loss predicted the 
+matrix in \figref{fig:empty_loss} the overwhelming majority of the time. 
+
+\subsection{Analysis}
+While the results of \ref{subsec:random} are at first confusing, given the per 
+edge architecture of our model, this result is not particularly surprising: in 
+the first layer transition, every spike vector is compared against every other 
+spike vector, including itself.  Thus the model was in fact able to learn one 
+feature, self loops, and, since loss decreased for driving such connections to 
+0, that they do not exist.
+
+For the remainder of the potential connections, the model, lacking any sort of 
+way to distinguish between them, found an equilibrium value that, when applied 
+to the remaining connectinos, minimized loss. Note that both uniformly 
+increasing or decreasing the nonzero weights in \figref{fig:random_output} 
+increases loss.
+
+The same is true of the results in \ref{subsec:empty}, with the output in 
+\figref{subfig:empty_loss1} particularly illustrative of the problem of entropy 
+traps in neural networks. For models that converged to this output, the initial 
+seeding of the weight and bias matrices was such that the fastest decreases in 
+loss were found by adjusting trainable values to produce an empty matrix. Once 
+there, uniformly increasing the output values would initially increase the loss, 
+preventing the network from pushing upward and eventually reaching the lower 
+loss state of \figref{subfig:empty_loss0}.
+
+
+
 \section{3-neuron generator}
 \label{results_3neur}
-We first consider a generator network consisting of three nodes connected as in 
-\figref{fig:2simplex+adjacency}. All weights are binary, and a spike rate of 
-.25 was used.\footnote{SEE APPENDIX	for information on spike rates} 
+We now consider a generator network consisting of three nodes connected as in 
+\figref{fig:2simplex+adjacency}. All weights are binary, and a spike rate of .25 
+was used.\footnote{SEE APPENDIX	for information on spike rates} 
 
 \begin{table}[h]
 	\centering
@@ -97,15 +140,14 @@ to explore and understand the inner workings of the network.
 The following data are pulled from a model trained on data produced by the 
 generator in \figref{fig:2simplex+adjacency}. Figure 
 \ref{fig:3neur_loss+params} demonstrates the model's loss over time. In this 
-example, \textit{b} and \textit{d} were pushed down in order to allow for better 
-comprehension of the internal mechanics; the loss tends to converge more 
+example, small values \textit{b} and \textit{d} were used in order to allow for 
+better comprehension of the internal mechanics; the loss tends to converge more 
 effectively and evenly given more computation power.
 \input{../resources/models/3neurEx/plot.tex}
 
 \subsubsection{Trained Network Operation}
-Here, we examine in brief the internal operation of the trained model over a 
-single input. For a complete look through the procedure of reconstruction for 
-this network, please see APPENDIX.
+Here, we rigorously examine the internal operation of the trained model over a 
+single input.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{.15\textwidth}
@@ -137,7 +179,8 @@ final layer weights\footnote{see appendix} with the data in
 \begin{table}[h]
 	\centering
 	\adjacencyT{.02 & .03 & .01}{.99 & .01 & -.01}{1.0 & 1.0 & .02}
-	\captionof{figure}{Output for input data in \figref{subfig:3neur_in}}
+	\captionof{figure}{Model prediction for input data in 
+	\figref{subfig:3neur_in}}
 	\label{fig:3neur_pred}
 \end{table}
 

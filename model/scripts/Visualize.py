@@ -1,5 +1,4 @@
-def matVis(matrix, outFile = None, width=30, connections=False, n=None):
-    drawText = True
+def matVis(matrix, outFile = None, width=30, connections=False, n=None, drawText=False):
     drawMax = False
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np

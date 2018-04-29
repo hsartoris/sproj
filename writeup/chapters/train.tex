@@ -193,38 +193,34 @@ Adam adjusts its learning rate as time goes on, according to the following
 equation, where $\beta_n^t$ indicates exponentiation by $t$ and $lr$ denotes 
 learning rate:
 \begin{figure}[h]
-	\begin{minipage}{.25\textwidth}
+	\begin{minipage}[b]{.38\textwidth}
 		\centering
-		\begin{align*}
+		\begin{gather}
 			\nonumber
-			\beta_1 &= 0.9\\
+			\beta_1 = 0.9\\
 			\nonumber
-			\beta_2 &= 0.999\\
-			lr_t &= lr_{init} \times \frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
-		\end{align*}
+			\beta_2 = 0.999\\
+			\nonumber
+			lr_t = lr_{init} \times \frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
+		\end{gather}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{.6\textwidth}
 		\centering
 		\resizebox{\textwidth}{!}{
 			\begin{tikzpicture}
-				\begin{scope}[spy using outlines={rectangle, magnification=3, 
-			connect spies}]
-			\begin{axis}[domain=.01:500, ytick={0,.15,.5}, samples=500,
+			\begin{axis}[domain=.01:100, ytick={0,.15,.35}, samples=500,
 				ylabel=$\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}$,
 				ylabel style={rotate=-90, font=\large},
 					enlarge x limits=false, ymajorgrids, extra x ticks=0,
 					extra tick style={grid=major}, xlabel=Step]
 					\addplot[color=black] {sqrt(1-.999^x)/(1-.9^x)} [mark=none, 
 			smooth];
-				\coordinate (spypoint) at (axis cs:10, .15);
-				\coordinate (spyviewer) at (axis cs:350, .25);
-				\spy[width=3cm, height=3em] on (spypoint) in node [fill=white] 
-				at (spyviewer);
 			\end{axis}
-		\end{scope}
 		\end{tikzpicture}
 		}
+		\captionof{figure}{Adam decay function over 100 steps. Converges 
+			asymptotically to 1.}
 	\end{minipage}
 \end{figure}
 

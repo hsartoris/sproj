@@ -178,6 +178,7 @@ class Model():
     @lazy_property
     def optimize(self):
         optimizer = tf.train.AdamOptimizer(self.lr)
+        print(optimizer.get_slot_names())
         #return optimizer.minimize(self.loss, global_step=global_step)
         return optimizer.minimize(self.loss)
 
