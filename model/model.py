@@ -58,9 +58,10 @@ class Model():
             stddev=.5)))
         ###
         '''
+        self.lr = learnRate
+        self.optimizer = tf.train.AdamOptimizer(self.lr)
         self.activation = tf.nn.relu
         self.n = n
-        self.lr = learnRate
         self.data = data
         self.labels = labels
         self.initTiles()
@@ -177,9 +178,8 @@ class Model():
 
     @lazy_property
     def optimize(self):
-        optimizer = tf.train.AdamOptimizer(self.lr)
-        print(optimizer.get_slot_names())
+        #optimizer = tf.train.AdamOptimizer(self.lr)
         #return optimizer.minimize(self.loss, global_step=global_step)
-        return optimizer.minimize(self.loss)
+        return self.optimizer.minimize(self.loss)
 
 #correct = tf.equal(tf.argmax(pred, 1), tf.argmax(_labels, 1))

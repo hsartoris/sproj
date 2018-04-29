@@ -100,6 +100,8 @@ def saveRandomData(n, params, dataDir, q):
 
 if __name__=="__main__":
     mat, spikeProb = tenNeurNet()
+    mat = genSimplex(3)
+    spikeProb = .25
     if len(sys.argv) == 2 and sys.argv[1] == "optimize":
         spikeProb = optimizeSpike(mat, .05)
         print("Optimized rate:", spikeProb)
@@ -126,7 +128,7 @@ if __name__=="__main__":
     # pretty much unrelated code for making random or empty matrices
 
     empty = False
-    random = True
+    random = False
     if empty:
         mat = genSimplex(3)
         spikes = np.zeros((3, steps))

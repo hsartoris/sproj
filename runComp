@@ -5,21 +5,24 @@ Simultaneously runs dumb & conv networks and logs both.
 Usage: 
     runComp <dataDir> [--r=<runs>] [--s=<samples>] [--lr=<lr>]
         [--outDir=<outDir>] [--runId=<runId>] [--bs=<batchSize>]
-        [--ts=<trainingSteps>] [--b=<b>] [--d=<d>]
+        [--ts=<trainingSteps>] [--b=<b>] [--d=<d>] [--noDumb]
+        [-i | --immediate]
     runComp -h | --help
 
 Options:
-    -h --help           Show this screen
-    <dataDir>           Where to load inputs from. Assumes format dataStaging/!
-    --r=<runs>          How many runs. [default: 1]
-    --s=<samples>       How many samples to load from <dataDir> [default: 25000].
-    --lr=<lr>           Init learning rate [default: .001].
-    --outDir=<outDir>   Checkpoint & log directory. If not specified, leaves ckptDir to model/checkpoints/comp/; otherwise that + outDir
-    --runId=<runId>     Specify runId. Defaults to timestamp.
-    --bs=<batchSize>    Batch size [default: 32].
-    --ts=<trainingSteps> Max training steps [default: 20000].
-    --b=<b>             Time truncation [default: 30].
-    --d=<d>             Featurespace depth [default: 20].
+    -h --help               Show this screen
+    <dataDir>               Where to load inputs from. Assumes format dataStaging/!
+    --r=<runs>              How many runs. [default: 1]
+    --s=<samples>           How many samples to load from <dataDir> [default: 25000].
+    --lr=<lr>               Init learning rate [default: .001].
+    --outDir=<outDir>       Checkpoint & log directory. If not specified, leaves ckptDir to model/checkpoints/comp/; otherwise that + outDir
+    --runId=<runId>         Specify runId. Defaults to timestamp.
+    --bs=<batchSize>        Batch size [default: 32].
+    --ts=<trainingSteps>    Max training steps [default: 20000].
+    --b=<b>                 Time truncation [default: 30].
+    --d=<d>                 Featurespace depth [default: 20].
+    --noDumb                Doesn't run simple model.
+    -i --immediate          Doesn't wait to confirm training parameters.
 """
 
 from docopt import docopt
@@ -36,6 +39,8 @@ from model.model import Model
 pretty = Prettify.pretty()
 
 arguments = docopt(__doc__)
+
+runDumb = not arguments['--noDumb']
 
 SAVE_CKPT = True
 # if you set this to False it will break
@@ -144,8 +149,9 @@ def makePred(checkDir=None):
         testData = testing.data
         testLabels = testing.labels
     testX, testY, _ = testing.next(1)
-    print("Dumb model prediction:")
-    print(np.round(sess.run(m_dumb.prediction, 
+    if runDumb:
+        print("Dumb model prediction:")
+        print(np.round(sess.run(m_dumb.prediction, 
         feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
     print("Conv model prediction:")
     print(np.round(sess.run(m_conv.prediction,
@@ -161,12 +167,27 @@ def dumpData():
     out += "# prefix\n" + prefix + "\n"
     out += ("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
             str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
+    out += "# noDumb\n" + str((0 if runDumb else 1)) + "\n"
+    out += str(arguments) # just for good measure
     return out
+
+print(dumpData())
+if not arguments['--immediate']:
+    cont = input("Continue with these parameters? [Y/n] ") or "Y"
+    if not cont.lower() == "y":
+        print("Exiting")
+        sys.exit()
+
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m_dumb = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=True)
+
+if runDumb:
+    m_dumb = Model(b, d, n, _data, _labels, batchSize, 
+        learnRate = initLearnRate, dumb=True)
+
 m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=False)
+print("Initialized model")
 
 
 # save some data
@@ -190,7 +211,6 @@ if SAVE_CKPT:
     f.write(prefix)
     f.close()
 
-print(dumpData())
 
 if TBOARD_LOG:
     lossSum = tf.summary.scalar("train_loss", m.loss)
@@ -208,38 +228,49 @@ config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
 sess.run(init)
 
+print("Optimization slots:")
+print(m_conv.optimizer.get_slot_names())
+
 steps = []
-losses_dumb = []
+if runDumb: 
+    losses_dumb = []
+    vlosses_dumb = []
 losses_conv = []
-vlosses_dumb = []
 vlosses_conv = []
 
 epochCount = 0
 for step in range(trainingSteps):
     batchX, batchY, batchId = training.next(batchSize)
-    sess.run(m_dumb.optimize, feed_dict={_data: batchX, _labels: batchY})
+    if runDumb:
+        sess.run(m_dumb.optimize, feed_dict={_data: batchX, _labels: batchY})
     sess.run(m_conv.optimize, feed_dict={_data: batchX, _labels: batchY})
     if batchId == trainMaxIdx or step == 1:
         # end of epoch
         # calculate current loss on training data
-        loss_dumb, loss_conv = sess.run([m_dumb.loss, m_conv.loss], 
-                feed_dict={_data: batchX, _labels: batchY})
+        feed_dict = {_data: batchX, _labels: batchY}
+
+        if runDumb:
+            loss_dumb = sess.run(m_dumb.loss, feed_dict=feed_dict)
+        loss_conv = sess.run(m_conv.loss, feed_dict=feed_dict)
 
         #loss_conv = sess.run([m_conv.loss], 
         #        feed_dict={_data: batchX, _labels: batchY})
 
         # calculate validation loss
         validX, validY, _ = validation.next(batchSize)
-        vloss_dumb, vloss_conv = sess.run([m_dumb.loss, m_conv.loss], 
-                feed_dict={_data: validX, _labels: validY})
+        feed_dict = {_data: validX, _labels:validY}
+        if runDumb:
+            vloss_dumb = sess.run(m_dumb.loss, feed_dict=feed_dict)
+        vloss_conv = sess.run(m_conv.loss, feed_dict=feed_dict)
 
         #vloss_conv = sess.run([m_conv.loss], 
         #        feed_dict={_data: validX, _labels: validY})
 
         steps.append(step)
-        losses_dumb.append(loss_dumb)
+        if runDumb:
+            losses_dumb.append(loss_dumb)
+            vlosses_dumb.append(vloss_dumb)
         losses_conv.append(loss_conv)
-        vlosses_dumb.append(vloss_dumb)
         vlosses_conv.append(vloss_conv)
 
         if TBOARD_LOG:
@@ -247,7 +278,8 @@ for step in range(trainingSteps):
              validWriter.add_summary(vloss, step)
              summWriter.add_summary(tLoss, step)
         if not step == 1: epochCount += 1
-        print("Step " + str(step) + "\tdumb batch loss = {:.4f}".format(vloss_dumb) + 
+        print("Step " + str(step) + 
+            ("\tdumb batch loss = {:.4f}".format(vloss_dumb) if runDumb else "") + 
             "; conv batch loss = {:.4f}".format(vloss_conv))
 
         if epochCount % epochsToSave == 0 and SAVE_CKPT:
@@ -265,29 +297,34 @@ if SAVE_CKPT:
     f.write("final")
     f.close()
 
-    minLossDumb = min(enumerate(vlosses_dumb), key = lambda t: t[1])
-    minLossDumb = (steps[minLossDumb[0]], minLossDumb[1])
+    print("Training complete; model saved in file %s" % save)
+    if runDumb:
+        minLossDumb = min(enumerate(vlosses_dumb), key = lambda t: t[1])
+        minLossDumb = (steps[minLossDumb[0]], minLossDumb[1])
+        print("Minimum dumb loss:", str(minLossDumb))
+
     minLossConv = min(enumerate(vlosses_conv), key = lambda t: t[1])
     minLossConv = (steps[minLossConv[0]], minLossConv[1])
-    print("Training complete; model saved in file %s" % save)
-    print("Minimum dumb loss:", str(minLossDumb))
     print("Minimum conv loss:", str(minLossConv))
     f = open(saveDir + dataFile, 'a')
-    f.write("# min dumb loss\n" + str(minLossDumb) + "\n")
+    if runDumb: f.write("# min dumb loss\n" + str(minLossDumb) + "\n")
     f.write("# min conv loss\n" + str(minLossConv) + "\n")
     f.close()
 
 makePred()
 
 os.mkdir(ckptDir + runId + "/conv")
-os.mkdir(ckptDir + runId + "/dumb")
 os.mkdir(ckptDir + runId + "/conv/mats")
-os.mkdir(ckptDir + runId + "/dumb/mats")
 m_conv.saveMats(ckptDir + runId + "/conv/mats/", sess)
-m_dumb.saveMats(ckptDir + runId + "/dumb/mats/", sess)
+
+if runDumb:
+    os.mkdir(ckptDir + runId + "/dumb")
+    os.mkdir(ckptDir + runId + "/dumb/mats")
+    m_dumb.saveMats(ckptDir + runId + "/dumb/mats/", sess)
+    np.savetxt(ckptDir + runId + "/dumb/losses", np.array(losses_dumb), delimiter=',')
+    np.savetxt(ckptDir + runId + "/dumb/vlosses", np.array(vlosses_dumb), delimiter=',')
+
 np.savetxt(ckptDir + runId + "/steps", np.array(steps), delimiter=',')
 np.savetxt(ckptDir + runId + "/conv/losses", np.array(losses_conv), delimiter=',')
 np.savetxt(ckptDir + runId + "/conv/vlosses", np.array(vlosses_conv), delimiter=',')
-np.savetxt(ckptDir + runId + "/dumb/losses", np.array(losses_dumb), delimiter=',')
-np.savetxt(ckptDir + runId + "/dumb/vlosses", np.array(vlosses_dumb), delimiter=',')
 sess.close()

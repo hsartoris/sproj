@@ -1,3 +1,4 @@
 Neurons: 3
-Timesteps: 50
+Timesteps: 15
 Run count: 25000
+Spike prob:0.25
