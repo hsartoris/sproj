@@ -2,7 +2,7 @@ import numpy as np
 import math, shutil, os
 import tensorflow as tf
 
-def loadMats(matDir, trainable):
+def loadMats(matDir, trainable, layers = None):
     print("Loading matrices from", matDir)
     weights = dict()
     biases = dict()
@@ -16,12 +16,13 @@ def loadMats(matDir, trainable):
         tf.Variable(np.loadtxt(matDir + "/l1f.weights", delimiter=','),
             trainable = trainable[1], dtype=tf.float32)]
 
-    weights['layer2'] = [tf.Variable(np.loadtxt(matDir + "/l2in.weights", 
-        delimiter=','), trainable = trainable[1], dtype="float32"),
-        tf.Variable(np.loadtxt(matDir + "/l2out.weights", delimiter=','),
-            trainable = trainable[1], dtype = "float32"),
-        tf.Variable(np.loadtxt(matDir + "/l2f.weights", delimiter=','),
-            trainable = trainable[1], dtype=tf.float32)]
+    if layers is None or layers > 3:
+        weights['layer2'] = [tf.Variable(np.loadtxt(matDir + "/l2in.weights", 
+            delimiter=','), trainable = trainable[1], dtype="float32"),
+            tf.Variable(np.loadtxt(matDir + "/l2out.weights", delimiter=','),
+                trainable = trainable[1], dtype = "float32"),
+            tf.Variable(np.loadtxt(matDir + "/l2f.weights", delimiter=','),
+                trainable = trainable[1], dtype=tf.float32)]
 
     weights['final'] = tf.Variable(np.loadtxt(matDir + "/final.weights", 
         delimiter=','), trainable = trainable[2], dtype = "float32")
@@ -38,13 +39,14 @@ def loadMats(matDir, trainable):
     biases['layer1'] = tf.expand_dims(biases['layer1'], 1)
     biases['layer1'] = tf.expand_dims(biases['layer1'], 0)
 
-    biases['layer2'] = tf.Variable(np.loadtxt(matDir + "/l2.biases",
-        delimiter=','), trainable = trainable[1], dtype="float32")
-    biases['layer2'] = tf.expand_dims(biases['layer2'], 1)
-    biases['layer2'] = tf.expand_dims(biases['layer2'], 0)
+    if layers is None or layers > 3:
+        biases['layer2'] = tf.Variable(np.loadtxt(matDir + "/l2.biases",
+            delimiter=','), trainable = trainable[1], dtype="float32")
+        biases['layer2'] = tf.expand_dims(biases['layer2'], 1)
+        biases['layer2'] = tf.expand_dims(biases['layer2'], 0)
     return weights, biases
 
-def initMats(weights_stddev, biases_stddev, d, b):
+def initMats(weights_stddev, biases_stddev, d, b, layers = None):
     weights = dict()
     biases = dict()
     weights['layer0'] = tf.Variable(tf.random_normal([d, 2*b], stddev=weights_stddev))
@@ -53,9 +55,10 @@ def initMats(weights_stddev, biases_stddev, d, b):
         tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
         tf.Variable(tf.random_normal([d, 2*d], stddev=.5))]
 
-    weights['layer2'] = [tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
-        tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
-        tf.Variable(tf.random_normal([d, 2*d], stddev=.5))]
+    if layers is None or layers > 3:
+        weights['layer2'] = [tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
+            tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
+            tf.Variable(tf.random_normal([d, 2*d], stddev=.5))]
 
     weights['final'] = tf.Variable(tf.random_normal([1, d], stddev=weights_stddev))
 
@@ -63,33 +66,36 @@ def initMats(weights_stddev, biases_stddev, d, b):
         stddev=biases_stddev))
     biases['layer1'] = tf.Variable(tf.truncated_normal([1, d,1],
         stddev=biases_stddev))
-    biases['layer2'] = tf.Variable(tf.truncated_normal([1, d,1],
-        stddev=biases_stddev))
+    if layers is None or layers > 3:
+        biases['layer2'] = tf.Variable(tf.truncated_normal([1, d,1],
+            stddev=biases_stddev))
     return weights, biases
 
-def saveMats(weights, biases, matDir, sess):
+def saveMats(weights, biases, matDir, sess, layers = None):
     l0 = sess.run(weights['layer0'])
     l1in = sess.run(weights['layer1'][0])
     l1out = sess.run(weights['layer1'][1])
     l1f = sess.run(weights['layer1'][2])
-    l2in = sess.run(weights['layer2'][0])
-    l2out = sess.run(weights['layer2'][1])
-    l2f = sess.run(weights['layer2'][2])
     lf = sess.run(weights['final'])
+
     l0b = sess.run(biases['layer0'])[0]
     l1b = sess.run(biases['layer1'])[0]
-    l2b = sess.run(biases['layer2'])[0]
-    np.savetxt(matDir + "/l0.weights", l0, delimiter=',')
 
+    np.savetxt(matDir + "/l0.weights", l0, delimiter=',')
     np.savetxt(matDir + "/l1in.weights", l1in, delimiter=',')
     np.savetxt(matDir + "/l1out.weights", l1out, delimiter=',')
     np.savetxt(matDir + "/l1f.weights", l1f, delimiter=',')
-
-    np.savetxt(matDir + "/l2in.weights", l2in, delimiter=',')
-    np.savetxt(matDir + "/l2out.weights", l2out, delimiter=',')
-    np.savetxt(matDir + "/l2f.weights", l2f, delimiter=',')
-
     np.savetxt(matDir + "/final.weights", lf, delimiter=',')
+
     np.savetxt(matDir + "/l0.biases", l0b, delimiter=',')
     np.savetxt(matDir + "/l1.biases", l1b, delimiter=',')
-    np.savetxt(matDir + "/l2.biases", l2b, delimiter=',')
+
+    if layers is None or layers > 3:
+        l2in = sess.run(weights['layer2'][0])
+        l2out = sess.run(weights['layer2'][1])
+        l2f = sess.run(weights['layer2'][2])
+        l2b = sess.run(biases['layer2'])[0]
+        np.savetxt(matDir + "/l2in.weights", l2in, delimiter=',')
+        np.savetxt(matDir + "/l2out.weights", l2out, delimiter=',')
+        np.savetxt(matDir + "/l2f.weights", l2f, delimiter=',')
+        np.savetxt(matDir + "/l2.biases", l2b, delimiter=',')

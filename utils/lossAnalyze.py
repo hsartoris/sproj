@@ -8,39 +8,48 @@ saveDir = "model/checkpoints/comp/3sproj/"
 
 def loadLosses():
     convLosses = []
-    dirs = os.listdir()
+    dirs = os.listdir(saveDir)
     for d in dirs:
-        convLoss = np.loadtxt(saveDir + d + "/conv/vlosses", delimiter=',')
-        if not min(convLoss[:,1]) == 1.0:
-            convLosses.append(convLoss)
+        if d == "15k": continue
+        try:
+            convLoss = np.loadtxt(saveDir + d + "/conv/vlosses", delimiter=',')
+            if not min(convLoss) == 1.0:
+                convLosses.append(convLoss)
+        except OSError:
+            pass
     return convLosses
 
 def minLoss(losses):
-    temp = min(enumerate(losses), key = lambda i: np.sum(i[1][:,1]))
+    temp = min(enumerate(losses), key = lambda i: np.sum(i[1]))
     return temp[0], temp[1]
 
 def minFinalLoss(losses):
-    temp = min(enumerate(losses), key = lambda i: i[1][-1,1])
+    temp = min(enumerate(losses), key = lambda i: i[1][-1])
     return temp[0], temp[1]
     
 def maxLoss(losses):
-    temp =  max(enumerate(losses), key = lambda i: np.sum(i[1][:,1]))
+    temp =  max(enumerate(losses), key = lambda i: np.sum(i[1]))
     return temp[0], temp[1]
 
 def avgLoss(losses):
-    lossSum = losses[0][:,1]
+    lossSum = losses[0]
     for i in range(1, len(losses)):
-        lossSum += losses[i][:,1]
+        lossSum += losses[i]
 
     lossSum /= len(losses)
-    idxs = np.array([losses[0][:,0], lossSum])
-    return losses[0][:,0], lossSum
+    return lossSum
+
+dirs = os.listdir(saveDir)
+i = 0
+while dirs[i] == "15k": i += 1
+
+steps = np.loadtxt(saveDir + dirs[i] + "/steps", delimiter=',')
 
 convLosses = loadLosses()
 #convLosses = np.array(sorted(convLosses, key=lambda i: np.sum(i[:,1])))
 #simpleLosses = np.array(sorted(simpleLosses, key=lambda i: np.sum(i[:,1])))
 #print(convLosses[0])
-print(avgLoss(np.array(convLosses)))
+#print(avgLoss(np.array(convLosses)))
 '''
 plt.subplot(211)
 for data in convLosses:
@@ -56,16 +65,20 @@ plt.show()
 #minConvIdx, minConvLoss = minLoss(convLosses)
 
 #minSimpleIdx, minSimpleLoss = minFinalLoss(simpleLosses)
-minConvIdx, minConvLoss = minFinalLoss(convLosses)
-avgConvLossX, avgConvLossY = avgLoss(convLosses)
+minFinalIdx, minFinalLoss = minFinalLoss(convLosses)
+minTotalIdx, minTotalLoss = minLoss(convLosses)
+print("minFinalIdx:", dirs[minFinalIdx])
+print("minTotalIdx:", dirs[minTotalIdx])
+avgConvLossY = avgLoss(convLosses)
 #avgSimpleLossX, avgSimpleLossY = avgLoss(simpleLosses)
 
 #simpleGraph, = plt.semilogy(minSimpleLoss[:,0], minSimpleLoss[:,1], label="simple " + str(minSimpleIdx))
-avgConv, = plt.semilogy(avgConvLossX, avgConvLossY, label="conv_avg")
+avgConv, = plt.semilogy(steps, avgConvLossY, label="avg")
 #avgSimple, = plt.semilogy(avgSimpleLossX, avgSimpleLossY, label="simple_avg")
-convGraph, = plt.semilogy(minConvLoss[:,0], minConvLoss[:,1], label="conv" + str(minConvIdx))
+minFinGraph, = plt.semilogy(steps, minFinalLoss, label="min final" + str(minFinalIdx))
+minTotGraph, = plt.semilogy(steps, minTotalLoss, label="min total" + str(minTotalIdx))
 #diffGraph, = plt.semilogy(avgConvLossX, avgConvLossY - avgSimpleLossY, label="diff")
-plt.legend(handles=[avgConv, convGraph])
+plt.legend(handles=[avgConv, minFinGraph, minTotGraph])
 plt.show()
 
 #print(minConvLoss)

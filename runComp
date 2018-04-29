@@ -228,8 +228,20 @@ config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
 sess.run(init)
 
-print("Optimization slots:")
-print(m_conv.optimizer.get_slot_names())
+w0_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['layer0'])))
+w1in_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['layer1'][0])))
+w1out_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['layer1'][1])))
+w1f_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['layer1'][2])))
+wf_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['final'])))
+
+f = open(saveDir + dataFile, "a")
+f.write("w0_tot: " + str(w0_tot) + "\n")
+f.write("w1in_tot: " + str(w1in_tot) + "\n")
+f.write("w1out_tot: " + str(w1out_tot) + "\n")
+f.write("w1f_tot: " + str(w1f_tot) + "\n")
+f.write("wf_tot: " + str(wf_tot) + "\n")
+f.close()
+
 
 steps = []
 if runDumb: 
