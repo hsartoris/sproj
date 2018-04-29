@@ -39,15 +39,17 @@ import shutil, os
 from model.scripts.SeqData import seqData
 from model.model import Model
 
+ttyCols=79
+
 arguments = docopt(__doc__)
 
 script = arguments['--script']
 
-pretty = Prettify.pretty((79 if script else None))
+pretty = Prettify.pretty((ttyCols if script else None))
 
 runDumb = not arguments['--noDumb']
 
-SAVE_CKPT = True
+SAVE = True
 # if you set this to False it will break
 TBOARD_LOG = False
 
@@ -119,14 +121,15 @@ def loadData():
     global testMaxIdx
     # 5120, 6400, 8000
     # 1280, 1600, 2000
+    cols = ttyCols if script else None
     print("Loading training data")
-    training = seqData(0, trainMaxIdx, prefix, b)
+    training = seqData(0, trainMaxIdx, prefix, b, ttyCols=cols)
     trainMaxIdx -= training.crop(batchSize)
     print("Loading validation data")
-    validation = seqData(trainMaxIdx, validMaxIdx, prefix, b)
+    validation = seqData(trainMaxIdx, validMaxIdx, prefix, b, ttyCols=cols)
     validMaxIdx -= validation.crop(batchSize)
     print("Loading testing data")
-    testing = seqData(validMaxIdx, testMaxIdx, prefix, b)
+    testing = seqData(validMaxIdx, testMaxIdx, prefix, b, ttyCols=cols)
     testMaxIdx -= testing.crop(batchSize)
 
 def signal_handler(signal, frame):
@@ -173,14 +176,15 @@ def dumpData():
     out += ("# testMaxIdx, validMaxIdx, trainMaxIdx\n" + str(testMaxIdx) + ", " +
             str(validMaxIdx) + ", " + str(trainMaxIdx) + "\n")
     out += "# noDumb\n" + str((0 if runDumb else 1)) + "\n"
+    out += "# script\n" + str(script) + "\n"
     out += str(arguments) # just for good measure
     return out
 
 def matrixMagnitude(mat, sess):
     return sess.run(tf.reduce_sum(tf.abs(mat)))
 
-print(dumpData())
 if not arguments['--immediate']:
+    print(dumpData())
     cont = input("Continue with these parameters? [Y/n] ") or "Y"
     if not cont.lower() == "y":
         print("Exiting")
@@ -195,11 +199,9 @@ if runDumb:
         learnRate = initLearnRate, dumb=True)
 
 m_conv = Model(b, d, n, _data, _labels, batchSize, learnRate = initLearnRate, dumb=False)
-print("Initialized model")
-
 
 # save some data
-if SAVE_CKPT:
+if SAVE:
     saver = tf.train.Saver()
     saveDir = (ckptDir + runId + "/")
     try: os.mkdir(saveDir)
@@ -212,6 +214,9 @@ if SAVE_CKPT:
         else:
             print("exiting")
             sys.exit()
+    if script:
+        sys.stdout = open(saveDir + "stdout", "w+")
+        sys.stderr = open(saveDir + "stderr", "w+")
     f = open(saveDir + dataFile, "w+")
     f.write(dumpData())
     f.close()
@@ -230,6 +235,7 @@ loadData()
 init = tf.global_variables_initializer()
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
+tf.logging.set_verbosity(tf.logging.ERROR)
 
 #-----------------------------MODEL TRAINING------------------------------------
 
@@ -313,7 +319,7 @@ for step in range(trainingSteps):
             ("\tdumb batch loss = {:.4f}".format(vloss_dumb) if runDumb else "") + 
             "; conv batch loss = {:.4f}".format(vloss_conv))
 
-        if epochCount % epochsToSave == 0 and SAVE_CKPT:
+        if epochCount % epochsToSave == 0 and SAVE:
             save = saver.save(sess, saveDir + "/" + str(step) + ".ckpt")
             f = open(saveDir + "latest", "w+")
             f.write(str(step))
@@ -322,7 +328,7 @@ for step in range(trainingSteps):
 
     pretty.arrow(batchId, trainMaxIdx)
 
-if SAVE_CKPT:
+if SAVE:
     save = saver.save(sess, saveDir + "final.ckpt")
     f = open(saveDir + "latest", "w+")
     f.write("final")
@@ -359,3 +365,5 @@ np.savetxt(ckptDir + runId + "/steps", np.array(steps), delimiter=',')
 np.savetxt(ckptDir + runId + "/conv/losses", np.array(losses_conv), delimiter=',')
 np.savetxt(ckptDir + runId + "/conv/vlosses", np.array(vlosses_conv), delimiter=',')
 sess.close()
+sys.stdout.close()
+sys.stderr.close()
