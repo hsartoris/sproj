@@ -8,3 +8,3593 @@ totalMemory: 7.92GiB freeMemory: 7.66GiB
 2018-04-29 07:17:58.184716: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
 2018-04-29 07:17:58.184724: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
 2018-04-29 07:17:58.184919: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7292 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '0',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.1564; conv batch loss = 14.3590
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.5578; conv batch loss = 0.8820
+Step 2249	dumb batch loss = 0.2022; conv batch loss = 0.5580
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1949; conv batch loss = 0.4101
+Step 4499	dumb batch loss = 0.1734; conv batch loss = 0.3364
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1397; conv batch loss = 0.2232
+Step 6749	dumb batch loss = 0.1501; conv batch loss = 0.1726
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1793; conv batch loss = 0.1736
+Step 8999	dumb batch loss = 0.1238; conv batch loss = 0.1296
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.1098; conv batch loss = 0.1265
+Step 11249	dumb batch loss = 0.1628; conv batch loss = 0.1600
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1181; conv batch loss = 0.1627
+Step 13499	dumb batch loss = 0.1417; conv batch loss = 0.1367
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0953; conv batch loss = 0.1027
+Step 15749	dumb batch loss = 0.0979; conv batch loss = 0.1111
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.1516; conv batch loss = 0.1108
+Step 17999	dumb batch loss = 0.1015; conv batch loss = 0.0879
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.1160; conv batch loss = 0.1034
+Step 20249	dumb batch loss = 0.0597; conv batch loss = 0.0711
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0941; conv batch loss = 0.0898
+Step 22499	dumb batch loss = 0.1066; conv batch loss = 0.0880
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1204; conv batch loss = 0.1125
+Step 24749	dumb batch loss = 0.1042; conv batch loss = 0.0971
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0892; conv batch loss = 0.1116
+Step 26999	dumb batch loss = 0.1047; conv batch loss = 0.0976
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0927; conv batch loss = 0.0920
+Step 29249	dumb batch loss = 0.0653; conv batch loss = 0.0734
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0745; conv batch loss = 0.0831
+Step 31499	dumb batch loss = 0.1115; conv batch loss = 0.1036
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0889; conv batch loss = 0.0713
+Step 33749	dumb batch loss = 0.1007; conv batch loss = 0.0787
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.1093; conv batch loss = 0.0715
+Step 35999	dumb batch loss = 0.0975; conv batch loss = 0.0798
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0726; conv batch loss = 0.0854
+Step 38249	dumb batch loss = 0.0495; conv batch loss = 0.0623
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.1129; conv batch loss = 0.0817
+Step 40499	dumb batch loss = 0.0705; conv batch loss = 0.0542
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.1006; conv batch loss = 0.0701
+Step 42749	dumb batch loss = 0.1017; conv batch loss = 0.0621
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.1291; conv batch loss = 0.0758
+Step 44999	dumb batch loss = 0.0795; conv batch loss = 0.0901
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.1061; conv batch loss = 0.0777
+Step 47249	dumb batch loss = 0.1119; conv batch loss = 0.0992
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0902; conv batch loss = 0.0607
+Step 49499	dumb batch loss = 0.0993; conv batch loss = 0.1008
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/0/final.ckpt
+Minimum dumb loss: (38249, 0.0495287)
+Minimum conv loss: (40499, 0.054227035)
+Dumb model prediction:
+[[-0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.1 -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.   0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.   0.   0.  -0.  -0.  -0.  -0.  -0.  -0.   0.2]
+ [-0.  -0.   0.  -0.   1.  -0.  -0.  -0.  -0.  -0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.  -0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.  -0.   1.  -0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.   0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [1.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [1.  1.  0.  0.4 0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.3]
+ [0.  0.  0.  0.  1.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  1.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  1.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+2018-04-29 07:23:47.704849: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:23:47.705301: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.73GiB
+2018-04-29 07:23:47.705318: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:23:47.939520: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:23:47.939562: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:23:47.939570: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:23:47.939778: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7301 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '1',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 6.8618; conv batch loss = 8.6980
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7611; conv batch loss = 0.8088
+Step 2249	dumb batch loss = 0.3024; conv batch loss = 0.4204
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2048; conv batch loss = 0.2967
+Step 4499	dumb batch loss = 0.1658; conv batch loss = 0.2444
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1289; conv batch loss = 0.1618
+Step 6749	dumb batch loss = 0.1116; conv batch loss = 0.1708
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1617; conv batch loss = 0.1594
+Step 8999	dumb batch loss = 0.0851; conv batch loss = 0.0899
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0875; conv batch loss = 0.0907
+Step 11249	dumb batch loss = 0.1372; conv batch loss = 0.1530
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0855; conv batch loss = 0.1132
+Step 13499	dumb batch loss = 0.1001; conv batch loss = 0.1065
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.1078; conv batch loss = 0.0815
+Step 15749	dumb batch loss = 0.0601; conv batch loss = 0.0870
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.1043; conv batch loss = 0.0963
+Step 17999	dumb batch loss = 0.0791; conv batch loss = 0.0959
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.1040; conv batch loss = 0.0984
+Step 20249	dumb batch loss = 0.0605; conv batch loss = 0.0608
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0665; conv batch loss = 0.0646
+Step 22499	dumb batch loss = 0.0834; conv batch loss = 0.0850
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1023; conv batch loss = 0.1073
+Step 24749	dumb batch loss = 0.0652; conv batch loss = 0.0903
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.1080; conv batch loss = 0.0754
+Step 26999	dumb batch loss = 0.0638; conv batch loss = 0.0893
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0813; conv batch loss = 0.0686
+Step 29249	dumb batch loss = 0.0646; conv batch loss = 0.0575
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0566; conv batch loss = 0.0810
+Step 31499	dumb batch loss = 0.0858; conv batch loss = 0.0844
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0982; conv batch loss = 0.0827
+Step 33749	dumb batch loss = 0.0736; conv batch loss = 0.0682
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0575; conv batch loss = 0.0539
+Step 35999	dumb batch loss = 0.0664; conv batch loss = 0.0722
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0727; conv batch loss = 0.0829
+Step 38249	dumb batch loss = 0.0461; conv batch loss = 0.0582
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0849; conv batch loss = 0.0648
+Step 40499	dumb batch loss = 0.0603; conv batch loss = 0.0400
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0484; conv batch loss = 0.0691
+Step 42749	dumb batch loss = 0.0549; conv batch loss = 0.0540
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0691; conv batch loss = 0.0733
+Step 44999	dumb batch loss = 0.0766; conv batch loss = 0.0898
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0712; conv batch loss = 0.0674
+Step 47249	dumb batch loss = 0.0939; conv batch loss = 0.0909
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0750; conv batch loss = 0.0764
+Step 49499	dumb batch loss = 0.0945; conv batch loss = 0.0566
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/1/final.ckpt
+Minimum dumb loss: (38249, 0.04612109)
+Minimum conv loss: (40499, 0.039961386)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.   0.  -0.  -0.  -0.  -0. ]
+ [-0.   0.  -0.   0.   0.   0.  -0.   0.  -0.   0.1]
+ [-0.   0.  -0.   0.   1.   0.  -0.   0.   0.   0.2]
+ [-0.   0.  -0.  -0.  -0.   0.  -0.  -0.  -0.  -0. ]
+ [-0.   0.  -0.  -0.  -0.   0.   1.   0.  -0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.   0.  -0.   0.  -0.  -0. ]]
+Conv model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.   0.  -0.   0.   0. ]
+ [ 1.  -0.  -0.   0.  -0.  -0.  -0.   0.   0.   0. ]
+ [ 1.   1.  -0.   0.  -0.  -0.  -0.   0.   0.  -0. ]
+ [-0.  -0.   0.   0.  -0.  -0.  -0.   0.   0.   0. ]
+ [ 0.  -0.  -0.   0.  -0.   0.   0.   0.  -0.   0.9]
+ [-0.  -0.  -0.   0.   1.  -0.  -0.   0.   0.  -0.2]
+ [ 0.  -0.  -0.   0.  -0.  -0.  -0.   0.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.   0.   1.  -0.  -0.   0. ]
+ [ 0.  -0.  -0.   0.  -0.   0.   0.   1.   0.   0. ]
+ [ 0.  -0.   0.   0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+2018-04-29 07:29:39.753117: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:29:39.753490: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.31GiB
+2018-04-29 07:29:39.753516: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:29:40.041578: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:29:40.041622: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:29:40.041629: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:29:40.041822: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7063 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '2',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 3.3047; conv batch loss = 10.5815
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.4402; conv batch loss = 0.8127
+Step 2249	dumb batch loss = 0.2064; conv batch loss = 0.4797
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1868; conv batch loss = 0.3454
+Step 4499	dumb batch loss = 0.1775; conv batch loss = 0.2746
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1283; conv batch loss = 0.1551
+Step 6749	dumb batch loss = 0.1271; conv batch loss = 0.1275
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1395; conv batch loss = 0.1773
+Step 8999	dumb batch loss = 0.0864; conv batch loss = 0.1002
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0772; conv batch loss = 0.0938
+Step 11249	dumb batch loss = 0.1232; conv batch loss = 0.1309
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0924; conv batch loss = 0.1028
+Step 13499	dumb batch loss = 0.1374; conv batch loss = 0.1043
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.1013; conv batch loss = 0.0762
+Step 15749	dumb batch loss = 0.0791; conv batch loss = 0.0682
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0759; conv batch loss = 0.0757
+Step 17999	dumb batch loss = 0.0738; conv batch loss = 0.1026
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0886; conv batch loss = 0.0788
+Step 20249	dumb batch loss = 0.0715; conv batch loss = 0.0563
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0733; conv batch loss = 0.0599
+Step 22499	dumb batch loss = 0.0893; conv batch loss = 0.0547
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1018; conv batch loss = 0.0991
+Step 24749	dumb batch loss = 0.0737; conv batch loss = 0.0833
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0864; conv batch loss = 0.0720
+Step 26999	dumb batch loss = 0.0851; conv batch loss = 0.0809
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0950; conv batch loss = 0.0588
+Step 29249	dumb batch loss = 0.0755; conv batch loss = 0.0377
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0713; conv batch loss = 0.0513
+Step 31499	dumb batch loss = 0.0711; conv batch loss = 0.0692
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.1009; conv batch loss = 0.0738
+Step 33749	dumb batch loss = 0.0956; conv batch loss = 0.0622
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0822; conv batch loss = 0.0791
+Step 35999	dumb batch loss = 0.0634; conv batch loss = 0.0664
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0785; conv batch loss = 0.0610
+Step 38249	dumb batch loss = 0.0797; conv batch loss = 0.0409
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0728; conv batch loss = 0.0779
+Step 40499	dumb batch loss = 0.0535; conv batch loss = 0.0497
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0717; conv batch loss = 0.0629
+Step 42749	dumb batch loss = 0.0693; conv batch loss = 0.0653
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0670; conv batch loss = 0.0576
+Step 44999	dumb batch loss = 0.0880; conv batch loss = 0.0718
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0664; conv batch loss = 0.0768
+Step 47249	dumb batch loss = 0.0963; conv batch loss = 0.0865
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0870; conv batch loss = 0.0748
+Step 49499	dumb batch loss = 0.1281; conv batch loss = 0.1019
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/2/final.ckpt
+Minimum dumb loss: (40499, 0.053543586)
+Minimum conv loss: (29249, 0.03767383)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.  -0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.  -0.   0.   0.   0. ]
+ [ 0.  -0.  -0.  -0.  -0.   0.  -0.   0.   0.   0.6]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.4]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.  -0.   0.  -0.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.  -0.  -0.   0.  -0.   0.  -0.   0.   0.   0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.  -0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.   0.6]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.  -0.   0.  -0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 07:35:28.947220: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:35:28.947610: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.29GiB
+2018-04-29 07:35:28.947638: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:35:29.166725: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:35:29.166791: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:35:29.166803: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:35:29.167007: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7025 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '3',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 8.4887; conv batch loss = 7.1441
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.8035; conv batch loss = 0.7210
+Step 2249	dumb batch loss = 0.4778; conv batch loss = 0.3667
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2887; conv batch loss = 0.2738
+Step 4499	dumb batch loss = 0.1831; conv batch loss = 0.2077
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1316; conv batch loss = 0.1133
+Step 6749	dumb batch loss = 0.1259; conv batch loss = 0.1173
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1499; conv batch loss = 0.1446
+Step 8999	dumb batch loss = 0.0967; conv batch loss = 0.1050
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0830; conv batch loss = 0.0883
+Step 11249	dumb batch loss = 0.1038; conv batch loss = 0.1217
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0781; conv batch loss = 0.1097
+Step 13499	dumb batch loss = 0.0986; conv batch loss = 0.1029
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0578; conv batch loss = 0.0688
+Step 15749	dumb batch loss = 0.0680; conv batch loss = 0.0673
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0803; conv batch loss = 0.1025
+Step 17999	dumb batch loss = 0.0679; conv batch loss = 0.0643
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0765; conv batch loss = 0.0741
+Step 20249	dumb batch loss = 0.0351; conv batch loss = 0.0497
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0769; conv batch loss = 0.1008
+Step 22499	dumb batch loss = 0.0822; conv batch loss = 0.0810
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1072; conv batch loss = 0.0957
+Step 24749	dumb batch loss = 0.0848; conv batch loss = 0.0637
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0804; conv batch loss = 0.0833
+Step 26999	dumb batch loss = 0.0758; conv batch loss = 0.0996
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0685; conv batch loss = 0.0715
+Step 29249	dumb batch loss = 0.0556; conv batch loss = 0.0859
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0686; conv batch loss = 0.0848
+Step 31499	dumb batch loss = 0.0714; conv batch loss = 0.0866
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0820; conv batch loss = 0.0793
+Step 33749	dumb batch loss = 0.0627; conv batch loss = 0.0765
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0656; conv batch loss = 0.0779
+Step 35999	dumb batch loss = 0.0579; conv batch loss = 0.0812
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0640; conv batch loss = 0.0598
+Step 38249	dumb batch loss = 0.0465; conv batch loss = 0.0556
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0825; conv batch loss = 0.0918
+Step 40499	dumb batch loss = 0.0649; conv batch loss = 0.0630
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0526; conv batch loss = 0.0729
+Step 42749	dumb batch loss = 0.0666; conv batch loss = 0.0492
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0669; conv batch loss = 0.0588
+Step 44999	dumb batch loss = 0.0742; conv batch loss = 0.0746
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0692; conv batch loss = 0.0499
+Step 47249	dumb batch loss = 0.0981; conv batch loss = 0.0751
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0817; conv batch loss = 0.0820
+Step 49499	dumb batch loss = 0.0979; conv batch loss = 0.0801
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/3/final.ckpt
+Minimum dumb loss: (20249, 0.035133336)
+Minimum conv loss: (42749, 0.049185988)
+Dumb model prediction:
+[[ 0.   0.   0.  -0.  -0.   0.  -0.  -0.   0.  -0. ]
+ [ 1.   0.   0.  -0.  -0.   0.   0.  -0.   0.  -0. ]
+ [ 1.   1.   0.   0.  -0.   0.   0.   0.  -0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.  -0.  -0.   0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.  -0.  -0.  -0.   0.   0.1]
+ [ 0.   0.   0.  -0.   1.  -0.  -0.  -0.   0.   0. ]
+ [ 0.   0.   0.   0.  -0.   0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.  -0.   1.  -0.   0.  -0. ]
+ [-0.   0.   0.  -0.  -0.  -0.  -0.   1.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.  -0. ]]
+Conv model prediction:
+[[ 0.   0.   0.  -0.   0.  -0.  -0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.  -0.  -0.   0.   0.   0. ]
+ [ 1.   1.  -0.   0.  -0.  -0.  -0.   0.  -0.  -0. ]
+ [ 0.   0.  -0.  -0.  -0.  -0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.  -0.  -0.   0.   0.   0.4]
+ [-0.   0.  -0.  -0.   1.  -0.  -0.  -0.   0.   0. ]
+ [ 0.   0.  -0.  -0.  -0.  -0.   0.   0.   0.  -0. ]
+ [ 0.   0.  -0.  -0.   0.  -0.   1.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.  -0.  -0.   0.   0.  -0.   0.   0.  -0. ]]
+2018-04-29 07:41:20.531095: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:41:20.531395: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 07:41:20.531418: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:41:20.846514: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:41:20.846561: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:41:20.846575: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:41:20.846800: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '4',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 8.3306; conv batch loss = 11.6505
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7497; conv batch loss = 0.8566
+Step 2249	dumb batch loss = 0.4305; conv batch loss = 0.4152
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2700; conv batch loss = 0.3101
+Step 4499	dumb batch loss = 0.2401; conv batch loss = 0.1972
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1557; conv batch loss = 0.1407
+Step 6749	dumb batch loss = 0.1333; conv batch loss = 0.1439
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1968; conv batch loss = 0.1678
+Step 8999	dumb batch loss = 0.0900; conv batch loss = 0.0896
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0894; conv batch loss = 0.0731
+Step 11249	dumb batch loss = 0.1275; conv batch loss = 0.1303
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1060; conv batch loss = 0.0992
+Step 13499	dumb batch loss = 0.1243; conv batch loss = 0.1083
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0813; conv batch loss = 0.0694
+Step 15749	dumb batch loss = 0.0919; conv batch loss = 0.0722
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0852; conv batch loss = 0.0780
+Step 17999	dumb batch loss = 0.0814; conv batch loss = 0.1007
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0738; conv batch loss = 0.1062
+Step 20249	dumb batch loss = 0.0448; conv batch loss = 0.0550
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0655; conv batch loss = 0.0851
+Step 22499	dumb batch loss = 0.0660; conv batch loss = 0.0610
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0993; conv batch loss = 0.1302
+Step 24749	dumb batch loss = 0.0713; conv batch loss = 0.0784
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0856; conv batch loss = 0.0642
+Step 26999	dumb batch loss = 0.0964; conv batch loss = 0.0749
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0769; conv batch loss = 0.0619
+Step 29249	dumb batch loss = 0.0561; conv batch loss = 0.0538
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0600; conv batch loss = 0.0562
+Step 31499	dumb batch loss = 0.0810; conv batch loss = 0.0937
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0785; conv batch loss = 0.0890
+Step 33749	dumb batch loss = 0.0803; conv batch loss = 0.1017
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0703; conv batch loss = 0.0576
+Step 35999	dumb batch loss = 0.0694; conv batch loss = 0.0629
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0622; conv batch loss = 0.0805
+Step 38249	dumb batch loss = 0.0521; conv batch loss = 0.0619
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0857; conv batch loss = 0.1029
+Step 40499	dumb batch loss = 0.0570; conv batch loss = 0.0545
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0614; conv batch loss = 0.0786
+Step 42749	dumb batch loss = 0.0561; conv batch loss = 0.0833
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0671; conv batch loss = 0.0518
+Step 44999	dumb batch loss = 0.1038; conv batch loss = 0.0915
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0570; conv batch loss = 0.0725
+Step 47249	dumb batch loss = 0.0854; conv batch loss = 0.0823
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0851; conv batch loss = 0.0636
+Step 49499	dumb batch loss = 0.1065; conv batch loss = 0.0774
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/4/final.ckpt
+Minimum dumb loss: (20249, 0.04482236)
+Minimum conv loss: (43874, 0.051800344)
+Dumb model prediction:
+[[-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 1.  -0.  -0.   0.   0.   0.   0.   0.  -0.   0. ]
+ [ 1.   1.  -0.   0.3  0.   0.   0.   0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0.2]
+ [-0.  -0.  -0.   0.   1.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [1.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [1.  1.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.3]
+ [0.  0.  0.  0.  1.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  1.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  1.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+2018-04-29 07:47:10.867597: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:47:10.867952: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 07:47:10.867971: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:47:11.170227: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:47:11.170286: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:47:11.170300: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:47:11.170498: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '5',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.1121; conv batch loss = 10.1161
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.6064; conv batch loss = 0.7994
+Step 2249	dumb batch loss = 0.2814; conv batch loss = 0.4483
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1690; conv batch loss = 0.3427
+Step 4499	dumb batch loss = 0.1835; conv batch loss = 0.2681
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1137; conv batch loss = 0.1645
+Step 6749	dumb batch loss = 0.1083; conv batch loss = 0.2042
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1489; conv batch loss = 0.1998
+Step 8999	dumb batch loss = 0.0856; conv batch loss = 0.1229
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0835; conv batch loss = 0.1146
+Step 11249	dumb batch loss = 0.1131; conv batch loss = 0.1486
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1017; conv batch loss = 0.1264
+Step 13499	dumb batch loss = 0.1098; conv batch loss = 0.1354
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0958; conv batch loss = 0.0909
+Step 15749	dumb batch loss = 0.0765; conv batch loss = 0.0845
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0795; conv batch loss = 0.1019
+Step 17999	dumb batch loss = 0.0933; conv batch loss = 0.1247
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0837; conv batch loss = 0.0995
+Step 20249	dumb batch loss = 0.0570; conv batch loss = 0.0687
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0736; conv batch loss = 0.0956
+Step 22499	dumb batch loss = 0.0648; conv batch loss = 0.0944
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1013; conv batch loss = 0.1316
+Step 24749	dumb batch loss = 0.1007; conv batch loss = 0.0990
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0702; conv batch loss = 0.0906
+Step 26999	dumb batch loss = 0.0644; conv batch loss = 0.0793
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0797; conv batch loss = 0.0811
+Step 29249	dumb batch loss = 0.0599; conv batch loss = 0.0573
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0724; conv batch loss = 0.0631
+Step 31499	dumb batch loss = 0.0844; conv batch loss = 0.0698
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0940; conv batch loss = 0.0927
+Step 33749	dumb batch loss = 0.0889; conv batch loss = 0.0942
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0748; conv batch loss = 0.0890
+Step 35999	dumb batch loss = 0.1050; conv batch loss = 0.0647
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0510; conv batch loss = 0.0655
+Step 38249	dumb batch loss = 0.0665; conv batch loss = 0.0574
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0941; conv batch loss = 0.1152
+Step 40499	dumb batch loss = 0.0516; conv batch loss = 0.0461
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0830; conv batch loss = 0.0544
+Step 42749	dumb batch loss = 0.0490; conv batch loss = 0.0564
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0729; conv batch loss = 0.0851
+Step 44999	dumb batch loss = 0.0723; conv batch loss = 0.0846
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0640; conv batch loss = 0.0626
+Step 47249	dumb batch loss = 0.0775; conv batch loss = 0.0872
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0900; conv batch loss = 0.0623
+Step 49499	dumb batch loss = 0.0757; conv batch loss = 0.1099
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/5/final.ckpt
+Minimum dumb loss: (42749, 0.04896645)
+Minimum conv loss: (40499, 0.046085436)
+Dumb model prediction:
+[[-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 1.  -0.  -0.   0.   0.   0.  -0.  -0.   0.   0. ]
+ [ 1.   1.  -0.   0.   0.   0.   0.  -0.   0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0.1]
+ [-0.  -0.  -0.   0.   1.  -0.  -0.  -0.  -0.  -0.1]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.   1.  -0.  -0.   0. ]
+ [-0.  -0.  -0.   0.  -0.   0.  -0.   1.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.   0.  -0.  -0.   0.1]
+ [ 1.  -0.  -0.  -0.  -0.   0.  -0.   0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.3  0.  -0.  -0.   0.  -0.  -0. ]
+ [ 0.   0.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.  -0.   0.   0.   0.   0.   0.   0.  -0.2]
+ [-0.   0.  -0.  -0.   1.  -0.   0.   0.  -0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [-0.  -0.  -0.  -0.   0.  -0.   0.   1.  -0.  -0. ]
+ [ 0.   0.   0.   0.   0.  -0.   0.   0.   0.  -0. ]]
+2018-04-29 07:53:01.911343: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:53:01.911705: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 07:53:01.911728: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:53:02.204494: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:53:02.204545: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:53:02.204560: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:53:02.204794: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '6',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 6.4751; conv batch loss = 9.6746
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7576; conv batch loss = 0.7706
+Step 2249	dumb batch loss = 0.3293; conv batch loss = 0.3647
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2162; conv batch loss = 0.2318
+Step 4499	dumb batch loss = 0.2158; conv batch loss = 0.2152
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1403; conv batch loss = 0.1276
+Step 6749	dumb batch loss = 0.1391; conv batch loss = 0.0999
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1610; conv batch loss = 0.1337
+Step 8999	dumb batch loss = 0.0869; conv batch loss = 0.1015
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0921; conv batch loss = 0.0784
+Step 11249	dumb batch loss = 0.1270; conv batch loss = 0.1208
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1155; conv batch loss = 0.0858
+Step 13499	dumb batch loss = 0.1059; conv batch loss = 0.1077
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0756; conv batch loss = 0.0588
+Step 15749	dumb batch loss = 0.0772; conv batch loss = 0.0737
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0822; conv batch loss = 0.0719
+Step 17999	dumb batch loss = 0.0746; conv batch loss = 0.0713
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0747; conv batch loss = 0.0864
+Step 20249	dumb batch loss = 0.0490; conv batch loss = 0.0518
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0760; conv batch loss = 0.0629
+Step 22499	dumb batch loss = 0.0647; conv batch loss = 0.0532
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0762; conv batch loss = 0.0959
+Step 24749	dumb batch loss = 0.0809; conv batch loss = 0.0563
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0812; conv batch loss = 0.0837
+Step 26999	dumb batch loss = 0.0746; conv batch loss = 0.0865
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0648; conv batch loss = 0.0717
+Step 29249	dumb batch loss = 0.0592; conv batch loss = 0.0703
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0636; conv batch loss = 0.0798
+Step 31499	dumb batch loss = 0.0684; conv batch loss = 0.0769
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0911; conv batch loss = 0.0619
+Step 33749	dumb batch loss = 0.0816; conv batch loss = 0.0867
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0747; conv batch loss = 0.0595
+Step 35999	dumb batch loss = 0.0601; conv batch loss = 0.0612
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0597; conv batch loss = 0.0617
+Step 38249	dumb batch loss = 0.0421; conv batch loss = 0.0456
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0799; conv batch loss = 0.0821
+Step 40499	dumb batch loss = 0.0569; conv batch loss = 0.0488
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0750; conv batch loss = 0.0686
+Step 42749	dumb batch loss = 0.0699; conv batch loss = 0.0737
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0521; conv batch loss = 0.0708
+Step 44999	dumb batch loss = 0.0826; conv batch loss = 0.0720
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0689; conv batch loss = 0.0478
+Step 47249	dumb batch loss = 0.0849; conv batch loss = 0.0610
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0726; conv batch loss = 0.0636
+Step 49499	dumb batch loss = 0.0987; conv batch loss = 0.1031
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/6/final.ckpt
+Minimum dumb loss: (38249, 0.04210342)
+Minimum conv loss: (38249, 0.04561612)
+Dumb model prediction:
+[[-0.  -0.  -0.   0.  -0.  -0.   0.   0.  -0.   0. ]
+ [ 1.  -0.  -0.   0.   0.   0.   0.   0.  -0.   0. ]
+ [ 1.   1.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 0.  -0.  -0.   0.   0.   0.   0.   0.  -0.   0.5]
+ [-0.  -0.  -0.   0.   1.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.   0.   0.   0.   1.  -0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.  -0.   0.   0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.8]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.  -0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 07:58:50.520359: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 07:58:50.520679: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 07:58:50.520696: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 07:58:50.826379: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 07:58:50.826424: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 07:58:50.826436: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 07:58:50.826670: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '7',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 7.0911; conv batch loss = 9.5263
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7668; conv batch loss = 0.7706
+Step 2249	dumb batch loss = 0.2833; conv batch loss = 0.5212
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2230; conv batch loss = 0.3762
+Step 4499	dumb batch loss = 0.1649; conv batch loss = 0.2716
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.0933; conv batch loss = 0.2278
+Step 6749	dumb batch loss = 0.0964; conv batch loss = 0.2276
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1384; conv batch loss = 0.2321
+Step 8999	dumb batch loss = 0.0758; conv batch loss = 0.1343
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0793; conv batch loss = 0.1453
+Step 11249	dumb batch loss = 0.1030; conv batch loss = 0.1862
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0811; conv batch loss = 0.1367
+Step 13499	dumb batch loss = 0.0957; conv batch loss = 0.1154
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0832; conv batch loss = 0.0891
+Step 15749	dumb batch loss = 0.0508; conv batch loss = 0.0905
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0831; conv batch loss = 0.1008
+Step 17999	dumb batch loss = 0.0860; conv batch loss = 0.1074
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0732; conv batch loss = 0.0908
+Step 20249	dumb batch loss = 0.0429; conv batch loss = 0.0629
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0487; conv batch loss = 0.0834
+Step 22499	dumb batch loss = 0.0570; conv batch loss = 0.0603
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0926; conv batch loss = 0.1061
+Step 24749	dumb batch loss = 0.0861; conv batch loss = 0.0916
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0697; conv batch loss = 0.0776
+Step 26999	dumb batch loss = 0.0577; conv batch loss = 0.0972
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0669; conv batch loss = 0.0757
+Step 29249	dumb batch loss = 0.0658; conv batch loss = 0.0558
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0555; conv batch loss = 0.0752
+Step 31499	dumb batch loss = 0.0549; conv batch loss = 0.0756
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0676; conv batch loss = 0.0838
+Step 33749	dumb batch loss = 0.0658; conv batch loss = 0.1101
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0671; conv batch loss = 0.0766
+Step 35999	dumb batch loss = 0.0658; conv batch loss = 0.0892
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0489; conv batch loss = 0.0734
+Step 38249	dumb batch loss = 0.0310; conv batch loss = 0.0473
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0760; conv batch loss = 0.0967
+Step 40499	dumb batch loss = 0.0661; conv batch loss = 0.0527
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0628; conv batch loss = 0.0762
+Step 42749	dumb batch loss = 0.0485; conv batch loss = 0.0755
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0521; conv batch loss = 0.0778
+Step 44999	dumb batch loss = 0.0733; conv batch loss = 0.0897
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0515; conv batch loss = 0.0799
+Step 47249	dumb batch loss = 0.0942; conv batch loss = 0.0832
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0794; conv batch loss = 0.0868
+Step 49499	dumb batch loss = 0.0816; conv batch loss = 0.1108
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/7/final.ckpt
+Minimum dumb loss: (38249, 0.031029165)
+Minimum conv loss: (38249, 0.047283497)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.  -0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.2  0.  -0.   0.   0.  -0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.   0. ]
+ [-0.   0.   0.   0.   0.  -0.   0.   0.   0.   0.2]
+ [-0.   0.   0.  -0.   1.  -0.   0.  -0.  -0.   0. ]
+ [-0.   0.   0.  -0.   0.  -0.   0.  -0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.  -0.   0.   1.   0.   0. ]
+ [-0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+Conv model prediction:
+[[ 0.   0.  -0.   0.   0.   0.   0.   0.   0.  -0. ]
+ [ 1.   0.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.  -0.1  0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.  -0.   0.  -0.   0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.  -0.  -0.   0.   0.   0.4]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0.1]
+ [ 0.  -0.  -0.  -0.   0.   0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.4  0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.8  0.   0. ]
+ [ 0.   0.  -0.  -0.   0.   0.   0.   0.   0.  -0. ]]
+2018-04-29 08:04:40.290723: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:04:40.291042: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 08:04:40.291061: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:04:40.598551: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:04:40.598600: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:04:40.598616: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:04:40.598829: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '8',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.4876; conv batch loss = 6.9363
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7187; conv batch loss = 0.7502
+Step 2249	dumb batch loss = 0.2574; conv batch loss = 0.3503
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1895; conv batch loss = 0.2443
+Step 4499	dumb batch loss = 0.1917; conv batch loss = 0.2128
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1682; conv batch loss = 0.1336
+Step 6749	dumb batch loss = 0.1752; conv batch loss = 0.1200
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1979; conv batch loss = 0.1434
+Step 8999	dumb batch loss = 0.1165; conv batch loss = 0.0746
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0991; conv batch loss = 0.0827
+Step 11249	dumb batch loss = 0.1536; conv batch loss = 0.1093
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0948; conv batch loss = 0.1154
+Step 13499	dumb batch loss = 0.0977; conv batch loss = 0.1039
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.1179; conv batch loss = 0.0622
+Step 15749	dumb batch loss = 0.0932; conv batch loss = 0.0723
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0986; conv batch loss = 0.0864
+Step 17999	dumb batch loss = 0.0994; conv batch loss = 0.0784
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0952; conv batch loss = 0.0927
+Step 20249	dumb batch loss = 0.0654; conv batch loss = 0.0502
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0897; conv batch loss = 0.0616
+Step 22499	dumb batch loss = 0.0825; conv batch loss = 0.0634
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0905; conv batch loss = 0.1008
+Step 24749	dumb batch loss = 0.1047; conv batch loss = 0.0883
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0755; conv batch loss = 0.0645
+Step 26999	dumb batch loss = 0.0960; conv batch loss = 0.0839
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0834; conv batch loss = 0.0600
+Step 29249	dumb batch loss = 0.0518; conv batch loss = 0.0638
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0703; conv batch loss = 0.0543
+Step 31499	dumb batch loss = 0.0853; conv batch loss = 0.0746
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0965; conv batch loss = 0.0825
+Step 33749	dumb batch loss = 0.0887; conv batch loss = 0.0840
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0718; conv batch loss = 0.0568
+Step 35999	dumb batch loss = 0.0659; conv batch loss = 0.0663
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0613; conv batch loss = 0.0530
+Step 38249	dumb batch loss = 0.0493; conv batch loss = 0.0454
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0810; conv batch loss = 0.0933
+Step 40499	dumb batch loss = 0.0642; conv batch loss = 0.0378
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0820; conv batch loss = 0.0747
+Step 42749	dumb batch loss = 0.0566; conv batch loss = 0.0678
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0527; conv batch loss = 0.0742
+Step 44999	dumb batch loss = 0.0927; conv batch loss = 0.0624
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0703; conv batch loss = 0.0784
+Step 47249	dumb batch loss = 0.0889; conv batch loss = 0.1067
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0698; conv batch loss = 0.0560
+Step 49499	dumb batch loss = 0.0796; conv batch loss = 0.0796
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/8/final.ckpt
+Minimum dumb loss: (38249, 0.049309622)
+Minimum conv loss: (40499, 0.037844356)
+Dumb model prediction:
+[[ 0.  -0.  -0.   0.   0.  -0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.   0.  -0.  -0.  -0.   0.   0.6]
+ [-0.  -0.  -0.   0.   1.  -0.  -0.   0.  -0.   0. ]
+ [-0.  -0.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.  -0.   0.   0.  -0.   1.   0.   0.   0. ]
+ [ 0.   0.  -0.   0.   0.   0.   0.   1.   0.   0. ]
+ [-0.  -0.  -0.   0.   0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.  -0.3]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 08:10:26.988222: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:10:26.988534: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 08:10:26.988551: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:10:27.288955: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:10:27.288997: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:10:27.289005: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:10:27.289196: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '9',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.9109; conv batch loss = 9.0245
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.6618; conv batch loss = 0.7395
+Step 2249	dumb batch loss = 0.3055; conv batch loss = 0.3565
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2552; conv batch loss = 0.2748
+Step 4499	dumb batch loss = 0.2011; conv batch loss = 0.2737
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1487; conv batch loss = 0.1579
+Step 6749	dumb batch loss = 0.1470; conv batch loss = 0.1594
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1498; conv batch loss = 0.1555
+Step 8999	dumb batch loss = 0.1108; conv batch loss = 0.1214
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0754; conv batch loss = 0.0960
+Step 11249	dumb batch loss = 0.1250; conv batch loss = 0.1140
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0960; conv batch loss = 0.1223
+Step 13499	dumb batch loss = 0.0952; conv batch loss = 0.0912
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0690; conv batch loss = 0.0704
+Step 15749	dumb batch loss = 0.0805; conv batch loss = 0.0909
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0906; conv batch loss = 0.0912
+Step 17999	dumb batch loss = 0.0742; conv batch loss = 0.1102
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0723; conv batch loss = 0.0848
+Step 20249	dumb batch loss = 0.0525; conv batch loss = 0.0541
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0544; conv batch loss = 0.0642
+Step 22499	dumb batch loss = 0.0842; conv batch loss = 0.0575
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1055; conv batch loss = 0.0884
+Step 24749	dumb batch loss = 0.1062; conv batch loss = 0.0820
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0776; conv batch loss = 0.0832
+Step 26999	dumb batch loss = 0.0695; conv batch loss = 0.0919
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0931; conv batch loss = 0.0855
+Step 29249	dumb batch loss = 0.0450; conv batch loss = 0.0639
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0688; conv batch loss = 0.0762
+Step 31499	dumb batch loss = 0.0903; conv batch loss = 0.0801
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0909; conv batch loss = 0.0885
+Step 33749	dumb batch loss = 0.0703; conv batch loss = 0.0753
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0734; conv batch loss = 0.0718
+Step 35999	dumb batch loss = 0.1006; conv batch loss = 0.0723
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0717; conv batch loss = 0.0656
+Step 38249	dumb batch loss = 0.0537; conv batch loss = 0.0536
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0821; conv batch loss = 0.0985
+Step 40499	dumb batch loss = 0.0540; conv batch loss = 0.0565
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0829; conv batch loss = 0.0535
+Step 42749	dumb batch loss = 0.0748; conv batch loss = 0.0758
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0655; conv batch loss = 0.0888
+Step 44999	dumb batch loss = 0.0724; conv batch loss = 0.0666
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0717; conv batch loss = 0.0559
+Step 47249	dumb batch loss = 0.0751; conv batch loss = 0.0964
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0897; conv batch loss = 0.0730
+Step 49499	dumb batch loss = 0.0994; conv batch loss = 0.0619
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/9/final.ckpt
+Minimum dumb loss: (29249, 0.045007583)
+Minimum conv loss: (41624, 0.053535167)
+Dumb model prediction:
+[[-0.  -0.  -0.  -0.  -0.   0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.  -0.   0.1 -0.   0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.  -0.   0.  -0.  -0.  -0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.   0.  -0.   0.   0.   0. ]
+ [ 0.   0.   0.  -0.  -0.   0.  -0.  -0.   0.   0.1]
+ [-0.  -0.   0.   0.   1.   0.  -0.  -0.  -0.  -0. ]
+ [ 0.   0.   0.   0.  -0.   0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.   0.   1.   0.   0.  -0. ]
+ [-0.   0.   0.  -0.  -0.   0.  -0.   1.  -0.  -0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.  -0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.2  0.   0.  -0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.1]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 08:16:16.316316: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:16:16.316682: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 08:16:16.316704: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:16:16.589792: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:16:16.589840: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:16:16.589847: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:16:16.590046: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '10',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 3.8083; conv batch loss = 9.7373
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.4640; conv batch loss = 0.7243
+Step 2249	dumb batch loss = 0.2106; conv batch loss = 0.3825
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2245; conv batch loss = 0.2757
+Step 4499	dumb batch loss = 0.1774; conv batch loss = 0.2369
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1193; conv batch loss = 0.1550
+Step 6749	dumb batch loss = 0.1327; conv batch loss = 0.1403
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1589; conv batch loss = 0.1851
+Step 8999	dumb batch loss = 0.1111; conv batch loss = 0.1045
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0989; conv batch loss = 0.0766
+Step 11249	dumb batch loss = 0.1436; conv batch loss = 0.1262
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0963; conv batch loss = 0.1058
+Step 13499	dumb batch loss = 0.1134; conv batch loss = 0.0919
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0917; conv batch loss = 0.0839
+Step 15749	dumb batch loss = 0.0759; conv batch loss = 0.0810
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0897; conv batch loss = 0.0894
+Step 17999	dumb batch loss = 0.0795; conv batch loss = 0.0819
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0721; conv batch loss = 0.0945
+Step 20249	dumb batch loss = 0.0583; conv batch loss = 0.0425
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0743; conv batch loss = 0.0742
+Step 22499	dumb batch loss = 0.0686; conv batch loss = 0.0555
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0911; conv batch loss = 0.1118
+Step 24749	dumb batch loss = 0.1082; conv batch loss = 0.0765
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0743; conv batch loss = 0.0812
+Step 26999	dumb batch loss = 0.0683; conv batch loss = 0.0752
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0636; conv batch loss = 0.0572
+Step 29249	dumb batch loss = 0.0643; conv batch loss = 0.0339
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0574; conv batch loss = 0.0527
+Step 31499	dumb batch loss = 0.0723; conv batch loss = 0.0593
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0832; conv batch loss = 0.0658
+Step 33749	dumb batch loss = 0.0739; conv batch loss = 0.0805
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0783; conv batch loss = 0.0689
+Step 35999	dumb batch loss = 0.0762; conv batch loss = 0.0700
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0840; conv batch loss = 0.0625
+Step 38249	dumb batch loss = 0.0605; conv batch loss = 0.0455
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0875; conv batch loss = 0.0723
+Step 40499	dumb batch loss = 0.0775; conv batch loss = 0.0493
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0688; conv batch loss = 0.0614
+Step 42749	dumb batch loss = 0.0482; conv batch loss = 0.0611
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0438; conv batch loss = 0.0490
+Step 44999	dumb batch loss = 0.0581; conv batch loss = 0.0753
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0783; conv batch loss = 0.1047
+Step 47249	dumb batch loss = 0.0951; conv batch loss = 0.0858
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0713; conv batch loss = 0.0528
+Step 49499	dumb batch loss = 0.0855; conv batch loss = 0.0879
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/10/final.ckpt
+Minimum dumb loss: (43874, 0.043761343)
+Minimum conv loss: (29249, 0.033924077)
+Dumb model prediction:
+[[-0. -0. -0. -0. -0. -0. -0. -0. -0.  0.]
+ [ 1. -0. -0.  0. -0. -0.  0.  0. -0.  0.]
+ [ 1.  1. -0.  0. -0.  0.  0.  0. -0.  0.]
+ [-0. -0. -0. -0. -0. -0. -0. -0. -0.  0.]
+ [-0. -0. -0. -0. -0. -0.  0. -0. -0.  1.]
+ [-0. -0. -0. -0.  1. -0. -0. -0. -0.  0.]
+ [-0. -0. -0. -0. -0. -0. -0. -0. -0. -0.]
+ [-0. -0. -0. -0. -0. -0.  1. -0. -0. -0.]
+ [-0. -0. -0. -0. -0. -0.  0.  1. -0. -0.]
+ [-0. -0. -0. -0. -0. -0. -0. -0. -0. -0.]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.  -0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.6]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 08:22:04.440581: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:22:04.440868: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.69GiB
+2018-04-29 08:22:04.440884: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:22:04.642699: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:22:04.642733: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:22:04.642740: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:22:04.642934: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7388 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '11',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.2856; conv batch loss = 10.2656
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.4846; conv batch loss = 0.8147
+Step 2249	dumb batch loss = 0.2500; conv batch loss = 0.5378
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2049; conv batch loss = 0.3476
+Step 4499	dumb batch loss = 0.1998; conv batch loss = 0.2530
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1150; conv batch loss = 0.2009
+Step 6749	dumb batch loss = 0.1281; conv batch loss = 0.2178
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1584; conv batch loss = 0.2108
+Step 8999	dumb batch loss = 0.1021; conv batch loss = 0.1099
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0864; conv batch loss = 0.0843
+Step 11249	dumb batch loss = 0.1510; conv batch loss = 0.1551
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0997; conv batch loss = 0.1155
+Step 13499	dumb batch loss = 0.1427; conv batch loss = 0.0937
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0974; conv batch loss = 0.0827
+Step 15749	dumb batch loss = 0.0813; conv batch loss = 0.0830
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0809; conv batch loss = 0.0857
+Step 17999	dumb batch loss = 0.0684; conv batch loss = 0.0653
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0739; conv batch loss = 0.0951
+Step 20249	dumb batch loss = 0.0448; conv batch loss = 0.0631
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0637; conv batch loss = 0.0707
+Step 22499	dumb batch loss = 0.0661; conv batch loss = 0.1113
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0951; conv batch loss = 0.1203
+Step 24749	dumb batch loss = 0.0932; conv batch loss = 0.0941
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0825; conv batch loss = 0.0790
+Step 26999	dumb batch loss = 0.0994; conv batch loss = 0.0778
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0722; conv batch loss = 0.0764
+Step 29249	dumb batch loss = 0.0559; conv batch loss = 0.0697
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0534; conv batch loss = 0.0616
+Step 31499	dumb batch loss = 0.0793; conv batch loss = 0.0870
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0993; conv batch loss = 0.0821
+Step 33749	dumb batch loss = 0.0667; conv batch loss = 0.0849
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0518; conv batch loss = 0.0745
+Step 35999	dumb batch loss = 0.0605; conv batch loss = 0.0681
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0638; conv batch loss = 0.0698
+Step 38249	dumb batch loss = 0.0574; conv batch loss = 0.0541
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0701; conv batch loss = 0.0757
+Step 40499	dumb batch loss = 0.0647; conv batch loss = 0.0333
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0581; conv batch loss = 0.0687
+Step 42749	dumb batch loss = 0.0710; conv batch loss = 0.0580
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0601; conv batch loss = 0.0744
+Step 44999	dumb batch loss = 0.0658; conv batch loss = 0.0737
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0734; conv batch loss = 0.1007
+Step 47249	dumb batch loss = 0.0856; conv batch loss = 0.0771
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0753; conv batch loss = 0.0682
+Step 49499	dumb batch loss = 0.0735; conv batch loss = 0.0796
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/11/final.ckpt
+Minimum dumb loss: (20249, 0.04484956)
+Minimum conv loss: (40499, 0.033339042)
+Dumb model prediction:
+[[-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 1.  -0.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.9  1.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 0.  -0.  -0.   0.   0.  -0.  -0.   0.  -0.   0.4]
+ [ 0.  -0.  -0.   0.   1.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.   0.   0.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.   1.  -0.  -0.   0. ]
+ [-0.  -0.  -0.   0.   0.   0.  -0.   1.  -0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.  -0.   0.   0.  -0. ]
+ [ 1.  -0.  -0.   0.  -0.   0.  -0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.  -0.   0.  -0.   0.   0.   0.   0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   0.  -0.   0.7]
+ [ 0.   0.   0.   0.   1.   0.  -0.   0.   0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.  -0. ]
+ [ 0.   0.   0.   0.  -0.   0.   1.   0.   0.  -0. ]
+ [ 0.  -0.  -0.  -0.  -0.   0.  -0.   1.   0.  -0. ]
+ [ 0.   0.   0.   0.  -0.   0.   0.  -0.   0.   0. ]]
+2018-04-29 08:27:53.372857: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:27:53.373149: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.69GiB
+2018-04-29 08:27:53.373174: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:27:53.576637: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:27:53.576671: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:27:53.576678: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:27:53.576872: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7388 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '12',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.3389; conv batch loss = 12.1443
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.5792; conv batch loss = 0.7605
+Step 2249	dumb batch loss = 0.2272; conv batch loss = 0.4489
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1674; conv batch loss = 0.3141
+Step 4499	dumb batch loss = 0.1841; conv batch loss = 0.2573
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.0983; conv batch loss = 0.1757
+Step 6749	dumb batch loss = 0.1042; conv batch loss = 0.1545
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1219; conv batch loss = 0.1724
+Step 8999	dumb batch loss = 0.0934; conv batch loss = 0.0817
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0718; conv batch loss = 0.0945
+Step 11249	dumb batch loss = 0.1082; conv batch loss = 0.1314
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0808; conv batch loss = 0.0995
+Step 13499	dumb batch loss = 0.1178; conv batch loss = 0.0848
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0561; conv batch loss = 0.0613
+Step 15749	dumb batch loss = 0.0642; conv batch loss = 0.0696
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0797; conv batch loss = 0.0648
+Step 17999	dumb batch loss = 0.0600; conv batch loss = 0.0835
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0628; conv batch loss = 0.0719
+Step 20249	dumb batch loss = 0.0305; conv batch loss = 0.0474
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0561; conv batch loss = 0.0596
+Step 22499	dumb batch loss = 0.0656; conv batch loss = 0.0617
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1186; conv batch loss = 0.1089
+Step 24749	dumb batch loss = 0.0817; conv batch loss = 0.0704
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0769; conv batch loss = 0.0765
+Step 26999	dumb batch loss = 0.0751; conv batch loss = 0.0573
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0709; conv batch loss = 0.0753
+Step 29249	dumb batch loss = 0.0507; conv batch loss = 0.0473
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0581; conv batch loss = 0.0649
+Step 31499	dumb batch loss = 0.0691; conv batch loss = 0.0819
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0670; conv batch loss = 0.0906
+Step 33749	dumb batch loss = 0.0728; conv batch loss = 0.0715
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0620; conv batch loss = 0.0638
+Step 35999	dumb batch loss = 0.0639; conv batch loss = 0.0732
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0879; conv batch loss = 0.0760
+Step 38249	dumb batch loss = 0.0347; conv batch loss = 0.0420
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0791; conv batch loss = 0.0901
+Step 40499	dumb batch loss = 0.0484; conv batch loss = 0.0506
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0416; conv batch loss = 0.0599
+Step 42749	dumb batch loss = 0.0547; conv batch loss = 0.0600
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0552; conv batch loss = 0.0561
+Step 44999	dumb batch loss = 0.0677; conv batch loss = 0.0437
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0678; conv batch loss = 0.0649
+Step 47249	dumb batch loss = 0.0752; conv batch loss = 0.0948
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0798; conv batch loss = 0.0566
+Step 49499	dumb batch loss = 0.0842; conv batch loss = 0.0896
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/12/final.ckpt
+Minimum dumb loss: (20249, 0.030497072)
+Minimum conv loss: (38249, 0.041955423)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.  -0.1]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+Conv model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.1]
+ [ 1.   0.   0.  -0.   0.  -0.  -0.   0.   0.  -0. ]
+ [ 1.   1.   0.   0.2  0.   0.   0.   0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   1. ]
+ [-0.  -0.  -0.  -0.   1.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.   0.  -0.  -0.  -0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.   0.  -0.   0.  -0.  -0.   1.   0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0. ]]
+2018-04-29 08:33:43.503898: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:33:43.506930: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.74GiB
+2018-04-29 08:33:43.506959: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:33:43.726330: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:33:43.726369: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:33:43.726377: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:33:43.726570: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7426 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '13',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.3029; conv batch loss = 9.7837
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.6239; conv batch loss = 0.8200
+Step 2249	dumb batch loss = 0.2387; conv batch loss = 0.3956
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1871; conv batch loss = 0.3006
+Step 4499	dumb batch loss = 0.1989; conv batch loss = 0.2122
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1483; conv batch loss = 0.1629
+Step 6749	dumb batch loss = 0.1358; conv batch loss = 0.1450
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1595; conv batch loss = 0.1687
+Step 8999	dumb batch loss = 0.1013; conv batch loss = 0.0788
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.1141; conv batch loss = 0.0841
+Step 11249	dumb batch loss = 0.1433; conv batch loss = 0.1285
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0999; conv batch loss = 0.1099
+Step 13499	dumb batch loss = 0.1053; conv batch loss = 0.0944
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.1114; conv batch loss = 0.0730
+Step 15749	dumb batch loss = 0.1058; conv batch loss = 0.0694
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0926; conv batch loss = 0.0825
+Step 17999	dumb batch loss = 0.0776; conv batch loss = 0.0761
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0919; conv batch loss = 0.0758
+Step 20249	dumb batch loss = 0.0515; conv batch loss = 0.0302
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.1206; conv batch loss = 0.0520
+Step 22499	dumb batch loss = 0.0695; conv batch loss = 0.0622
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1159; conv batch loss = 0.0932
+Step 24749	dumb batch loss = 0.1057; conv batch loss = 0.0648
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0992; conv batch loss = 0.0633
+Step 26999	dumb batch loss = 0.0957; conv batch loss = 0.0700
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0784; conv batch loss = 0.0693
+Step 29249	dumb batch loss = 0.0490; conv batch loss = 0.0618
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0948; conv batch loss = 0.0643
+Step 31499	dumb batch loss = 0.0872; conv batch loss = 0.0907
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.1042; conv batch loss = 0.0672
+Step 33749	dumb batch loss = 0.0830; conv batch loss = 0.0916
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0810; conv batch loss = 0.0501
+Step 35999	dumb batch loss = 0.0678; conv batch loss = 0.0592
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0740; conv batch loss = 0.0525
+Step 38249	dumb batch loss = 0.0574; conv batch loss = 0.0469
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0786; conv batch loss = 0.0799
+Step 40499	dumb batch loss = 0.0659; conv batch loss = 0.0500
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0757; conv batch loss = 0.0579
+Step 42749	dumb batch loss = 0.0576; conv batch loss = 0.0604
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0643; conv batch loss = 0.0631
+Step 44999	dumb batch loss = 0.0804; conv batch loss = 0.0717
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0919; conv batch loss = 0.0776
+Step 47249	dumb batch loss = 0.0906; conv batch loss = 0.0720
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0845; conv batch loss = 0.0677
+Step 49499	dumb batch loss = 0.1043; conv batch loss = 0.1030
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/13/final.ckpt
+Minimum dumb loss: (29249, 0.049016353)
+Minimum conv loss: (20249, 0.030244082)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.  -0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.   0.   0.   0.   0.   0.   0.  -0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.3]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.   0.   0.   0.   0.   0.   0.  -0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [-0.   0.   0.   0.   0.   0.   0.   1.  -0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+Conv model prediction:
+[[0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [1.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [1.  1.  0.  0.1 0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0.6]
+ [0.  0.  0.  0.  1.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  1.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  1.  0.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+2018-04-29 08:39:35.075993: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:39:35.076369: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.45GiB
+2018-04-29 08:39:35.076393: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:39:35.353240: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:39:35.353283: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:39:35.353298: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:39:35.353531: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7198 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '14',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 6.9473; conv batch loss = 14.1473
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.6853; conv batch loss = 0.7892
+Step 2249	dumb batch loss = 0.2729; conv batch loss = 0.5078
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2145; conv batch loss = 0.3795
+Step 4499	dumb batch loss = 0.1657; conv batch loss = 0.3293
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1165; conv batch loss = 0.2014
+Step 6749	dumb batch loss = 0.0988; conv batch loss = 0.1864
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1584; conv batch loss = 0.1907
+Step 8999	dumb batch loss = 0.0797; conv batch loss = 0.1574
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0814; conv batch loss = 0.1428
+Step 11249	dumb batch loss = 0.0995; conv batch loss = 0.1756
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0941; conv batch loss = 0.1407
+Step 13499	dumb batch loss = 0.0907; conv batch loss = 0.1284
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0758; conv batch loss = 0.0997
+Step 15749	dumb batch loss = 0.0621; conv batch loss = 0.1149
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0679; conv batch loss = 0.1499
+Step 17999	dumb batch loss = 0.0623; conv batch loss = 0.1502
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0813; conv batch loss = 0.1245
+Step 20249	dumb batch loss = 0.0522; conv batch loss = 0.0884
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0591; conv batch loss = 0.0896
+Step 22499	dumb batch loss = 0.0701; conv batch loss = 0.1008
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1145; conv batch loss = 0.1396
+Step 24749	dumb batch loss = 0.0974; conv batch loss = 0.1117
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0809; conv batch loss = 0.1019
+Step 26999	dumb batch loss = 0.0872; conv batch loss = 0.1261
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0951; conv batch loss = 0.1007
+Step 29249	dumb batch loss = 0.0664; conv batch loss = 0.1029
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0637; conv batch loss = 0.0864
+Step 31499	dumb batch loss = 0.0843; conv batch loss = 0.1027
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0920; conv batch loss = 0.0945
+Step 33749	dumb batch loss = 0.0708; conv batch loss = 0.0938
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0897; conv batch loss = 0.1148
+Step 35999	dumb batch loss = 0.0713; conv batch loss = 0.0654
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0783; conv batch loss = 0.1118
+Step 38249	dumb batch loss = 0.0642; conv batch loss = 0.0728
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.1291; conv batch loss = 0.1092
+Step 40499	dumb batch loss = 0.0483; conv batch loss = 0.0623
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0606; conv batch loss = 0.0868
+Step 42749	dumb batch loss = 0.0717; conv batch loss = 0.0953
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0494; conv batch loss = 0.0685
+Step 44999	dumb batch loss = 0.0933; conv batch loss = 0.0947
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0611; conv batch loss = 0.1142
+Step 47249	dumb batch loss = 0.0934; conv batch loss = 0.0936
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0791; conv batch loss = 0.0771
+Step 49499	dumb batch loss = 0.0710; conv batch loss = 0.1012
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/14/final.ckpt
+Minimum dumb loss: (40499, 0.048266605)
+Minimum conv loss: (40499, 0.06231298)
+Dumb model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.  -0.  -0.   0.   0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.9]
+ [-0.   0.   0.  -0.   1.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.   0.  -0.  -0.  -0.  -0.  -0.   0.   0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0. ]
+ [ 0.   0.   0.   0.  -0.  -0.  -0.   0.   0.  -0. ]]
+Conv model prediction:
+[[ 0.   0.   0.  -0.   0.   0.  -0.   0.   0.  -0. ]
+ [ 1.   0.   0.  -0.  -0.   0.  -0.  -0.   0.  -0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.  -0.  -0.  -0. ]
+ [ 0.  -0.  -0.  -0.   0.   0.   0.  -0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.8]
+ [ 0.  -0.   0.  -0.   1.   0.   0.  -0.   0.   0.2]
+ [ 0.  -0.   0.  -0.   0.   0.   0.  -0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.  -0.   1.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.  -0.  -0.   1.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.  -0. ]]
+2018-04-29 08:45:23.327918: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:45:23.328256: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.45GiB
+2018-04-29 08:45:23.328287: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:45:23.606604: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:45:23.606666: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:45:23.606678: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:45:23.606994: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7198 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '15',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 9.6522; conv batch loss = 16.3311
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7641; conv batch loss = 0.7722
+Step 2249	dumb batch loss = 0.2999; conv batch loss = 0.4131
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1792; conv batch loss = 0.2723
+Step 4499	dumb batch loss = 0.2012; conv batch loss = 0.2286
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1087; conv batch loss = 0.1450
+Step 6749	dumb batch loss = 0.1214; conv batch loss = 0.1440
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1608; conv batch loss = 0.1746
+Step 8999	dumb batch loss = 0.0860; conv batch loss = 0.0778
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0952; conv batch loss = 0.0833
+Step 11249	dumb batch loss = 0.1317; conv batch loss = 0.1520
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0832; conv batch loss = 0.0970
+Step 13499	dumb batch loss = 0.1296; conv batch loss = 0.1107
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0640; conv batch loss = 0.0688
+Step 15749	dumb batch loss = 0.0819; conv batch loss = 0.0645
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0815; conv batch loss = 0.0738
+Step 17999	dumb batch loss = 0.0790; conv batch loss = 0.0692
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0827; conv batch loss = 0.0882
+Step 20249	dumb batch loss = 0.0680; conv batch loss = 0.0492
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0689; conv batch loss = 0.0871
+Step 22499	dumb batch loss = 0.0762; conv batch loss = 0.0757
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1028; conv batch loss = 0.1152
+Step 24749	dumb batch loss = 0.0903; conv batch loss = 0.0752
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0583; conv batch loss = 0.0871
+Step 26999	dumb batch loss = 0.0621; conv batch loss = 0.0826
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0709; conv batch loss = 0.0611
+Step 29249	dumb batch loss = 0.0530; conv batch loss = 0.0499
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0809; conv batch loss = 0.0788
+Step 31499	dumb batch loss = 0.0733; conv batch loss = 0.0711
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0868; conv batch loss = 0.0771
+Step 33749	dumb batch loss = 0.0663; conv batch loss = 0.0912
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0819; conv batch loss = 0.0592
+Step 35999	dumb batch loss = 0.0701; conv batch loss = 0.0812
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0641; conv batch loss = 0.0562
+Step 38249	dumb batch loss = 0.0477; conv batch loss = 0.0526
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0945; conv batch loss = 0.0793
+Step 40499	dumb batch loss = 0.0614; conv batch loss = 0.0419
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0706; conv batch loss = 0.0582
+Step 42749	dumb batch loss = 0.0478; conv batch loss = 0.0518
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0524; conv batch loss = 0.0690
+Step 44999	dumb batch loss = 0.0873; conv batch loss = 0.0865
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0593; conv batch loss = 0.0524
+Step 47249	dumb batch loss = 0.0750; conv batch loss = 0.0637
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0611; conv batch loss = 0.0952
+Step 49499	dumb batch loss = 0.0873; conv batch loss = 0.0968
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/15/final.ckpt
+Minimum dumb loss: (38249, 0.04769064)
+Minimum conv loss: (40499, 0.04190317)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.   0.   0.   0.4]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+Conv model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.3 -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0.   0.1]
+ [-0.  -0.   0.  -0.   1.  -0.  -0.  -0.  -0.  -0. ]
+ [ 0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0.   0. ]
+ [ 0.  -0.   0.  -0.  -0.  -0.   1.   0.   0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+2018-04-29 08:51:14.557839: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:51:14.558209: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.27GiB
+2018-04-29 08:51:14.558237: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:51:14.865299: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:51:14.865347: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:51:14.865362: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:51:14.865608: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7017 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '16',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 4.4677; conv batch loss = 11.9442
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7213; conv batch loss = 0.8324
+Step 2249	dumb batch loss = 0.3613; conv batch loss = 0.5482
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2646; conv batch loss = 0.3464
+Step 4499	dumb batch loss = 0.2385; conv batch loss = 0.3238
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1498; conv batch loss = 0.1938
+Step 6749	dumb batch loss = 0.1702; conv batch loss = 0.2167
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1865; conv batch loss = 0.1985
+Step 8999	dumb batch loss = 0.1020; conv batch loss = 0.1497
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.1020; conv batch loss = 0.1563
+Step 11249	dumb batch loss = 0.1398; conv batch loss = 0.1520
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1068; conv batch loss = 0.1209
+Step 13499	dumb batch loss = 0.1004; conv batch loss = 0.1123
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0801; conv batch loss = 0.0872
+Step 15749	dumb batch loss = 0.0841; conv batch loss = 0.0971
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0871; conv batch loss = 0.0950
+Step 17999	dumb batch loss = 0.1107; conv batch loss = 0.1068
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0917; conv batch loss = 0.1316
+Step 20249	dumb batch loss = 0.0617; conv batch loss = 0.0848
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0714; conv batch loss = 0.0803
+Step 22499	dumb batch loss = 0.0741; conv batch loss = 0.1084
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1292; conv batch loss = 0.1066
+Step 24749	dumb batch loss = 0.0837; conv batch loss = 0.1098
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0773; conv batch loss = 0.1166
+Step 26999	dumb batch loss = 0.0886; conv batch loss = 0.1089
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0785; conv batch loss = 0.1077
+Step 29249	dumb batch loss = 0.0766; conv batch loss = 0.0819
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0926; conv batch loss = 0.0792
+Step 31499	dumb batch loss = 0.0778; conv batch loss = 0.0964
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0664; conv batch loss = 0.1046
+Step 33749	dumb batch loss = 0.0780; conv batch loss = 0.0711
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0723; conv batch loss = 0.0936
+Step 35999	dumb batch loss = 0.0668; conv batch loss = 0.0689
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0704; conv batch loss = 0.0825
+Step 38249	dumb batch loss = 0.0517; conv batch loss = 0.0517
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0832; conv batch loss = 0.0854
+Step 40499	dumb batch loss = 0.0617; conv batch loss = 0.0517
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0718; conv batch loss = 0.0617
+Step 42749	dumb batch loss = 0.0552; conv batch loss = 0.0726
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.1003; conv batch loss = 0.0584
+Step 44999	dumb batch loss = 0.1143; conv batch loss = 0.0805
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0898; conv batch loss = 0.0742
+Step 47249	dumb batch loss = 0.1052; conv batch loss = 0.1014
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0753; conv batch loss = 0.1008
+Step 49499	dumb batch loss = 0.1025; conv batch loss = 0.0789
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/16/final.ckpt
+Minimum dumb loss: (38249, 0.05171741)
+Minimum conv loss: (40499, 0.051652122)
+Dumb model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.  -0.  -0.   0.  -0.  -0.  -0.  -0.   0. ]
+ [ 1.   1.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.1]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.7]
+ [-0.  -0.  -0.  -0.   1.  -0.  -0.  -0.  -0.   0.3]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.  -0.  -0.   0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.9]
+ [-0.  -0.  -0.  -0.   1.  -0.  -0.  -0.  -0.   0.5]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   1.  -0.1 -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+2018-04-29 08:57:03.769853: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 08:57:03.770143: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.32GiB
+2018-04-29 08:57:03.770159: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 08:57:04.009278: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 08:57:04.009319: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 08:57:04.009326: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 08:57:04.009519: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7063 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '17',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.8748; conv batch loss = 8.7453
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7705; conv batch loss = 0.7503
+Step 2249	dumb batch loss = 0.4463; conv batch loss = 0.4914
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2353; conv batch loss = 0.3179
+Step 4499	dumb batch loss = 0.2129; conv batch loss = 0.2525
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1806; conv batch loss = 0.1778
+Step 6749	dumb batch loss = 0.1657; conv batch loss = 0.1724
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1546; conv batch loss = 0.1706
+Step 8999	dumb batch loss = 0.1121; conv batch loss = 0.1039
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0949; conv batch loss = 0.0994
+Step 11249	dumb batch loss = 0.1528; conv batch loss = 0.1358
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0977; conv batch loss = 0.1143
+Step 13499	dumb batch loss = 0.1143; conv batch loss = 0.1187
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0997; conv batch loss = 0.0649
+Step 15749	dumb batch loss = 0.0779; conv batch loss = 0.0656
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0826; conv batch loss = 0.0901
+Step 17999	dumb batch loss = 0.1042; conv batch loss = 0.1071
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0722; conv batch loss = 0.0763
+Step 20249	dumb batch loss = 0.0431; conv batch loss = 0.0663
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0746; conv batch loss = 0.0671
+Step 22499	dumb batch loss = 0.0698; conv batch loss = 0.0982
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0981; conv batch loss = 0.0929
+Step 24749	dumb batch loss = 0.0983; conv batch loss = 0.0805
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0671; conv batch loss = 0.0844
+Step 26999	dumb batch loss = 0.0796; conv batch loss = 0.1071
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0768; conv batch loss = 0.0753
+Step 29249	dumb batch loss = 0.0623; conv batch loss = 0.0756
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0839; conv batch loss = 0.0730
+Step 31499	dumb batch loss = 0.0902; conv batch loss = 0.0724
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0709; conv batch loss = 0.0822
+Step 33749	dumb batch loss = 0.0607; conv batch loss = 0.0810
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0604; conv batch loss = 0.0613
+Step 35999	dumb batch loss = 0.0524; conv batch loss = 0.0672
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0723; conv batch loss = 0.0589
+Step 38249	dumb batch loss = 0.0408; conv batch loss = 0.0459
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0757; conv batch loss = 0.0797
+Step 40499	dumb batch loss = 0.0458; conv batch loss = 0.0381
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0458; conv batch loss = 0.0714
+Step 42749	dumb batch loss = 0.0511; conv batch loss = 0.0749
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0709; conv batch loss = 0.0850
+Step 44999	dumb batch loss = 0.0761; conv batch loss = 0.0657
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0649; conv batch loss = 0.0699
+Step 47249	dumb batch loss = 0.1038; conv batch loss = 0.0822
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0812; conv batch loss = 0.0607
+Step 49499	dumb batch loss = 0.0899; conv batch loss = 0.0819
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/17/final.ckpt
+Minimum dumb loss: (38249, 0.04077738)
+Minimum conv loss: (40499, 0.038122576)
+Dumb model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.1 -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.8]
+ [-0.  -0.  -0.  -0.   1.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.  -0.   0.   0.  -0.  -0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.5]
+ [ 0.   0.  -0.   0.   1.   0.   0.   0.   0.   0.4]
+ [ 0.   0.  -0.   0.   0.   0.  -0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 09:02:52.905536: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:02:52.905902: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.49GiB
+2018-04-29 09:02:52.905923: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:02:53.133039: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:02:53.133073: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:02:53.133081: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:02:53.133274: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7206 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '18',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 7.1846; conv batch loss = 11.7080
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7519; conv batch loss = 0.8490
+Step 2249	dumb batch loss = 0.3522; conv batch loss = 0.5159
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.3041; conv batch loss = 0.2781
+Step 4499	dumb batch loss = 0.2003; conv batch loss = 0.2177
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1507; conv batch loss = 0.1295
+Step 6749	dumb batch loss = 0.1297; conv batch loss = 0.1478
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1494; conv batch loss = 0.1610
+Step 8999	dumb batch loss = 0.1062; conv batch loss = 0.0935
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0935; conv batch loss = 0.0874
+Step 11249	dumb batch loss = 0.1476; conv batch loss = 0.1254
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1003; conv batch loss = 0.1050
+Step 13499	dumb batch loss = 0.0916; conv batch loss = 0.1038
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0964; conv batch loss = 0.0671
+Step 15749	dumb batch loss = 0.0660; conv batch loss = 0.0701
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0886; conv batch loss = 0.0965
+Step 17999	dumb batch loss = 0.0789; conv batch loss = 0.0794
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0851; conv batch loss = 0.0844
+Step 20249	dumb batch loss = 0.0457; conv batch loss = 0.0562
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0815; conv batch loss = 0.0838
+Step 22499	dumb batch loss = 0.0703; conv batch loss = 0.0540
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1282; conv batch loss = 0.0875
+Step 24749	dumb batch loss = 0.0901; conv batch loss = 0.0815
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0711; conv batch loss = 0.0894
+Step 26999	dumb batch loss = 0.0651; conv batch loss = 0.0848
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0786; conv batch loss = 0.0727
+Step 29249	dumb batch loss = 0.0721; conv batch loss = 0.0483
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0680; conv batch loss = 0.0587
+Step 31499	dumb batch loss = 0.0752; conv batch loss = 0.0691
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0884; conv batch loss = 0.0728
+Step 33749	dumb batch loss = 0.0879; conv batch loss = 0.0812
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0789; conv batch loss = 0.0693
+Step 35999	dumb batch loss = 0.0893; conv batch loss = 0.0686
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0684; conv batch loss = 0.0615
+Step 38249	dumb batch loss = 0.0435; conv batch loss = 0.0570
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0840; conv batch loss = 0.0705
+Step 40499	dumb batch loss = 0.0544; conv batch loss = 0.0470
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0636; conv batch loss = 0.0779
+Step 42749	dumb batch loss = 0.0684; conv batch loss = 0.0701
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0652; conv batch loss = 0.0640
+Step 44999	dumb batch loss = 0.0892; conv batch loss = 0.0688
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0893; conv batch loss = 0.0740
+Step 47249	dumb batch loss = 0.1019; conv batch loss = 0.0702
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0495; conv batch loss = 0.0929
+Step 49499	dumb batch loss = 0.0978; conv batch loss = 0.1069
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/18/final.ckpt
+Minimum dumb loss: (38249, 0.043476474)
+Minimum conv loss: (40499, 0.046962094)
+Dumb model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.  -0.  -0.  -0.  -0.  -0.   0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.  -0.   0.   0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.1]
+ [-0.  -0.  -0.  -0.   1.  -0.   0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [ 0.  -0.  -0.   0.  -0.  -0.  -0.   1.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[ 0.  -0.  -0.   0.   0.   0.  -0.  -0.   0.   0. ]
+ [ 1.  -0.  -0.   0.   0.   0.  -0.   0.   0.  -0. ]
+ [ 1.   1.  -0.  -0.  -0.  -0.  -0.   0.  -0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.  -0. ]
+ [-0.   0.   0.  -0.  -0.  -0.   0.  -0.   0.  -0.1]
+ [ 0.   0.   0.   0.   1.   0.   0.   0.   0.  -0. ]
+ [-0.  -0.  -0.   0.   0.  -0.  -0.   0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [ 0.   0.  -0.   0.   0.   0.  -0.   1.   0.   0. ]
+ [-0.   0.  -0.   0.   0.  -0.  -0.   0.   0.   0. ]]
+2018-04-29 09:08:42.893134: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:08:42.893420: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.47GiB
+2018-04-29 09:08:42.893445: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:08:43.112191: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:08:43.112221: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:08:43.112229: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:08:43.112421: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7198 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '19',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 11.7419; conv batch loss = 9.4833
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7913; conv batch loss = 0.7958
+Step 2249	dumb batch loss = 0.3603; conv batch loss = 0.4721
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2386; conv batch loss = 0.3704
+Step 4499	dumb batch loss = 0.1955; conv batch loss = 0.2484
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1004; conv batch loss = 0.2123
+Step 6749	dumb batch loss = 0.0996; conv batch loss = 0.1842
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1431; conv batch loss = 0.1819
+Step 8999	dumb batch loss = 0.0650; conv batch loss = 0.1166
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0873; conv batch loss = 0.1123
+Step 11249	dumb batch loss = 0.1162; conv batch loss = 0.1594
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0841; conv batch loss = 0.1438
+Step 13499	dumb batch loss = 0.0897; conv batch loss = 0.1024
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0579; conv batch loss = 0.0793
+Step 15749	dumb batch loss = 0.0810; conv batch loss = 0.0715
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0653; conv batch loss = 0.0961
+Step 17999	dumb batch loss = 0.0772; conv batch loss = 0.0749
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0813; conv batch loss = 0.1046
+Step 20249	dumb batch loss = 0.0456; conv batch loss = 0.0651
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0731; conv batch loss = 0.0744
+Step 22499	dumb batch loss = 0.0569; conv batch loss = 0.0941
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1206; conv batch loss = 0.1093
+Step 24749	dumb batch loss = 0.0765; conv batch loss = 0.0693
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0816; conv batch loss = 0.0788
+Step 26999	dumb batch loss = 0.0671; conv batch loss = 0.0656
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0688; conv batch loss = 0.0595
+Step 29249	dumb batch loss = 0.0584; conv batch loss = 0.0704
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0737; conv batch loss = 0.0702
+Step 31499	dumb batch loss = 0.0928; conv batch loss = 0.0768
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0648; conv batch loss = 0.0753
+Step 33749	dumb batch loss = 0.0913; conv batch loss = 0.0784
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0601; conv batch loss = 0.0700
+Step 35999	dumb batch loss = 0.0683; conv batch loss = 0.0811
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0566; conv batch loss = 0.0727
+Step 38249	dumb batch loss = 0.0427; conv batch loss = 0.0530
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0872; conv batch loss = 0.0854
+Step 40499	dumb batch loss = 0.0487; conv batch loss = 0.0427
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0537; conv batch loss = 0.0440
+Step 42749	dumb batch loss = 0.0562; conv batch loss = 0.0558
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0696; conv batch loss = 0.0696
+Step 44999	dumb batch loss = 0.0571; conv batch loss = 0.0742
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0734; conv batch loss = 0.0912
+Step 47249	dumb batch loss = 0.0755; conv batch loss = 0.0872
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0588; conv batch loss = 0.0803
+Step 49499	dumb batch loss = 0.0966; conv batch loss = 0.1040
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/19/final.ckpt
+Minimum dumb loss: (38249, 0.042680014)
+Minimum conv loss: (40499, 0.04269111)
+Dumb model prediction:
+[[ 0.  -0.  -0.  -0.   0.  -0.  -0.   0.   0.   0. ]
+ [ 1.  -0.   0.  -0.   0.   0.  -0.   0.   0.   0. ]
+ [ 0.9  1.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.   0.  -0.   0.  -0.  -0.  -0.   0.  -0. ]
+ [ 0.  -0.   0.  -0.  -0.  -0.  -0.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   1.  -0.  -0.  -0.   0.   0. ]
+ [-0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0.  -0. ]
+ [ 0.  -0.   0.  -0.  -0.  -0.   1.  -0.   0.   0. ]
+ [ 0.  -0.   0.  -0.   0.  -0.  -0.   1.   0.   0. ]
+ [ 0.  -0.  -0.  -0.   0.  -0.  -0.  -0.   0.  -0. ]]
+Conv model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.  -0. ]
+ [ 1.   1.   0.   0.1  0.  -0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.2]
+ [ 0.  -0.  -0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 09:14:33.463914: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:14:33.464208: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.62GiB
+2018-04-29 09:14:33.464225: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:14:33.679661: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:14:33.679703: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:14:33.679718: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:14:33.679935: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7290 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '20',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 6.7557; conv batch loss = 6.7366
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.6542; conv batch loss = 0.7183
+Step 2249	dumb batch loss = 0.2759; conv batch loss = 0.4128
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2277; conv batch loss = 0.3470
+Step 4499	dumb batch loss = 0.1785; conv batch loss = 0.2711
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1406; conv batch loss = 0.1814
+Step 6749	dumb batch loss = 0.1206; conv batch loss = 0.1355
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1375; conv batch loss = 0.1872
+Step 8999	dumb batch loss = 0.1153; conv batch loss = 0.1185
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0788; conv batch loss = 0.0923
+Step 11249	dumb batch loss = 0.1240; conv batch loss = 0.1455
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0964; conv batch loss = 0.1151
+Step 13499	dumb batch loss = 0.1208; conv batch loss = 0.1199
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0609; conv batch loss = 0.0666
+Step 15749	dumb batch loss = 0.0701; conv batch loss = 0.0789
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.1024; conv batch loss = 0.0826
+Step 17999	dumb batch loss = 0.0811; conv batch loss = 0.0890
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0657; conv batch loss = 0.0761
+Step 20249	dumb batch loss = 0.0421; conv batch loss = 0.0367
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0503; conv batch loss = 0.0820
+Step 22499	dumb batch loss = 0.0858; conv batch loss = 0.0622
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0978; conv batch loss = 0.1263
+Step 24749	dumb batch loss = 0.0994; conv batch loss = 0.0843
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0796; conv batch loss = 0.0850
+Step 26999	dumb batch loss = 0.0715; conv batch loss = 0.0913
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0789; conv batch loss = 0.0835
+Step 29249	dumb batch loss = 0.0828; conv batch loss = 0.0368
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0575; conv batch loss = 0.0618
+Step 31499	dumb batch loss = 0.0692; conv batch loss = 0.0669
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0735; conv batch loss = 0.0897
+Step 33749	dumb batch loss = 0.0921; conv batch loss = 0.0638
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0803; conv batch loss = 0.0605
+Step 35999	dumb batch loss = 0.1018; conv batch loss = 0.0695
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0706; conv batch loss = 0.0518
+Step 38249	dumb batch loss = 0.0464; conv batch loss = 0.0597
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.1277; conv batch loss = 0.0884
+Step 40499	dumb batch loss = 0.0657; conv batch loss = 0.0449
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0553; conv batch loss = 0.0447
+Step 42749	dumb batch loss = 0.0588; conv batch loss = 0.0597
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0531; conv batch loss = 0.0513
+Step 44999	dumb batch loss = 0.0741; conv batch loss = 0.0683
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0936; conv batch loss = 0.0630
+Step 47249	dumb batch loss = 0.0763; conv batch loss = 0.0815
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0556; conv batch loss = 0.0768
+Step 49499	dumb batch loss = 0.0864; conv batch loss = 0.0746
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/20/final.ckpt
+Minimum dumb loss: (20249, 0.042084765)
+Minimum conv loss: (20249, 0.036703)
+Dumb model prediction:
+[[-0.  -0.  -0.   0.   0.  -0.   0.  -0.  -0.   0. ]
+ [ 1.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.   0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0.9]
+ [-0.  -0.  -0.  -0.   1.  -0.  -0.  -0.  -0.   0.4]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.   0.  -0.   1.  -0.  -0.   0. ]
+ [ 0.  -0.  -0.   0.  -0.  -0.   0.   1.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[-0.  -0.   0.   0.  -0.  -0.   0.  -0.  -0.   0. ]
+ [ 1.  -0.   0.  -0.   0.  -0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.  -0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 0.   0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 0.   0.   0.  -0.   1.  -0.   0.   0.   0.   0.1]
+ [ 0.   0.   0.  -0.  -0.  -0.   0.  -0.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.   1.  -0.  -0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.  -0.   0. ]
+ [-0.   0.   0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+2018-04-29 09:20:24.589124: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:20:24.589425: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.54GiB
+2018-04-29 09:20:24.589444: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:20:24.835938: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:20:24.835985: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:20:24.836001: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:20:24.836218: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7214 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '21',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.5231; conv batch loss = 11.4507
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7258; conv batch loss = 0.7907
+Step 2249	dumb batch loss = 0.2909; conv batch loss = 0.4720
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.1957; conv batch loss = 0.3473
+Step 4499	dumb batch loss = 0.1740; conv batch loss = 0.3311
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1275; conv batch loss = 0.2149
+Step 6749	dumb batch loss = 0.1050; conv batch loss = 0.2171
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1384; conv batch loss = 0.2011
+Step 8999	dumb batch loss = 0.0851; conv batch loss = 0.1417
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0698; conv batch loss = 0.1247
+Step 11249	dumb batch loss = 0.1051; conv batch loss = 0.1567
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0768; conv batch loss = 0.1413
+Step 13499	dumb batch loss = 0.0932; conv batch loss = 0.1135
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0700; conv batch loss = 0.0895
+Step 15749	dumb batch loss = 0.0652; conv batch loss = 0.0793
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0695; conv batch loss = 0.0880
+Step 17999	dumb batch loss = 0.0675; conv batch loss = 0.1100
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0721; conv batch loss = 0.0946
+Step 20249	dumb batch loss = 0.0503; conv batch loss = 0.0691
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0627; conv batch loss = 0.0856
+Step 22499	dumb batch loss = 0.0787; conv batch loss = 0.1014
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0936; conv batch loss = 0.1260
+Step 24749	dumb batch loss = 0.0936; conv batch loss = 0.0947
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0689; conv batch loss = 0.0849
+Step 26999	dumb batch loss = 0.0630; conv batch loss = 0.1147
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0632; conv batch loss = 0.0795
+Step 29249	dumb batch loss = 0.0683; conv batch loss = 0.0813
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0595; conv batch loss = 0.0895
+Step 31499	dumb batch loss = 0.0795; conv batch loss = 0.0977
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0876; conv batch loss = 0.0673
+Step 33749	dumb batch loss = 0.0786; conv batch loss = 0.0852
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0488; conv batch loss = 0.1043
+Step 35999	dumb batch loss = 0.0538; conv batch loss = 0.0950
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0630; conv batch loss = 0.0783
+Step 38249	dumb batch loss = 0.0531; conv batch loss = 0.1041
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0701; conv batch loss = 0.1207
+Step 40499	dumb batch loss = 0.0377; conv batch loss = 0.0679
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0438; conv batch loss = 0.1054
+Step 42749	dumb batch loss = 0.0644; conv batch loss = 0.0686
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0475; conv batch loss = 0.0712
+Step 44999	dumb batch loss = 0.0634; conv batch loss = 0.0830
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0761; conv batch loss = 0.0789
+Step 47249	dumb batch loss = 0.0942; conv batch loss = 0.1363
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0721; conv batch loss = 0.0644
+Step 49499	dumb batch loss = 0.0763; conv batch loss = 0.0875
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/21/final.ckpt
+Minimum dumb loss: (40499, 0.03767981)
+Minimum conv loss: (48374, 0.06440557)
+Dumb model prediction:
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [1. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 1. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+Conv model prediction:
+[[ 0.  -0.   0.  -0.  -0.  -0.   0.   0.   0.  -0. ]
+ [ 1.  -0.  -0.  -0.  -0.  -0.  -0.   0.   0.  -0. ]
+ [ 1.   1.  -0.   0.1 -0.  -0.  -0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.6]
+ [ 0.  -0.  -0.   0.   1.   0.   0.   0.   0.   0. ]
+ [ 0.  -0.  -0.  -0.  -0.  -0.  -0.   0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.   0.   1.   0.   0.  -0. ]
+ [-0.   0.  -0.  -0.   0.   0.  -0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+2018-04-29 09:26:14.222310: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:26:14.222736: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.62GiB
+2018-04-29 09:26:14.222755: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:26:14.433227: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:26:14.433262: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:26:14.433270: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:26:14.433473: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7290 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '22',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 5.3576; conv batch loss = 9.8123
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7779; conv batch loss = 0.8119
+Step 2249	dumb batch loss = 0.3207; conv batch loss = 0.5174
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2171; conv batch loss = 0.3994
+Step 4499	dumb batch loss = 0.1689; conv batch loss = 0.2791
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1217; conv batch loss = 0.2212
+Step 6749	dumb batch loss = 0.0931; conv batch loss = 0.1846
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1342; conv batch loss = 0.2023
+Step 8999	dumb batch loss = 0.0586; conv batch loss = 0.1370
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0957; conv batch loss = 0.1596
+Step 11249	dumb batch loss = 0.1232; conv batch loss = 0.1572
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0816; conv batch loss = 0.1574
+Step 13499	dumb batch loss = 0.0913; conv batch loss = 0.1411
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0680; conv batch loss = 0.1074
+Step 15749	dumb batch loss = 0.0902; conv batch loss = 0.0919
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0788; conv batch loss = 0.1045
+Step 17999	dumb batch loss = 0.0669; conv batch loss = 0.1159
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0669; conv batch loss = 0.1078
+Step 20249	dumb batch loss = 0.0464; conv batch loss = 0.0582
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0575; conv batch loss = 0.1102
+Step 22499	dumb batch loss = 0.0659; conv batch loss = 0.0914
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1002; conv batch loss = 0.1197
+Step 24749	dumb batch loss = 0.1022; conv batch loss = 0.0996
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0637; conv batch loss = 0.1044
+Step 26999	dumb batch loss = 0.0634; conv batch loss = 0.0982
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0817; conv batch loss = 0.0923
+Step 29249	dumb batch loss = 0.0547; conv batch loss = 0.0734
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0624; conv batch loss = 0.0749
+Step 31499	dumb batch loss = 0.0632; conv batch loss = 0.1074
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0774; conv batch loss = 0.0913
+Step 33749	dumb batch loss = 0.0758; conv batch loss = 0.0915
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0512; conv batch loss = 0.0819
+Step 35999	dumb batch loss = 0.0513; conv batch loss = 0.0885
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0625; conv batch loss = 0.0728
+Step 38249	dumb batch loss = 0.0432; conv batch loss = 0.0736
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0573; conv batch loss = 0.0967
+Step 40499	dumb batch loss = 0.0587; conv batch loss = 0.0605
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0703; conv batch loss = 0.0874
+Step 42749	dumb batch loss = 0.0707; conv batch loss = 0.0766
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0491; conv batch loss = 0.0739
+Step 44999	dumb batch loss = 0.0750; conv batch loss = 0.1107
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0481; conv batch loss = 0.0821
+Step 47249	dumb batch loss = 0.0751; conv batch loss = 0.0944
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0766; conv batch loss = 0.0956
+Step 49499	dumb batch loss = 0.0775; conv batch loss = 0.0905
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/22/final.ckpt
+Minimum dumb loss: (38249, 0.043201048)
+Minimum conv loss: (20249, 0.058160502)
+Dumb model prediction:
+[[-0.  -0.  -0.   0.   0.   0.  -0.  -0.  -0.   0. ]
+ [ 1.   0.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.3  0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.   0.   0.  -0.  -0.   0.1]
+ [-0.  -0.  -0.   0.   1.   0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.   0.   1.  -0.  -0.   0. ]
+ [ 0.  -0.  -0.   0.   0.   0.   0.   1.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+Conv model prediction:
+[[-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 1.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [ 1.   1.  -0.   0.2  0.  -0.  -0.   0.  -0.   0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.   0.  -0.  -0.  -0.   0.9]
+ [-0.  -0.  -0.  -0.   1.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.   1.  -0.  -0.  -0. ]
+ [-0.  -0.  -0.   0.1 -0.  -0.  -0.   1.  -0.  -0. ]
+ [-0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0.  -0. ]]
+2018-04-29 09:32:03.953513: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:32:03.953997: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.74GiB
+2018-04-29 09:32:03.954017: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:32:04.204402: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:32:04.204448: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:32:04.204456: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:32:04.204661: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7331 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '23',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 7.8290; conv batch loss = 8.2492
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7971; conv batch loss = 0.7909
+Step 2249	dumb batch loss = 0.3711; conv batch loss = 0.4975
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2444; conv batch loss = 0.3264
+Step 4499	dumb batch loss = 0.2428; conv batch loss = 0.2656
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1562; conv batch loss = 0.1938
+Step 6749	dumb batch loss = 0.1314; conv batch loss = 0.1643
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1496; conv batch loss = 0.1657
+Step 8999	dumb batch loss = 0.0985; conv batch loss = 0.1363
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0829; conv batch loss = 0.1092
+Step 11249	dumb batch loss = 0.1315; conv batch loss = 0.1301
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.1073; conv batch loss = 0.1301
+Step 13499	dumb batch loss = 0.1283; conv batch loss = 0.1074
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0830; conv batch loss = 0.0677
+Step 15749	dumb batch loss = 0.0716; conv batch loss = 0.0811
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0705; conv batch loss = 0.0748
+Step 17999	dumb batch loss = 0.0832; conv batch loss = 0.0779
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0796; conv batch loss = 0.0934
+Step 20249	dumb batch loss = 0.0476; conv batch loss = 0.0514
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0869; conv batch loss = 0.0706
+Step 22499	dumb batch loss = 0.0668; conv batch loss = 0.0735
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.1005; conv batch loss = 0.1073
+Step 24749	dumb batch loss = 0.0680; conv batch loss = 0.0810
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0577; conv batch loss = 0.0684
+Step 26999	dumb batch loss = 0.0762; conv batch loss = 0.0760
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0702; conv batch loss = 0.0707
+Step 29249	dumb batch loss = 0.0694; conv batch loss = 0.0608
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0684; conv batch loss = 0.0673
+Step 31499	dumb batch loss = 0.0728; conv batch loss = 0.0653
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0943; conv batch loss = 0.1304
+Step 33749	dumb batch loss = 0.0885; conv batch loss = 0.0833
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0844; conv batch loss = 0.0820
+Step 35999	dumb batch loss = 0.0755; conv batch loss = 0.0670
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0507; conv batch loss = 0.0746
+Step 38249	dumb batch loss = 0.0366; conv batch loss = 0.0587
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0727; conv batch loss = 0.1036
+Step 40499	dumb batch loss = 0.0674; conv batch loss = 0.0663
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0776; conv batch loss = 0.0505
+Step 42749	dumb batch loss = 0.0600; conv batch loss = 0.0682
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0538; conv batch loss = 0.0636
+Step 44999	dumb batch loss = 0.0738; conv batch loss = 0.0738
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0707; conv batch loss = 0.0493
+Step 47249	dumb batch loss = 0.0942; conv batch loss = 0.0766
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0710; conv batch loss = 0.0775
+Step 49499	dumb batch loss = 0.0927; conv batch loss = 0.0748
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/23/final.ckpt
+Minimum dumb loss: (38249, 0.036595706)
+Minimum conv loss: (46124, 0.049252924)
+Dumb model prediction:
+[[ 0.   0.  -0.   0.  -0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.  -0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.  -0.  -0.   0. ]
+ [ 0.  -0.  -0.   0.   0.  -0.   0.   0.  -0.   0.9]
+ [ 0.  -0.  -0.   0.   1.  -0.   0.   0.  -0.   0.1]
+ [ 0.  -0.  -0.   0.   0.  -0.  -0.   0.   0.  -0. ]
+ [ 0.  -0.  -0.   0.  -0.   0.   1.   0.   0.  -0. ]
+ [ 0.   0.  -0.  -0.   0.   0.  -0.   1.   0.  -0. ]
+ [-0.  -0.  -0.   0.  -0.  -0.  -0.   0.  -0.   0. ]]
+Conv model prediction:
+[[ 0.   0.   0.  -0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [-0.   0.  -0.  -0.  -0.   0.   0.  -0.   0.  -0. ]
+ [-0.   0.   0.  -0.   0.   0.   0.  -0.  -0.   0.5]
+ [ 0.   0.   0.  -0.   1.   0.  -0.  -0.   0.  -0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.  -0.   0.  -0. ]
+ [ 0.   0.   0.  -0.  -0.   0.   1.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.   0.  -0.   0.   0. ]]
+2018-04-29 09:37:56.026454: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-29 09:37:56.027014: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+totalMemory: 7.92GiB freeMemory: 7.63GiB
+2018-04-29 09:37:56.027043: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-29 09:37:56.299381: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-29 09:37:56.299416: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-29 09:37:56.299423: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-29 09:37:56.299628: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7254 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '24',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}
+Initialized model
+Loading training data
+Successfully loaded 36000 samples
+Cropped 0 samples to fit batch size
+Loading validation data
+Successfully loaded 9000 samples
+Cropped 8 samples to fit batch size
+Loading testing data
+Successfully loaded 5008 samples
+Cropped 16 samples to fit batch size
+Step 1	dumb batch loss = 11.5020; conv batch loss = 6.1606
+Saved checkpoint 1
+Step 1124	dumb batch loss = 0.7481; conv batch loss = 0.7853
+Step 2249	dumb batch loss = 0.4733; conv batch loss = 0.3616
+Saved checkpoint 2249
+Step 3374	dumb batch loss = 0.2788; conv batch loss = 0.2740
+Step 4499	dumb batch loss = 0.2354; conv batch loss = 0.2407
+Saved checkpoint 4499
+Step 5624	dumb batch loss = 0.1672; conv batch loss = 0.1602
+Step 6749	dumb batch loss = 0.1531; conv batch loss = 0.1210
+Saved checkpoint 6749
+Step 7874	dumb batch loss = 0.1910; conv batch loss = 0.1541
+Step 8999	dumb batch loss = 0.1076; conv batch loss = 0.0957
+Saved checkpoint 8999
+Step 10124	dumb batch loss = 0.0815; conv batch loss = 0.1073
+Step 11249	dumb batch loss = 0.1212; conv batch loss = 0.1341
+Saved checkpoint 11249
+Step 12374	dumb batch loss = 0.0998; conv batch loss = 0.1248
+Step 13499	dumb batch loss = 0.1119; conv batch loss = 0.1173
+Saved checkpoint 13499
+Step 14624	dumb batch loss = 0.0551; conv batch loss = 0.0621
+Step 15749	dumb batch loss = 0.0593; conv batch loss = 0.0877
+Saved checkpoint 15749
+Step 16874	dumb batch loss = 0.0799; conv batch loss = 0.1024
+Step 17999	dumb batch loss = 0.0906; conv batch loss = 0.0729
+Saved checkpoint 17999
+Step 19124	dumb batch loss = 0.0698; conv batch loss = 0.1080
+Step 20249	dumb batch loss = 0.0573; conv batch loss = 0.0684
+Saved checkpoint 20249
+Step 21374	dumb batch loss = 0.0624; conv batch loss = 0.0985
+Step 22499	dumb batch loss = 0.0635; conv batch loss = 0.0535
+Saved checkpoint 22499
+Step 23624	dumb batch loss = 0.0954; conv batch loss = 0.1166
+Step 24749	dumb batch loss = 0.0893; conv batch loss = 0.0828
+Saved checkpoint 24749
+Step 25874	dumb batch loss = 0.0601; conv batch loss = 0.0868
+Step 26999	dumb batch loss = 0.0641; conv batch loss = 0.0974
+Saved checkpoint 26999
+Step 28124	dumb batch loss = 0.0546; conv batch loss = 0.0853
+Step 29249	dumb batch loss = 0.0565; conv batch loss = 0.0701
+Saved checkpoint 29249
+Step 30374	dumb batch loss = 0.0716; conv batch loss = 0.0898
+Step 31499	dumb batch loss = 0.0919; conv batch loss = 0.0857
+Saved checkpoint 31499
+Step 32624	dumb batch loss = 0.0634; conv batch loss = 0.1045
+Step 33749	dumb batch loss = 0.0855; conv batch loss = 0.0929
+Saved checkpoint 33749
+Step 34874	dumb batch loss = 0.0858; conv batch loss = 0.0774
+Step 35999	dumb batch loss = 0.0846; conv batch loss = 0.0913
+Saved checkpoint 35999
+Step 37124	dumb batch loss = 0.0741; conv batch loss = 0.0643
+Step 38249	dumb batch loss = 0.0576; conv batch loss = 0.0464
+Saved checkpoint 38249
+Step 39374	dumb batch loss = 0.0929; conv batch loss = 0.0875
+Step 40499	dumb batch loss = 0.0438; conv batch loss = 0.0578
+Saved checkpoint 40499
+Step 41624	dumb batch loss = 0.0554; conv batch loss = 0.0838
+Step 42749	dumb batch loss = 0.0494; conv batch loss = 0.0646
+Saved checkpoint 42749
+Step 43874	dumb batch loss = 0.0538; conv batch loss = 0.0763
+Step 44999	dumb batch loss = 0.0996; conv batch loss = 0.0775
+Saved checkpoint 44999
+Step 46124	dumb batch loss = 0.0694; conv batch loss = 0.0778
+Step 47249	dumb batch loss = 0.0697; conv batch loss = 0.0898
+Saved checkpoint 47249
+Step 48374	dumb batch loss = 0.0525; conv batch loss = 0.0748
+Step 49499	dumb batch loss = 0.0901; conv batch loss = 0.1102
+Saved checkpoint 49499
+Training complete; model saved in file model/checkpoints/bench/9neur/24/final.ckpt
+Minimum dumb loss: (40499, 0.04376845)
+Minimum conv loss: (38249, 0.046363402)
+Dumb model prediction:
+[[ 0.   0.   0.   0.   0.   0.   0.   0.   0.  -0. ]
+ [ 1.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 1.   1.   0.   0.1  0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.5]
+ [ 0.   0.   0.  -0.   1.   0.  -0.   0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   1.   0.   0.   0. ]
+ [-0.   0.   0.  -0.   0.   0.  -0.   1.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]
+Conv model prediction:
+[[ 0.   0.   0.  -0.   0.   0.   0.  -0.   0.   0. ]
+ [ 1.   0.   0.   0.1 -0.   0.   0.  -0.   0.   0. ]
+ [ 1.   1.   0.   0.  -0.   0.   0.  -0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.  -0.   0.   0.3]
+ [ 0.   0.   0.   0.   1.   0.   0.  -0.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]
+ [ 0.   0.   0.  -0.   0.   0.   1.  -0.   0.  -0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   1.   0.   0. ]
+ [ 0.   0.   0.   0.   0.   0.   0.   0.   0.   0. ]]

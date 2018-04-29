@@ -1,0 +1,45 @@
+# b
+30
+# d
+40
+# n
+10
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/9neur50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+{'--b': '30',
+ '--bs': '32',
+ '--d': '40',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '9neur',
+ '--r': '1',
+ '--runId': '57',
+ '--s': '50k',
+ '--ts': '50k',
+ '<dataDir>': '9neur50k'}Convolutional model matrix magnitudes:
+w0_tot: 475.74738
+w1in_tot: 317.97314
+w1out_tot: 324.97446
+w1f_tot: 632.0087
+wf_tot: 8.630139
+
+Simple model matrix magnitudes:
+w0_tot: 478.4292
+w1_tot: 312.68628
+wf_tot: 8.935704
+# min dumb loss
+(20249, 0.039616127)
+# min conv loss
+(29249, 0.042802136)
