@@ -31,4 +31,18 @@ True
  '--s': '50k',
  '--script': True,
  '--ts': '50k',
- '<dataDir>': '2simplex50k'}
+ '<dataDir>': '2simplex50k'}Convolutional model matrix magnitudes:
+w0_tot: 15.528484
+w1in_tot: 4.875757
+w1out_tot: 6.1363893
+w1f_tot: 9.923586
+wf_tot: 0.52619445
+
+Simple model matrix magnitudes:
+w0_tot: 16.634073
+w1_tot: 5.455033
+wf_tot: 0.73533183
+# min dumb loss
+(20249, 0.00025814908)
+# min conv loss
+(49499, 0.0033131652)
