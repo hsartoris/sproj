@@ -27,6 +27,7 @@ class Model():
         # structure[1]: num of layer 2s (not implemented >1)
         # TODO: use structure at all
 
+        self.numLayers = 3
         self.dumb = dumb
         self.batchSize = batchSize
         self.b = b
@@ -46,7 +47,8 @@ class Model():
                 print("Matrix directory not found, exiting")
                 sys.exit()
         else:
-            self.weights, self.biases = initMats(weights_stddev, biases_stddev, d, b)
+            self.weights, self.biases = initMats(weights_stddev, biases_stddev, d, b,
+                    layers = self.numLayers)
         '''
         #### for mods made to layer1revised
         self.weights['layer1'][0] = tf.Variable(tf.random_normal([d,d],
@@ -77,7 +79,7 @@ class Model():
         self.optimize
 
     def saveMats(self, outDir, sess):
-        saveMats(self.weights, self.biases, outDir, sess)
+        saveMats(self.weights, self.biases, outDir, sess, layers=self.numLayers)
 
     def initTiles(self):
         n = self.n
