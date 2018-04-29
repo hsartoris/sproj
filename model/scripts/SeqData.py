@@ -5,7 +5,7 @@ import math
 
 timesteps = 1000
 prefix = "classifiertest2"
-pretty = Prettify.pretty()
+#pretty = Prettify.pretty()
 
 class seqData(object):
     def __init__(self, minIdx, maxIdx, dataDir, steps):
@@ -18,7 +18,7 @@ class seqData(object):
             self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", 
                 delimiter=',').transpose()[:steps])
             self.labels.append(label)
-            pretty.arrow(i - minIdx, maxIdx - minIdx) 
+            #pretty.arrow(i - minIdx, maxIdx - minIdx) 
         self.batchId = 0
         print("Successfully loaded", maxIdx-minIdx, "samples")
 

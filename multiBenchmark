@@ -1,0 +1,20 @@
+#!/bin/bash
+echo -n "Are you REALLY sure you want to benchmark? [y/N]"
+read response
+if [ "$response" == "y" ]; then
+    benchmark 0 25 > log1 2>&1 &
+    pid1=$!
+    benchmark 25 50 > log2 2>&1 &
+    pid2=$!
+    benchmark 50 75 > log3 2>&1 &
+    pid3=$!
+    benchmark 75 100 &
+    pid4=$!
+    
+    wait $pid1
+    wait $pid2
+    wait $pid3
+    wait $pid4
+else
+    echo "Not benchmarking"
+fi

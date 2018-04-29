@@ -1,0 +1,39 @@
+# b
+8
+# d
+5
+# n
+3
+# batchSize
+32
+# initLearnRate
+0.0005
+# trainingSteps
+25000
+# prefix
+dataStaging/2simplex50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+25000, 22500, 18000
+# noDumb
+0
+{'--b': '8',
+ '--bs': '32',
+ '--d': '5',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.0005',
+ '--noDumb': False,
+ '--outDir': '3sproj',
+ '--r': '1',
+ '--runId': '0',
+ '--s': '25000',
+ '--ts': '25k',
+ '<dataDir>': '2simplex50k'}w0_tot: 15.967648
+w1in_tot: 4.617897
+w1out_tot: 5.9255414
+w1f_tot: 9.9601345
+wf_tot: 1.4915674
+# min dumb loss
+(16578, 0.007149244)
+# min conv loss
+(23603, 0.0039931578)

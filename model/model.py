@@ -72,7 +72,7 @@ class Model():
         #self.layer2
         self.layer1
         self.layer1dumb
-        self.layer2
+        #self.layer2
         self.layerFinal
         self.loss
         self.prediction

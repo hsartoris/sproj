@@ -36,7 +36,7 @@ import time
 import shutil, os
 from model.scripts.SeqData import seqData
 from model.model import Model
-pretty = Prettify.pretty()
+#pretty = Prettify.pretty()
 
 arguments = docopt(__doc__)
 
@@ -63,7 +63,7 @@ else:
     trainingSteps = int(ts)
 
 # obvious default
-ckptDir = "model/checkpoints/comp/"
+ckptDir = "model/checkpoints/bench/"
 if arguments['--outDir']: ckptDir += arguments['--outDir'] + "/"
 if not os.path.exists(ckptDir):
     try: os.makedirs(ckptDir)
@@ -171,6 +171,9 @@ def dumpData():
     out += str(arguments) # just for good measure
     return out
 
+def matrixMagnitude(mat, sess):
+    return sess.run(tf.reduce_sum(tf.abs(mat)))
+
 print(dumpData())
 if not arguments['--immediate']:
     cont = input("Continue with these parameters? [Y/n] ") or "Y"
@@ -234,12 +237,23 @@ w1out_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['layer1'][1])))
 w1f_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['layer1'][2])))
 wf_tot = sess.run(tf.reduce_sum(tf.abs(m_conv.weights['final'])))
 
+if runDumb:
+    dw0_tot = matrixMagnitude(m_dumb.weights['layer0'], sess)
+    dw1_tot = matrixMagnitude(m_dumb.weights['layer1'][0], sess)
+    dwf_tot = matrixMagnitude(m_dumb.weights['final'], sess)
+
 f = open(saveDir + dataFile, "a")
+f.write("Convolutional model matrix magnitudes:\n")
 f.write("w0_tot: " + str(w0_tot) + "\n")
 f.write("w1in_tot: " + str(w1in_tot) + "\n")
 f.write("w1out_tot: " + str(w1out_tot) + "\n")
 f.write("w1f_tot: " + str(w1f_tot) + "\n")
 f.write("wf_tot: " + str(wf_tot) + "\n")
+if runDumb:
+    f.write("\nSimple model matrix magnitudes:\n")
+    f.write("w0_tot: " + str(dw0_tot) + "\n")
+    f.write("w1_tot: " + str(dw1_tot) + "\n")
+    f.write("wf_tot: " + str(dwf_tot) + "\n")
 f.close()
 
 
@@ -256,7 +270,7 @@ for step in range(trainingSteps):
     if runDumb:
         sess.run(m_dumb.optimize, feed_dict={_data: batchX, _labels: batchY})
     sess.run(m_conv.optimize, feed_dict={_data: batchX, _labels: batchY})
-    if batchId == trainMaxIdx or step == 1:
+    if batchId == trainMaxIdx or batchId == int(trainMaxIdx/2) or step == 1:
         # end of epoch
         # calculate current loss on training data
         feed_dict = {_data: batchX, _labels: batchY}
@@ -301,7 +315,7 @@ for step in range(trainingSteps):
             f.close()
             print("Saved checkpoint " + str(step))
 
-    pretty.arrow(batchId, trainMaxIdx)
+    #pretty.arrow(batchId, trainMaxIdx)
 
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
