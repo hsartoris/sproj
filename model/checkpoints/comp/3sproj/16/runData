@@ -25,8 +25,8 @@ dataStaging/2simplex25k/
  '--noDumb': True,
  '--outDir': '3sproj',
  '--r': '1',
- '--runId': '12',
+ '--runId': '16',
  '--s': '25000',
  '--ts': '10k',
  '<dataDir>': '2simplex25k'}# min conv loss
-(8991, 0.023636954)
+(5619, 0.033348713)
