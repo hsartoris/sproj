@@ -12,7 +12,7 @@ Usage:
 Options:
     -h --help               Show this screen
     <dataDir>               Where to load inputs from. Assumes format dataStaging/!
-    --r=<runs>              How many runs. [default: 1]
+    --r=<runs>              How many runs. Requires runId. [default: 1]
     --s=<samples>           How many samples to load from <dataDir> [default: 25000].
     --lr=<lr>               Init learning rate [default: .001].
     --outDir=<outDir>       Checkpoint & log directory. If not specified, leaves ckptDir to model/checkpoints/comp/; otherwise that + outDir
@@ -27,6 +27,7 @@ Options:
     of autodetect.
 """
 
+import warnings
 from docopt import docopt
 import numpy as np
 import signal
@@ -107,6 +108,16 @@ if arguments['--runId'] is None:
     runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
 else:
     runId = arguments['--runId']
+    try:
+        runId = int(runId)
+    except ValueError:
+        pass
+
+if runs > 1 and type(runId) is str:
+    warnings.warn("For multiple runs, runId must be an integer value. Setting 
+    runs = 1.")
+    runs = 1
+
 
 training = None
 validation = None
