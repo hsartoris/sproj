@@ -29,4 +29,4 @@ dataStaging/2simplex25k/
  '--s': '25000',
  '--ts': '15k',
  '<dataDir>': '2simplex25k'}# min conv loss
-(3371, 0.041004818)
+(10115, 0.028253749)
