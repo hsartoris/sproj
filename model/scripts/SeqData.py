@@ -5,21 +5,21 @@ import math
 
 timesteps = 1000
 prefix = "classifiertest2"
-#pretty = Prettify.pretty()
 
 class seqData(object):
-    def __init__(self, minIdx, maxIdx, dataDir, steps):
+    def __init__(self, minIdx, maxIdx, dataDir, steps, ttyCols=None):
+        pretty = Prettify.pretty(ttyCols)
         self.data = []
         self.labels = []
         # this is fucking stupid
-        label = np.expand_dims(np.loadtxt(dataDir + "/struct", delimiter=',').flatten(), 
-            axis=0)
+        label = np.expand_dims(np.loadtxt(dataDir + "/struct", 
+            delimiter=',').flatten(), axis=0)
         for i in range(minIdx, maxIdx):
             self.data.append(np.loadtxt(dataDir + "/spikes/" + str(i) + ".csv", 
                 delimiter=',').transpose()[:steps])
             self.labels.append(label)
-            #pretty.arrow(i - minIdx, maxIdx - minIdx) 
-        self.batchId = 0
+            pretty.arrow(i - minIdx, maxIdx - minIdx) 
+            self.batchId = 0
         print("Successfully loaded", maxIdx-minIdx, "samples")
 
     def resetCount(self):
@@ -41,8 +41,10 @@ class seqData(object):
         # returns data and label arrays, along with current batchId
         if self.batchId == len(self.data):
             self.batchId = 0
-        batchData = self.data[self.batchId:min(self.batchId + batchSize, len(self.data))]
-        batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, len(self.data))]
+        batchData = self.data[self.batchId:min(self.batchId + batchSize, 
+            len(self.data))]
+        batchLabels = self.labels[self.batchId:min(self.batchId + batchSize, 
+            len(self.data))]
         self.batchId = min(self.batchId + batchSize, len(self.data))
         if verbose: print("Returning batch of size", len(batchData))
         return batchData, batchLabels, self.batchId

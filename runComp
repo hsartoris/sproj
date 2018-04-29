@@ -6,7 +6,7 @@ Usage:
     runComp <dataDir> [--r=<runs>] [--s=<samples>] [--lr=<lr>]
         [--outDir=<outDir>] [--runId=<runId>] [--bs=<batchSize>]
         [--ts=<trainingSteps>] [--b=<b>] [--d=<d>] [--noDumb]
-        [-i | --immediate]
+        [-i | --immediate] [--script]
     runComp -h | --help
 
 Options:
@@ -23,6 +23,8 @@ Options:
     --d=<d>                 Featurespace depth [default: 20].
     --noDumb                Doesn't run simple model.
     -i --immediate          Doesn't wait to confirm training parameters.
+    --script                Running in a script. Sets arrow width to 79 instead 
+    of autodetect.
 """
 
 from docopt import docopt
@@ -36,9 +38,12 @@ import time
 import shutil, os
 from model.scripts.SeqData import seqData
 from model.model import Model
-#pretty = Prettify.pretty()
 
 arguments = docopt(__doc__)
+
+script = arguments['--script']
+
+pretty = Prettify.pretty((79 if script else None))
 
 runDumb = not arguments['--noDumb']
 
@@ -315,7 +320,7 @@ for step in range(trainingSteps):
             f.close()
             print("Saved checkpoint " + str(step))
 
-    #pretty.arrow(batchId, trainMaxIdx)
+    pretty.arrow(batchId, trainMaxIdx)
 
 if SAVE_CKPT:
     save = saver.save(sess, saveDir + "final.ckpt")
