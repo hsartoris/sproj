@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 minIdx = 1
 maxIdx = 99
-saveDir = "model/checkpoints/comp/3sproj/"
+saveDir = "model/checkpoints/bench/3neur/"
 
 def loadLosses():
     convLosses = []
@@ -44,7 +44,7 @@ i = 0
 while dirs[i] == "15k": i += 1
 
 steps = np.loadtxt(saveDir + dirs[i] + "/steps", delimiter=',')
-plotall = True
+plotall = False
 
 convLosses = loadLosses()
 #convLosses = np.array(sorted(convLosses, key=lambda i: np.sum(i[:,1])))
