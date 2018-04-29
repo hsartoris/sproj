@@ -10,10 +10,10 @@ class pretty(object):
         else:
             self.columns = cols
 
-        def write(self, string):
-            sys.stdout.write(string)
-            sys.stdout.flush()
+    def write(self, string):
+        sys.stdout.write(string)
+        sys.stdout.flush()
 
-        def arrow(self, curr, maxLen):
-            self.write("-"*int(float(curr)*(self.columns-1)/maxLen) + ">\r")
+    def arrow(self, curr, maxLen):
+        self.write("-"*int(float(curr)*(self.columns-1)/maxLen) + ">\r")
 

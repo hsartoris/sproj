@@ -24,7 +24,7 @@ Options:
     --noDumb                Doesn't run simple model.
     -i --immediate          Doesn't wait to confirm training parameters.
     --script                Running in a script. Sets arrow width to 79 instead 
-    of autodetect.
+    of autodetect. If script, also immediate.
 """
 
 import warnings
@@ -40,11 +40,15 @@ import shutil, os
 from model.scripts.SeqData import seqData
 from model.model import Model
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 ttyCols=79
 
 arguments = docopt(__doc__)
 
 script = arguments['--script']
+
+arguments['--immediate'] = arguments['--immediate'] or script
 
 pretty = Prettify.pretty((ttyCols if script else None))
 
