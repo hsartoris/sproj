@@ -1,12 +1,5 @@
 #!/bin/bash
-echo -n "Are you sure you want to benchmark? [y/N]"
-read response
-if [ "$response" == "y" ]; then
-    for i in `seq 1 20`; do
-        echo "Running iteration $i"
-        runModel run 6neur50k simple $i
-        runModel run 6neur50k conv $i
-    done
-else
-    echo "Not running benchmark."
-fi
+if [ $# -eq 0 ]
+for ((i=$1; i < $2; i++)); do
+    echo "Running iteration $i"
+done
