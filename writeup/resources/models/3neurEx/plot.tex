@@ -3,16 +3,23 @@
 	\begin{minipage}{.48\textwidth}
 	\resizebox{\textwidth}{!}{
 		\begin{tikzpicture}
-			\begin{axis} [xlabel=Step, ylabel=Loss, scaled x ticks=false,
+			\begin{semilogyaxis} [xlabel=Step, ylabel=Loss, scaled x 
+				ticks=false,
+				axis lines*=left,
 				xtick={1,3750,7500,11250,15000},
-				ytick={0,.1,.5,1}]
+				extra y ticks={.05,.5}, extra y tick style={grid=major},
+%				ytick={0,.1,.5,1}, 
+				yticklabel style={	/pgf/number format/precision=2,
+									/pgf/number format/fixed}]
 				\addplot [color=black] table [x=Step, y=Loss, col sep=comma, 
 			mark=none, smooth] {../resources/models/3neurEx/losses};
-			\end{axis}
+			\end{semilogyaxis}
 		\end{tikzpicture}
 	}
 	\end{minipage}
+	\hfill
 	\begin{minipage}{.48\textwidth}
+		\centering
 		\begin{tabular}{lr}
 			b (timesteps) & 8\\
 			d& 5\\
@@ -23,6 +30,7 @@
 		\end{tabular}
 	\end{minipage}
 	\captionof{figure}{Training loss and parameters for model described in 
-		\ref{subsec:3neurex}}
+	\ref{subsec:3neurex}. The loss here is somewhat choppier than usual, due to 
+the limited matrix size made available to the model.}
 	\label{fig:3neur_loss+params}
 \end{table}

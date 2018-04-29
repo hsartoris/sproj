@@ -86,12 +86,11 @@ We first consider a generator network consisting of three nodes connected as in
 	(Reproduced from Figure \ref{fig:toyex})}
 	\label{fig:2simplex+adjacency}
 \end{table}\noindent
-While reconstructing a graph comprising only three nodes is not much of a feat, 
-this simplified case allows us to demonstrate that our convolutional approach is 
-capable of reconstruction at all. Furthermore, the small generator size requires 
-few timesteps and a small interlayer featurespace; i.e., $b,d<10$. This results 
-in a relatively simple set of transitions, allowing us to explore and understand 
-the inner workings of the network.
+Reconstructing this simplified graph allows us to demonstrate that our 
+convolutional approach is capable of reconstruction.  Furthermore, the small 
+generator size requires few timesteps and a small interlayer featurespace; i.e., 
+$b,d<10$.  This results in a relatively simple set of transitions, allowing us 
+to explore and understand the inner workings of the network.
 
 \subsection{Example Model}
 \label{subsec:3neurex}
@@ -143,12 +142,11 @@ final layer weights\footnote{see appendix} with the data in
 \end{table}
 
 \section{Applicability Beyond Training Data}
-As described in \ref{subsubsec:hotswap}, the fact that our model is trained on 
-data produced by only one generator is of little consequence; due to its 
-structure, the only information it can learn is relational; i.e., 
-per-neuron-pair. Consider the following examples, in which data was produced 
-from several generator networks and fed into the model described in 
-\ref{results_3neur}:
+As described in \ref{subsec:hotswap}, the fact that our model is trained on data 
+produced by only one generator is of little consequence; due to its structure, 
+the only information it can learn is relational; i.e., per-neuron-pair. Consider 
+the following examples, in which data was produced from several generator 
+networks and fed into the model described in \ref{results_3neur}:
 
 
 TODO: add examples of input and output data to 3.2.1 and 3.2.2.

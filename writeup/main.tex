@@ -1,7 +1,10 @@
 \documentclass[12pt,twoside]{report}
 \usepackage[utf8]{inputenc}
-\usepackage{titlesec, amsmath, amsfonts, pgf, tikz, adjustbox, pgfplots, 
-filecontents, graphicx, wrapfig, relsize, float, mathtools, appendix, array}
+\usepackage{titlesec, amsmath, amsfonts, pgf, tikz, adjustbox, filecontents, 
+graphicx, wrapfig, relsize, float, mathtools, appendix, array, algorithm2e, 
+siunitx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
 \usepackage[font=small, labelfont=it]{caption}
 \usepackage[font=small, labelfont=normalfont]{subcaption}
 \usepackage[margin=1.5in]{geometry}
@@ -9,12 +12,15 @@ filecontents, graphicx, wrapfig, relsize, float, mathtools, appendix, array}
 \usetikzlibrary{arrows, automata, positioning, quotes, arrows.meta}
 \input{resources/tikzpics.tex}
 
+
 \def\arraystretch{.8}
+
+\newcolumntype{T}[1]{S[table-format=#1]}
 
 \newcommand{\ubb}[4][]{\underset{#3 \times #4}{\mathbb{#2}_{#1}}}
 
 \newcommand{\mc}[1]{\multicolumn{1}{c|}{#1}}
-\newcommand{\figref}[1]{figure \ref{#1}}
+\newcommand{\figref}[1]{Figure \ref{#1}}
 \newcommand{\Figref}[1]{Figure \ref{#1}}
 
 \newcommand{\adjacencyT}[3]{%

@@ -1,4 +1,5 @@
 let g:latex_build_dir = "build"
+let g:vimtex_quickfix_enabled = 0
 
 command LoadAll :call LoadChapters()
 

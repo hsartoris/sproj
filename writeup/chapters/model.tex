@@ -23,6 +23,7 @@ the algorithm.
 
 
 \subsection{Generation}
+\label{subsec:generation}
 In order to demonstrate the validity of our algorithm for graph convolution, we 
 opt for a simplified form of the kind of data that would be used in a real-world 
 setting.  To this end, we create adjacency matrices representing simple, 
@@ -57,8 +58,8 @@ Generally, we ran simulations as described for 50 steps\footnote{See
 \ref{subsec:restructuring}}, then saved the resulting output matrix. As many as 
 fifty thousand simulations were run for each generator network.
 As well as saving the simulated spike trains, we save the adjacency matrix 
-describing the generator, in order to provide a target for the model to converge 
-towards.
+describing the generator, in order to provide a target for the model to train 
+on.
 
 \subsubsection{Example Data Generation}
 Consider the network defined in \figref{fig:toyex}. Supposing that we randomly 
@@ -122,6 +123,8 @@ neurons. Practically, the number of iterations was usually set to 50.
 
 \subsection{Restructuring}
 \label{subsec:restructuring}
+
+\subsubsection{Input Data}
 The model accepts data in the form of a spike-time raster plot of dimensions $(n 
 \times t)$, where \textit{n} is the number of neurons and \textit{t} is the 
 number of timesteps being considered. The axes are reversed in comparison to the 
@@ -166,6 +169,15 @@ the time dimension to four, produces the data in \figref{fig:data+vis}.
 The representation of the matrix in \ref{subfig:3outexgraph} is an example of 
 the method we will use to depict matrices containing real values.
 
+\subsubsection{Target Data}
+\label{subsubsec:targetdata}
+As described in \ref{subsec:generation}, we save the adjacency matrix 
+corresponding to the generator along with the simulated spiking files. When an 
+adjacency matrix is loaded into the target dataset for training a model, we 
+flatten it, from $(n \times n)$ to $(1 \times n^2)$. This allows us to directly 
+compare our targets to the outputs of the model, which will be of the same 
+dimensionality.
+
 \subsection{Generalizability}
 \label{subsec:hotswap}
 In most ANN implementations, feeding various data with the same label attached 
@@ -202,7 +214,7 @@ While we use the number of nodes in the generator graph, \textit{n}, to
 calculate summations and averages, the structure of our calculations is such 
 that no aspects of the model are defined in terms of \textit{n}.
 
-\subsubsection{Omitted Calculations}
+\subsubsection{Omitted Details}
 An elementwise activation function\footnote{SEE NN PRINCIPLES} is applied to the 
 matrix outputs from each layer. While this is crucial to network function, our 
 primary focus in this section is the underlying principles and mathematical 
@@ -281,6 +293,7 @@ connected nodes; i.e., these inputs and outputs represent potential neighbors in
 terms of graph locality. To achieve this, we perform the following 
 computations\footnote{Actually, it's much more elegant.} for each $\underset{d 
 \times 1}{d_{ij}}$:
+\begin{minipage}{\textwidth}
 \begin{subequations}
 	\centering
 	\begin{align}
@@ -289,11 +302,11 @@ computations\footnote{Actually, it's much more elegant.} for each $\underset{d
 		d_{jk}^{\prime} & \underset{d \times 1}{\mathbb{O}} &= \frac{1}{n} 
 		\sum_{k=0}^{n-1} d_{ki}^{\prime}\\
 		\label{eq:IDOD}
-	\underset{d \times 1}{\mathbb{I_D}} &= \underset{d \times 
-	d}{\mathbb{W}_{in}^\prime} \times \left(\mathbb{I} \odot 
-d_{ij}^{\prime}\right) & \underset{d \times 1}{\mathbb{O_D}} &= \underset{d 
-\times d}{\mathbb{W}_{out}^\prime} \times \left(\mathbb{O} \odot 
-d_{ij}^{\prime}\right)
+		\underset{d \times 1}{\mathbb{I_D}} &= \underset{d \times 
+			d}{\mathbb{W}_{in}^\prime} \times \left(\mathbb{I} \odot 
+		d_{ij}^{\prime}\right) & \underset{d \times 1}{\mathbb{O_D}} &= 
+		\underset{d \times d}{\mathbb{W}_{out}^\prime} \times \left(\mathbb{O} 
+		\odot d_{ij}^{\prime}\right)
 	\end{align}
 	\text{Here we arrive at the output, $d_{ij}^{\prime\prime}$:}
 	\begin{equation}
@@ -320,11 +333,13 @@ allows the network to optimize for whichever elements in $\mathbb{I_D}$ and
 $\mathbb{O_D}$ are most important in the prediction of \textit{ij}.  
 Additionally, a bias vector, $\mathbb{B}^\prime$, is added to this product, and 
 at this point we have $d_{ij}^{\prime\prime}$ as it will be seen by the next 
-layer of the network.\footnote{Disregarding activation}
+layer of the network.\footnotemark
 %The three matrices involved, $\mathbb{W}_{in}^\prime$, 
 %$\mathbb{W}_{out}^\prime$, and $\mathbb{W}_{tot}^\prime$, are trained on by the 
 %optimizer\footnote{SEE OPTIMIZER SECION IN TRAINING}, allowing the model to 
 %learn optimal processing and combinations to facilitate predictions.
+\end{minipage}
+\footnotetext{Disregarding activation}
 
 Our concatenation approach in \eqref{eq:dijO} stands in contrast to the strategy 
 taken in \eqref{eq:IDOD}, where integration of the input and output data is 
@@ -355,6 +370,15 @@ generator associated with the input data.
 
 \subsection{Matrix Model}
 \label{subsec:matmodel}
+
+\subsubsection{First Layer}
+\label{subsubsec:matfirstlayer}
+
+\subsubsection{Convolutional Layer}
+\label{subsubsec:matconvlayer}
+
+\subsubsection{Final Layer}
+\label{subsubsec:matfinallayer}
 
 \subsection{\textit{n}-independence}
 \label{subsec:n-independence}
