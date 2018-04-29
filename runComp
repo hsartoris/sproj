@@ -118,8 +118,8 @@ else:
         pass
 
 if runs > 1 and type(runId) is str:
-    warnings.warn("For multiple runs, runId must be an integer value. Setting 
-    runs = 1.")
+    warnings.warn("""For multiple runs, runId must be an integer value. Setting 
+runs = 1.""")
     runs = 1
 
 
