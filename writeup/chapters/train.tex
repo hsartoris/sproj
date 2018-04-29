@@ -193,17 +193,32 @@ Adam adjusts its learning rate as time goes on, according to the following
 equation, where $\beta_n^t$ indicates exponentiation by $t$ and $lr$ denotes 
 learning rate:
 \begin{figure}[h]
-	\begin{minipage}{.48\textwidth}
-		\begin{align}
+	\begin{minipage}{.25\textwidth}
+		\centering
+		\begin{align*}
 			\nonumber
 			\beta_1 &= 0.9\\
 			\nonumber
 			\beta_2 &= 0.999\\
 			lr_t &= lr_{init} \times \frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
-		\end{align}
+		\end{align*}
 	\end{minipage}
-	\begin{minipage}{.48\textwidth}
-
+	\hfill
+	\begin{minipage}{.6\textwidth}
+		\centering
+		\resizebox{\textwidth}{!}{
+		\begin{tikzpicture}
+			\begin{axis}[domain=.01:500, ytick={0,.15,1}, samples=500,
+				ylabel=$\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}$,
+				ylabel style={rotate=-90, font=\large},
+					enlarge x limits=false, ymajorgrids, extra x ticks=0,
+					extra tick style={grid=major}, xlabel=Step]
+					\addplot[color=black] {sqrt(1-.999^x)/(1-.9^x)} [mark=none, 
+			smooth];
+				\coordinate (spypoint) at (axis cs:10, .15)
+			\end{axis}
+		\end{tikzpicture}
+		}
 	\end{minipage}
 \end{figure}
 
