@@ -1,0 +1,32 @@
+# b
+8
+# d
+5
+# n
+3
+# batchSize
+32
+# initLearnRate
+0.0005
+# trainingSteps
+15000
+# prefix
+dataStaging/2simplex25k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+25000, 22500, 18000
+# noDumb
+1
+{'--b': '8',
+ '--bs': '32',
+ '--d': '5',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.0005',
+ '--noDumb': True,
+ '--outDir': '3sproj',
+ '--r': '1',
+ '--runId': None,
+ '--s': '25000',
+ '--ts': '15k',
+ '<dataDir>': '2simplex25k'}# min conv loss
+(10115, 0.15278786)
