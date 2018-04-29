@@ -1,0 +1,44 @@
+# b
+8
+# d
+5
+# n
+3
+# batchSize
+32
+# initLearnRate
+0.001
+# trainingSteps
+50000
+# prefix
+dataStaging/2simplex50k/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+# script
+True
+{'--b': '8',
+ '--bs': '32',
+ '--d': '5',
+ '--help': False,
+ '--immediate': True,
+ '--lr': '.001',
+ '--noDumb': False,
+ '--outDir': '3neur',
+ '--r': '1',
+ '--runId': '14',
+ '--s': '50k',
+ '--script': True,
+ '--ts': '50k',
+ '<dataDir>': '2simplex50k'}Convolutional model matrix magnitudes:
+w0_tot: 17.001272
+w1in_tot: 6.490175
+w1out_tot: 5.014209
+w1f_tot: 10.379886
+wf_tot: 0.6806516
+
+Simple model matrix magnitudes:
+w0_tot: 17.56022
+w1_tot: 5.4249477
+wf_tot: 0.9941218
