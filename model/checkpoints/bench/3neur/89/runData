@@ -42,3 +42,7 @@ Simple model matrix magnitudes:
 w0_tot: 15.827232
 w1_tot: 4.428193
 wf_tot: 1.0946987
+# min dumb loss
+(34874, 0.00041112606)
+# min conv loss
+(49499, 0.0047511044)
