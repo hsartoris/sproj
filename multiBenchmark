@@ -2,15 +2,17 @@
 echo -n "Are you REALLY sure you want to benchmark? [y/N]"
 read response
 if [ "$response" == "y" ]; then
-    benchmark 0 25 > log1 2>&1 &
+    screen -a
+    benchmark 0 25 &
     pid1=$!
-    benchmark 25 50 > log2 2>&1 &
+    benchmark 25 50 &
     pid2=$!
-    benchmark 50 75 > log3 2>&1 &
+    benchmark 50 75 &
     pid3=$!
     benchmark 75 100 &
     pid4=$!
     
+    echo "Benchmarking begun. Time to leave."
     wait $pid1
     wait $pid2
     wait $pid3
