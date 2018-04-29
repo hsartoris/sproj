@@ -12,7 +12,7 @@ class pretty(object):
 
         def write(self, string):
             sys.stdout.write(string)
-                sys.stdout.flush()
+            sys.stdout.flush()
 
         def arrow(self, curr, maxLen):
             self.write("-"*int(float(curr)*(self.columns-1)/maxLen) + ">\r")
