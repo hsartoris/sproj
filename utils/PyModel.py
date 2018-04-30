@@ -105,7 +105,6 @@ class Model():
             self.savenp(mat, csvPath + name)
 
     def run(self, data, saveDir):
-        saveDir += "/"
         n = data.shape[1]
         self.makeTiles(n)
         layer0dict = self.layer0(data, n)

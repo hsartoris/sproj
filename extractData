@@ -26,6 +26,14 @@ runId = sys.argv[1]
 outDir = sys.argv[2] + "/"
 if not os.path.exists(outDir): os.mkdir(outDir)
 shutil.copyfile(ckptDir + runId + "/runData", outDir + "/runData")
+if not os.path.exists(outDir + "mats/"): os.mkdir(outDir + "mats/")
+
+matDir = ckptDir + runId + "/"
+if 'conv' in os.listdir(ckptDir + runId):
+    matDir += "conv/"
+matDir += "mats/"
+for fname in os.listdir(matDir):
+    shutil.copyfil(matDir + fname, outDir + "mats/" + fname)
 
 f = open(ckptDir + runId + "/prefix")
 prefix = f.readline() + "/"
@@ -42,11 +50,7 @@ runData.close()
 b = int(runInfo[1])
 d = int(runInfo[5])
 
-matDir = ckptDir + runId + "/"
-if 'conv' in os.listdir(ckptDir + runId):
-    matDir += "conv/"
 
-matDir += "mats/"
 
 dataIdx = 0
 numData = 5
