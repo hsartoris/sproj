@@ -25,6 +25,7 @@ if len(sys.argv) < 3:
 runId = sys.argv[1]
 outDir = sys.argv[2] + "/"
 if not os.path.exists(outDir): os.mkdir(outDir)
+shutil.copyfile(ckptDir + runId + "/runData", outDir + "/runData")
 
 f = open(ckptDir + runId + "/prefix")
 prefix = f.readline() + "/"
@@ -46,9 +47,6 @@ if 'conv' in os.listdir(ckptDir + runId):
     matDir += "conv/"
 
 matDir += "mats/"
-
-
-#outDir = "visData/" + runId + "/"
 
 dataIdx = 0
 numData = 5

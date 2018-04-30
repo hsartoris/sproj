@@ -10,9 +10,10 @@ struct = np.loadtxt(sys.argv[1], delimiter=',')
 if len(struct.shape) == 1:
     struct = np.expand_dims(struct, 0)
 
-n = struct.shape[0]
-print(" " + "-"*(n+2))
-for i in range(n):
-    print(i,"|" + "".join([("#" if x > 0 else " ") for x in struct[i]]) + "|")
-print(" " + "-"*(n+2))
+w = struct.shape[1]
+print(" " + "-"*(w+2))
+for i in range(struct.shape[0]):
+    print(str(i) + "|" + "".join([("#" if x > 0 else " ") for x in struct[i]]) + 
+"|")
+print(" " + "-"*(w+2))
 
