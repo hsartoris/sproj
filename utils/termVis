@@ -7,6 +7,8 @@ if not len(sys.argv) == 2:
     exit()
 
 struct = np.loadtxt(sys.argv[1], delimiter=',')
+if len(struct.shape) == 1:
+    struct = np.expand_dims(struct, 0)
 
 n = struct.shape[0]
 print(" " + "-"*(n+2))

@@ -11,7 +11,8 @@ if len(sys.argv) == 3:
     trunc = int(sys.argv[2])
     print("Truncating data at " + str(trunc) + " timesteps")
 
-spikes = np.loadtxt(sys.argv[1], delimiter=',', dtype=int)
+spikes = np.loadtxt(sys.argv[1], delimiter=',').astype(int)
+
 if trunc:
     spikes = spikes[:,:trunc]
 

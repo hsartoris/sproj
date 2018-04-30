@@ -41,7 +41,8 @@ class Model():
             if trainable is None: trainable = [True, True, True]
             # attempt to load matrices from previous run
             if os.path.exists(matDir):
-                self.weights, self.biases = loadMats(matDir, trainable)
+                self.weights, self.biases = loadMats(matDir, trainable,
+                    self.numLayers)
             else:
                 print(matDir)
                 print("Matrix directory not found, exiting")
