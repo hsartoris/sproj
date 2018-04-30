@@ -72,16 +72,20 @@ else:
     #minSimpleIdx, minSimpleLoss = minFinalLoss(simpleLosses)
     minFinalIdx, minFinalLoss = minFinalLoss(convLosses)
     minTotalIdx, minTotalLoss = minLoss(convLosses)
-    print("minFinalIdx:", dirs[minFinalIdx])
-    print("minTotalIdx:", dirs[minTotalIdx])
+    minFinalIdx = dirs[minFinalIdx]
+    minTotalIdx = dirs[minTotalIdx]
+    print("minFinalIdx:", minFinalIdx)
+    print("minTotalIdx:", minTotalIdx)
     avgConvLossY = avgLoss(convLosses)
     #avgSimpleLossX, avgSimpleLossY = avgLoss(simpleLosses)
     
     #simpleGraph, = plt.semilogy(minSimpleLoss[:,0], minSimpleLoss[:,1], label="simple " + str(minSimpleIdx))
     avgConv, = plt.semilogy(steps, avgConvLossY, label="avg")
     #avgSimple, = plt.semilogy(avgSimpleLossX, avgSimpleLossY, label="simple_avg")
-    minFinGraph, = plt.semilogy(steps, minFinalLoss, label="min final" + str(minFinalIdx))
-    minTotGraph, = plt.semilogy(steps, minTotalLoss, label="min total" + str(minTotalIdx))
+    minFinGraph, = plt.semilogy(steps, minFinalLoss, label="min final" + 
+        minFinalIdx)
+    minTotGraph, = plt.semilogy(steps, minTotalLoss, label="min total" + 
+        minTotalIdx)
     #diffGraph, = plt.semilogy(avgConvLossX, avgConvLossY - avgSimpleLossY, label="diff")
     plt.legend(handles=[avgConv, minFinGraph, minTotGraph])
     plt.show()
