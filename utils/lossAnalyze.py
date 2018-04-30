@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
 minIdx = 1
 maxIdx = 99
 saveDir = "model/checkpoints/bench/3neur/"
@@ -38,6 +39,9 @@ def avgLoss(losses):
 
     lossSum /= len(losses)
     return lossSum
+
+if len(sys.argv) > 1:
+    saveDir = sys.argv[1] + "/"
 
 dirs = os.listdir(saveDir)
 i = 0

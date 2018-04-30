@@ -15,29 +15,40 @@ from model.scripts.SeqData import seqData
 from model.model import Model
 
 batchSize = 1
-prefix = "dataStaging/3neur16k/"
-ckptDir = "model/checkpoints/"
+#prefix = "dataStaging/3neur16k/"
+ckptDir = "model/checkpoints/bench/3neur/"
 
-if len(sys.argv) < 2:
-    print("Usage: extractData.py runId [prefix]")
+if len(sys.argv) < 3:
+    print("Usage: extractData.py runId outDir")
     sys.exit()
 
 runId = sys.argv[1]
-if len(sys.argv) > 2: prefix = "dataStaging/" + sys.argv[2] + "/"
-else:
-    f = open(ckptDir + runId + "/prefix")
-    prefix = f.readline()
-    f.close()
-outDir = "visData/" + runId + "/"
-if not os.path.exists(outDir): os.mkdir(outDir)
+outDir = sys.argv[2] + "/"
+
+f = open(ckptDir + runId + "/prefix")
+prefix = f.readline() + "/"
+f.close()
+
 struct = np.loadtxt(prefix + "struct", delimiter=',')
 n = struct.shape[0]
 print("num neurons:", n)
 struct = np.expand_dims(np.expand_dims(struct.flatten(), 0), 0)
+runData = open(ckptDir + runId + "/runData")
+runInfo = runData.readlines()
+runData.close()
 
-# timesteps
-b = 8
-d = 5
+b = int(runInfo[1])
+d = int(runInfo[5])
+
+matDir = ckptDir + runId + "/"
+if 'conv' in os.listdir(ckptDir + runId):
+    matDir += "conv/"
+
+matDir += "mats/"
+
+
+#outDir = "visData/" + runId + "/"
+if not os.path.exists(outDir): os.mkdir(outDir)
 
 dataIdx = 0
 numData = 5
@@ -46,7 +57,8 @@ testing = seqData(dataIdx, dataIdx+numData, prefix, b)
 
 _data = tf.placeholder(tf.float32, [None, b, n])
 _labels = tf.placeholder(tf.float32, [None, 1, n*n])
-m = Model(b, d, n, _data, _labels, batchSize, matDir = ckptDir + runId + "/mats/")
+
+m = Model(b, d, n, _data, _labels, batchSize, matDir=matDir)
 
 init = tf.global_variables_initializer()
 
@@ -68,6 +80,8 @@ for i in range(numData):
     f = open(runDir + "loss", "w+")
     f.write(str(loss))
     f.close()
+
+    np.savetxt(runDir + "input2", dataX, delimiter=',')
     np.savetxt(runDir + "input", data, delimiter=',')
     np.savetxt(runDir + "out0", out0[0], delimiter=',')
     np.savetxt(runDir + "out1", out1[0], delimiter=',')
