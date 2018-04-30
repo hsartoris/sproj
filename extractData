@@ -33,7 +33,7 @@ if 'conv' in os.listdir(ckptDir + runId):
     matDir += "conv/"
 matDir += "mats/"
 for fname in os.listdir(matDir):
-    shutil.copyfil(matDir + fname, outDir + "mats/" + fname)
+    shutil.copyfile(matDir + fname, outDir + "mats/" + fname)
 
 f = open(ckptDir + runId + "/prefix")
 prefix = f.readline() + "/"
