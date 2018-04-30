@@ -15,11 +15,10 @@
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{23}
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{23}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{24}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Training loss and parameters for model described in 4.2.1\hbox {}. The loss here is somewhat choppier than usual, due to the limited matrix size made available to the model.\relax }}{25}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Path of data through network, up to final transform\relax }}{26}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Model prediction for input data in Figure 4.6a\hbox {}\relax }}{26}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{27}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Cyclical 3-neuron network\relax }}{27}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network, up to final transform\relax }}{26}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Model prediction for input data in Figure 4.5a\hbox {}\relax }}{26}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{27}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Cyclical 3-neuron network\relax }}{28}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

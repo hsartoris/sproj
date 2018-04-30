@@ -1,4 +1,4 @@
 #!/bin/bash
-rm build/main.pdf
-latexmk -pdf
+rm -r build/*
+latexmk -pdf -pdflatex="pdflatex -file-line-error"
 zathura build/main.pdf

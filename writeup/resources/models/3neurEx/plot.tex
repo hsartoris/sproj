@@ -1,3 +1,4 @@
+%! TEX root = /home/hsartoris/sproj/writeup/main.tex
 \begin{table}[ht]
 	\centering
 	\begin{minipage}{.48\textwidth}
@@ -6,13 +7,13 @@
 			\begin{semilogyaxis} [xlabel=Step, ylabel=Loss, scaled x 
 				ticks=false,
 				axis lines*=left,
-				xtick={1,3750,7500,11250,15000},
-				extra y ticks={.05,.5}, extra y tick style={grid=major},
-%				ytick={0,.1,.5,1}, 
-				yticklabel style={	/pgf/number format/precision=2,
+				xtick={1,25000,50000},
+				extra y ticks={.0002,.5}, extra y tick style={grid=major},
+				ytick={1}, yticklabel style={	/pgf/number format/precision=2,
 									/pgf/number format/fixed}]
 				\addplot [color=black] table [x=Step, y=Loss, col sep=comma, 
-			mark=none, smooth] {../resources/models/3neurEx/losses};
+			mark=none, smooth] 
+			{../resources/models/3neurEx/fullRun/loss_subsamp};
 			\end{semilogyaxis}
 		\end{tikzpicture}
 	}
@@ -24,13 +25,14 @@
 			b (timesteps) & 8\\
 			d& 5\\
 			Batch size& 32\\
-			Learning rate& .0005\\
-			Training samples& 17984\\
-			Validation samples& 4512
+			Learning rate& .001\\
+			Training samples& 36000\\
+			Validation samples& 9000\\
 		\end{tabular}
 	\end{minipage}
-	\captionof{figure}{Training loss and parameters for model described in 
-	\ref{subsec:3neurex}. The loss here is somewhat choppier than usual, due to 
-the limited matrix size made available to the model.}
+	\caption[Caption for LOF]{Loss \& parameters for model \ref{subsec:3neurex}.  
+	The loss here is choppy, due perhaps to aggressive optimization by Adam.
+\footnotemark}
 	\label{fig:3neur_loss+params}
 \end{table}
+\footnotetext{See \ref{subsec:optimizer}}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  28 APR 2018 22:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  30 APR 2018 19:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1412,10 +1412,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [4] (build/main.lof
-Underfull \vbox (badness 3078) has occurred while \output is active []
-
- [5
+ [4] (build/main.lof [5
 
 ])
 \tf@lof=\write5
@@ -1441,7 +1438,11 @@ File: resources/3outex.png Graphic file (type png)
 <use resources/3outex.png>
 Package pdftex.def Info: resources/3outex.png  used on input line 162.
 (pdftex.def)             Requested size: 66.77805pt x 89.03786pt.
- [7] [8 <./resources/3outex.png>] [9] [10] [11]
+ [7]
+
+LaTeX Warning: Reference `subsec:n-independence' on page 8 undefined on input line 187.
+
+[8 <./resources/3outex.png>] [9] [10] [11]
 Underfull \vbox (badness 1968) has occurred while \output is active []
 
  [12]
@@ -1459,11 +1460,11 @@ Underfull \vbox (badness 1533) has occurred while \output is active []
 
  [17] [18] [19]
 NOTE: coordinate (1Y1.0e-2],3Y0.0e0]) has been dropped because it is unbounded (in y). (see also unbounded coords=jump). 
-
-Underfull \vbox (badness 1303) has occurred while \output is active []
-
- [20]) (./chapters/results.tex [21]
+[20]) (./chapters/results.tex [21]
 Chapter 4.
+
+LaTeX Warning: Reference `subsec:n-independence' on page 22 undefined on input line 26.
+
 [22
 
 ]
@@ -1472,64 +1473,71 @@ Underfull \hbox (badness 3019) in paragraph at lines 76--76
  []
 
 [23] (build/../resources/2simplex.tex (build/../resources/tikzheader.tex)) [24] (build/../resources/models/3neurEx/plot.tex
-PGFPlots: reading {../resources/models/3neurEx/losses}
+PGFPlots: reading {../resources/models/3neurEx/fullRun/loss_subsamp}
 )
-<resources/models/3neurEx/9/input.png, id=121, 90.3375pt x 240.9pt>
-File: resources/models/3neurEx/9/input.png Graphic file (type png)
-<use resources/models/3neurEx/9/input.png>
-Package pdftex.def Info: resources/models/3neurEx/9/input.png  used on input line 155.
+<resources/models/3neurEx/fullRun/0_py/input.png, id=122, 90.3375pt x 240.9pt>
+File: resources/models/3neurEx/fullRun/0_py/input.png Graphic file (type png)
+<use resources/models/3neurEx/fullRun/0_py/input.png>
+Package pdftex.def Info: resources/models/3neurEx/fullRun/0_py/input.png  used on input line 159.
 (pdftex.def)             Requested size: 44.71523pt x 119.24034pt.
-<resources/models/3neurEx/9/out0.png, id=122, 271.0125pt x 150.5625pt>
-File: resources/models/3neurEx/9/out0.png Graphic file (type png)
-<use resources/models/3neurEx/9/out0.png>
-Package pdftex.def Info: resources/models/3neurEx/9/out0.png  used on input line 161.
+<resources/models/3neurEx/fullRun/0_py/layer0/4out.png, id=123, 271.0125pt x 150.5625pt>
+File: resources/models/3neurEx/fullRun/0_py/layer0/4out.png Graphic file (type png)
+<use resources/models/3neurEx/fullRun/0_py/layer0/4out.png>
+Package pdftex.def Info: resources/models/3neurEx/fullRun/0_py/layer0/4out.png  used on input line 165.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
-<resources/models/3neurEx/9/out1.png, id=123, 271.0125pt x 150.5625pt>
-File: resources/models/3neurEx/9/out1.png Graphic file (type png)
-<use resources/models/3neurEx/9/out1.png>
-Package pdftex.def Info: resources/models/3neurEx/9/out1.png  used on input line 166.
+<resources/models/3neurEx/fullRun/0_py/layer1/7out.png, id=124, 271.0125pt x 150.5625pt>
+File: resources/models/3neurEx/fullRun/0_py/layer1/7out.png Graphic file (type png)
+<use resources/models/3neurEx/fullRun/0_py/layer1/7out.png>
+Package pdftex.def Info: resources/models/3neurEx/fullRun/0_py/layer1/7out.png  used on input line 170.
 (pdftex.def)             Requested size: 119.2467pt x 66.2477pt.
+ [25]
+Underfull \vbox (badness 3547) has occurred while \output is active []
 
+ [26 <./resources/models/3neurEx/fullRun/0_py/input.png> <./resources/models/3neurEx/fullRun/0_py/layer0/4out.png> <./resources/models/3neurEx/fullRun/0_py/layer1/7out.png>] (build/../resources/tikzheader.tex)
+<resources/models/3neurEx/var1/input.png, id=135, 90.3375pt x 240.9pt>
+File: resources/models/3neurEx/var1/input.png Graphic file (type png)
+<use resources/models/3neurEx/var1/input.png>
+Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 230.
+(pdftex.def)             Requested size: 39.75092pt x 106.00366pt.
+ (build/../resources/tikzheader.tex)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25] [26 <./resources/models/3neurEx/9/input.png> <./resources/models/3neurEx/9/out0.png> <./resources/models/3neurEx/9/out1.png>] (build/../resources/tikzheader.tex)
-<resources/models/3neurEx/var1/input.png, id=134, 90.3375pt x 240.9pt>
-File: resources/models/3neurEx/var1/input.png Graphic file (type png)
-<use resources/models/3neurEx/var1/input.png>
-Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 226.
-(pdftex.def)             Requested size: 39.75092pt x 106.00366pt.
- (build/../resources/tikzheader.tex) [27 <./resources/models/3neurEx/var1/input.png>]) (./chapters/discussion.tex [28]
+[27 <./resources/models/3neurEx/var1/input.png>]) (./chapters/discussion.tex [28]
 Chapter 5.
-) (./chapters/appendix.tex [29
+) [29
 
-]
+] (./chapters/appendix.tex [30]
 Appendix A.
 
 Overfull \hbox (16.86209pt too wide) in paragraph at lines 3--3
 |[]\OT1/cmr/bx/n/24.88 Parameter Op-ti-miza-tion Mis-
  []
 
-[30
+[31
 
 ]
 Appendix B.
-) [31
+) [32
 
-] (build/main.aux) ) 
+] (build/main.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 39438 strings out of 492982
- 946151 string characters out of 6138579
- 1185755 words of memory out of 5000000
- 42385 multiletter control sequences out of 15000+600000
- 546656 words of font info for 86 fonts, out of 8000000 for 9000
+ 39447 strings out of 492982
+ 946610 string characters out of 6138579
+ 1185981 words of memory out of 5000000
+ 42388 multiletter control sequences out of 15000+600000
+ 546964 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,16n,96p,10376b,2201s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (37 pages, 264735 bytes).
+ 62i,16n,96p,10376b,2196s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on build/main.pdf (38 pages, 271506 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 143 compressed objects within 2 object streams
+ 219 PDF objects out of 1000 (max. 8388607)
+ 148 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

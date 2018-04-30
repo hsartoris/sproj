@@ -81,7 +81,7 @@ For this trial, all model parameters were identical to those in
 consisted of raster plots whose items had been randomly assigned to 0 or 1.  
 While the results were somewhat less consistent, over the course of 100 training 
 sessions, the models that were able to converge to a minimum loss predicted the 
-matrix in \figref{fig:empty_loss} the overwhelming majority of the time. 
+matrix in \figref{fig:random_output} the overwhelming majority of the time. 
 
 \subsection{Analysis}
 While the results of \ref{subsec:random} are at first confusing, given the per 
@@ -141,30 +141,34 @@ The following data are pulled from a model trained on data produced by the
 generator in \figref{fig:2simplex+adjacency}. Figure 
 \ref{fig:3neur_loss+params} demonstrates the model's loss over time. In this 
 example, small values \textit{b} and \textit{d} were used in order to allow for 
-better comprehension of the internal mechanics; the loss tends to converge more 
-effectively and evenly given more computation power.
+better comprehension and visualization of the internal mechanics; the practical 
+effect of this is that a relatively small number of values were available for 
+the model to optimize, making each value adjustment more impactful on output, 
+and thus each training step more dramatic. These are acceptable limitations, 
+however, insofar as they provide a more comprehensible model struture.
+
 \input{../resources/models/3neurEx/plot.tex}
 
 \subsubsection{Trained Network Operation}
-Here, we rigorously examine the internal operation of the trained model over a 
-single input.
+Here, we examine the internal operation of the trained model over a single 
+input.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{.15\textwidth}
 		\centering
-		\includegraphics[width=.75\textwidth]{9/input.png}
-		\caption{Input}
+		\includegraphics[width=.75\textwidth]{fullRun/0_py/input.png}
+		\caption{Input\\(max: 1.0)}
 		\label{subfig:3neur_in}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.3\textwidth}
-		\includegraphics[width=\textwidth]{9/out0.png}
-		\caption{Data after first transform}
+		\includegraphics[width=\textwidth]{fullRun/0_py/layer0/4out.png}
+		\caption{Output of first layer\\(max: 4.33)}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.3\textwidth}
-		\includegraphics[width=\textwidth]{9/out1.png}
-		\caption{Data after convolutional layer}
+		\includegraphics[width=\textwidth]{fullRun/0_py/layer1/7out.png}
+		\caption{Output of convolutional layer\\(max: 3.2)}
 		\label{subfig:3neur_out1}
 	\end{subfigure}
 	\caption{Path of data through network, up to final transform}

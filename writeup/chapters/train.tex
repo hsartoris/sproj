@@ -153,6 +153,7 @@ comparable to that of MSE as the model learns to predict appropriately.
 
 %\begin{minipage}{\textwidth}
 \subsubsection{Effects}
+\label{subsubsec:losseffects}
 \begin{wraptable}[5]{r}{.3\textwidth}
 	\captionsetup{justification=centering}
 	\vspace{-30pt}
@@ -180,10 +181,13 @@ determining loss by way of \eqref{eq:losscalc} are as follows:
 \end{align*}
 %\end{minipage}
 Thus, our loss function `punishes' the network equally for false positives and 
-false negatives. The value produced for each input/target pair is then passed to 
-the optimizer.
+false negatives: due to the squared difference, a 1 where there should be a 0 
+adds the same loss as a 0 where there should be a one. This is perhaps not the 
+ideal method; see The value produced for each input/target pair is then passed 
+to the optimizer.
 
 \subsection{Optimizer Function}
+\label{subsec:optimizer}
 We used the Adam optimizer\footnote{Citation} as provided by TensorFlow, 
 providing different initial learning rates per dataset. Those values were 
 arrived at via experimentation. After initializing the optimizer, it is passed 

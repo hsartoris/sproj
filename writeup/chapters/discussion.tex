@@ -7,6 +7,18 @@
 Detail issues with summing inputs and outputs, and propose alternative algorithm 
 here. Note issues with implementation.
 
+\subsection{Loss}
+As described in \ref{subsubsec:losseffects}, our custom loss function equally 
+weights false positives and false negatives. Consider these cases:
+
+\begin{enumerate}
+	\item Output 0.3; target 1.0: adds $(0.3-1.0)^2=0.49$ to the loss
+	\item Output 0.7; target 0.0: adds $(0.7-0.0)^2=0.49$ to the loss
+\end{enumerate}
+equivalent to the value added by an output of 0.7 when there should be 0. 
+
+However, this latter case is the less correct of the two: 
+
 \subsection{Optimizer}
 I think it's in the paper about ELU or SELU that they use a ramping up learn 
 rate and then decline. That might be ideal for the original, concatenation-based 
