@@ -459,6 +459,10 @@ INPUT ./resources/models/3neurEx/fullRun/0_py/pred.png
 INPUT resources/models/3neurEx/fullRun/0_py/layerf/weights.png
 INPUT ./resources/models/3neurEx/fullRun/0_py/layerf/weights.png
 INPUT ./resources/models/3neurEx/fullRun/0_py/layerf/weights.png
+INPUT build/../resources/9neur.tex
+INPUT build/../resources/9neur.tex
+INPUT build/../resources/tikzheader.tex
+INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
 INPUT resources/models/3neurEx/var1/input.png

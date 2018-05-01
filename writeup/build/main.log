@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  1 MAY 2018 05:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  1 MAY 2018 13:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1452,13 +1452,10 @@ LaTeX Warning: Reference `subsec:n-independence' on page 8 undefined on input li
 Underfull \vbox (badness 1968) has occurred while \output is active []
 
  [12] [13]
-LaTeX Font Info:    Try loading font information for U+bbm on input line 394.
+LaTeX Font Info:    Try loading font information for U+bbm on input line 397.
  (/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [14] [15]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]) [17] (./chapters/train.tex [18]
+) [14] [15] [16] [17]) (./chapters/train.tex [18]
 Chapter 3.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1521,17 +1518,25 @@ Underfull \hbox (badness 3977) in paragraph at lines 230--230
 []\OT1/cmr/m/it/10.95 Figure 4.6: |\OT1/cmr/m/n/10.95 Fi-nal
  []
 
+(build/../resources/9neur.tex (build/../resources/tikzheader.tex))
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [30 <./resources/models/3neurEx/fullRun/0_py/layerf/weights.png>] (build/../resources/tikzheader.tex)
 <resources/models/3neurEx/var1/input.png, id=155, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/var1/input.png Graphic file (type png)
 <use resources/models/3neurEx/var1/input.png>
-Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 282.
+Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 288.
 (pdftex.def)             Requested size: 39.75092pt x 106.00366pt.
- (build/../resources/tikzheader.tex)
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (./chapters/discussion.tex [31 <./resources/models/3neurEx/var1/input.png>] [32]
+(build/../resources/tikzheader.tex)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[31]) (./chapters/discussion.tex [32 <./resources/models/3neurEx/var1/input.png>]
 Chapter 5.
 [33
 
@@ -1554,15 +1559,15 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 39523 strings out of 492982
- 948655 string characters out of 6138579
- 1186340 words of memory out of 5000000
- 42444 multiletter control sequences out of 15000+600000
+ 39580 strings out of 492982
+ 949413 string characters out of 6138579
+ 1186438 words of memory out of 5000000
+ 42496 multiletter control sequences out of 15000+600000
  548017 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,18n,96p,10376b,2196s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/hsartoris/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (42 pages, 299522 bytes).
+Output written on build/main.pdf (42 pages, 302881 bytes).
 PDF statistics:
  246 PDF objects out of 1000 (max. 8388607)
  163 compressed objects within 2 object streams

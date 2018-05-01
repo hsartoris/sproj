@@ -193,8 +193,10 @@ test.
 We will first describe the architecture in terms that, while accurate on the 
 macro level, do not fully reflect the actual transformations occuring in the 
 implemented model. We will then proceed to a mathematically representative 
-version, leaving explanation of the batched version of the model to APPENDIX 
-SECTION.
+version, leaving explanation of the batched version of the model to 
+\ref{asec:batched}. Additionally, we describe a benchmark model not involving 
+locality calculations, in order to provide a point of reference for the efficacy 
+of our implementation.
 
 \subsection{Structure \& Computation Details}
 \subsubsection{Dimensionality-defining Variables}
@@ -359,6 +361,7 @@ left with another $(d \times n^2)$ output matrix, $\mathbb{D}^{\prime\prime}$.
 The shift from $(d \times n^2)$ is comparatively simple, being only a 
 dimensionality reduction:
 \begin{equation}
+	\label{eq:conceptfinal}
 	\mathlarger\forall d_{ij}^{\prime\prime} \in \mathbb{D}^{\prime\prime}:
 	\underset{1 \times 1}{d_{ij}^f} = \underset{1 \times d}{\mathbb{W}^f} \times 
 	\underset{d \times 1}{d_{ij}^{\prime\prime}}
@@ -395,17 +398,16 @@ define two helper matrices:
 With $\underset{b \times n}{\mathbb{I}}$ as our input data, the first layer 
 transition is as follows:
 \begin{equation}
+	\label{eq:matfirst}
 	\underset{d \times n^2}{\mathbb{D}^\prime} = \underset{d \times 
 	2b}{\mathbb{W}}
 	\left(\frac{\mathbb{I}\times\mathbb{E}}{\mathbb{I}\times\mathbb{T}}\right) + 
 	\left(\underset{d \times 1}{\mathbb{B}}\times\underset{1 \times 
 	n^2}{\mathbbm{1}}\right)
 \end{equation}
-\paragraph{Example}
-Consider the a model for which $b=3$ and $n=2$. Suppose that we have the 
-following input matrix: 
-\[ 
-	\mathbb{I} = \begin{bmatrix} 1 & 1\\ 1 & 0\\ 0 & 1\end{bmatrix}
+\paragraph{Example:}
+Consider a model for which $b=3$ and $n=2$. Suppose that we have the following 
+input matrix: \[ \mathbb{I} = \begin{bmatrix} 1 & 1\\ 1 & 0\\ 0 & 1\end{bmatrix}
 \]
 Then our helper matrices would appear as such:
 \[
@@ -455,20 +457,20 @@ summation of column \textit{i} appears as such:
 This is the inverse of the tile operation executed by $\mathbb{T}$ in the first 
 layer, and that same matrix allows us to compute all outputs to all edges 
 simultaneously:
-\[
+\begin{equation}
 	\underset{d \times n}{\mathbb{O}} = \frac{1}{n} \left(\mathbb{D}^\prime 
 	\times \mathbb{T}^\top\right)
-\]
+\end{equation}
 Similarly, to calculate the sum of row j in $\mathbb{D}^\prime_N$:
 \[
 	\mathbb{I} = \sum_k d^\prime_{jk} = \sum_{l=j}^{j + n-1} \mathbb{D}^\prime_l
 \]
 This is the inverse of the expand operation executed by $\mathbb{E}$, and once 
 again we can use that same matrix to compute all edge inputs simultaneously:
-\[
+\begin{equation}
 	\underset{d \times n}{\mathbb{I}} = \frac{1}{n}\left(\mathbb{D}^\prime 
 	\times \mathbb{E}^\top \right)
-\]
+\end{equation}
 These operations allow us to avoid ever transposing $\mathbb{D}^\prime$, instead 
 allowing us to work directly on it.
 
@@ -486,11 +488,10 @@ $\mathbb{O}_x$ with all vectors ${d_{xk} \in \mathbb{D}^\prime_N \mid k \in
 [0,n)}$, which correspond with $\mathbb{D}^\prime_{xn + k}$: for each vector in 
 $\mathbb{O}$, we broadcast it into a $(d \times n^2)$ matrix such that it 
 repeats \textit{n} times. Yet again, an established matrix will complete this 
-task: $\mathbb{E}$.
-
-Thus our intermediary steps for this layer are quite similar to \eqref{eq:IDOD}:
+task: $\mathbb{E}$. Thus our intermediary steps for this layer are quite similar 
+to \eqref{eq:IDOD}:
 \begin{subequations}
-	\centering
+	\label{eq:matsecond}
 	\begin{align}
 		\underset{d \times n^2}{\mathbb{I_D}} &= \underset{d \times 
 		d}{\mathbb{W}_{in}^\prime} \times \left(\left(\mathbb{I} \times 
@@ -498,33 +499,56 @@ Thus our intermediary steps for this layer are quite similar to \eqref{eq:IDOD}:
 n^2}{\mathbb{O_D}} &= \underset{d \times d}{\mathbb{W}_{out}^\prime} \times 
 \left(\left(\mathbb{O} \times \mathbb{E}\right) \odot \mathbb{D}^\prime\right)
 	\end{align}
-	\text{We arrive at the matrix expression of the locality layer:}
+	\text{And we arrive at the matrix expression of the locality layer:}
 	\begin{equation}
+		\label{eq:matsecondfinal}
 		\underset{d \times n^2}{\mathbb{D}^{\prime\prime}} = \underset{d \times 
-			d}{\mathbb{W}_{tot}^\prime} \times 
+			2d}{\mathbb{W}_{tot}^\prime} \times 
 			\left(\frac{\mathbb{I_D}}{\mathbb{O_D}}\right) + \left(\underset{d 
 			\times 1}{\mathbb{B}^\prime} \times \underset{1 \times 
 	n^2}{\mathbbm{1}}\right)
 	\end{equation}
 \end{subequations}
 
-
 \subsubsection{Final Layer}
 \label{subsubsec:matfinallayer}
+The operation for the matrix version of the final layer is effectively the same 
+as \eqref{eq:conceptfinal}:
+\begin{equation}
+	\label{eq:matfinal}
+	\underset{1 \times n^2}{\mathbb{D}^f} = \underset{1 \times d}{\mathbb{W}^f} 
+	\times \underset{d \times n^2}{\mathbb{D}^{\prime\prime}}
+\end{equation}
+
+\subsection{Benchmark Model}
+\label{subsec:benchmark}
+The model we provide as a benchmark mimics our model in its first 
+\eqref{eq:matfirst} and final \eqref{eq:matfinal} layers. The difference lies in 
+the second layer: where in \eqref{eq:matsecond} we perform a variety of 
+transforms to incorporate locality data, here this layer is entirely defined by 
+the following equation:
+\begin{equation}
+	\label{eq:benchsecond}
+	\underset{d \times n^2}{\mathbb{D}^{\prime\prime}} = \underset{d \times 
+	d}{\mathbb{W}^\prime} \times \underset{d \times n^2}{\mathbb{D}^\prime} + 
+	\underset{d \times 1}{\mathbb{B}^\prime} \times \underset{1 \times 
+	n^2}{\mathbbm{1}}
+\end{equation}
 
 \subsection{\textit{n}-independence}
 \label{subsec:nindependence}
 \subsubsection{Trainable Values}
 Between all of the operations defined in \ref{subsec:matmodel} (and equivalently 
-in \ref{subsec:conceptualmodel}), the following matrices are the only trainable 
-values:
+in \ref{subsec:conceptualmodel}), the following matrices are the only values 
+over which the optimizer can perform gradient descent:
 \subparagraph{First Layer}
 \begin{itemize}
 	\item[$\ubb{W}{d}{2b}$:] weight matrix used to merge columns of input data
-	\item[$\ubb{B}{d}{1}$:] bias vector added to every $d_{ij}^\prime$
+	\item[$\ubb{B}{d}{1}$:] bias vector added to every $\mathbb{D}^\prime_k \mid 
+		k \in [0,n)$.
 \end{itemize}
 
-\subparagraph{Convolutional Layer}
+\subparagraph{Locality Layer}
 \begin{itemize}
 	\item[$\underset{d \times d}{\mathbb{W}_{in}^\prime}$:] weight matrix used 
 		to process data entering an edge
@@ -535,14 +559,23 @@ values:
 			d}{\mathbb{W}_{out}^\prime}$ and $\underset{d \times
 			d}{\mathbb{W}_{in}^\prime}$
 	\item[$\underset{d \times 1}{\mathbb{B}^\prime}$:] bias vector added to 
-		every $d_{ij}^{\prime\prime}$
+		every $\mathbb{D}^{\prime\prime}_k \mid k \in [0,n)$.
 \end{itemize}
 
 \subparagraph{Final Layer}
 \begin{itemize}
 	\item[$\underset{1 \times d}{\mathbb{W}}^f$:] weight matrix used to collapse 
-		previous outputs into one value
+		all $n^2$ vectors into $n^2$ scalars.
 \end{itemize}
+
+\subparagraph{Benchmark Model}
+Our benchmark model shares first and final layer structures with the overall 
+model, leading to its having the same optimizable parameters for those layers.  
+Its second layer retains the bias vector $\mathbb{B}^\prime$, but that and a 
+single $(d \times d)$ matrix $\mathbb{W}^\prime$ are the only optimizable 
+values.
+
+
 \subsubsection{Implications}
 As noted previously, none of these matrices are dependent on \textit{n}.  
 Furthermore, even in the matrix model (\ref{subsec:matmodel}), the weight 

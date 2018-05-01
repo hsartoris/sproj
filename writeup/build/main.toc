@@ -24,15 +24,17 @@
 \contentsline {subsubsection}{Final Transition}{13}
 \contentsline {subsection}{\numberline {2.2.3}Matrix Model}{13}
 \contentsline {subsubsection}{First Layer}{14}
-\contentsline {paragraph}{Example}{14}
+\contentsline {paragraph}{Example:}{14}
 \contentsline {subsubsection}{Locality Layer}{15}
-\contentsline {subsubsection}{Final Layer}{17}
-\contentsline {subsection}{\numberline {2.2.4}\textit {n}-independence}{17}
+\contentsline {subsubsection}{Final Layer}{16}
+\contentsline {subsection}{\numberline {2.2.4}Benchmark Model}{17}
+\contentsline {subsection}{\numberline {2.2.5}\textit {n}-independence}{17}
 \contentsline {subsubsection}{Trainable Values}{17}
 \contentsline {subparagraph}{First Layer}{17}
-\contentsline {subparagraph}{Convolutional Layer}{17}
-\contentsline {subparagraph}{Final Layer}{17}
-\contentsline {subsubsection}{Implications}{17}
+\contentsline {subparagraph}{Locality Layer}{17}
+\contentsline {subparagraph}{Final Layer}{18}
+\contentsline {subparagraph}{Benchmark Model}{18}
+\contentsline {subsubsection}{Implications}{18}
 \contentsline {chapter}{\numberline {3}Training}{19}
 \contentsline {section}{\numberline {3.1}Activation Functions}{19}
 \contentsline {subsection}{\numberline {3.1.1}Initial \& Convolutional Layers}{19}
@@ -57,9 +59,10 @@
 \contentsline {paragraph}{First Layer Functionality}{30}
 \contentsline {paragraph}{Convolutional Layer Functionality}{30}
 \contentsline {paragraph}{Final Layer}{30}
-\contentsline {section}{\numberline {4.3}Applicability Beyond Training Data}{30}
-\contentsline {subsection}{\numberline {4.3.1}Inverted Network}{31}
-\contentsline {subsection}{\numberline {4.3.2}Cyclical Network}{31}
+\contentsline {section}{\numberline {4.3}Higher-order Datasets}{30}
+\contentsline {section}{\numberline {4.4}Applicability Beyond Training Data}{31}
+\contentsline {subsection}{\numberline {4.4.1}Inverted Network}{31}
+\contentsline {subsection}{\numberline {4.4.2}Cyclical Network}{31}
 \contentsline {chapter}{\numberline {5}Discussion}{33}
 \contentsline {section}{\numberline {5.1}Potential Improvements}{33}
 \contentsline {subsection}{\numberline {5.1.1}Layering}{33}

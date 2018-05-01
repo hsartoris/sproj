@@ -235,8 +235,15 @@ learning rate:
 Initially, we seeded our matrices with random values from a normal distribution 
 of standard deviation 1.0 and mean 0, using the TensorFlow implementation of 
 \texttt{tf.random\_normal(<dimensions>)}. Due, however, to the cumulative nature 
-of our matrix operations (in the convolutional layer, for instance, there are 
-three separate multiplications \ref{subsubsec:matconvlayer}), we found that the 
-values 
+of our matrix operations (in the locality layer, for instance, there are three 
+separate multiplications (\ref{subsubsec:matconvlayer})), we found that the 
+values of the outputs were so high or low as to render the model somewhat random 
+in its convergence, or lack thereof.
+
+We found that by reducing the standard deviation of our distributions to 0.25, 
+we can ensure that most, if not all, training runs of our model converge. If 
+raised higher, models trained on complex generator networks may consistently 
+fail to converge, and a lower value tends to lead to convergence on non-optimal 
+solutions, such as prediciting all zeroes. 
 
 \section{Hyperparameter Optimization}
