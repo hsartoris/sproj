@@ -112,10 +112,6 @@ if arguments['--runId'] is None:
     runId = str(localtime.tm_mday) + "_" + str(localtime.tm_hour) + str(localtime.tm_min)
 else:
     runId = arguments['--runId']
-    try:
-        runId = int(runId)
-    except ValueError:
-        pass
 
 if runs > 1 and type(runId) is str:
     warnings.warn("""For multiple runs, runId must be an integer value. Setting 

@@ -114,7 +114,7 @@ if __name__=="__main__":
     mat, spikeProb = tenNeurNet()
     #mat = genSimplex(3)
     mat = simplicialNet()
-    spikeProb = .15
+    spikeProb = .02
     if len(sys.argv) == 2 and sys.argv[1] == "optimize":
         spikeProb = optimizeSpike(mat, .01)
         print("Optimized rate:", spikeProb)
