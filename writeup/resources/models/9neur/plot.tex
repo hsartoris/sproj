@@ -1,0 +1,43 @@
+%! TEX root = /home/hsartoris/sproj/writeup/main.tex
+\begin{table}[H]
+	\centering
+	\begin{minipage}{.48\textwidth}
+	\resizebox{\textwidth}{!}{
+		\begin{tikzpicture}
+			\begin{semilogyaxis} [xlabel=Step, ylabel=Loss, scaled x 
+				ticks=false,
+				axis lines*=left,
+				xtick={1,25000,50000},
+				legend cell align=left,
+				legend style={at{(1,1)}, anchor=north east},
+				extra y ticks={.0497}, extra y tick style={grid=major},
+				%ytick={1}, 
+				yticklabel style={	/pgf/number format/precision=2,
+									/pgf/number format/fixed}]
+				\addplot [color=black] table [x=Step, y=Loss, col sep=comma, 
+			mark=none, smooth] {../resources/models/9neur/minFinalConv_90};
+				\addlegendentry{Locality-based}
+				\addplot [color=black, dashed] table [x=Step, y=Loss, col 
+			sep=comma, mark=none, smooth] 
+			{../resources/models/9neur/minFinalDumb_72};
+				\addlegendentry{Benchmark}
+			\end{semilogyaxis}
+		\end{tikzpicture}
+	}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.48\textwidth}
+		\centering
+		\begin{tabular}{lr}
+			b (timesteps) & 30\\
+			d& 40\\
+			Batch size& 32\\
+			Learning rate& .001\\
+			Training samples& 36000\\
+			Validation samples& 9000\\
+		\end{tabular}
+	\end{minipage}
+	\captionof{figure}{Loss \& parameters for model trained on data from 
+		generator given in \figref{fig:10neur}}
+	\label{fig:9neur_loss+params}
+\end{table}
