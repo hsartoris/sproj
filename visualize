@@ -42,7 +42,8 @@ if len(sys.argv) < 2:
     sys.exit()
 if len(sys.argv) >= 2:
     if sys.argv[1] == "struct":
-        struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct.csv", delimiter=',')
+        struct = np.loadtxt("dataStaging/" + sys.argv[2] + "/struct", 
+        delimiter=',')
         matVis(struct, "dataStaging/" + sys.argv[2] + "/struct.png", connections=True)
         sys.exit()
     elif sys.argv[1] == "mats":

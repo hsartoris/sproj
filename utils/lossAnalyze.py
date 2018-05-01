@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import numpy as np
+plot = True
 try:
     import matplotlib.pyplot as plt
 except ModuleNotFoundError:
@@ -60,7 +61,6 @@ while dirs[i] == "15k": i += 1
 
 steps = np.loadtxt(saveDir + dirs[i] + "/steps", delimiter=',')
 plotall = False
-# if on RKC107A
 
 convLosses, dumbLosses = loadLosses()
 #convLosses = np.array(sorted(convLosses, key=lambda i: np.sum(i[:,1])))
@@ -70,47 +70,53 @@ convLosses, dumbLosses = loadLosses()
 
 # min final conv idx, min final conv loss
 mFCi, mFCL = minFinalLoss(convLosses)
+mFCi = dirs[mFCi]
 
 # min final dumb idx, min final dumb loss
 mFDi, mFDL = minFinalLoss(dumbLosses)
+mFDi = dirs[mFDi]
 
-print("Minimum final conv loss from run" + dirs[mFCi] + ": " + str(mFCL[-1]))
-print("Minimum final dumb loss from run" + dirs[mFDi] + ": " + str(mFDL[-1]))
+print("Minimum final conv loss from run" + mFCi + ": " + str(mFCL[-1]))
+print("Minimum final dumb loss from run" + mFDi + ": " + str(mFDL[-1]))
 
 if plot:
     if plotall:
-        #plt.subplot(211)
+        plt.subplot(211)
         for data in convLosses:
             plt.semilogy(steps, data)
         
-        #plt.subplot(212)
-        #for data in simpleLosses:
-        #    plt.semilogy(data[:,0], data[:,1])
+        plt.subplot(212)
+        for data in dumbLosses:
+            plt.semilogy(steps, data)
         plt.show()
     
     else:
-        #minSimpleIdx, minSimpleLoss = minLoss(simpleLosses)
-        #minConvIdx, minConvLoss = minLoss(convLosses)
+        minTotalDumbIdx, minTotalDumb = minLoss(dumbLosses)
+        minTotalDumbIdx = dirs[minTotalDumbIdx]
+
+        minTotalConvIdx, minTotalConv = minLoss(convLosses)
+        minTotalConvIdx = dirs[minTotalConvIdx]
+
+        print("minFinalIdx:", mFCi)
+        print("minTotalIdx:", minTotalConvIdx)
+        avgConvLoss = avgLoss(convLosses)
+        avgDumbLoss = avgLoss(dumbLosses)
+
+        avgConv, = plt.semilogy(steps, avgConvLoss, label="avg_conv")
+        avgDumb, = plt.semilogy(steps, avgDumbLoss, label="avg_simple")
+                
+        totalConv, = plt.semilogy(steps, minTotalConv, label=("min total" + 
+            "conv: " + minTotalConvIdx))
         
-        #minSimpleIdx, minSimpleLoss = minFinalLoss(simpleLosses)
-        minFinalIdx, minFinalLoss = minFinalLoss(convLosses)
-        minTotalIdx, minTotalLoss = minLoss(convLosses)
-        minFinalIdx = dirs[minFinalIdx]
-        minTotalIdx = dirs[minTotalIdx]
-        print("minFinalIdx:", minFinalIdx)
-        print("minTotalIdx:", minTotalIdx)
-        avgConvLossY = avgLoss(convLosses)
-        #avgSimpleLossX, avgSimpleLossY = avgLoss(simpleLosses)
-        
-        #simpleGraph, = plt.semilogy(minSimpleLoss[:,0], minSimpleLoss[:,1], label="simple " + str(minSimpleIdx))
-        avgConv, = plt.semilogy(steps, avgConvLossY, label="avg")
-        #avgSimple, = plt.semilogy(avgSimpleLossX, avgSimpleLossY, label="simple_avg")
-        minFinGraph, = plt.semilogy(steps, minFinalLoss, label="min final" + 
-            minFinalIdx)
-        minTotGraph, = plt.semilogy(steps, minTotalLoss, label="min total" + 
-            minTotalIdx)
-        #diffGraph, = plt.semilogy(avgConvLossX, avgConvLossY - avgSimpleLossY, label="diff")
-        plt.legend(handles=[avgConv, minFinGraph, minTotGraph])
+        totalDumb, = plt.semilogy(steps, minTotalDumb, label=("min total" + 
+            "dumb: " + minTotalDumbIdx))
+
+        minConv, = plt.semilogy(steps, mFCL, label=("min final conv loss: " + 
+            mFCi))
+        minDumb, = plt.semilogy(steps, mFDL, label=("min final dumb loss: " + 
+            mFDi))
+        plt.legend(handles=[avgConv, avgDumb, totalConv, totalDumb, minConv, 
+            minDumb])
         plt.show()
         
         #print(minConvLoss)

@@ -242,7 +242,24 @@ some weight also placed on the fourth item.
 Because a 3-node generator does contain much in terms of locality, we created 
 and generated data from the following generator:
 \begin{table}[h]
-\input{../resources/9neur.tex}
+	\centering
+	{\scalebox{.9}{\input{../resources/9neur.tex}}}
+	\hspace{1em}
+	\begin{tabular}{ccccccccccc}
+			   & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\\cline{2-11}
+		\mc{0} &   &   &   &   &   &   &   &   &   &  \\
+		\mc{1} & \bf1 &   &   &   &   &   &   &   &   &  \\
+		\mc{2} & \bf1 & \bf1 &   &   &   &   &   &   &   &  \\
+		\mc{3} &   &   &   &   &   &   &   &   &   &  \\
+		\mc{4} &   &   &   &   &   &   &   &   &   &  \\
+		\mc{5} &   &   &   &   & \bf1 &   &   &   &   &  \\
+		\mc{6} &   &   &   &   &   &   &   &   &   &  \\
+		\mc{7} &   &   &   &   &   &   & \bf1 &   &   &  \\
+		\mc{8} &   &   &   &   &   &   &   & \bf1 &   &  \\
+		\mc{9} &   &   &   &   &   &   &   &   &   &  
+	\end{tabular}
+	\captionof{figure}{Ten neuron generator and adjacency matrix. For purposes 
+	of clarity, all zero values in the matrix have been omitted.}
 \end{table}
 
 
