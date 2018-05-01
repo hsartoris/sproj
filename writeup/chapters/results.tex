@@ -1,5 +1,5 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
-\graphicspath{ {resources/models/3neurEx/} {resources/models/3neurEx/weights/} } 
+\graphicspath{ {resources/models/} } 
 
 \chapter{Results}
 \label{results}
@@ -158,31 +158,31 @@ trained in \ref{subsec:3neurex}.
 	\centering
 	\begin{subfigure}{.15\textwidth}
 		\centering
-		\includegraphics[width=.75\textwidth]{fullRun/0_py/input.png}
+		\includegraphics[width=.75\textwidth]{3neurEx/fullRun/0_py/input.png}
 		\caption{Input\\(max: 1.0)}
 		\label{subfig:3neur_in}
 	\end{subfigure}
 	\hspace{.5em}
 	\begin{subfigure}{.35\textwidth}
-		\includegraphics[width=\textwidth]{fullRun/0_py_num/layer0/4out.png}
+		\includegraphics[width=\textwidth]{3neurEx/fullRun/0_py_num/layer0/4out.png}
 		\caption{Output of first layer\\(max: 4.33)}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.35\textwidth}
-		\includegraphics[width=\textwidth]{fullRun/0_py_num/layer1/7out.png}
+		\includegraphics[width=\textwidth]{3neurEx/fullRun/0_py_num/layer1/7out.png}
 		\caption{Output of second layer\\(max: 3.2)}
 		\label{subfig:3neur_out1}
 	\end{subfigure}
 	\\
 	\begin{subfigure}{.35\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{fullRun/0_py_num/layerf/0out.png}
+		\includegraphics[width=\textwidth]{3neurEx/fullRun/0_py_num/layerf/0out.png}
 		\caption{Output of final layer\\(max: 30.97)}
 		\label{subfig:3neur_outf}
 	\end{subfigure}
 	\begin{subfigure}{.3\textwidth}
 		\centering
-		\includegraphics[width=.5\textwidth]{fullRun/0_py/pred.png}
+		\includegraphics[width=.5\textwidth]{3neurEx/fullRun/0_py/pred.png}
 		\caption{Prediction\\(max: 1.0)}
 		\label{subfig:3neur_pred}
 	\end{subfigure}
@@ -226,7 +226,7 @@ tuples each correspond with a connection present in the adjacency matrix
 \begin{wrapfigure}[5]{r}{.25\textwidth}
 	\centering
 	\vspace{-15pt}
-	\includegraphics[width=.25\textwidth]{fullRun/0_py/layerf/weights.png}
+	\includegraphics[width=.25\textwidth]{3neurEx/fullRun/0_py/layerf/weights.png}
 	\caption{Final weights\\(max: 7.31)}
 	\label{fig:3neur_flayer}
 \end{wrapfigure}
@@ -240,7 +240,9 @@ some weight also placed on the fourth item.
 
 \section{Higher-order Datasets}
 Because a 3-node generator not does contain much in terms of locality, we 
-created data from the following generator:
+created a graph structure containing slightly more complex relationships to 
+benchmark our model on; that generator can be found in \figref{fig:10neur}.
+
 \begin{table}[h]
 	\centering
 	{\scalebox{.9}{\input{../resources/9neur.tex}}}
@@ -260,16 +262,60 @@ created data from the following generator:
 	\end{tabular}
 	\captionof{figure}{Ten neuron generator and adjacency matrix. For purposes 
 	of clarity, all zero values in the matrix have been omitted.}
-\end{table}
+	\label{fig:10neur}
+\end{table}\noindent
+We trained 100 model/benchmark pairs on the data produced by this generator; the 
+losses and parameters of the two best-performing models can be found in 
+\figref{fig:9neur_loss+params}. The results overwhelmingly demonstrate that, 
+while the locality-based approach is able to reconstruct networks, it does not 
+offer substantive improvement over the much more straightforward benchmark 
+model, at least in the cases that we have considered. An example run can be 
+found in \figref{fig:samepred}.
+\begin{figure}[h]
+	\centering
+	\hfill
+	\begin{subfigure}{.2\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{9neur/conv1/input.png}
+		\caption{Input}
+	\end{subfigure}
+	\hspace{2em}
+	\begin{minipage}{.65\textwidth}
+		\centering
+	\begin{subfigure}{.9\textwidth}
+		\centering
+		\includegraphics[width=.45\textwidth]{9neur/conv1/pred.png}
+		\caption{Locality-based model prediction}
+	\end{subfigure}\\
+	\begin{subfigure}{.9\textwidth}
+		\centering
+		\includegraphics[width=.45\textwidth]{9neur/dumb1/pred.png}
+		\caption{Benchmark model prediction}
+	\end{subfigure}
+	\end{minipage}
+	\caption{Example of data from generator defined in \figref{fig:10neur}, 
+	passed through the locality-based and benchmarks models.}
+	\label{fig:samepred}
+\end{figure}
+Consider, however, the outputs of the second layer of each network for the same 
+data, as in 
 
-We trained 100 model/benchmark pairs
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{\textwidth}
+		\includegraphics[width=\textwidth] 
+
+
+This does not, however, invalidate the number of other advantages offered by our 
+architecture.
+\input{../resources/models/9neur/plot.tex}
 
 \section{Applicability Beyond Training Data}
 As described in \ref{subsec:hotswap}, the fact that our model is trained on data 
 produced by only one generator is of little consequence; due to its structure, 
-the only information it can learn is relational; i.e., per-neuron-pair. Consider 
-the following examples, in which data was produced from several generator 
-networks and fed into the model described in \ref{results_3neur}:
+the only information it can learn is relational, per neuron pair. Consider the 
+following examples, in which data was produced from several generator networks 
+and fed into the model described in \ref{results_3neur}:
 
 
 TODO: add examples of input and output data to 3.2.1 and 3.2.2.
@@ -303,7 +349,7 @@ model in \ref{results_3neur}, reconstruction of this network is simple.
 \begin{table}[h]
 	\centering
 	\begin{minipage}{.1\textwidth}
-		\includegraphics[width=\textwidth]{var1/input.png}
+		\includegraphics[width=\textwidth]{3neurEx/var1/input.png}
 	\end{minipage}
 	\hspace{2em}
 	{\scalebox{2}{$\Rightarrow$}}
