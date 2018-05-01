@@ -52,6 +52,8 @@
 \contentsline {section}{\numberline {4.2}3-neuron generator}{24}
 \contentsline {subsection}{\numberline {4.2.1}Example Model}{25}
 \contentsline {subsubsection}{Trained Network Operation}{26}
+\contentsline {paragraph}{First Layer Functionality}{27}
+\contentsline {paragraph}{Convolutional Layer Functionality}{27}
 \contentsline {section}{\numberline {4.3}Applicability Beyond Training Data}{27}
 \contentsline {subsection}{\numberline {4.3.1}Inverted Network}{27}
 \contentsline {subsection}{\numberline {4.3.2}Cyclical Network}{28}

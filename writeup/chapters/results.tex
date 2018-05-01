@@ -150,8 +150,6 @@ however, insofar as they provide a more comprehensible model struture.
 \input{../resources/models/3neurEx/plot.tex}
 
 \subsubsection{Trained Network Operation}
-Here, we examine the internal operation of the trained model over a single 
-input.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{.15\textwidth}
@@ -160,33 +158,65 @@ input.
 		\caption{Input\\(max: 1.0)}
 		\label{subfig:3neur_in}
 	\end{subfigure}
-	\hspace{1em}
-	\begin{subfigure}{.3\textwidth}
-		\includegraphics[width=\textwidth]{fullRun/0_py/layer0/4out.png}
+	\hspace{.5em}
+	\begin{subfigure}{.35\textwidth}
+		\includegraphics[width=\textwidth]{fullRun/0_py_num/layer0/4out.png}
 		\caption{Output of first layer\\(max: 4.33)}
 	\end{subfigure}
 	\hspace{1em}
-	\begin{subfigure}{.3\textwidth}
-		\includegraphics[width=\textwidth]{fullRun/0_py/layer1/7out.png}
-		\caption{Output of convolutional layer\\(max: 3.2)}
+	\begin{subfigure}{.35\textwidth}
+		\includegraphics[width=\textwidth]{fullRun/0_py_num/layer1/7out.png}
+		\caption{Output of second layer\\(max: 3.2)}
 		\label{subfig:3neur_out1}
 	\end{subfigure}
-	\caption{Path of data through network, up to final transform}
-	\label{fig:3neur_input}
-\end{figure}
+	\\
+	\begin{subfigure}{.25\textwidth}
+		\centering
+		\includegraphics[width=.75\textwidth]{fullRun/0_py/layerf/weights.png}
+		\caption{Final weights\\(max: 7.31)}
+		\label{subfig:3neur_flayer}
+	\end{subfigure}
+	\begin{subfigure}{.35\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{fullRun/0_py_num/layerf/0out.png}
+		\caption{Output of final layer\\(max: 30.97)}
+		\label{subfig:3neur_outf}
+	\end{subfigure}
+	\begin{subfigure}{.3\textwidth}
+		\centering
+		\includegraphics[width=.5\textwidth]{fullRun/0_py/pred.png}
+		\caption{Prediction\\(max: 1.0)}
+		\label{subfig:3neur_pred}
+	\end{subfigure}
+	\caption{Path of data through network. Transparency for each value is scaled 
+	relative to the maximum value found in the matrix.}
+	\label{fig:3neur_run}
+\end{figure}\noindent
+In \figref{fig:3neur_run}, we examine the internal operation of the trained 
+model on a single piece of data.
+The final layer handles turning the information from \ref{subfig:3neur_out1} 
+into a prediction by multiplying the matrix found in \ref{subfig:3neur_flayer} 
+with \ref{subfig:3neur_out1} to produce \ref{subfig:3neur_outf}, which is then 
+passed into the final layer activation function\footnote{See 
+	\ref{subsec:finalactivation}} and reshaped to $(n \times n)$ to produce 
+	\ref{subfig:3neur_pred}, an exact match for the target with all connections 
+	located and weighted appropriately.\footnote{While $[1,0]$ and $[2,0]$ are 
+	predicted to be exactly 1.0, the precise value of $[2,1]$ in the final 
+prediction is 0.999999999957586, which we consider to be accurate enough.}
 
-The last transformation of the network involves a matrix multiplication of the 
-final layer weights\footnote{see appendix} with the data in 
-\ref{subfig:3neur_out1}. This produces the adjacency matrix found in figure 
-\ref{fig:3neur_pred}.
+\paragraph{First Layer Functionality}
 
-\begin{table}[h]
-	\centering
-	\adjacencyT{.02 & .03 & .01}{.99 & .01 & -.01}{1.0 & 1.0 & .02}
-	\captionof{figure}{Model prediction for input data in 
-	\figref{subfig:3neur_in}}
-	\label{fig:3neur_pred}
-\end{table}
+\paragraph{Convolutional Layer Functionality}
+
+Note that, following the convolutional layer (\ref{subfig:3neur_out1}), the 
+model has located the existent connections: if we transpose 
+\ref{subfig:3neur_out1} from $(d \times n^2)$ to $(n \times n \times d)$, as in 
+\figref{fig:transform}, the columns with high values, 3, 6, and 7, correspond 
+with \textit{d}-vectors $[1,0]$, $[2,0]$, and $[2,1]$, respectively. These 
+tuples each correspond with a connection present in the adjacency matrix 
+(\figref{fig:toyex}) the model is trying to predict. 
+
+
 
 \section{Applicability Beyond Training Data}
 As described in \ref{subsec:hotswap}, the fact that our model is trained on data 
