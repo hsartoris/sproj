@@ -249,7 +249,7 @@ is left up to the network. The transition appears as follows, where $\underset{b
 This leaves us with $n^2$ \textit{d}-vectors, each characterizing one potential 
 edge \textit{ij}.
 
-\subsubsection{Convolutional Layer}
+\subsubsection{Locality Layer}
 In this layer, we incorporate information from all nodes potentially adjacent to 
 each edge \textit{ij}. From our previous layer, we have a matrix of shape $(d 
 \times n^2)$ that we will refer to as $\mathbb{D}^{\prime}$, but it will be 
@@ -370,12 +370,144 @@ generator associated with the input data.
 
 \subsection{Matrix Model}
 \label{subsec:matmodel}
+While the processes defined in \ref{subsec:conceptualmodel} are accurate 
+representations of the operations undertaken in our model, they are generally 
+defined in terms of individual vectors, with iteration over all vectors 
+necessarily implied. This does not take advantage of the computational abilities 
+of modern GPU computing, and, if implemented as such, would render training 
+times astronomical. Therefore, we create a version of our model executed 
+entirely in terms of matrix operations, ideal for GPU execution.
 
 \subsubsection{First Layer}
 \label{subsubsec:matfirstlayer}
+In the first layer, we wish to compare each input vector against every input 
+vector by way of concatenation and matrix multiplication to reduce 
+dimensionality. To achieve this via matrix operations is fairly simple. We first 
+define two helper matrices:
+\begin{align*}
+	\underset{n \times n^2}{\mathbb{E}} &= \begin{bmatrix}
+			\underset{1 \times n}{\mathbbm{1}} & \dots & 0\\
+			\vdots & \ddots & \vdots \\
+		0 & \dots & \underset{1 \times n}{\mathbbm{1}} \end{bmatrix}\\
+		\underset{n \times n^2}{\mathbb{T}} &= \begin{bmatrix}
+	I_n & \mid & \dots & \mid I_n \end{bmatrix}
+\end{align*}
+With $\underset{b \times n}{\mathbb{I}}$ as our input data, the first layer 
+transition is as follows:
+\begin{equation}
+	\underset{d \times n^2}{\mathbb{D}^\prime} = \underset{d \times 
+	2b}{\mathbb{W}}
+	\left(\frac{\mathbb{I}\times\mathbb{E}}{\mathbb{I}\times\mathbb{T}}\right) + 
+	\left(\underset{d \times 1}{\mathbb{B}}\times\underset{1 \times 
+	n^2}{\mathbbm{1}}\right)
+\end{equation}
+\paragraph{Example}
+Consider the a model for which $b=3$ and $n=2$. Suppose that we have the 
+following input matrix: 
+\[ 
+	\mathbb{I} = \begin{bmatrix} 1 & 1\\ 1 & 0\\ 0 & 1\end{bmatrix}
+\]
+Then our helper matrices would appear as such:
+\[
+	\mathbb{E} = \begin{bmatrix}
+		1 & 1 & 0 & 0\\
+		0 & 0 & 1 & 1
+	\end{bmatrix}
+	\hspace{2em}
+	\mathbb{T} = \begin{bmatrix}
+		1 & 0 & 1 & 0\\
+	0 & 1 & 0 & 1 \end{bmatrix}
+\]
+And our matrix stack:
+\[
+	\mathbb{I} = \begin{bmatrix} 1 & 1\\ 1 & 0\\ 0 & 1\end{bmatrix}
+	\hspace{3em}
+	\frac{\mathbb{I} \times \mathbb{E}}{\mathbb{I} \times \mathbb{T}} = 
+	\begin{bmatrix}
+		1 & 1 & 1 & 1\\
+		1 & 1 & 0 & 0\\
+		0 & 0 & 1 & 1\\
+		1 & 1 & 1 & 1\\
+		1 & 0 & 1 & 0\\
+		0 & 1 & 0 & 1
+	\end{bmatrix}
+\]
+Thus, over all of the columns in the resulting stack, every vector in 
+$\mathbb{I}$ is paired with all such vectors, including itself.
 
-\subsubsection{Convolutional Layer}
+\subsubsection{Locality Layer}
 \label{subsubsec:matconvlayer}
+In the conceptual model, there are two averages of sums involved in processing 
+each vector in $\mathbb{D}^\prime$; one over the horizontal axis of 
+$\mathbb{D}^\prime_N$, and the other over the vertical axis. These can be found 
+in \eqref{eq:ID}. Consider two vectors $d_{ij}, d_{il} \in \mathbb{D}^\prime_N$.  
+For both of these vectors, the average input vector is the same, its calculation 
+being only dependent on the first coordinate, $i$. The inverse holds for vectors 
+with the same second coordinate. Thus we see that these calculations need only 
+be performed once for each $k \in [0,n)$. Considering the $(d \times n^2)$ 
+representation of the current data matrix $\mathbb{D}^\prime$, the `vertical' 
+summation of column \textit{i} appears as such:
+\[
+	\mathbb{O} = \sum_k d^\prime_{ki} = \mathbb{D}^\prime_{0+i} + 
+	\mathbb{D}^\prime_n + \mathbb{D}^\prime_{2n + i} + \dots + 
+	\mathbb{D}^\prime_{(n-1)n + i}
+\]
+This is the inverse of the tile operation executed by $\mathbb{T}$ in the first 
+layer, and that same matrix allows us to compute all outputs to all edges 
+simultaneously:
+\[
+	\underset{d \times n}{\mathbb{O}} = \frac{1}{n} \left(\mathbb{D}^\prime 
+	\times \mathbb{T}^\top\right)
+\]
+Similarly, to calculate the sum of row j in $\mathbb{D}^\prime_N$:
+\[
+	\mathbb{I} = \sum_k d^\prime_{jk} = \sum_{l=j}^{j + n-1} \mathbb{D}^\prime_l
+\]
+This is the inverse of the expand operation executed by $\mathbb{E}$, and once 
+again we can use that same matrix to compute all edge inputs simultaneously:
+\[
+	\underset{d \times n}{\mathbb{I}} = \frac{1}{n}\left(\mathbb{D}^\prime 
+	\times \mathbb{E}^\top \right)
+\]
+These operations allow us to avoid ever transposing $\mathbb{D}^\prime$, instead 
+allowing us to work directly on it.
+
+For both $\mathbb{I}$ and $\mathbb{O}$, we still need to pair the vectors within 
+with the appropriate vector in $\mathbb{D}^\prime$. To accomplish this, we must 
+expand both matrices to $(d \times n^2)$. 
+
+For some vector $\mathbb{I}_x$, we wish to pair it with all vectors $d_{kx} \in 
+\mathbb{D}^\prime_N \mid k \in [0,n)$. In terms of $\mathbb{D}^\prime$, these 
+vectors map to $\mathbb{D}^\prime_{kn+x}$; i.e., we wish to create a matrix into 
+which we distribute a given vector in $\mathbb{I}$ \textit{n} times, \textit{n} 
+columns apart. Once again, we already have a matrix specifically capable of this 
+operation: $\mathbb{T}$.  Similarly, we wish to pair any given vector 
+$\mathbb{O}_x$ with all vectors ${d_{xk} \in \mathbb{D}^\prime_N \mid k \in 
+[0,n)}$, which correspond with $\mathbb{D}^\prime_{xn + k}$: for each vector in 
+$\mathbb{O}$, we broadcast it into a $(d \times n^2)$ matrix such that it 
+repeats \textit{n} times. Yet again, an established matrix will complete this 
+task: $\mathbb{E}$.
+
+Thus our intermediary steps for this layer are quite similar to \eqref{eq:IDOD}:
+\begin{subequations}
+	\centering
+	\begin{align}
+		\underset{d \times n^2}{\mathbb{I_D}} &= \underset{d \times 
+		d}{\mathbb{W}_{in}^\prime} \times \left(\left(\mathbb{I} \times 
+	\mathbb{T}\right) \odot \mathbb{D}^\prime\right) & \underset{d \times 
+n^2}{\mathbb{O_D}} &= \underset{d \times d}{\mathbb{W}_{out}^\prime} \times 
+\left(\left(\mathbb{O} \times \mathbb{E}\right) \odot \mathbb{D}^\prime\right)
+	\end{align}
+	\text{We arrive at the matrix expression of the locality layer:}
+	\begin{equation}
+		\underset{d \times n^2}{\mathbb{D}^{\prime\prime}} = \underset{d \times 
+			d}{\mathbb{W}_{tot}^\prime} \times 
+			\left(\frac{\mathbb{I_D}}{\mathbb{O_D}}\right) + \left(\underset{d 
+			\times 1}{\mathbb{B}^\prime} \times \underset{1 \times 
+	n^2}{\mathbbm{1}}\right)
+	\end{equation}
+\end{subequations}
+
 
 \subsubsection{Final Layer}
 \label{subsubsec:matfinallayer}

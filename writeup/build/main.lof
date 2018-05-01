@@ -5,20 +5,20 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Transposed and truncated matrix and associated visualization.\relax }}{8}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Relationship between $\mathbb {D}^{\prime }$ and $\mathbb {D}^{\prime }_N$.\relax }}{11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces ReLU function definition and graph\relax }}{16}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Sigmoid function definition and graph\relax }}{17}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Graph of $y=\qopname \relax o{tanh}(x)$\relax }}{17}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces \linespread {1.2}\selectfont {}Example adjacency matrix\relax }}{19}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Adam decay function over 100 steps. Converges asymptotically to 1.\relax }}{20}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces ReLU function definition and graph\relax }}{19}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Sigmoid function definition and graph\relax }}{20}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Graph of $y=\qopname \relax o{tanh}(x)$\relax }}{20}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \linespread {1.2}\selectfont {}Example adjacency matrix\relax }}{22}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Adam decay function over 100 steps. Converges asymptotically to 1.\relax }}{23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \linespread {1.2}\selectfont {}Training parameters for null hypothesis networks\relax }}{22}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{23}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{23}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{24}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network. Transparency for each value is scaled relative to the maximum value found in the matrix.\relax }}{26}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Final weights (max: 7.31)\relax }}{27}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{28}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Cyclical 3-neuron network\relax }}{28}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \linespread {1.2}\selectfont {}Training parameters for null hypothesis networks\relax }}{25}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{26}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{26}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{27}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network. Transparency for each value is scaled relative to the maximum value found in the matrix.\relax }}{29}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Final weights (max: 7.31)\relax }}{30}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{31}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Cyclical 3-neuron network\relax }}{32}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
