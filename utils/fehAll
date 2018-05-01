@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -eq 1 ]
+then
+	DIR="$1/"
+else
+	DIR=""
+fi
+
+for f in $DIR*.png; do
+	echo "$f: max val `cat $f.max`"
+	feh $f
+done

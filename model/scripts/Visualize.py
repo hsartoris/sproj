@@ -1,4 +1,5 @@
-def matVis(matrix, outFile = None, width=30, connections=False, n=None, drawText=False):
+def matVis(matrix, outFile = None, width=30, connections=False, n=None, 
+        drawText=False, grayScale=False):
     drawMax = False
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np
@@ -14,8 +15,9 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None, drawText
             matVal = matrix[i,j]
             pixW = j * width
             pixH = i * width
-            matArr[pixH:pixH+width,pixW:pixW+width] = [(255 if matVal > 0 else 0), 0,
-                    (255 if matVal < 0 else 0), 
+            matArr[pixH:pixH+width,pixW:pixW+width] = [
+                    (255 if matVal > 0 and not grayScale else 0), 0,
+                    (255 if matVal < 0 and not grayScale else 0), 
                     int(abs(matVal)/pixRange * 255)]
             matArr[0:matrix.shape[0]*width, pixW] = [(0, 0, 0, 255)]
             if matVal == pixRange or abs(matVal) == pixRange:
@@ -26,11 +28,22 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None, drawText
     matArr[len(matArr) - 1, :] = [(0,0,0,255)]
     matImg = Image.fromarray(matArr)
     matImg = Image.alpha_composite(white, matImg)
-    if drawText:
-        font = ImageFont.truetype('/usr/share/fonts/TTF/cmr10.ttf')
+    if grayScale or drawText:
+        fontSize = 1
+        font = ImageFont.truetype('/usr/share/fonts/TTF/cmr10.ttf', fontSize)
+        testChar = "1"
+        if connections and n: testChar = "[0,0]"
+        while max(font.getsize(testChar)[0], font.getsize(testChar)[1]) < (width 
+            * .6):
+            fontSize += 1
+            font = ImageFont.truetype('/usr/share/fonts/TTF/cmr10.ttf', 
+                    fontSize)
+        fontSize -= 1
+        font = ImageFont.truetype('/usr/share/fonts/TTF/cmr10.ttf', fontSize)
 
         draw = ImageDraw.Draw(matImg)
 
+    if drawText:
         vertIdx = (matrix.shape[0] - 1) * width + int(width/2)
         for j in range(matrix.shape[1]):
             if connections and n: text = "[" + str(int(j/n)) + "," + str(j%n) + "]"

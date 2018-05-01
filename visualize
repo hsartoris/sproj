@@ -73,6 +73,5 @@ n = 6
 matVis(inData, visDir + "input.png")
 matVis(out0, visDir + "out0.png", connections=True, n=n)
 matVis(out1, visDir + "out1.png", connections=True, n=n)
-matVis(out1, visDir + "out2.png", connections=True, n=n)
 matVis(outf, visDir + "outf.png", connections=True)
 matVis(pred, visDir + "pred.png", connections=True)

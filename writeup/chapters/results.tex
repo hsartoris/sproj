@@ -137,19 +137,23 @@ to explore and understand the inner workings of the network.
 
 \subsection{Example Model}
 \label{subsec:3neurex}
-The following data are pulled from a model trained on data produced by the 
-generator in \figref{fig:2simplex+adjacency}. Figure 
-\ref{fig:3neur_loss+params} demonstrates the model's loss over time. In this 
-example, small values \textit{b} and \textit{d} were used in order to allow for 
-better comprehension and visualization of the internal mechanics; the practical 
-effect of this is that a relatively small number of values were available for 
-the model to optimize, making each value adjustment more impactful on output, 
-and thus each training step more dramatic. These are acceptable limitations, 
-however, insofar as they provide a more comprehensible model struture.
+In order to demonstrate the internal mechanics of our model, we trained on data 
+produced by the generator given in \figref{fig:2simplex+adjacency}, with 
+parameters as given in \ref{fig:3neur_loss+params}. In this example, small 
+values of \textit{b} and \textit{d} were used in order to allow for better 
+comprehension and visualization of the internal mechanics; the practical effect 
+of this is that relatively small matrices were available for the model to 
+optimize, making each value adjustment more impactful on output, and thus each 
+training step more dramatic.  These are acceptable limitations, however, insofar 
+as they provide a more comprehensible model struture.
 
 \input{../resources/models/3neurEx/plot.tex}
 
-\subsubsection{Trained Network Operation}
+\subsection{Trained Network Operation}
+Here, we will consider a single item of data as it travels through the model 
+trained in \ref{subsec:3neurex}.
+
+\label{subsec:trainedoperation}
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{.15\textwidth}
@@ -192,17 +196,24 @@ however, insofar as they provide a more comprehensible model struture.
 	relative to the maximum value found in the matrix.}
 	\label{fig:3neur_run}
 \end{figure}\noindent
-In \figref{fig:3neur_run}, we examine the internal operation of the trained 
-model on a single piece of data.
-The final layer handles turning the information from \ref{subfig:3neur_out1} 
-into a prediction by multiplying the matrix found in \ref{subfig:3neur_flayer} 
-with \ref{subfig:3neur_out1} to produce \ref{subfig:3neur_outf}, which is then 
-passed into the final layer activation function\footnote{See 
-	\ref{subsec:finalactivation}} and reshaped to $(n \times n)$ to produce 
-	\ref{subfig:3neur_pred}, an exact match for the target with all connections 
-	located and weighted appropriately.\footnote{While $[1,0]$ and $[2,0]$ are 
-	predicted to be exactly 1.0, the precise value of $[2,1]$ in the final 
-prediction is 0.999999999957586, which we consider to be accurate enough.}
+In \figref{fig:3neur_run}, we demonstrate the progression of 
+\ref{subfig:3neur_in} through the trained model. The final layer, including 
+activation\footnote{See \ref{subsec:finalactivation}}, produces an $n^2$-vector 
+which, when reshaped into an $(n \times n)$ matrix, is an exact match for the 
+target, with all connections located and weighted appropriately.\footnote{While 
+	$[1,0]$ and $[2,0]$ are predicted to be exactly 1.0, the precise value of 
+	$[2,1]$ in the final prediction is 0.999999999957586, which we consider to 
+be accurate enough.}
+%The final layer turns the information from \ref{subfig:3neur_out1} into a 
+%prediction by multiplying the matrix found in \ref{subfig:3neur_flayer} with 
+%\ref{subfig:3neur_out1} to produce \ref{subfig:3neur_outf}, which is then 
+%passed into the final layer activation function\footnote{See 
+%\ref{subsec:finalactivation}} and reshaped to $(n \times n)$ to produce 
+%\ref{subfig:3neur_pred}, an exact match for the target with all connections 
+%located and weighted appropriately.\footnote{While $[1,0]$ and $[2,0]$ are 
+%predicted to be exactly 1.0, the precise value of $[2,1]$ in the final 
+%prediction is 0.999999999957586, which we consider to be accurate enough.}
+\subsubsection{Analysis}
 
 \paragraph{First Layer Functionality}
 
@@ -215,6 +226,8 @@ model has located the existent connections: if we transpose
 with \textit{d}-vectors $[1,0]$, $[2,0]$, and $[2,1]$, respectively. These 
 tuples each correspond with a connection present in the adjacency matrix 
 (\figref{fig:toyex}) the model is trying to predict. 
+
+\paragraph{Final Layer}
 
 
 

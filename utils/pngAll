@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+import sys, os, shutil
+sys.path.append("/home/hsartoris/sproj/")
+import numpy as np
+from model.scripts import matVis
+
+if __name__ == "__main__":
+    dataDir = None
+    if len(sys.argv) == 1:
+        print("No target given; assuming current directory")
+    else:
+        dataDir = sys.argv[1] + "/"
+
+    if dataDir is None: dataDir = "./"
+    outDir = dataDir + "pngs/"
+    if not os.path.exists(outDir): os.mkdir(outDir)
+    if not os.path.exists(outDir + "max/"): os.mkdir(outDir + "max/")
+
+    files = os.listdir(dataDir)
+
+    skippedFiles = []
+    for f in files:
+        if f == "pngs": continue
+        try:
+            name, t = f.split('.')
+            item = np.loadtxt(dataDir + f, delimiter=',')
+            if t == "weights":
+                if name == "final":
+                    item = np.expand_dims(item, 0)
+                else:
+                    name = "w" + name[1:]
+            elif t == "biases":
+                name = "b" + name[1:]
+                item = np.expand_dims(item, 1)
+
+            matVis(item, outDir + name + ".png")
+            shutil.move(outDir + name + ".png.max", outDir + "max/" + name + 
+                "png.max")
+        except:
+            print("Could not load file " + f + "; skipping.")
+            skippedFiles.append(f)
+            pass
+
+    if len(skippedFiles) > 0:
+        print("Skipped", len(skippedFiles), "files:")
+        for f in skippedFiles:
+            print(f)
