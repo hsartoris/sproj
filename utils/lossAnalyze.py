@@ -71,10 +71,17 @@ convLosses, dumbLosses = loadLosses()
 # min final conv idx, min final conv loss
 mFCi, mFCL = minFinalLoss(convLosses)
 mFCi = dirs[mFCi]
+minFinalConv = np.array([steps, mFCL]).transpose()
 
 # min final dumb idx, min final dumb loss
 mFDi, mFDL = minFinalLoss(dumbLosses)
 mFDi = dirs[mFDi]
+minFinalDumb = np.array([steps, mFDL]).transpose()
+
+outDir = input("Where to save this shit to: ")
+if not outDir == '':
+    np.savetxt(outDir + "/minFinalConv_" + mFCi, minFinalConv, fmt='%i, %.4f')
+    np.savetxt(outDir + "/minFinalDumb_" + mFDi, minFinalDumb, fmt='%i, %.4f')
 
 print("Minimum final conv loss from run" + mFCi + ": " + str(mFCL[-1]))
 print("Minimum final dumb loss from run" + mFDi + ": " + str(mFDL[-1]))

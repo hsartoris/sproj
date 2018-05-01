@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1525200708 "main.tex" "build/main.pdf" "main" 1525200710
+["pdflatex"] 1525203466 "main.tex" "build/main.pdf" "main" 1525203468
   "/home/hsartoris/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk" 1525158445 8424 48ba15da934a4eadbce21ed1f3c36fa5 ""
   "/home/hsartoris/texmf/tex/latex/local/wrapfig.sty" 1524457044 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
@@ -261,15 +261,15 @@
   "build/../resources/models/3neurEx/fullRun/loss_subsamp" 1525122834 325 217f41d1084dc4f9633348d7363cbd57 ""
   "build/../resources/models/3neurEx/plot.tex" 1525129430 1162 0f752b1c6237df3e53b9e41c0feed5e0 ""
   "build/../resources/tikzheader.tex" 1524341309 167 4f8ce466adf258832d387dab2de30530 ""
-  "build/main.aux" 1525200710 12568 ed33bd317c9d9a0f374e9994422d97af ""
-  "build/main.lof" 1525200710 2460 4d7a75bb968b974776c91114d99c0e26 ""
-  "build/main.toc" 1525200710 4703 0d3cf8da9c2975a7acb6f323cac49337 ""
+  "build/main.aux" 1525203468 12568 ed33bd317c9d9a0f374e9994422d97af ""
+  "build/main.lof" 1525203468 2460 4d7a75bb968b974776c91114d99c0e26 ""
+  "build/main.toc" 1525203468 4703 0d3cf8da9c2975a7acb6f323cac49337 ""
   "chapters/abstract.tex" 1525156418 622 b769275d4ee98c1a1df0e1c78f4889c0 ""
   "chapters/appendix.tex" 1525193108 422 168de9907ce4c014fdaeaf204c943ed6 ""
   "chapters/bg.tex" 1524868920 1918 b70d436e07d72fdd77188de2aeb63d81 ""
   "chapters/discussion.tex" 1525154924 1963 cd4a871dc9acf3abd7c238841fd727ff ""
   "chapters/model.tex" 1525194980 27807 835cf5d0e90f5791b29e445d7409bc3e ""
-  "chapters/results.tex" 1525200666 13838 b327cd4bccf0965b90533374bbd806b4 ""
+  "chapters/results.tex" 1525203464 13865 be471f9cc3d786522077091f8bf6cdc9 ""
   "chapters/train.tex" 1525195435 9904 5a275761cebc0ba04cc4a0e273bcb3b2 ""
   "main.tex" 1525200696 1657 5c4b9b0488b3cf872288f7cb08df07e5 ""
   "resources/3outex.png" 1524791845 710 b24f286ebfc92bbe19efe2f981e41554 ""
@@ -282,8 +282,8 @@
   "resources/models/3neurEx/var1/input.png" 1524599058 999 e677c5526140cf2d7fc5d3e22a399130 ""
   "resources/tikzpics.tex" 1524697271 1742 ed1b8bd77672ccd7694aa12f450a3ee3 ""
   (generated)
+  "build/main.aux"
+  "build/main.toc"
+  "build/main.lof"
   "build/main.pdf"
   "build/main.log"
-  "build/main.toc"
-  "build/main.aux"
-  "build/main.lof"
