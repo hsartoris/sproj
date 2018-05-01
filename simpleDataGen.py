@@ -8,6 +8,17 @@ import os
 import model.scripts.Prettify
 from model.scripts.GraphKit import diGraph, Simplex, SimplicialComplex
 
+def simplicialNet():
+    minPlex = 2
+    maxPlex = 8
+    target = 49
+    sc = SimplicialComplex()
+    while target > 0:
+        stype = np.random.randint(minPlex, maxPlex)
+        sc.addSimplex(Simplex(stype))
+        target -= stype
+    return sc.blueprint
+
 def tenNeurNet2():
     mat = np.matrix(np.zeros((10,10)))
     mat[1:3,0] = 1
@@ -101,10 +112,11 @@ def saveRandomData(n, params, dataDir, q):
 
 if __name__=="__main__":
     mat, spikeProb = tenNeurNet()
-    mat = genSimplex(3)
-    spikeProb = .25
+    #mat = genSimplex(3)
+    mat = simplicialNet()
+    spikeProb = .15
     if len(sys.argv) == 2 and sys.argv[1] == "optimize":
-        spikeProb = optimizeSpike(mat, .05)
+        spikeProb = optimizeSpike(mat, .01)
         print("Optimized rate:", spikeProb)
         exit()
 
