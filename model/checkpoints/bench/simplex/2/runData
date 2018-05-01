@@ -1,13 +1,13 @@
 # b
-30
+50
 # d
-40
+50
 # n
 43
 # batchSize
 32
 # initLearnRate
-0.002
+0.001
 # trainingSteps
 100000
 # prefix
@@ -18,31 +18,27 @@ dataStaging/bigSimplex50k2/
 0
 # script
 False
-{'--b': '30',
+{'--b': '50',
  '--bs': '32',
- '--d': '40',
+ '--d': '50',
  '--help': False,
  '--immediate': False,
- '--lr': '.002',
+ '--lr': '.001',
  '--noDumb': False,
  '--outDir': 'simplex',
  '--r': '1',
- '--runId': '1',
+ '--runId': '2',
  '--s': '50k',
  '--script': False,
  '--ts': '100k',
  '<dataDir>': 'bigSimplex50k2'}Convolutional model matrix magnitudes:
-w0_tot: 463.3376
-w1in_tot: 306.8889
-w1out_tot: 316.0631
-w1f_tot: 643.6692
-wf_tot: 8.239795
+w0_tot: 986.4542
+w1in_tot: 502.15546
+w1out_tot: 503.01028
+w1f_tot: 999.4017
+wf_tot: 8.802248
 
 Simple model matrix magnitudes:
-w0_tot: 477.02484
-w1_tot: 309.08344
-wf_tot: 9.033536
-# min dumb loss
-(77624, 0.63591427)
-# min conv loss
-(50624, 0.598778)
+w0_tot: 1000.28125
+w1_tot: 489.06766
+wf_tot: 9.565977
