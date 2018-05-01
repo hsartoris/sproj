@@ -6,6 +6,7 @@ from multiprocessing import Process, Queue
 import subprocess
 import os
 import model.scripts.Prettify
+from model.scripts.GraphKit import diGraph, Simplex, SimplicialComplex
 
 def tenNeurNet2():
     mat = np.matrix(np.zeros((10,10)))
