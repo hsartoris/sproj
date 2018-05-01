@@ -3,7 +3,16 @@
 
 \section{Potential Improvements}
 
-\subsection{Algorithm}
+\subsection{Layering}
+There may need to be more initial layers to provide useful data to the Locality 
+layers.  As it stands, the model structure requires that the first layer both 
+compare the activities of neuron pairs and format the resulting data in such a 
+manner that the locality-based layer can usefully include it in determining node 
+existence.  Adding at least one intermediary processing layer might allow the 
+network to format the data going in to the locality layer in a more useful way.  
+Merits further testing.
+
+\subsection{Locality Algorithm}
 Detail issues with summing inputs and outputs, and propose alternative algorithm 
 here. Note issues with implementation.
 
@@ -24,3 +33,13 @@ I think it's in the paper about ELU or SELU that they use a ramping up learn
 rate and then decline. That might be ideal for the original, concatenation-based 
 implemenation of the network, to avoid pushing it down the gradient too fast and 
 zeroing out the convolutional matrix sections.
+
+\section{Potential Applications/Further Development}
+
+This shit is portable as fuck
+
+Imagine an app(lication) that contains pretrained networks for different types 
+of biological networks that researchers can then apply to their own data without 
+having to interact at all with the nitty gritty bullshitty.
+
+Community run database of trained networks as specific as submitters make them.

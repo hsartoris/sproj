@@ -16,8 +16,9 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{23}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{24}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network. Transparency for each value is scaled relative to the maximum value found in the matrix.\relax }}{26}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{28}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Cyclical 3-neuron network\relax }}{29}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Final weights (max: 7.31)\relax }}{27}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{28}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Cyclical 3-neuron network\relax }}{28}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -3,8 +3,12 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None,
     drawMax = False
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np
-    matImg = Image.new('RGBA', tuple(dim*width for dim in matrix.shape[::-1]),
-        "black")
+    imSize = tuple(dim*width for dim in matrix.shape[::-1])
+    yoffset = 0
+    if drawText:
+        imSize = (imSize[0], imSize[1] + width)
+        yoffset = width
+    matImg = Image.new('RGBA', imSize, "black")
     white = Image.new('RGBA', matImg.size, 'white')
     pixels = matImg.load()
     pixRange = max(np.max(matrix), abs(np.min(matrix)))
@@ -15,20 +19,23 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None,
             matVal = matrix[i,j]
             pixW = j * width
             pixH = i * width
-            matArr[pixH:pixH+width,pixW:pixW+width] = [
+            matArr[pixH+yoffset:pixH+width+yoffset,pixW:pixW+width] = [
                     (255 if matVal > 0 and not grayScale else 0), 0,
                     (255 if matVal < 0 and not grayScale else 0), 
                     int(abs(matVal)/pixRange * 255)]
-            matArr[0:matrix.shape[0]*width, pixW] = [(0, 0, 0, 255)]
+            matArr[yoffset:matrix.shape[0]*width, pixW] = [(0, 0, 0, 255)]
             if matVal == pixRange or abs(matVal) == pixRange:
                 maxBlock = (i,j)
-    matArr[:, 0] = [(0,0,0,255)]
-    matArr[:, len(matArr[0])-1] = [(0,0,0,255)]
-    matArr[0, :] = [(0,0,0,255)]
+    # draw vertical border left
+    matArr[yoffset:, 0] = [(0,0,0,255)]
+    # draw same right
+    matArr[yoffset:, len(matArr[0])-1] = [(0,0,0,255)]
+    # draw horizontal border top
+    matArr[yoffset, :] = [(0,0,0,255)]
     matArr[len(matArr) - 1, :] = [(0,0,0,255)]
     matImg = Image.fromarray(matArr)
     matImg = Image.alpha_composite(white, matImg)
-    if grayScale or drawText:
+    if drawText:
         fontSize = 1
         font = ImageFont.truetype('/usr/share/fonts/TTF/cmr10.ttf', fontSize)
         testChar = "1"
@@ -43,7 +50,6 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None,
 
         draw = ImageDraw.Draw(matImg)
 
-    if drawText:
         vertIdx = (matrix.shape[0] - 1) * width + int(width/2)
         for j in range(matrix.shape[1]):
             if connections and n: text = "[" + str(int(j/n)) + "," + str(j%n) + "]"
