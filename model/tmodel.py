@@ -36,7 +36,7 @@ class Model():
         # for layer 1, weights['layer1]'[0] is in, and 1 is out
         self.biases = dict()
         biases_stddev = .01
-        weights_stddev = .1
+        weights_stddev = .05
         if matDir is not None:
             if trainable is None: trainable = [True, True, True]
             # attempt to load matrices from previous run
@@ -118,13 +118,13 @@ class Model():
     @lazy_property
     def layer1dumb(self):
         return self.activation(tf.add(tf.einsum('ij,kjl->kil', 
-            self.weights['layer1'][0], self.layer0_1), tf.tile(self.biases['layer1'],
+            self.weights['layer1'][0], self.layer0), tf.tile(self.biases['layer1'],
                 [self.batchSize, 1, self.n*self.n])))
 
     @lazy_property
     def layer1(self):
         #convolutional
-        data = self.layer0_1
+        data = self.layer0
 
         horizCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand))
         horizCompress = tf.divide(horizCompress, self.n)

@@ -37,6 +37,7 @@ import model.scripts.Prettify as Prettify
 import math
 import time
 import shutil, os
+from utils.termVis import termVis
 from model.scripts.SeqData import seqData
 from model.tmodel import Model
 
@@ -170,11 +171,15 @@ def makePred(checkDir=None):
     testX, testY, _ = testing.next(1)
     if runDumb:
         print("Dumb model prediction:")
-        print(np.round(sess.run(m_dumb.prediction, 
-        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
+        pred = np.round(sess.run(m_dumb.prediction, 
+        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1)
+        print(pred)
+        termVis(pred)
     print("Conv model prediction:")
-    print(np.round(sess.run(m_conv.prediction,
-        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1))
+    pred = np.round(sess.run(m_conv.prediction,
+        feed_dict={_data: testX, _labels: testY})[0].reshape(n,n), 1)
+    print(pred)
+    termVis(pred)
 
 def dumpData():
     out = "# b\n" + str(b) + "\n"
