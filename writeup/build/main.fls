@@ -463,6 +463,10 @@ INPUT build/../resources/9neur.tex
 INPUT build/../resources/9neur.tex
 INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
+INPUT build/../resources/models/9neur/plot.tex
+INPUT build/../resources/models/9neur/plot.tex
+INPUT build/../resources/models/9neur/minFinalConv_90
+INPUT build/../resources/models/9neur/minFinalDumb_72
 INPUT resources/models/9neur/conv1/input.png
 INPUT ./resources/models/9neur/conv1/input.png
 INPUT ./resources/models/9neur/conv1/input.png
@@ -472,10 +476,6 @@ INPUT ./resources/models/9neur/conv1/pred.png
 INPUT resources/models/9neur/dumb1/pred.png
 INPUT ./resources/models/9neur/dumb1/pred.png
 INPUT ./resources/models/9neur/dumb1/pred.png
-INPUT build/../resources/models/9neur/plot.tex
-INPUT build/../resources/models/9neur/plot.tex
-INPUT build/../resources/models/9neur/minFinalConv_90
-INPUT build/../resources/models/9neur/minFinalDumb_72
 INPUT build/../resources/tikzheader.tex
 INPUT build/../resources/tikzheader.tex
 INPUT resources/models/3neurEx/var1/input.png

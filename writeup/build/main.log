@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  1 MAY 2018 20:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  1 MAY 2018 22:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1510,37 +1510,18 @@ File: resources/models/3neurEx/fullRun/0_py/pred.png Graphic file (type png)
 <use resources/models/3neurEx/fullRun/0_py/pred.png>
 Package pdftex.def Info: resources/models/3neurEx/fullRun/0_py/pred.png  used on input line 185.
 (pdftex.def)             Requested size: 59.62335pt x 59.62292pt.
- [30] [31 <./resources/models/3neurEx/fullRun/0_py/input.png> <./resources/models/3neurEx/fullRun/0_py_num/layer0/4out.png> <./resources/models/3neurEx/fullRun/0_py_num/layer1/7out.png> <./resources/models/3neurEx/fullRun/0_py_num/layerf/0out.png> <./resources/models/3neurEx/fullRun/0_py/pred.png>]
-<resources/models/3neurEx/fullRun/0_py/layerf/weights.png, id=157, 150.5625pt x 30.1125pt>
+ [30]
+<resources/models/3neurEx/fullRun/0_py/layerf/weights.png, id=148, 150.5625pt x 30.1125pt>
 File: resources/models/3neurEx/fullRun/0_py/layerf/weights.png Graphic file (type png)
 <use resources/models/3neurEx/fullRun/0_py/layerf/weights.png>
-Package pdftex.def Info: resources/models/3neurEx/fullRun/0_py/layerf/weights.png  used on input line 229.
+Package pdftex.def Info: resources/models/3neurEx/fullRun/0_py/layerf/weights.png  used on input line 206.
 (pdftex.def)             Requested size: 99.37125pt x 19.87521pt.
 
-Underfull \hbox (badness 3977) in paragraph at lines 230--230
+Underfull \hbox (badness 3977) in paragraph at lines 207--207
 []\OT1/cmr/m/it/10.95 Figure 4.6: |\OT1/cmr/m/n/10.95 Fi-nal
  []
 
-(build/../resources/9neur.tex (build/../resources/tikzheader.tex))
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<resources/models/9neur/conv1/input.png, id=158, 301.125pt x 903.375pt>
-File: resources/models/9neur/conv1/input.png Graphic file (type png)
-<use resources/models/9neur/conv1/input.png>
-Package pdftex.def Info: resources/models/9neur/conv1/input.png  used on input line 281.
-(pdftex.def)             Requested size: 79.49577pt x 238.48346pt.
-<resources/models/9neur/conv1/pred.png, id=159, 301.125pt x 301.125pt>
-File: resources/models/9neur/conv1/pred.png Graphic file (type png)
-<use resources/models/9neur/conv1/pred.png>
-Package pdftex.def Info: resources/models/9neur/conv1/pred.png  used on input line 289.
-(pdftex.def)             Requested size: 104.63551pt x 104.63718pt.
-<resources/models/9neur/dumb1/pred.png, id=160, 301.125pt x 301.125pt>
-File: resources/models/9neur/dumb1/pred.png Graphic file (type png)
-<use resources/models/9neur/dumb1/pred.png>
-Package pdftex.def Info: resources/models/9neur/dumb1/pred.png  used on input line 294.
-(pdftex.def)             Requested size: 104.63551pt x 104.63718pt.
-[32 <./resources/models/3neurEx/fullRun/0_py/layerf/weights.png>]
+[31 <./resources/models/3neurEx/fullRun/0_py/input.png> <./resources/models/3neurEx/fullRun/0_py_num/layer0/4out.png> <./resources/models/3neurEx/fullRun/0_py_num/layer1/7out.png> <./resources/models/3neurEx/fullRun/0_py_num/layerf/0out.png> <./resources/models/3neurEx/fullRun/0_py/pred.png>] (build/../resources/9neur.tex (build/../resources/tikzheader.tex))
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1548,44 +1529,47 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 PGFPlots: reading {../resources/models/9neur/minFinalConv_90}
 PGFPlots: reading {../resources/models/9neur/minFinalDumb_72}
 )
+<resources/models/9neur/conv1/input.png, id=158, 301.125pt x 903.375pt>
+File: resources/models/9neur/conv1/input.png Graphic file (type png)
+<use resources/models/9neur/conv1/input.png>
+Package pdftex.def Info: resources/models/9neur/conv1/input.png  used on input line 272.
+(pdftex.def)             Requested size: 79.49577pt x 238.48346pt.
+<resources/models/9neur/conv1/pred.png, id=159, 301.125pt x 301.125pt>
+File: resources/models/9neur/conv1/pred.png Graphic file (type png)
+<use resources/models/9neur/conv1/pred.png>
+Package pdftex.def Info: resources/models/9neur/conv1/pred.png  used on input line 280.
+(pdftex.def)             Requested size: 104.63551pt x 104.63718pt.
+<resources/models/9neur/dumb1/pred.png, id=160, 301.125pt x 301.125pt>
+File: resources/models/9neur/dumb1/pred.png Graphic file (type png)
+<use resources/models/9neur/dumb1/pred.png>
+Package pdftex.def Info: resources/models/9neur/dumb1/pred.png  used on input line 285.
+(pdftex.def)             Requested size: 104.63551pt x 104.63718pt.
+ [32 <./resources/models/3neurEx/fullRun/0_py/layerf/weights.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33] (build/../resources/tikzheader.tex)
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<resources/models/3neurEx/var1/input.png, id=168, 90.3375pt x 240.9pt>
+[33] [34 <./resources/models/9neur/conv1/input.png> <./resources/models/9neur/conv1/pred.png> <./resources/models/9neur/dumb1/pred.png>] (build/../resources/tikzheader.tex)
+<resources/models/3neurEx/var1/input.png, id=174, 90.3375pt x 240.9pt>
 File: resources/models/3neurEx/var1/input.png Graphic file (type png)
 <use resources/models/3neurEx/var1/input.png>
-Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 354.
+Package pdftex.def Info: resources/models/3neurEx/var1/input.png  used on input line 337.
 (pdftex.def)             Requested size: 39.75092pt x 106.00366pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-(build/../resources/tikzheader.tex)
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34 <./resources/models/9neur/conv1/input.png> <./resources/models/9neur/conv1/pred.png> <./resources/models/9neur/dumb1/pred.png>]) (./chapters/discussion.tex [35] [36 <./resources/models/3neurEx/var1/input.png>]
+ (build/../resources/tikzheader.tex) [35 <./resources/models/3neurEx/var1/input.png>]) (./chapters/discussion.tex [36]
 Chapter 5.
 [37
 
-]) (./chapters/appendix.tex [38]
+] [38] [39]) (./chapters/appendix.tex [40]
 Appendix A.
 
 Overfull \hbox (16.86209pt too wide) in paragraph at lines 3--3
 |[]\OT1/cmr/bx/n/24.88 Parameter Op-ti-miza-tion Mis-
  []
 
-[39
+[41
 
 ]
 Appendix B.
-) [40
+) [42
 
 ] (build/main.aux)
 
@@ -1593,18 +1577,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 39634 strings out of 492982
- 950907 string characters out of 6138579
- 1191499 words of memory out of 5000000
- 42540 multiletter control sequences out of 15000+600000
+ 39635 strings out of 492982
+ 950927 string characters out of 6138579
+ 1192510 words of memory out of 5000000
+ 42541 multiletter control sequences out of 15000+600000
  548017 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,24n,96p,10376b,2330s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/hsartoris/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on build/main.pdf (46 pages, 322085 bytes).
+Output written on build/main.pdf (48 pages, 324813 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
+ 271 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 

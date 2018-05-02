@@ -198,30 +198,7 @@ target, with all connections located and weighted appropriately.\footnote{While
 	$[1,0]$ and $[2,0]$ are predicted to be exactly 1.0, the precise value of 
 	$[2,1]$ in the final prediction is 0.999999999957586, which we consider to 
 be accurate enough.}
-%The final layer turns the information from \ref{subfig:3neur_out1} into a 
-%prediction by multiplying the matrix found in \ref{subfig:3neur_flayer} with 
-%\ref{subfig:3neur_out1} to produce \ref{subfig:3neur_outf}, which is then 
-%passed into the final layer activation function\footnote{See 
-%\ref{subsec:finalactivation}} and reshaped to $(n \times n)$ to produce 
-%\ref{subfig:3neur_pred}, an exact match for the target with all connections 
-%located and weighted appropriately.\footnote{While $[1,0]$ and $[2,0]$ are 
-%predicted to be exactly 1.0, the precise value of $[2,1]$ in the final 
-%prediction is 0.999999999957586, which we consider to be accurate enough.}
-\subsubsection{Analysis}
-blah blah blah it's all well and good that this works
-
-\paragraph{First Layer Functionality}
-
-\paragraph{Convolutional Layer Functionality}
-
-Note that, following the convolutional layer (\ref{subfig:3neur_out1}), the 
-model has located the existent connections: if we transpose 
-\ref{subfig:3neur_out1} from $(d \times n^2)$ to $(n \times n \times d)$, as in 
-\figref{fig:transform}, the columns with high values, 3, 6, and 7, correspond 
-with \textit{d}-vectors $[1,0]$, $[2,0]$, and $[2,1]$, respectively. These 
-tuples each correspond with a connection present in the adjacency matrix 
-(\figref{fig:toyex}) the model is trying to predict. 
-
+\subsubsection{Brief Analysis}
 \paragraph{Final Layer}
 \begin{wrapfigure}[5]{r}{.25\textwidth}
 	\centering
@@ -231,21 +208,32 @@ tuples each correspond with a connection present in the adjacency matrix
 	\label{fig:3neur_flayer}
 \end{wrapfigure}
 The final layer consists only of multiplying its weights 
-(\figref{fig:3neur_flayer}) by the output from the previous layer, and it is 
+(\figref{fig:3neur_flayer}) by the output from the locality layer, and it is 
 thus relatively easy to intepret what the model has learned at this stage. As 
 the first two values of of the weight matrix are strongly positive, we can 
 conlude that the first two values in each vector in the output from the previous 
 layer are highly important in the determination of connection presence, with 
 some weight also placed on the fourth item.
 
+\paragraph{Locality Layer Functionality}
+
+Note that, following the locality layer (\ref{subfig:3neur_out1}), the model has 
+located the existent connections: if we transpose \ref{subfig:3neur_out1} from 
+$(d \times n^2)$ to $(n \times n \times d)$, as in \figref{fig:transform}, the 
+columns with high values, 3, 6, and 7, correspond with \textit{d}-vectors 
+$[1,0]$, $[2,0]$, and $[2,1]$, respectively. These tuples each correspond with a 
+connection present in the adjacency matrix (\figref{fig:toyex}) the model is 
+trying to predict. 
+
 \section{Higher-order Datasets}
+\label{sec:localitybroken}
 Because a 3-node generator not does contain much in terms of locality, we 
 created a graph structure containing slightly more complex relationships to 
 benchmark our model on; that generator can be found in \figref{fig:10neur}.
  
 \begin{table}[h]
 	\centering
-	{\scalebox{.8}{
+	{\scalebox{.9}{
 	{\scalebox{.9}{\input{../resources/9neur.tex}}}
 	\hspace{1em}
 	\begin{tabular}{ccccccccccc}
@@ -266,13 +254,16 @@ benchmark our model on; that generator can be found in \figref{fig:10neur}.
 	of clarity, all zero values in the matrix have been omitted.}
 	\label{fig:10neur}
 \end{table}\noindent
+
 We trained 100 model/benchmark pairs on the data produced by this generator; the 
-losses and parameters of the two best-performing models can be found in 
-\figref{fig:9neur_loss+params}. The results demonstrate that, while the 
-locality-based approach is able to reconstruct networks, it does not offer 
-substantive improvement over the much more straightforward benchmark model, at 
-least in the cases that we have considered. An example run can be found in 
+losses and parameters of the best-performing models of each type can be found in 
+\figref{fig:9neur_loss+params}. The results, in which the losses of both types 
+of networks stayed extremely close, demonstrate that, while the locality-based 
+approach is able to reconstruct networks, it does not offer substantive 
+improvement over the much more straightforward benchmark model, at least in the 
+cases that we have considered.  An example run can be found in 
 \figref{fig:samepred}.
+\input{../resources/models/9neur/plot.tex}
 \begin{figure}[h]
 	\centering
 	\hfill
@@ -298,19 +289,11 @@ least in the cases that we have considered. An example run can be found in
 	\caption{Example of data from generator defined in \figref{fig:10neur}, 
 	passed through the locality-based and benchmarks models.}
 	\label{fig:samepred}
-\end{figure}
-Consider, however, the outputs of the second layer of each network for the same 
-data, as in 
-
-%\begin{figure}[h]
-%	\centering
-%	\begin{subfigure}{\textwidth}
-%		\includegraphics[width=\textwidth] 
-%
-
-This does not, however, invalidate the number of other advantages offered by our 
-architecture.
-\input{../resources/models/9neur/plot.tex}
+\end{figure}\noindent
+\newpage
+The same results were found with generators of various sizes and topologies, 
+although none larger than that in \figref{fig:10neur} were used. It is 
+important, however, not to overstate the importance of this comparison, 
 
 \section{Applicability Beyond Training Data}
 As described in \ref{subsec:hotswap}, the fact that our model is trained on data 

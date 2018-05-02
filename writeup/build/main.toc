@@ -58,23 +58,25 @@
 \contentsline {section}{\numberline {4.2}3-neuron generator}{29}
 \contentsline {subsection}{\numberline {4.2.1}Example Model}{30}
 \contentsline {subsection}{\numberline {4.2.2}Trained Network Operation}{31}
-\contentsline {subsubsection}{Analysis}{32}
-\contentsline {paragraph}{First Layer Functionality}{32}
-\contentsline {paragraph}{Convolutional Layer Functionality}{32}
+\contentsline {subsubsection}{Brief Analysis}{32}
 \contentsline {paragraph}{Final Layer}{32}
+\contentsline {paragraph}{Locality Layer Functionality}{32}
 \contentsline {section}{\numberline {4.3}Higher-order Datasets}{32}
-\contentsline {section}{\numberline {4.4}Applicability Beyond Training Data}{33}
-\contentsline {subsection}{\numberline {4.4.1}Inverted Network}{34}
+\contentsline {section}{\numberline {4.4}Applicability Beyond Training Data}{34}
+\contentsline {subsection}{\numberline {4.4.1}Inverted Network}{35}
 \contentsline {subsection}{\numberline {4.4.2}Cyclical Network}{35}
 \contentsline {chapter}{\numberline {5}Discussion}{37}
-\contentsline {section}{\numberline {5.1}Potential Improvements}{37}
-\contentsline {subsection}{\numberline {5.1.1}Layering}{37}
-\contentsline {subsection}{\numberline {5.1.2}Locality Algorithm}{37}
-\contentsline {subsection}{\numberline {5.1.3}Loss}{37}
-\contentsline {subsection}{\numberline {5.1.4}Optimizer}{38}
-\contentsline {section}{\numberline {5.2}Potential Applications/Further Development}{38}
-\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{39}
-\contentsline {section}{\numberline {A.1}Data}{39}
-\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{39}
-\contentsline {chapter}{\numberline {B}Model}{40}
-\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{40}
+\contentsline {section}{\numberline {5.1}Data}{37}
+\contentsline {subsection}{\numberline {5.1.1}Complex Neurons}{38}
+\contentsline {subsection}{\numberline {5.1.2}Larger, Structured Networks}{38}
+\contentsline {section}{\numberline {5.2}Potential Improvements to Locality}{39}
+\contentsline {subsection}{\numberline {5.2.1}Layering}{39}
+\contentsline {subsection}{\numberline {5.2.2}Algorithm}{39}
+\contentsline {subsection}{\numberline {5.2.3}Loss}{39}
+\contentsline {subsection}{\numberline {5.2.4}Optimizer}{40}
+\contentsline {section}{\numberline {5.3}Potential Applications/Further Development}{40}
+\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{41}
+\contentsline {section}{\numberline {A.1}Data}{41}
+\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{41}
+\contentsline {chapter}{\numberline {B}Model}{42}
+\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{42}

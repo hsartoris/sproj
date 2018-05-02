@@ -1,7 +1,49 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
 \chapter{Discussion}
+As described in \ref{sec:localitybroken}, in all cases tested, models equipped 
+with our locality layer tended to stay very close to the benchmark models in 
+loss, with a slight tendency towards higher loss. This tendency is explained by 
+the simple presence of more values to optimize over. More to the point, we must 
+return to the motivation behind incorporating locality into network 
+reconstruction: we hope that our model will learn to recognize recurrent local 
+structures in biological networks, and use that information to judge individual 
+connection probability in the context of its neighbors. Two potential factors in 
+our model's failure to manifest this behavior are apparent: data used, and 
+specific locality algorithm design.
 
-\section{Potential Improvements}
+\section{Data}
+An important part of analyzing the performance of our locality layer is to 
+understand what we are looking for. In the cases tested, the locality-enabled 
+model was not able to outstrip the benchmark model in terms of loss or 
+predictive accuracy, but this likely speaks more to the type of data being used 
+to train the networks than to the relative efficacy of either architecture. If 
+three matrix multiplications are sufficient to reconstruct the structure of a 
+network, there is little need for a model to involve abstract concepts like 
+locality, and, even if forced to do so, it's not clear that having such concepts 
+available would contribute to more effective reconstruction. The ideal test 
+dataset, then, would be one on which the benchmark model does not converge to an 
+accurate prediction, allowing us to train a locality-enabled model and get some 
+idea of how much useful information is actually added. Here, we outline some 
+directions we could go in data generation.
+
+\subsection{Complex Neurons}
+As it stands, every generator we used to produce data consisted of binary 
+connections and created binary outputs. There are clearly more accurate methods 
+of simulating biological neural network activity, such as implementing 
+Izhikevich neurons\footnote{Cite}, or going as far as generating data with
+NEST\footnote{citation}. However, while more complex neurons would probably 
+encourage the model to look to locality for information, this alone would not 
+suffice.
+
+\subsection{Larger, Structured Networks}
+A model being able to leverage its access to locality data to locate 2-simplices 
+will not encounter any particular benefit from this ability if the generators it 
+is tasked with reconstructing contain at most one such structure. Indeed, 
+preliminary results suggest that a large gap opens between models considering 
+locality and those not when the training data is generated from a large 
+($n\approx50$) network seeded with recurring motifs.
+
+\section{Potential Improvements to Locality}
 
 \subsection{Layering}
 There may need to be more initial layers to provide useful data to the Locality 
@@ -12,7 +54,7 @@ existence.  Adding at least one intermediary processing layer might allow the
 network to format the data going in to the locality layer in a more useful way.  
 Merits further testing.
 
-\subsection{Locality Algorithm}
+\subsection{Algorithm}
 Detail issues with summing inputs and outputs, and propose alternative algorithm 
 here. Note issues with implementation.
 
