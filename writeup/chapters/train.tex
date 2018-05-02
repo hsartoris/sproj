@@ -5,8 +5,9 @@
 \label{sec:activation}
 \subsection{Initial \& Convolutional Layers}
 At the end of each transition, an elementwise activation function is applied 
-following completion of all computations.  For all but the final layer, that 
-function is ReLU\footnote{NEEDS CITATION}, defined in figure \ref{fig:relu}.
+following completion of all computations, including multiplication by the 
+relevant weight matrix.  For all but the final layer, that function is 
+ReLU\cite{nair2010rectified}, defined in figure \ref{fig:relu}.
 
 \begin{figure}[h]
 	\centering
@@ -34,43 +35,14 @@ function is ReLU\footnote{NEEDS CITATION}, defined in figure \ref{fig:relu}.
 	\label{fig:relu}
 \end{figure}\noindent
 
-\subsubsection{Alternative Activations}
-In addition to ReLU, we considered a sigmoid activation function, as in 
-\figref{fig:sigmoid}.
-
-\begin{figure}[h]
-	\centering
-	\begin{minipage}{.48\textwidth}
-		\begin{equation*}
-			S(x) = \frac{1}{1 + exp(-x)}
-		\end{equation*}
-	\end{minipage}
-	\begin{minipage}{.35\textwidth}
-		\resizebox{\textwidth}{!}{
-		\begin{tikzpicture}
-			\begin{axis}[domain=-5:5, ytick={0,.5,1},
-					enlarge x limits=false, ymajorgrids, extra x ticks=0,
-					extra tick style={grid=major}]
-					\addplot[color=black] {1/(1+exp(-x))} [mark=none, smooth];
-			\end{axis}
-		\end{tikzpicture}
-		}
-	\end{minipage}
-	\caption{Sigmoid function definition and graph}
-	\label{fig:sigmoid}
-\end{figure}\noindent
-However, this function requires that the network have extremely well-tuned 
-matrices in order to produce values near zero, and, given our binary generator 
-networks, it presents unecessary training difficulty, leading us to use ReLU.
-
 
 \subsection{Final Layer}
 \label{subsec:finalactivation}
-Additionally, ReLU's preservation of positive values and elimination of negative 
-work in concert with the activation function of the final layer, hyperbolic 
-tangent (\figref{fig:tanh}).
+ReLU's preservation of positive values and elimination of negative values work 
+in concert with the activation function of the final layer, hyperbolic tangent 
+(\figref{fig:tanh}).
 The clipping of negative values to 0 in previous layers of the network allows 
-greater imprecision in the penultimate layers in order to predict a 0 in the 
+greater imprecision in the penultimate layer in order to predict a 0 in the 
 output adjacency matrix: rather than needing to fine tune the filters to produce 
 exactly 0 for nonexistent connections, the model need only drive the values for 
 such neuron pairs into the negatives, and let the application of ReLU correct.  
@@ -93,7 +65,7 @@ such neuron pairs into the negatives, and let the application of ReLU correct.
 \end{wrapfigure}
 Similarly, the final layer \textit{tanh} allows the network to drive weights for 
 probable connections far into the positives, with the activation function 
-ultimately truncating them to 1.
+ultimately mapping large values into a small range closely approaching 1.
 
 \section{Loss \& Optimization}
 In a nutshell, backpropagation via gradient descent is a method for training 
@@ -101,7 +73,7 @@ neural networks by calculating the extent to which each value in a particular
 layer is responsible for the overall network error on a single data point or 
 batch, then correcting that value by an amount commensurate to its error and 
 overall learning rate. This process operates from the final layer back to the 
-first, hence `backpropagation'.
+first, hence `backpropagation'.\cite{Rumelhart}
 
 In order to effectively descend the gradient, a network needs a function 
 defining error from the desired output and an algorithm for applying gradient 
@@ -163,8 +135,8 @@ comparable to that of MSE as the model learns to predict appropriately.
 	\captionof{figure}{\linespread{1.2}\selectfont{}Example adjacency matrix}
 	\label{fig:loss_ex}
 \end{wraptable}
-Consider a model analyzing data from a 3-neuron generator with an adjacency 
-matrix as given in \figref{fig:loss_ex}, and suppose that its output is a vector 
+Consider a model analyzing data from a 3-node generator with an adjacency matrix 
+as given in \figref{fig:loss_ex}, and suppose that its output is a vector 
 containing two correct values and one wrong value.  Then our parameters for 
 determining loss by way of \eqref{eq:losscalc} are as follows:
 \begin{align*}
@@ -183,8 +155,8 @@ determining loss by way of \eqref{eq:losscalc} are as follows:
 Thus, our loss function `punishes' the network equally for false positives and 
 false negatives: due to the squared difference, a 1 where there should be a 0 
 adds the same loss as a 0 where there should be a one. This is perhaps not the 
-ideal method; see The value produced for each input/target pair is then passed 
-to the optimizer.
+ideal method; see \ref{subsec:lossdics}. The value produced for each 
+input/target pair is then passed to the optimizer.
 
 \subsection{Optimizer Function}
 \label{subsec:optimizer}

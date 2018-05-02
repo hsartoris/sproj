@@ -243,7 +243,7 @@ such:
 	\underset{x \times y}{\mathbb{C}} = \underset{x \times y}{\mathbb{A}} \odot 
 	\underset{x \times y}{\mathbb{B}} \Rightarrow \{c_{ij}\} = \{a_{ij} \times 
 	b_{ij}\}
-	\end{equation}
+\end{equation}
 
 \subsection{Adjacency Matrices}
 \label{subsec:adjacency}
@@ -254,7 +254,7 @@ activity at the next discrete timestep, and one that we will use to produce our
 data, is to multiply this matrix by an \textit{n}-vector representing current 
 activity at each neuron.  Such an operation appears as follows for $n=3$:
 \begin{align}
-	\mathbb{X}_{t+1} &= \mathbb{M}\times\mathbb{X}_t =
+	\mathbb{S}_{t+1} &= \mathbb{M}\times\mathbb{S}_t =
 	\begin{bmatrix}
 		a & b & c\\
 		d & e & f\\
@@ -282,9 +282,37 @@ the mechanics of adjacency matrices:
 	\item Weights in some row \textit{i} define inputs to neuron \textit{i}
 	\item Weights in some column \textit{j} define outputs from neuron 
 		\textit{j}
-	\item The singular weight at $\mathbb{M}_{ij}$ defines the connection from 
-		neuron \textit{j} to neuron \textit{i}.  
-\end{enumerate}
+	\item The weight at $\mathbb{M}_{ij}$ defines the connection from neuron 
+		\textit{j} to neuron \textit{i}.  \end{enumerate}
 
 Keeping this inverse relationship in mind will help prevent confusion in later 
 chapters.
+
+\subsection{Matrix Visualization}
+For most data produced by our trained model, be it an output or a weight matrix, 
+we will use the following method of visualization as demonstrated in 
+\figref{fig:matvisex}. Color depth is  obtained via $C_{ij} = 255 \times 
+\frac{\mathbb{M}_{ij}}{max(\mathbb{M})}$.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{\textwidth}
+		\centering
+		\begin{equation*}
+			\begin{bmatrix}
+				\input{../resources/matEx}
+			\end{bmatrix}
+		\end{equation*}
+		%\caption{Numeric version}
+	\end{subfigure}\\
+	\vspace{1em}
+	\rotatebox{-90}{\scalebox{2}{$\Rightarrow$}}\\
+	\vspace{1em}
+	\begin{subfigure}{\textwidth}
+		\centering
+		\includegraphics[width=.5\textwidth]{matEx.png}
+		\caption{max: 3.97}
+	\end{subfigure}
+	\caption{The same matrix, in numerical and visual forms}
+	\label{fig:matvisex}
+\end{figure}\noindent
+

@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{2006mathematics}
+{\em Mathematics of Control, Signals, and Systems: MCSS.}
+\newblock Number v. 18. Springer International, 2006.
+
+\bibitem{networksciencebook}
+A.~Barab{\'a}si and M.~P{\'o}sfai.
+\newblock {\em Network Science}.
+\newblock Cambridge University Press, 2016.
+
+\bibitem{lecun1998gradient}
+Y.~LeCun, L.~Bottou, Y.~Bengio, and P.~Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 1998.
+
+\bibitem{neher1992patch}
+E.~Neher and B.~Sakmann.
+\newblock The patch clamp technique.
+\newblock {\em Scientific American}, 266(3):44--51, 1992.
+
+\bibitem{netmotifs-robustness}
+R.~J. Prill, P.~A. Iglesias, and A.~Levchenko.
+\newblock Dynamic properties of network motifs contribute to biological network
+  organization.
+\newblock {\em PLOS Biology}, 3(11), 10 2005.
+
+\bibitem{Ray2015}
+B.~Ray, A.~Statnikov, and C.~Aliferis.
+\newblock {Computational Methods for Unraveling Temporal Brain Connectivity
+  Data.}
+\newblock {\em AMIA ... Annual Symposium proceedings. AMIA Symposium},
+  2015:2043--52, 2015.
+
+\bibitem{Reimann2017}
+M.~W. Reimann, M.~Nolte, M.~Scolamiero, K.~Turner, R.~Perin, G.~Chindemi,
+  P.~D{\l}otko, R.~Levi, K.~Hess, and H.~Markram.
+\newblock {Cliques of Neurons Bound into Cavities Provide a Missing Link
+  between Structure and Function}.
+\newblock {\em Frontiers in Computational Neuroscience}, 2017.
+
+\bibitem{Stosiek7319}
+C.~Stosiek, O.~Garaschuk, K.~Holthoff, and A.~Konnerth.
+\newblock In vivo two-photon calcium imaging of neuronal networks.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  100(12):7319--7324, 2003.
+
+\bibitem{Xu8025}
+H.~Xu, A.~S. Khakhalin, A.~V. Nurmikko, and C.~D. Aizenman.
+\newblock Visual experience-dependent maturation of correlated neuronal
+  activity patterns in a developing visual system.
+\newblock {\em Journal of Neuroscience}, 31(22):8025--8036, 2011.
+
+\end{thebibliography}

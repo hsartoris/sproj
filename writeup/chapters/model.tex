@@ -34,7 +34,7 @@ small-\textit{n} toy networks.
 	\centering
 	\input{../resources/2simplex.tex}
 	\hspace{2em}
-	\adjacencyT{0 & 0 & 0}{1 & 0 & 0}{1 & 1 & 0}
+	\adjacencyTlabel{0 & 0 & 0}{1 & 0 & 0}{1 & 1 & 0}
 	\captionof{figure}{Example of 3-neuron network and adjacency matrix.}
 	\label{fig:toyex}
 \end{table}\noindent
@@ -44,16 +44,19 @@ data, we create an \textit{n}-vector $\mathbb{S}$ representing the current state
 of the toy network, with random neurons already spiking based on a chosen spike 
 rate. From here, the process is as in \ref{subsec:adjacency}, where $\mathbb{M}$ 
 is the adjacency matrix:
-\[
-	\underset{n \times n}{\mathbb{M}} \times \underset{n \times 1}{\mathbb{S}^t} 
-	= \underset{n \times 1}{\mathbb{S}^{t+1}}
-\]
+\begin{equation}
+	\underset{n \times 1}{\mathbb{S}^{t+1}} = \underset{n \times n}{\mathbb{M}} 
+	\times \underset{n \times 1}{\mathbb{S}^t}
+	\label{eq:genstep}
+\end{equation}
 Additonally, $\mathbb{S}^{t+1}$ may have one or more neurons spike randomly, as 
-determined by the spike rate of the simulation.\footnote{SEE APPENDIX} All 
-values are clipped to the range $[0,1]$, to avoid double spiking. At each step, 
-$\mathbb{S}$ is appended to an output matrix, which is saved after simulation is 
-complete. For $t$ simulation steps, the completed output has shape $(n \times 
-t)$.
+determined by the spike rate of the simulation.\footnote{SEE APPENDIX} Because 
+nodes can receive inputs from multiple other nodes, as well as random activity, 
+the vector, $\mathbb{S}^{t+1}$, produced in \eqref{eq:genstep}, may contain 
+values greater than one. Therefore, after each step, all values are clipped to 
+the range $(0,1)$. After this clipping, $\mathbb{S}$ is appended to an output 
+matrix, which is saved after simulation is complete.  For $t$ simulation steps, 
+the completed output has shape $(n \times t)$.
 
 Generally, we ran simulations as described for 50 steps\footnote{See 
 \ref{subsec:restructuring}}, then saved the resulting output matrix. As many as 
@@ -79,23 +82,23 @@ of the simulation:
 	\mathbb{R}^0 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}
 \]
 We now compute $\mathbb{S}^1$ as above:
-\[
+\begin{equation}
 	\mathbb{S}^1 = (\mathbb{M} \times \mathbb{S}^0) + \mathbb{R}^0 = 
-		\left(\begin{bmatrix}
+	\left(\begin{bmatrix}
 		0 & 0 & 0 \\
 		1 & 0 & 0 \\
 		1 & 1 & 0
 	\end{bmatrix} \times \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}\right)
 	+ \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}
-	= \begin{bmatrix} 0 \\ 2 \\ 1 \end{bmatrix}
-\]
-In this case, neuron 1 was spiked randomly, but was also spiked by virtue of its 
-connection from 0. Since in this simple model we only consider neurons to be 
-either spiking or not, binary values, we clip the values in $\mathbb{S}^1$ to a 
-maximum of 1, in order to prevent cases such as this one from causing spikes of 
-greater magnitude to propagate through the network. This also prevents neurons 
-from double spiking due to multiple inputs being active in the same timestep. 
-Thus we have our final value for $\mathbb{S}^1$, and append it to $\mathbb{O}$.
+	= \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \\ 0 
+\end{bmatrix}
+\end{equation}
+In this case, neuron 1 spiked randomly ($\mathbb{R}^0[1] = 1$), but was also 
+caused to spike by virtue of its connection from 0; this would result in a value 
+greater than one. As discussed previously, we clip the values in $\mathbb{S}^1$ 
+to a maximum of 1, in order to prevent cases such as this one from causing 
+spikes of greater magnitude to propagate through the network.  Thus we have our 
+final value for $\mathbb{S}^1$, and append it to $\mathbb{O}$.
 \[
 	\mathbb{S}^1 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} \qquad
 	\mathbb{O} = \begin{bmatrix}
@@ -105,8 +108,7 @@ Thus we have our final value for $\mathbb{S}^1$, and append it to $\mathbb{O}$.
 \]
 If we were to repeat this process several more times, we might end up with an 
 output matrix such as in \figref{fig:exoutput}.
-\begin{figure}[H]
-\[
+\begin{equation*}
 	\mathbb{O} = \left[ \mathbb{S}^0 \mid
 		\mathbb{S}^1 \mid \mathbb{S}^2 \mid \mathbb{S}^3 \mid \mathbb{S}^4 
 	\right] = \begin{bmatrix}
@@ -114,12 +116,16 @@ output matrix such as in \figref{fig:exoutput}.
 		0 & 1 & 0 & 1 & 0\\
 		0 & 1 & 1 & 1 & 1
 	\end{bmatrix}
-\]
-\caption{Example output matrix for a 3-neuron network simulated for five steps.}
-\label{fig:exoutput}
-\end{figure}\noindent
-We can clearly see the effects of neuron 2 having inputs from both other 
-neurons. Practically, the number of iterations was usually set to 50.
+	\label{fig:exoutput}
+\end{equation*}
+{\captionsetup{width=.85\linewidth}
+	\vspace{-8pt}
+\captionof{figure}{Example output matrix for a 3-neuron network simulated for 
+five steps.}}
+
+\noindent We can clearly see the effects of neuron 2 having inputs from both 
+other neurons in that it is spiking every timestep but the first.
+Practically, the number of iterations was usually set to 50.
 
 
 \subsection{Restructuring}
@@ -136,17 +142,22 @@ on the size of the generator network in question, as well as its spike rate. In
 such a scenario, we truncate the time dimension appropriately.
 
 For a network accepting \textit{t} timesteps of data from \textit{n} neurons, 
-the data fed into the network takes the following form:
-\[ \begin{bmatrix}
+the data fed into the network takes the general form found in 
+\figref{subfig:genlform}. Applying this process to the data in 
+\figref{fig:exoutput}, including truncating the time dimension to four, produces 
+the data in \figref{subfig:truncdata}.
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.48\textwidth}
+	\[ \begin{bmatrix}
 		x_{11} & x_{12} & \dots & x_{1n}\\
 		x_{21} & x_{22} & \dots & x_{2n}\\
 		\vdots & \vdots & \ddots & \vdots\\
 		x_{t1} & x_{t2} & \dots & x_{tn}
 	\end{bmatrix} \]
-Applying this process to the data in \figref{fig:exoutput}, including truncating 
-the time dimension to four, produces the data in \figref{fig:data+vis}.
-\begin{figure}[H]
-	\centering
+	\caption{Generalized shape of restructured data}
+	\label{subfig:genlform}
+	\end{subfigure}
 	\begin{subfigure}{.48\textwidth}
 		\[
 			\begin{bmatrix}
@@ -156,19 +167,18 @@ the time dimension to four, produces the data in \figref{fig:data+vis}.
 				0 & 1 & 1
 			\end{bmatrix}
 		\]
-		\caption{Transposed output matrix}
+		\caption{Output from \figref{fig:exoutput}, transposed and truncated}
+		\label{subfig:truncdata}
 	\end{subfigure}
-	\begin{subfigure}{.48\textwidth}
-		\centering
-		\includegraphics[width=.35\textwidth]{3outex}
-		\caption{Graphical representation}
-		\label{subfig:3outexgraph}
-	\end{subfigure}
-	\caption{Transposed and truncated matrix and associated visualization.}
-	\label{fig:data+vis}
-\end{figure}\noindent
-The representation of the matrix in \ref{subfig:3outexgraph} is an example of 
-the method we will use to depict matrices containing real values.
+	%\begin{subfigure}{.48\textwidth}
+	%	\centering
+	%	\includegraphics[width=.35\textwidth]{3outex}
+	%	\caption{Graphical representation}
+	%	\label{subfig:3outexgraph}
+	%\end{subfigure}
+	\caption{Input data dimensionality}
+	\label{fig:datadims}
+\end{figure}
 
 \subsubsection{Target Data}
 \label{subsubsec:targetdata}
@@ -187,13 +197,13 @@ the desired label, rendering it useless. However, due to the unique structure of
 our model, this sort of overfitting is impossible.\footnote{See 
 \ref{subsec:nindependence}} Therefore, we must merely construct a suitably 
 representative generator network, meaning that it contains all of the 
-inter-neuron relationships we expect to see in the data we ultimately feed in to 
-test.
+inter-neuron relationships we expect to see in the data we ultimately use to 
+test it.
 
 \section{Architecture}
 We will first describe the architecture in terms that, while accurate on the 
-macro level, do not fully reflect the actual transformations occuring in the 
-implemented model. We will then proceed to a mathematically representative 
+macroscopic level, do not fully reflect the actual transformations occuring in 
+the implemented model. We will then proceed to a mathematically representative 
 version, leaving explanation of the batched version of the model to 
 \ref{asec:batched}. Additionally, we describe a benchmark model not involving 
 locality calculations, in order to provide a point of reference for the efficacy 
@@ -201,8 +211,8 @@ of our implementation.
 
 \subsection{Structure \& Computation Details}
 \subsubsection{Dimensionality-defining Variables}
-Only two values characterize the matrices and transitions involved in the model.  
-They are as follows:
+Only two parameters characterize the matrices and transitions involved in the 
+model, the effective values for which we determined through experimentation:
 \begin{description}
 	\item \textit{b}: The number of steps of input data the model considers in a 
 		given segment of data.
@@ -211,8 +221,6 @@ They are as follows:
 		each potential neuron pair that the model can maintain across layer 
 		transitions.
 \end{description}
-We determined effective values for these parameters through experimentation.
-
 While we use the number of nodes in the generator graph, \textit{n}, to 
 calculate summations and averages, the structure of our calculations is such 
 that no aspects of the model are defined in terms of \textit{n}.
@@ -240,9 +248,8 @@ neuron \textit{i} individually with every other neuron \textit{j}, then
 multiplying by a matrix $\mathbb{W}$ of dimensionality $(d \times 2b)$. To this 
 product we add a bias vector, $\mathbb{B}$, of dimensionality $(d \times 1)$.
 
-$\mathbb{W}$ is trained on, and thus the comparison of each pair of spike trains 
-is left up to the network. The transition appears as follows, where $\underset{b 
-\times 1}{\mathbb{I}_x}$ is the input column at \textit{x}:
+The transition appears as follows, where $\underset{b \times 1}{\mathbb{I}_x}$ 
+is the input column at \textit{x}:
 \[
 	\mathlarger\forall i,j \mid 0 \leq i,j < n: \underset{d \times 
 	1}{d_{ij}^\prime} = \underset{d \times 2b}{\mathbb{W}} \times 
@@ -283,9 +290,8 @@ transformation is demonstrated in \figref{fig:transform}.
 Consider some $d_{ij}^{\prime}$ in $\mathbb{D}^{\prime}_N$. Then we can say the 
 following:
 \begin{enumerate}
-	\item $d_{ij}^{\prime}$ represents the connection from \textit{j} to 
-		\textit{i} as it may or may not exist in this network, in the form of 
-		\textit{d} values of indeterminate meaning
+	\item $d_{ij}^{\prime}$ is  a \textit{d}-vector representing the connection 
+		from \textit{j} to \textit{i} as it may or may not exist in this network
 	\item $\mathlarger\forall k \mid 0 \leq k < n$, $d_{jk}^{\prime}$ represents 
 		a potential input to \textit{j}
 	\item $\mathlarger\forall k \mid 0 \leq k < n$, $d_{ki}^{\prime}$ represents 
@@ -293,10 +299,9 @@ following:
 \end{enumerate}
 In our determination of the presence or absence of a connection from \textit{j} 
 to \textit{i}, we wish to incorporate information from these potentially 
-connected nodes; i.e., these inputs and outputs represent potential neighbors in 
-terms of graph locality. To achieve this, we perform the following 
-computations\footnote{Actually, it's much more elegant.} for each $\underset{d 
-\times 1}{d_{ij}}$:
+connected nodes; that is, these inputs and outputs represent potential neighbors 
+in terms of graph locality. To achieve this, we perform the following 
+computations for each $\underset{d \times 1}{d_{ij}}$:
 \begin{minipage}{\textwidth}
 \begin{subequations}
 	\centering
@@ -338,10 +343,6 @@ $\mathbb{O_D}$ are most important in the prediction of \textit{ij}.
 Additionally, a bias vector, $\mathbb{B}^\prime$, is added to this product, and 
 at this point we have $d_{ij}^{\prime\prime}$ as it will be seen by the next 
 layer of the network.\footnotemark
-%The three matrices involved, $\mathbb{W}_{in}^\prime$, 
-%$\mathbb{W}_{out}^\prime$, and $\mathbb{W}_{tot}^\prime$, are trained on by the 
-%optimizer\footnote{SEE OPTIMIZER SECION IN TRAINING}, allowing the model to 
-%learn optimal processing and combinations to facilitate predictions.
 \end{minipage}
 \footnotetext{Disregarding the activation function}
 
@@ -539,7 +540,7 @@ the following equation:
 \subsubsection{Trainable Values}
 Between all of the operations defined in \ref{subsec:matmodel} (and equivalently 
 in \ref{subsec:conceptualmodel}), the following matrices are the only values 
-over which the optimizer can perform gradient descent:
+that are optimized by the learning algorithm:
 \subparagraph{First Layer}
 \begin{itemize}
 	\item[$\ubb{W}{d}{2b}$:] weight matrix used to merge columns of input data
@@ -580,11 +581,12 @@ As noted previously, none of these matrices are dependent on \textit{n}.
 Furthermore, even in the matrix model (\ref{subsec:matmodel}), the weight 
 matrices operate individually on each \textit{ij} vector, and the same bias is 
 added to each vector.  Because the network is not provided any trainable 
-\textit{n}-scale values, all calculation and training is done per node pair.  
-This obviates the typical neural network problem of overfitting to its training 
-dataset to the point it simply memorizes appropriate outputs.\footnote{See 
-\ref{sec:overfitting}} Additionally, this allows for application of a trained 
-model to data produced by generators of a different size than those used to 
-train the model. Because our model operates entirely on local graph features, 
-the only requirement for such an application is that the training data contain a 
-set of features also representative of the new data.
+matrices with dimensionality even partly defined by \textit{n}, all calculation 
+and training is done per node pair.  This obviates the typical neural network 
+problem of overfitting to its training dataset to the point it simply memorizes 
+appropriate outputs.\footnote{See \ref{sec:overfitting}} Additionally, this 
+allows for application of a trained model to data produced by generators of a 
+different size than those used to train the model. Because our model operates 
+entirely on local graph features, the only requirement for such an application 
+is that the training data contain a set of features also representative of the 
+new data.

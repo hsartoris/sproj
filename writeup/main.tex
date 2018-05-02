@@ -23,6 +23,7 @@ shapes.geometric}
 \newcommand{\mc}[1]{\multicolumn{1}{c|}{#1}}
 \newcommand{\figref}[1]{Figure \ref{#1}}
 \newcommand{\Figref}[1]{Figure \ref{#1}}
+\newcommand{\igtw}[1]{\includegraphics[width=\textwidth]{#1}}
 
 \newcommand{\adjacencyT}[3]{%
 	\begin{tabular}{cccc}
@@ -30,6 +31,15 @@ shapes.geometric}
 		\mc{0} & #1\\
 		\mc{1} & #2\\
 		\mc{2} & #3
+	\end{tabular}
+	}
+\newcommand{\adjacencyTlabel}[3]{%
+	\begin{tabular}{ccccc}
+		& &\multicolumn{3}{c}{\textit{from}}\\
+		& & 0 & 1 & 2\\\cline{3-5}
+		&\mc{0} & #1\\
+		\textit{to} &\mc{1} & #2\\
+		&\mc{2} & #3
 	\end{tabular}
 	}
 
