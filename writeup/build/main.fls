@@ -390,6 +390,8 @@ INPUT build/main.lof
 OUTPUT build/main.lof
 INPUT chapters/abstract.tex
 INPUT chapters/abstract.tex
+INPUT chapters/intro.tex
+INPUT chapters/intro.tex
 INPUT chapters/bg.tex
 INPUT chapters/bg.tex
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm

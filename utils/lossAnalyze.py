@@ -10,7 +10,7 @@ import os
 import sys
 minIdx = 1
 maxIdx = 99
-saveDir = "model/checkpoints/bench/9neur/"
+saveDir = "model/checkpoints/bench/3neur/"
 
 def loadLosses():
     convLosses = []

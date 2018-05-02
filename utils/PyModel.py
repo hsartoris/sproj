@@ -57,6 +57,17 @@ class Model():
         print("Layer 0 prerelu max value:", np.max(prerelu))
         return layer
 
+    def layer1dumb(self, data, n):
+        layer = dict()
+        layer['weights'] = weights = self.weights['layer1'][0]
+        layer['bias'] = bias = self.biases['layer1']
+        layer['bias_block'] = bias_block = np.tile(bias, n*n)
+
+        layer['0prebias'] = prebias = np.matmul(weights, data)
+        layer['1prerelu'] = prerelu = prebias + bias_block
+        layer['2out'] = self.relu(prerelu)
+        return layer
+
     def layer1(self, data, n):
         layer = dict()
 
@@ -121,15 +132,25 @@ class Model():
 
         for name, mat in layer.items():
             matVis(mat, layerPath + name + ".png", connections=pn, drawText=pn, 
-                    n=n)
+                    n=n, grayScale=True)
             self.savenp(mat, csvPath + name)
 
-    def run(self, data, saveDir, printNumbers=False):
+    def run(self, data, saveDir, printNumbers=False, dumb=False):
         n = data.shape[1]
         self.makeTiles(n)
         layer0dict = self.layer0(data, n)
-        layer1dict = self.layer1(layer0dict['4out'], n)
-        layerfdict = self.layerFinal(layer1dict['7out'])
+        print("Layer 0 complete")
+        if not dumb:
+            layer1dict = self.layer1(layer0dict['4out'], n)
+        else:
+            layer1dict = self.layer1dumb(layer0dict['4out'], n)
+        print("Layer 1 complete")
+
+        if not dumb:
+            layerfdict = self.layerFinal(layer1dict['7out'])
+        else:
+            layerfdict = self.layerFinal(layer1dict['2out'])
+        print("Layer f complete")
         pred = self.prediction(layerfdict['0out'])
         if not os.path.exists(saveDir):
             os.mkdir(saveDir)
@@ -139,7 +160,8 @@ class Model():
         pred = pred.reshape((n,n))
 
         self.savenp(data, saveDir + "input")
-        matVis(data, saveDir + "input.png", drawText=printNumbers)
+        matVis(data, saveDir + "input.png", drawText=printNumbers, 
+                grayScale=True)
         self.exportLayerDict(layer0dict, saveDir + "layer0/", pn=printNumbers, 
                 n=None)
         self.exportLayerDict(layer1dict, saveDir + "layer1/", pn=printNumbers, 
@@ -148,11 +170,12 @@ class Model():
                 n=None)
         self.savenp(pred, saveDir + "pred")
         matVis(pred, saveDir + "pred.png", connections=printNumbers, 
-                drawText=printNumbers)
+                drawText=printNumbers, grayScale=True)
         
 
 
 if __name__ == "__main__":
+    dumb = True
     if len(sys.argv) < 4:
         print("Usage: PyModel matDir outDir dataFile [pn]\n\tpn: print numbers")
         sys.exit()
@@ -166,4 +189,8 @@ if __name__ == "__main__":
     outDir = sys.argv[2] + "/"
     data = np.loadtxt(sys.argv[3], delimiter=',')
     m = Model(matDir)
-    m.run(data, outDir, printNumbers=printNumbers)
+    b = int(m.weights['layer0'].shape[1] / 2)
+    print("b:", b)
+    if not data.shape[0] == b:
+        data = data[:,:b].transpose()
+    m.run(data, outDir, printNumbers=printNumbers, dumb=dumb)
