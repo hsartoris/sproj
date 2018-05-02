@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex build/main"] 1525267109 "build/main.aux" "build/main.bbl" "build/main" 1525267112
+["bibtex build/main"] 1525268970 "build/main.aux" "build/main.bbl" "build/main" 1525268970
   "/usr/share/texmf-dist/bibtex/bst/base/abbrv.bst" 1520157249 20329 b5fed53e10044d0f8112183785c759b1 ""
   "build/main.aux" 1525267111 15251 69b048562db605786c56a4e6bcaf069e ""
   "total.bib" 0 -1 0 ""
   (generated)
-  "build/main.bbl"
   "build/main.blg"
-["pdflatex"] 1525267109 "main.tex" "build/main.pdf" "main" 1525267112
+  "build/main.bbl"
+["pdflatex"] 1525267109 "main.tex" "build/main.pdf" "main" 1525268970
   "/home/hsartoris/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk" 1525158445 8424 48ba15da934a4eadbce21ed1f3c36fa5 ""
   "/home/hsartoris/texmf/tex/latex/local/wrapfig.sty" 1524457044 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
@@ -302,8 +302,8 @@
   "resources/models/9neur/dumb1/pred.png" 1525208787 1228 1566e2dae16727b523e19b4947a8fb57 ""
   "resources/tikzpics.tex" 1524697271 1742 ed1b8bd77672ccd7694aa12f450a3ee3 ""
   (generated)
-  "build/main.toc"
-  "build/main.lof"
-  "build/main.aux"
-  "build/main.pdf"
   "build/main.log"
+  "build/main.toc"
+  "build/main.aux"
+  "build/main.lof"
+  "build/main.pdf"
