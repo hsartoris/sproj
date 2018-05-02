@@ -1,0 +1,34 @@
+# b
+50
+# d
+100
+# n
+43
+# batchSize
+32
+# initLearnRate
+0.002
+# trainingSteps
+100000
+# prefix
+dataStaging/bigSimplex50k2/
+# testMaxIdx, validMaxIdx, trainMaxIdx
+50000, 45000, 36000
+# noDumb
+0
+# script
+False
+{'--b': '50',
+ '--bs': '32',
+ '--d': '100',
+ '--help': False,
+ '--immediate': False,
+ '--lr': '.002',
+ '--noDumb': False,
+ '--outDir': 'simplex',
+ '--r': '1',
+ '--runId': '5',
+ '--s': '50k',
+ '--script': False,
+ '--ts': '100k',
+ '<dataDir>': 'bigSimplex50k2'}

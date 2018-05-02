@@ -58,7 +58,7 @@ def initMats(weights_stddev, biases_stddev, d, b, layers = None):
     if layers is None or layers > 3:
         weights['layer2'] = [tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
             tf.Variable(tf.random_normal([d, d], stddev=weights_stddev)),
-            tf.Variable(tf.random_normal([d, 2*d], stddev=.5))]
+            tf.Variable(tf.random_normal([d, 2*d], stddev=weights_stddev))]
 
     weights['final'] = tf.Variable(tf.random_normal([1, d], stddev=weights_stddev))
 

@@ -7,7 +7,7 @@
 # batchSize
 32
 # initLearnRate
-0.001
+0.0025
 # trainingSteps
 100000
 # prefix
@@ -23,26 +23,26 @@ False
  '--d': '50',
  '--help': False,
  '--immediate': False,
- '--lr': '.001',
+ '--lr': '.0025',
  '--noDumb': False,
  '--outDir': 'simplex',
  '--r': '1',
- '--runId': '2',
+ '--runId': '3',
  '--s': '50k',
  '--script': False,
  '--ts': '100k',
  '<dataDir>': 'bigSimplex50k2'}Convolutional model matrix magnitudes:
-w0_tot: 986.4542
-w1in_tot: 502.15546
-w1out_tot: 503.01028
-w1f_tot: 999.4017
-wf_tot: 8.802248
+w0_tot: 996.8
+w1in_tot: 502.14978
+w1out_tot: 507.89536
+w1f_tot: 981.2742
+wf_tot: 9.020507
 
 Simple model matrix magnitudes:
-w0_tot: 1000.28125
-w1_tot: 489.06766
-wf_tot: 9.565977
+w0_tot: 994.9266
+w1_tot: 507.4369
+wf_tot: 10.546332
 # min dumb loss
-(71999, 0.5735591)
+(71999, 0.5622137)
 # min conv loss
-(71999, 0.5287679)
+(71999, 0.44402948)
