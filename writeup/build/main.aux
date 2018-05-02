@@ -43,196 +43,200 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Convolutional Neural Networks}{7}}
 \newlabel{subsec:convnets}{{2.3.2}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Graph Adjacency}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Concepts and Terms}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Adjacency Matrices}{9}}
-\newlabel{subsec:adjacency}{{2.5.1}{9}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Model}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}General Operations \& Notation}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Matrix Operations}{9}}
+\newlabel{subsec:matops}{{2.5.1}{9}}
+\@writefile{toc}{\contentsline {paragraph}{Concatenation}{9}}
+\@writefile{toc}{\contentsline {paragraph}{Entrywise Product}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Adjacency Matrices}{10}}
+\newlabel{subsec:adjacency}{{2.5.2}{10}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Model}{12}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{model}{{3}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Data}{11}}
-\newlabel{sec:data}{{3.1}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Generation}{12}}
-\newlabel{subsec:generation}{{3.1.1}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of 3-neuron network and adjacency matrix.\relax }}{12}}
-\newlabel{fig:toyex}{{3.1}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{Example Data Generation}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Example output matrix for a 3-neuron network simulated for five steps.\relax }}{14}}
-\newlabel{fig:exoutput}{{3.2}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Restructuring}{14}}
-\newlabel{subsec:restructuring}{{3.1.2}{14}}
-\@writefile{toc}{\contentsline {subsubsection}{Input Data}{14}}
-\newlabel{subfig:3outexgraph}{{3.3b}{15}}
-\newlabel{sub@subfig:3outexgraph}{{b}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Transposed and truncated matrix and associated visualization.\relax }}{15}}
-\newlabel{fig:data+vis}{{3.3}{15}}
-\@writefile{toc}{\contentsline {subsubsection}{Target Data}{15}}
-\newlabel{subsubsec:targetdata}{{3.1.2}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Generalizability}{15}}
-\newlabel{subsec:hotswap}{{3.1.3}{15}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Architecture}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Structure \& Computation Details}{16}}
-\@writefile{toc}{\contentsline {subsubsection}{Dimensionality-defining Variables}{16}}
-\@writefile{toc}{\contentsline {subsubsection}{Omitted Details}{17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Conceptual Model}{17}}
-\newlabel{subsec:conceptualmodel}{{3.2.2}{17}}
-\@writefile{toc}{\contentsline {subsubsection}{First Transition}{17}}
-\@writefile{toc}{\contentsline {subsubsection}{Locality Layer}{18}}
-\newlabel{subsubsec:locality}{{3.2.2}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Relationship between $\mathbb  {D}^{\prime }$ and $\mathbb  {D}^{\prime }_N$.\relax }}{18}}
-\newlabel{fig:transform}{{3.4}{18}}
-\newlabel{eq:ID}{{\bfseries  3.1a}{19}}
-\newlabel{eq:IDOD}{{\bfseries  3.1b}{19}}
-\newlabel{eq:dijO}{{\bfseries  3.1c}{19}}
-\@writefile{toc}{\contentsline {subsubsection}{Final Transition}{20}}
-\newlabel{eq:conceptfinal}{{\bfseries  3.2}{20}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Matrix Model}{20}}
-\newlabel{subsec:matmodel}{{3.2.3}{20}}
-\@writefile{toc}{\contentsline {subsubsection}{First Layer}{21}}
-\newlabel{subsubsec:matfirstlayer}{{3.2.3}{21}}
-\newlabel{eq:matfirst}{{\bfseries  3.3}{21}}
-\@writefile{toc}{\contentsline {paragraph}{Example:}{21}}
-\@writefile{toc}{\contentsline {subsubsection}{Locality Layer}{22}}
-\newlabel{subsubsec:matconvlayer}{{3.2.3}{22}}
-\newlabel{eq:matsecond}{{\bfseries  3.6}{23}}
-\newlabel{eq:matsecondfinal}{{\bfseries  3.6b}{23}}
-\@writefile{toc}{\contentsline {subsubsection}{Final Layer}{23}}
-\newlabel{subsubsec:matfinallayer}{{3.2.3}{23}}
-\newlabel{eq:matfinal}{{\bfseries  3.7}{23}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Benchmark Model}{23}}
-\newlabel{subsec:benchmark}{{3.2.4}{23}}
-\newlabel{eq:benchsecond}{{\bfseries  3.8}{24}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}\textit  {n}-independence}{24}}
-\newlabel{subsec:nindependence}{{3.2.5}{24}}
-\@writefile{toc}{\contentsline {subsubsection}{Trainable Values}{24}}
-\@writefile{toc}{\contentsline {subparagraph}{First Layer}{24}}
-\@writefile{toc}{\contentsline {subparagraph}{Locality Layer}{24}}
-\@writefile{toc}{\contentsline {subparagraph}{Final Layer}{24}}
-\@writefile{toc}{\contentsline {subparagraph}{Benchmark Model}{25}}
-\@writefile{toc}{\contentsline {subsubsection}{Implications}{25}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Training}{26}}
+\newlabel{model}{{3}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Data}{12}}
+\newlabel{sec:data}{{3.1}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Generation}{13}}
+\newlabel{subsec:generation}{{3.1.1}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of 3-neuron network and adjacency matrix.\relax }}{13}}
+\newlabel{fig:toyex}{{3.1}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{Example Data Generation}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Example output matrix for a 3-neuron network simulated for five steps.\relax }}{15}}
+\newlabel{fig:exoutput}{{3.2}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Restructuring}{15}}
+\newlabel{subsec:restructuring}{{3.1.2}{15}}
+\@writefile{toc}{\contentsline {subsubsection}{Input Data}{15}}
+\newlabel{subfig:3outexgraph}{{3.3b}{16}}
+\newlabel{sub@subfig:3outexgraph}{{b}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Transposed and truncated matrix and associated visualization.\relax }}{16}}
+\newlabel{fig:data+vis}{{3.3}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{Target Data}{16}}
+\newlabel{subsubsec:targetdata}{{3.1.2}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Generalizability}{16}}
+\newlabel{subsec:hotswap}{{3.1.3}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Architecture}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Structure \& Computation Details}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{Dimensionality-defining Variables}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{Omitted Details}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Conceptual Model}{18}}
+\newlabel{subsec:conceptualmodel}{{3.2.2}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{First Transition}{18}}
+\@writefile{toc}{\contentsline {subsubsection}{Locality Layer}{19}}
+\newlabel{subsubsec:locality}{{3.2.2}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Relationship between $\mathbb  {D}^{\prime }$ and $\mathbb  {D}^{\prime }_N$.\relax }}{19}}
+\newlabel{fig:transform}{{3.4}{19}}
+\newlabel{eq:ID}{{\bfseries  3.1a}{20}}
+\newlabel{eq:IDOD}{{\bfseries  3.1b}{20}}
+\newlabel{eq:dijO}{{\bfseries  3.1c}{20}}
+\@writefile{toc}{\contentsline {subsubsection}{Final Transition}{21}}
+\newlabel{eq:conceptfinal}{{\bfseries  3.2}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Matrix Model}{21}}
+\newlabel{subsec:matmodel}{{3.2.3}{21}}
+\@writefile{toc}{\contentsline {subsubsection}{First Layer}{22}}
+\newlabel{subsubsec:matfirstlayer}{{3.2.3}{22}}
+\newlabel{eq:matfirst}{{\bfseries  3.3}{22}}
+\@writefile{toc}{\contentsline {paragraph}{Example:}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{Locality Layer}{23}}
+\newlabel{subsubsec:matconvlayer}{{3.2.3}{23}}
+\newlabel{eq:matsecond}{{\bfseries  3.6}{24}}
+\newlabel{eq:matsecondfinal}{{\bfseries  3.6b}{24}}
+\@writefile{toc}{\contentsline {subsubsection}{Final Layer}{24}}
+\newlabel{subsubsec:matfinallayer}{{3.2.3}{24}}
+\newlabel{eq:matfinal}{{\bfseries  3.7}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Benchmark Model}{24}}
+\newlabel{subsec:benchmark}{{3.2.4}{24}}
+\newlabel{eq:benchsecond}{{\bfseries  3.8}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}\textit  {n}-independence}{25}}
+\newlabel{subsec:nindependence}{{3.2.5}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{Trainable Values}{25}}
+\@writefile{toc}{\contentsline {subparagraph}{First Layer}{25}}
+\@writefile{toc}{\contentsline {subparagraph}{Locality Layer}{25}}
+\@writefile{toc}{\contentsline {subparagraph}{Final Layer}{25}}
+\@writefile{toc}{\contentsline {subparagraph}{Benchmark Model}{26}}
+\@writefile{toc}{\contentsline {subsubsection}{Implications}{26}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Training}{27}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Activation Functions}{26}}
-\newlabel{sec:activation}{{4.1}{26}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Initial \& Convolutional Layers}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces ReLU function definition and graph\relax }}{26}}
-\newlabel{fig:relu}{{4.1}{26}}
-\@writefile{toc}{\contentsline {subsubsection}{Alternative Activations}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Sigmoid function definition and graph\relax }}{27}}
-\newlabel{fig:sigmoid}{{4.2}{27}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Final Layer}{27}}
-\newlabel{subsec:finalactivation}{{4.1.2}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Graph of $y=\qopname  \relax o{tanh}(x)$\relax }}{27}}
-\newlabel{fig:tanh}{{4.3}{27}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Loss \& Optimization}{28}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Loss Function}{28}}
-\newlabel{eq:ssd}{{\bfseries  4.1a}{28}}
-\newlabel{eq:los}{{\bfseries  4.1b}{29}}
-\newlabel{eq:losscalc}{{\bfseries  4.1}{29}}
-\@writefile{toc}{\contentsline {subsubsection}{Effects}{29}}
-\newlabel{subsubsec:losseffects}{{4.2.1}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces \linespread  {1.2}\selectfont  {}Example adjacency matrix\relax }}{29}}
-\newlabel{fig:loss_ex}{{4.4}{29}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Optimizer Function}{30}}
-\newlabel{subsec:optimizer}{{4.2.2}{30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Adam decay function over 100 steps. Converges asymptotically to 1.\relax }}{30}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Datasets}{31}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Matrices}{31}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Initialization}{31}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Locality Layer Operations}{31}}
-\newlabel{subsec:localops}{{4.4.2}{31}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Hyperparameter Optimization}{33}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Batch Size}{33}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Results}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Activation Functions}{27}}
+\newlabel{sec:activation}{{4.1}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Initial \& Convolutional Layers}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces ReLU function definition and graph\relax }}{27}}
+\newlabel{fig:relu}{{4.1}{27}}
+\@writefile{toc}{\contentsline {subsubsection}{Alternative Activations}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Sigmoid function definition and graph\relax }}{28}}
+\newlabel{fig:sigmoid}{{4.2}{28}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Final Layer}{28}}
+\newlabel{subsec:finalactivation}{{4.1.2}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Graph of $y=\qopname  \relax o{tanh}(x)$\relax }}{28}}
+\newlabel{fig:tanh}{{4.3}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Loss \& Optimization}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Loss Function}{29}}
+\newlabel{eq:ssd}{{\bfseries  4.1a}{29}}
+\newlabel{eq:los}{{\bfseries  4.1b}{30}}
+\newlabel{eq:losscalc}{{\bfseries  4.1}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{Effects}{30}}
+\newlabel{subsubsec:losseffects}{{4.2.1}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces \linespread  {1.2}\selectfont  {}Example adjacency matrix\relax }}{30}}
+\newlabel{fig:loss_ex}{{4.4}{30}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Optimizer Function}{31}}
+\newlabel{subsec:optimizer}{{4.2.2}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Adam decay function over 100 steps. Converges asymptotically to 1.\relax }}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Datasets}{32}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Matrices}{32}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Initialization}{32}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Locality Layer Operations}{32}}
+\newlabel{subsec:localops}{{4.4.2}{32}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Hyperparameter Optimization}{34}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Batch Size}{34}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Results}{35}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{results}{{5}{34}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Overfitting}{34}}
-\newlabel{sec:overfitting}{{5.1}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces \linespread  {1.2}\selectfont  {}Training parameters for null hypothesis networks\relax }}{34}}
-\newlabel{fig:nullparams}{{5.1}{34}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Empty Data}{34}}
-\newlabel{subsec:empty}{{5.1.1}{34}}
-\newlabel{subfig:empty_loss0}{{5.2a}{35}}
-\newlabel{sub@subfig:empty_loss0}{{a}{35}}
-\newlabel{subfig:empty_loss1}{{5.2b}{35}}
-\newlabel{sub@subfig:empty_loss1}{{b}{35}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{35}}
-\newlabel{fig:empty_loss}{{5.2}{35}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Random Data}{35}}
-\newlabel{subsec:random}{{5.1.2}{35}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{35}}
-\newlabel{fig:random_output}{{5.3}{35}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}Analysis}{35}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}3-neuron generator}{36}}
-\newlabel{results_3neur}{{5.2}{36}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 3.1\hbox {})\relax }}{36}}
-\newlabel{fig:2simplex+adjacency}{{5.4}{36}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Example Model}{37}}
-\newlabel{subsec:3neurex}{{5.2.1}{37}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Caption for LOF}}{37}}
-\newlabel{fig:3neur_loss+params}{{5.1}{37}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Trained Network Operation}{38}}
-\newlabel{subsec:trainedoperation}{{5.2.2}{38}}
-\newlabel{subfig:3neur_in}{{5.5a}{38}}
-\newlabel{sub@subfig:3neur_in}{{a}{38}}
-\newlabel{subfig:3neur_out1}{{5.5c}{38}}
-\newlabel{sub@subfig:3neur_out1}{{c}{38}}
-\newlabel{subfig:3neur_outf}{{5.5d}{38}}
-\newlabel{sub@subfig:3neur_outf}{{d}{38}}
-\newlabel{subfig:3neur_pred}{{5.5e}{38}}
-\newlabel{sub@subfig:3neur_pred}{{e}{38}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Path of data through network. Transparency for each value is scaled relative to the maximum value found in the matrix.\relax }}{38}}
-\newlabel{fig:3neur_run}{{5.5}{38}}
-\@writefile{toc}{\contentsline {subsubsection}{Brief Analysis}{39}}
-\@writefile{toc}{\contentsline {paragraph}{Final Layer}{39}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Final weights (max: 7.31)\relax }}{39}}
-\newlabel{fig:3neur_flayer}{{5.6}{39}}
-\@writefile{toc}{\contentsline {paragraph}{Locality Layer Functionality}{39}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Higher-order Datasets}{39}}
-\newlabel{sec:localitybroken}{{5.3}{39}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Ten neuron generator and adjacency matrix. For purposes of clarity, all zero values in the matrix have been omitted.\relax }}{40}}
-\newlabel{fig:10neur}{{5.7}{40}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Loss \& parameters for model trained on data from generator given in Figure 5.7\hbox {}\relax }}{40}}
-\newlabel{fig:9neur_loss+params}{{5.8}{40}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Example of data from generator defined in Figure 5.7\hbox {}, passed through the locality-based and benchmarks models.\relax }}{41}}
-\newlabel{fig:samepred}{{5.9}{41}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Applicability Beyond Training Data}{41}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Inverted Network}{42}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Inverted version of Figure 5.4\hbox {}\relax }}{42}}
-\newlabel{fig:2simplexVar1}{{5.10}{42}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Cyclical Network}{42}}
-\newlabel{subsec:cyclical}{{5.4.2}{42}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Cyclical 3-neuron network\relax }}{42}}
-\newlabel{fig:2simplexVar2}{{5.11}{42}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion}{44}}
+\newlabel{results}{{5}{35}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Overfitting}{35}}
+\newlabel{sec:overfitting}{{5.1}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces \linespread  {1.2}\selectfont  {}Training parameters for null hypothesis networks\relax }}{35}}
+\newlabel{fig:nullparams}{{5.1}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Empty Data}{35}}
+\newlabel{subsec:empty}{{5.1.1}{35}}
+\newlabel{subfig:empty_loss0}{{5.2a}{36}}
+\newlabel{sub@subfig:empty_loss0}{{a}{36}}
+\newlabel{subfig:empty_loss1}{{5.2b}{36}}
+\newlabel{sub@subfig:empty_loss1}{{b}{36}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{36}}
+\newlabel{fig:empty_loss}{{5.2}{36}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Random Data}{36}}
+\newlabel{subsec:random}{{5.1.2}{36}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{36}}
+\newlabel{fig:random_output}{{5.3}{36}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}Analysis}{36}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}3-neuron generator}{37}}
+\newlabel{results_3neur}{{5.2}{37}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 3.1\hbox {})\relax }}{37}}
+\newlabel{fig:2simplex+adjacency}{{5.4}{37}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Example Model}{38}}
+\newlabel{subsec:3neurex}{{5.2.1}{38}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Caption for LOF}}{38}}
+\newlabel{fig:3neur_loss+params}{{5.1}{38}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Trained Network Operation}{39}}
+\newlabel{subsec:trainedoperation}{{5.2.2}{39}}
+\newlabel{subfig:3neur_in}{{5.5a}{39}}
+\newlabel{sub@subfig:3neur_in}{{a}{39}}
+\newlabel{subfig:3neur_out1}{{5.5c}{39}}
+\newlabel{sub@subfig:3neur_out1}{{c}{39}}
+\newlabel{subfig:3neur_outf}{{5.5d}{39}}
+\newlabel{sub@subfig:3neur_outf}{{d}{39}}
+\newlabel{subfig:3neur_pred}{{5.5e}{39}}
+\newlabel{sub@subfig:3neur_pred}{{e}{39}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Path of data through network. Transparency for each value is scaled relative to the maximum value found in the matrix.\relax }}{39}}
+\newlabel{fig:3neur_run}{{5.5}{39}}
+\@writefile{toc}{\contentsline {subsubsection}{Brief Analysis}{40}}
+\@writefile{toc}{\contentsline {paragraph}{Final Layer}{40}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Final weights (max: 7.31)\relax }}{40}}
+\newlabel{fig:3neur_flayer}{{5.6}{40}}
+\@writefile{toc}{\contentsline {paragraph}{Locality Layer Functionality}{40}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Higher-order Datasets}{40}}
+\newlabel{sec:localitybroken}{{5.3}{40}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Ten neuron generator and adjacency matrix. For purposes of clarity, all zero values in the matrix have been omitted.\relax }}{41}}
+\newlabel{fig:10neur}{{5.7}{41}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Loss \& parameters for model trained on data from generator given in Figure 5.7\hbox {}\relax }}{41}}
+\newlabel{fig:9neur_loss+params}{{5.8}{41}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Example of data from generator defined in Figure 5.7\hbox {}, passed through the locality-based and benchmarks models.\relax }}{42}}
+\newlabel{fig:samepred}{{5.9}{42}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Applicability Beyond Training Data}{42}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Inverted Network}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Inverted version of Figure 5.4\hbox {}\relax }}{43}}
+\newlabel{fig:2simplexVar1}{{5.10}{43}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Cyclical Network}{43}}
+\newlabel{subsec:cyclical}{{5.4.2}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Cyclical 3-neuron network\relax }}{43}}
+\newlabel{fig:2simplexVar2}{{5.11}{43}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion}{45}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Data}{44}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Complex Neurons}{45}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Larger, Structured Networks}{45}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Potential Improvements to Locality}{46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Layering}{46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Algorithm}{46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Loss}{46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Optimizer}{47}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Potential Applications/Further Development}{47}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{48}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Data}{45}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Complex Neurons}{46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Larger, Structured Networks}{46}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Potential Improvements to Locality}{47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Layering}{47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Algorithm}{47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Loss}{47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Optimizer}{48}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Potential Applications/Further Development}{48}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{49}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Data}{48}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{48}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Data}{49}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{49}}
 \bibstyle{abbrv}
 \bibdata{total}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Model}{49}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Model}{50}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{49}}
-\newlabel{asec:batched}{{B.1}{49}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{50}}
+\newlabel{asec:batched}{{B.1}{50}}
