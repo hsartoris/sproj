@@ -6,20 +6,21 @@ The model trained and tested here represents ... stuff
 
 \section{Data}
 \label{sec:data}
-Insofar as we treat ANNs as providing arbitrary function approximation, training
-a network requires input data representing the known data about the system we
+Training a network requires input data representing the known data about the 
+system we
 wish to model, as well as output data we wish the network to produce from the
 inputs. More generally, input data usually entails information that is easy to 
-acquire about the process being modeled, while output data, or labels, 
+acquire about the process being modeled, while output data, which we treat as 
+targets,
 correspond to a dataset that is difficult to acquire generally. Of course, this 
 means that the first step in training a neural network is to assemble a 
-sufficiently large set of inputs and outputs in order to fully, or at least 
-approximately, characterize the problem at hand.
+sufficiently large set of inputs and outputs in order to characterize the 
+problem at hand.
 
-In our case, we wish to map from (relatively) easily available data about 
-biological networks, individual neuron spike times, to network structure. While 
-such data exist, generating our own allows us to better analyze the results of 
-the algorithm.
+We wish to map from relatively easily available data about biological networks, 
+individual neuron spike times, to network structure, which is often unknown.  
+While such data exist, generating our own allows us to better analyze the 
+results of the algorithm.
 
 
 \subsection{Generation}

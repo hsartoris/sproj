@@ -202,19 +202,60 @@ data, all calculations are performed via transposition of a filter across the
 input dataset.
 
 
-\section{Concepts and Terms}
+\section{General Operations \& Notation}
 Before diving into the specifics of data production, model architecture, and 
-training, it's important to establish several important concepts.
+training, it's important to establish a firm understanding of the operations 
+that will be involved in Chapter \ref{model}.
+
+\subsection{Matrix Operations}
+\label{subsec:matops}
+Most of the layers in our architecture can be understood with a basic working 
+knowledge of matrix math, but some operations may be unfamiliar; we will also 
+clarify some notation choices.
+
+\paragraph{Concatenation}
+We will periodically need to concatenate matrices on the vertical axis, that is, 
+stack them on top of each other; this is the vertical equivalent of matrix 
+augmentation. We denote this operation with a horizontal bar between the 
+matrices or vectors in question. Example:
+\begin{align*}
+	\mathbb{A} &= \begin{bmatrix}
+		1 & 2 & 3\\
+		4 & 5 & 6
+	\end{bmatrix} &
+	\mathbb{B} &= \begin{bmatrix}
+		7 & 8 & 9
+	\end{bmatrix} &
+	\frac{\mathbb{A}}{\mathbb{B}} = \begin{bmatrix}
+		1 & 2 & 3\\
+		4 & 5 & 6\\
+		7 & 8 & 9
+	\end{bmatrix}
+\end{align*}
+Note that the second dimension of both matrices must be the same; the first, as 
+in this example, need not. However, every concatenation in our model matrices of 
+equal dimensions.
+
+\paragraph{Entrywise Product}
+Also known as the Hadamard or Schur product, we denote the entrywise product as 
+such:
+\begin{equation}
+	\underset{x \times y}{\mathbb{C}} = \underset{x \times y}{\mathbb{A}} \odot 
+	\underset{x \times y}{\mathbb{B}} \Rightarrow \{c_{ij}\} = \{a_{ij} \times 
+	b_{ij}\}
+	\end{equation}
 
 \subsection{Adjacency Matrices}
 \label{subsec:adjacency}
 The representation of neural network connectivity that we will focus on is the 
 adjacency matrix. For \textit{n} neurons, an adjacency matrix $\mathbb{M}$ will 
 be of dimensions $(n \times n)$. A simplistic method of predicting network 
-activity, and one that we will use to produce our data, is to multiply this 
-matrix by an \textit{n}-vector representing current activity at each neuron.  
-Such an operation appears as follows for $n=3$:
-\[ \begin{bmatrix}
+activity at the next discrete timestep, and one that we will use to produce our 
+data, is to multiply this matrix by an \textit{n}-vector representing current 
+activity at each neuron.  Such an operation appears as follows for $n=3$:
+\begin{align}
+	\mathbb{X}_{t+1} &= \mathbb{M}\times\mathbb{X}_t =
+	\begin{bmatrix}
 		a & b & c\\
 		d & e & f\\
 		g & h & i
@@ -231,7 +272,7 @@ Such an operation appears as follows for $n=3$:
 		dx + ey + fz\\
 		gx + hy + iz
 	\end{bmatrix}
-\]
+\end{align}
 Thus the activity for a given neuron is defined entirely in terms of network 
 activity at the previous timestep and the weights in the adjacency matrix in the 
 row corresponding to that neuron. We thereby arrive at a simple expression of 

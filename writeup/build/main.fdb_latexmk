@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex build/main"] 1525268970 "build/main.aux" "build/main.bbl" "build/main" 1525268970
+["bibtex build/main"] 1525272877 "build/main.aux" "build/main.bbl" "build/main" 1525272881
   "/usr/share/texmf-dist/bibtex/bst/base/abbrv.bst" 1520157249 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "build/main.aux" 1525267111 15251 69b048562db605786c56a4e6bcaf069e ""
+  "build/main.aux" 1525272880 15517 098dfea2584e5193c51336605affd21b ""
   "total.bib" 0 -1 0 ""
   (generated)
   "build/main.blg"
   "build/main.bbl"
-["pdflatex"] 1525267109 "main.tex" "build/main.pdf" "main" 1525268970
+["pdflatex"] 1525272878 "main.tex" "build/main.pdf" "main" 1525272881
   "/home/hsartoris/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk" 1525158445 8424 48ba15da934a4eadbce21ed1f3c36fa5 ""
   "/home/hsartoris/texmf/tex/latex/local/wrapfig.sty" 1524457044 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1520157216 3332 103109f5612ad95229751940c61aada0 ""
@@ -275,19 +275,19 @@
   "build/../resources/models/9neur/minFinalDumb_72" 1525205154 629 4ce2700b79f81c1aa8e7a31246898934 ""
   "build/../resources/models/9neur/plot.tex" 1525208381 1336 28239665a33bfa1aca4c339dc9066194 ""
   "build/../resources/tikzheader.tex" 1524341309 167 4f8ce466adf258832d387dab2de30530 ""
-  "build/main.aux" 1525267111 15251 69b048562db605786c56a4e6bcaf069e ""
+  "build/main.aux" 1525272880 15517 098dfea2584e5193c51336605affd21b ""
   "build/main.bbl" 0 -1 0 "bibtex build/main"
-  "build/main.lof" 1525267111 3148 5123c9fdbfd47cf9bf5c4c2beaa2db6e ""
-  "build/main.toc" 1525267111 5442 c75712d224060cf507ff5ec824d26916 ""
+  "build/main.lof" 1525272880 3148 4ec071a2dadb2294829e5d9c3ff92666 ""
+  "build/main.toc" 1525272880 5616 821618be39b5fde353af2b2626e2b1a0 ""
   "chapters/abstract.tex" 1525156418 622 b769275d4ee98c1a1df0e1c78f4889c0 ""
   "chapters/appendix.tex" 1525218183 1379 ba2d4a4aff9427e75380f1cb9c77a51d ""
-  "chapters/bg.tex" 1525266192 12597 7536fcd19c61f8b2c2035b06398a2772 ""
+  "chapters/bg.tex" 1525272536 14077 915eac8b1676d65d57fa8187b9630a0d ""
   "chapters/discussion.tex" 1525228053 4891 e3905c9bc0bf7241e6aada532d90a624 ""
   "chapters/intro.tex" 1525266894 1314 ddb821eec9e91d3dba1e86506a26c087 ""
-  "chapters/model.tex" 1525247026 27560 2b4883ba015c910b486449de984fb8f3 ""
+  "chapters/model.tex" 1525272876 27481 afcd02329e9c62c51aab3c1620bbeaa5 ""
   "chapters/results.tex" 1525224750 14859 15520533f25421135c0396da6cbe37af ""
   "chapters/train.tex" 1525221599 12789 f35e5ed15a74b17bc00e5ae979b6ef47 ""
-  "main.tex" 1525257335 1750 86d2a501c8532856e1c2df66cb7f59af ""
+  "main.tex" 1525269729 1750 86d2a501c8532856e1c2df66cb7f59af ""
   "resources/3outex.png" 1524791845 710 b24f286ebfc92bbe19efe2f981e41554 ""
   "resources/models/3neurEx/fullRun/0_py/input.png" 1525080076 658 fced2c05942af61e811291a69b173d2a ""
   "resources/models/3neurEx/fullRun/0_py/layerf/weights.png" 1525080076 208 f85b6443781c3edf3f0d10ed883f3e7a ""
@@ -302,8 +302,9 @@
   "resources/models/9neur/dumb1/pred.png" 1525208787 1228 1566e2dae16727b523e19b4947a8fb57 ""
   "resources/tikzpics.tex" 1524697271 1742 ed1b8bd77672ccd7694aa12f450a3ee3 ""
   (generated)
-  "build/main.log"
   "build/main.toc"
-  "build/main.aux"
+  "build/main.log"
   "build/main.lof"
   "build/main.pdf"
+  "build/main.aux"
+  "build/main.out"
