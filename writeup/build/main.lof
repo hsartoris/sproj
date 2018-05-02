@@ -1,0 +1,27 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Example of 3-neuron network and adjacency matrix.\relax }}{5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Example output matrix for a 3-neuron network simulated for five steps.\relax }}{7}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Transposed and truncated matrix and associated visualization.\relax }}{8}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Relationship between $\mathbb {D}^{\prime }$ and $\mathbb {D}^{\prime }_N$.\relax }}{11}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces ReLU function definition and graph\relax }}{19}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Sigmoid function definition and graph\relax }}{20}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Graph of $y=\qopname \relax o{tanh}(x)$\relax }}{20}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \linespread {1.2}\selectfont {}Example adjacency matrix\relax }}{22}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Adam decay function over 100 steps. Converges asymptotically to 1.\relax }}{23}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \linespread {1.2}\selectfont {}Training parameters for null hypothesis networks\relax }}{27}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Predictions and losses when training on an empty dataset\relax }}{28}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Average prediction for random data. loss: 0.5\relax }}{28}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Network structure and adjacency matrix of the generator. (Reproduced from Figure 2.1\hbox {})\relax }}{29}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Path of data through network. Transparency for each value is scaled relative to the maximum value found in the matrix.\relax }}{31}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Final weights (max: 7.31)\relax }}{32}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Ten neuron generator and adjacency matrix. For purposes of clarity, all zero values in the matrix have been omitted.\relax }}{33}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Example of data from generator defined in Figure 4.7\hbox {}, passed through the locality-based and benchmarks models.\relax }}{34}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Loss \& parameters for model trained on data from generator given in Figure 4.7\hbox {}\relax }}{35}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Inverted version of Figure 4.4\hbox {}\relax }}{35}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Cyclical 3-neuron network\relax }}{36}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

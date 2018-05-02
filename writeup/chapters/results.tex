@@ -23,7 +23,7 @@
 		hypothesis networks}
 	\label{fig:nullparams}
 \end{wraptable}
-As discussed in \ref{subsec:hotswap} and \ref{subsec:n-independence}, the unique 
+As discussed in \ref{subsec:hotswap} and \ref{subsec:nindependence}, the unique 
 structure of our model prevents it from overfitting to a particular generator 
 topology, allowing us to create a single generator containing connections 
 representative of the types of data we expect to analyze with the trained model.
@@ -242,9 +242,10 @@ some weight also placed on the fourth item.
 Because a 3-node generator not does contain much in terms of locality, we 
 created a graph structure containing slightly more complex relationships to 
 benchmark our model on; that generator can be found in \figref{fig:10neur}.
-
+ 
 \begin{table}[h]
 	\centering
+	{\scalebox{.8}{
 	{\scalebox{.9}{\input{../resources/9neur.tex}}}
 	\hspace{1em}
 	\begin{tabular}{ccccccccccc}
@@ -260,17 +261,18 @@ benchmark our model on; that generator can be found in \figref{fig:10neur}.
 		\mc{8} &   &   &   &   &   &   &   & \bf1 &   &  \\
 		\mc{9} &   &   &   &   &   &   &   &   &   &  
 	\end{tabular}
+	}}
 	\captionof{figure}{Ten neuron generator and adjacency matrix. For purposes 
 	of clarity, all zero values in the matrix have been omitted.}
 	\label{fig:10neur}
 \end{table}\noindent
 We trained 100 model/benchmark pairs on the data produced by this generator; the 
 losses and parameters of the two best-performing models can be found in 
-\figref{fig:9neur_loss+params}. The results overwhelmingly demonstrate that, 
-while the locality-based approach is able to reconstruct networks, it does not 
-offer substantive improvement over the much more straightforward benchmark 
-model, at least in the cases that we have considered. An example run can be 
-found in \figref{fig:samepred}.
+\figref{fig:9neur_loss+params}. The results demonstrate that, while the 
+locality-based approach is able to reconstruct networks, it does not offer 
+substantive improvement over the much more straightforward benchmark model, at 
+least in the cases that we have considered. An example run can be found in 
+\figref{fig:samepred}.
 \begin{figure}[h]
 	\centering
 	\hfill
@@ -300,11 +302,11 @@ found in \figref{fig:samepred}.
 Consider, however, the outputs of the second layer of each network for the same 
 data, as in 
 
-\begin{figure}[h]
-	\centering
-	\begin{subfigure}{\textwidth}
-		\includegraphics[width=\textwidth] 
-
+%\begin{figure}[h]
+%	\centering
+%	\begin{subfigure}{\textwidth}
+%		\includegraphics[width=\textwidth] 
+%
 
 This does not, however, invalidate the number of other advantages offered by our 
 architecture.

@@ -231,7 +231,8 @@ learning rate:
 \section{Datasets}
 
 
-\section{Matrix Initialization}
+\section{Matrices}
+\subsection{Initialization}
 Initially, we seeded our matrices with random values from a normal distribution 
 of standard deviation 1.0 and mean 0, using the TensorFlow implementation of 
 \texttt{tf.random\_normal(<dimensions>)}. Due, however, to the cumulative nature 
@@ -246,4 +247,56 @@ raised higher, models trained on complex generator networks may consistently
 fail to converge, and a lower value tends to lead to convergence on non-optimal 
 solutions, such as prediciting all zeroes. 
 
+\subsection{Locality Layer Operations}
+\label{subsec:localops}
+As discussed in \ref{subsubsec:locality}, a different method for integrating 
+inputs and outputs to a given edge was originally considered. If $\mathbb{I}$ is 
+the average input vector for some edge $d_{ij}$, and $\mathbb{O}$ is the average 
+output vector, then the original operations went as follows:
+\begin{subequations}
+\begin{align}
+	\underset{d \times 1}{\mathbb{I_D}} &= \underset{d \times 
+	2d}{\mathbb{W}_{in}^\prime} \times 
+	\left(\frac{\mathbb{I}}{d_{ij}^\prime}\right) &
+	\underset{d \times 1}{\mathbb{O_D}} &= \underset{d \times 
+		2d}{\mathbb{W}_{out}^\prime} \times 
+		\left(\frac{d_{ij}^\prime}{\mathbb{O}}\right)
+\end{align}
+\begin{equation}
+		d_{ij}^{\prime\prime} = \mathbb{I_D} + \mathbb{O_D}
+\end{equation}
+\end{subequations}
+This was suboptimal for a variety of reasons. The addition of the two vectors in 
+the final step implied that both inputs and outputs were of exactly equal value 
+in determining the existence of an edge, and even further that, for any index 
+into those two vectors, the values at that index would be usefully comparable in 
+some way.
+
+Beyond this, the integration of locality data in this format seemed to require 
+careful tuning, and gradient descent did not work well with this setup.  
+Specifically, at an initial network state, the first layer has not been 
+optimized to provide useful data targeted at the second layer summations that 
+produce $\mathbb{I}$ and $\mathbb{O}$. However, the only reason for the network 
+to trend towards this type of data shaping in the first layer would be an 
+observed decrease in loss. While doubtless possible, it seems a more attractive 
+(loss optimizing) option appears: zero the left side of 
+$\mathbb{W}_{in}^\prime$, and the right of $\mathbb{W}_{out}^\prime$. As the 
+noisy locality data is removed from the system, the loss decreases, and 
+eventually the network arrives at a somewhat remarkable state: the halves of the 
+weight matrices that remain in use converge to the same values, operating as 
+they are on the same data.
+
+For these reasons, we opted for the implementation described in 
+\ref{subsubsec:locality}, in which we force the integration of locality data 
+into the model's calculations via entrywise multiplication, and provide an 
+optimizable matrix for combining input and output data, allowing the network to 
+learn which parts are most important.
+
 \section{Hyperparameter Optimization}
+\subsection{Batch Size}
+`Batching' refers to the process of assembling a set of items from the training 
+data and passing them through the network in parallel, then optimizing over the 
+resulting losses simultaneously. This greatly speeds computation speed by 
+removing the costly optimization operation from each step. We found that 32 
+units per batch was an effective number, offering high training speeds with 
+relatively stable loss curves.

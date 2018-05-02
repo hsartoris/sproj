@@ -252,6 +252,7 @@ This leaves us with $n^2$ \textit{d}-vectors, each characterizing one potential
 edge \textit{ij}.
 
 \subsubsection{Locality Layer}
+\label{subsubsec:locality}
 In this layer, we incorporate information from all nodes potentially adjacent to 
 each edge \textit{ij}. From our previous layer, we have a matrix of shape $(d 
 \times n^2)$ that we will refer to as $\mathbb{D}^{\prime}$, but it will be 
@@ -341,15 +342,12 @@ layer of the network.\footnotemark
 %optimizer\footnote{SEE OPTIMIZER SECION IN TRAINING}, allowing the model to 
 %learn optimal processing and combinations to facilitate predictions.
 \end{minipage}
-\footnotetext{Disregarding activation}
+\footnotetext{Disregarding the activation function}
 
 Our concatenation approach in \eqref{eq:dijO} stands in contrast to the strategy 
 taken in \eqref{eq:IDOD}, where integration of the input and output data is 
-forced via entrywise product computation. While we considered the same 
-concatenation process for use in \eqref{eq:IDOD}, the apparent difficulty of 
-integrating the calculated locality data into the prediction of \textit{ij} led 
-the model to rapidly adapt its weight matrices to ignore the locality portion of 
-the data.  For more discussion on this difficulty, see TRAINING SECTION.
+forced via entrywise product computation. For discussion of this attribute, see 
+\ref{subsec:localops}.
 
 Note again that none of the computations involved in this layer are dependent on 
 \textit{n}; as the summations are averaged, the values contained in their 
