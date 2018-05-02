@@ -1,1 +1,1 @@
-$out_dir = "build"
+$out_dir = "build";
