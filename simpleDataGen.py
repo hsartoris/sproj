@@ -10,14 +10,14 @@ from model.scripts.GraphKit import diGraph, Simplex, SimplicialComplex
 
 def simplicialNet():
     minPlex = 2
-    maxPlex = 8
-    target = 49
+    maxPlex = 5
+    target = 64
     sc = SimplicialComplex()
     while target > 0:
         stype = np.random.randint(minPlex, maxPlex)
         sc.addSimplex(Simplex(stype))
         target -= stype
-    return sc.blueprint
+    return np.pad(sc.blueprint, 4, 'constant', constant_values=0)
 
 def tenNeurNet2():
     mat = np.matrix(np.zeros((10,10)))
@@ -111,12 +111,13 @@ def saveRandomData(n, params, dataDir, q):
 
 
 if __name__=="__main__":
-    mat, spikeProb = tenNeurNet()
+    #mat, spikeProb = tenNeurNet()
     #mat = genSimplex(3)
     mat = simplicialNet()
-    spikeProb = .02
+    if not (input("neurons: " + str(mat.shape[0]) + ", continue?[Y/n]") or "Y").lower() == 'y': exit()
+    spikeProb = .005
     if len(sys.argv) == 2 and sys.argv[1] == "optimize":
-        spikeProb = optimizeSpike(mat, .01)
+        spikeProb = optimizeSpike(mat, 0.0)
         print("Optimized rate:", spikeProb)
         exit()
 
@@ -156,6 +157,8 @@ if __name__=="__main__":
 
     threads = []
     q = Queue()
+    print("Starting simulation of " + str(runs) + " runs of " + str(steps) 
+        + "timesteps, with a spike probability of " + str(spikeProb))
 
     for i in range(runBlocks):
         start = i * runBlockSize
