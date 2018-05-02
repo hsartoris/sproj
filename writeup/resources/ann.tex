@@ -1,0 +1,23 @@
+\begin{tikzpicture}[baseline=(current bounding box.center),->,>=stealth', node 
+	distance=2cm, semithick]
+	\tikzstyle{every state}=[fill=none, draw=black, text=black]
+	\node (s) {};
+	\node[state] (0) [above=1em of s] {$i_0$};
+	\node[state] (1) [below=1em of s] {$i_1$};
+	
+	\node[state] (3) [right of=s] {$h_1$};
+	\node[state] (2) [above of=3] {$h_0$};
+	\node[state] (4) [below of=3] {$h_2$};
+	
+	\node[state] (5) [right of=3] {O};
+
+	\path 	(0) edge node {} (2)
+			(0) edge node {} (3)
+			(0) edge node {} (4)
+			(1) edge node {} (2)
+			(1) edge node {} (3)
+			(1) edge node {} (4)
+			(2) edge node {} (5)
+			(3) edge node {} (5)
+			(4) edge node {} (5);
+\end{tikzpicture}

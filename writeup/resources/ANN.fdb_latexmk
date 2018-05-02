@@ -1,0 +1,10 @@
+# Fdb version 3
+["pdflatex"] 1525259926 "ANN.tex" "ANN.pdf" "ANN" 1525259926
+  "../resources/tikzheader.tex" 1524341309 167 4f8ce466adf258832d387dab2de30530 ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1520157258 32585 d82bbcf7626b7842c87671687479e852 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1524946771 7738161 ed1dbd6185c18e0bb7bd7c955fd30bdd ""
+  "ANN.aux" 1525259926 8 a94a2480d3289e625eea47cd1b285758 ""
+  "ANN.tex" 1525259889 487 05933fd165caefe4ab75c11fb2c45d0a ""
+  (generated)
+  "ANN.pdf"
+  "ANN.log"

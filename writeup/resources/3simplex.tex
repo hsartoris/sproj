@@ -1,0 +1,14 @@
+\input{../resources/tikzheader.tex}
+	\node[state] (0) {0};
+	\node[state] (1) [right of=0] {1};
+	\node[state] (2) [below of=0] {2};
+	\node[state] (3) [right of=2] {3};
+
+	\path	(0) edge node {} (1)
+			(0) edge node {} (2)
+			(0) edge node {} (3)
+			(1) edge node {} (2)
+			(1) edge node {} (3)
+			(2) edge node {} (3);
+
+\end{tikzpicture}
