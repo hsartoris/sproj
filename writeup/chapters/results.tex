@@ -1,5 +1,5 @@
 %! TEX root = /home/hsartoris/sproj/writeup/main.tex
-\graphicspath{ {resources/models/3neurEx/} {resources/models/3neurEx/weights/} } 
+\graphicspath{ {resources/models/} } 
 
 \chapter{Results}
 \label{results}
@@ -23,7 +23,7 @@
 		hypothesis networks}
 	\label{fig:nullparams}
 \end{wraptable}
-As discussed in \ref{subsec:hotswap} and \ref{subsec:n-independence}, the unique 
+As discussed in \ref{subsec:hotswap} and \ref{subsec:nindependence}, the unique 
 structure of our model prevents it from overfitting to a particular generator 
 topology, allowing us to create a single generator containing connections 
 representative of the types of data we expect to analyze with the trained model.
@@ -158,31 +158,31 @@ trained in \ref{subsec:3neurex}.
 	\centering
 	\begin{subfigure}{.15\textwidth}
 		\centering
-		\includegraphics[width=.75\textwidth]{fullRun/0_py/input.png}
+		\includegraphics[width=.75\textwidth]{3neurEx/fullRun/0_py/input.png}
 		\caption{Input\\(max: 1.0)}
 		\label{subfig:3neur_in}
 	\end{subfigure}
 	\hspace{.5em}
 	\begin{subfigure}{.35\textwidth}
-		\includegraphics[width=\textwidth]{fullRun/0_py_num/layer0/4out.png}
+		\includegraphics[width=\textwidth]{3neurEx/fullRun/0_py_num/layer0/4out.png}
 		\caption{Output of first layer\\(max: 4.33)}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{.35\textwidth}
-		\includegraphics[width=\textwidth]{fullRun/0_py_num/layer1/7out.png}
+		\includegraphics[width=\textwidth]{3neurEx/fullRun/0_py_num/layer1/7out.png}
 		\caption{Output of second layer\\(max: 3.2)}
 		\label{subfig:3neur_out1}
 	\end{subfigure}
 	\\
 	\begin{subfigure}{.35\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{fullRun/0_py_num/layerf/0out.png}
+		\includegraphics[width=\textwidth]{3neurEx/fullRun/0_py_num/layerf/0out.png}
 		\caption{Output of final layer\\(max: 30.97)}
 		\label{subfig:3neur_outf}
 	\end{subfigure}
 	\begin{subfigure}{.3\textwidth}
 		\centering
-		\includegraphics[width=.5\textwidth]{fullRun/0_py/pred.png}
+		\includegraphics[width=.5\textwidth]{3neurEx/fullRun/0_py/pred.png}
 		\caption{Prediction\\(max: 1.0)}
 		\label{subfig:3neur_pred}
 	\end{subfigure}
@@ -198,51 +198,42 @@ target, with all connections located and weighted appropriately.\footnote{While
 	$[1,0]$ and $[2,0]$ are predicted to be exactly 1.0, the precise value of 
 	$[2,1]$ in the final prediction is 0.999999999957586, which we consider to 
 be accurate enough.}
-%The final layer turns the information from \ref{subfig:3neur_out1} into a 
-%prediction by multiplying the matrix found in \ref{subfig:3neur_flayer} with 
-%\ref{subfig:3neur_out1} to produce \ref{subfig:3neur_outf}, which is then 
-%passed into the final layer activation function\footnote{See 
-%\ref{subsec:finalactivation}} and reshaped to $(n \times n)$ to produce 
-%\ref{subfig:3neur_pred}, an exact match for the target with all connections 
-%located and weighted appropriately.\footnote{While $[1,0]$ and $[2,0]$ are 
-%predicted to be exactly 1.0, the precise value of $[2,1]$ in the final 
-%prediction is 0.999999999957586, which we consider to be accurate enough.}
-\subsubsection{Analysis}
-blah blah blah it's all well and good that this works
-
-\paragraph{First Layer Functionality}
-
-\paragraph{Convolutional Layer Functionality}
-
-Note that, following the convolutional layer (\ref{subfig:3neur_out1}), the 
-model has located the existent connections: if we transpose 
-\ref{subfig:3neur_out1} from $(d \times n^2)$ to $(n \times n \times d)$, as in 
-\figref{fig:transform}, the columns with high values, 3, 6, and 7, correspond 
-with \textit{d}-vectors $[1,0]$, $[2,0]$, and $[2,1]$, respectively. These 
-tuples each correspond with a connection present in the adjacency matrix 
-(\figref{fig:toyex}) the model is trying to predict. 
-
+\subsubsection{Brief Analysis}
 \paragraph{Final Layer}
 \begin{wrapfigure}[5]{r}{.25\textwidth}
 	\centering
 	\vspace{-15pt}
-	\includegraphics[width=.25\textwidth]{fullRun/0_py/layerf/weights.png}
+	\includegraphics[width=.25\textwidth]{3neurEx/fullRun/0_py/layerf/weights.png}
 	\caption{Final weights\\(max: 7.31)}
 	\label{fig:3neur_flayer}
 \end{wrapfigure}
 The final layer consists only of multiplying its weights 
-(\figref{fig:3neur_flayer}) by the output from the previous layer, and it is 
+(\figref{fig:3neur_flayer}) by the output from the locality layer, and it is 
 thus relatively easy to intepret what the model has learned at this stage. As 
 the first two values of of the weight matrix are strongly positive, we can 
 conlude that the first two values in each vector in the output from the previous 
 layer are highly important in the determination of connection presence, with 
 some weight also placed on the fourth item.
 
+\paragraph{Locality Layer Functionality}
+
+Note that, following the locality layer (\ref{subfig:3neur_out1}), the model has 
+located the existent connections: if we transpose \ref{subfig:3neur_out1} from 
+$(d \times n^2)$ to $(n \times n \times d)$, as in \figref{fig:transform}, the 
+columns with high values, 3, 6, and 7, correspond with \textit{d}-vectors 
+$[1,0]$, $[2,0]$, and $[2,1]$, respectively. These tuples each correspond with a 
+connection present in the adjacency matrix (\figref{fig:toyex}) the model is 
+trying to predict. 
+
 \section{Higher-order Datasets}
+\label{sec:localitybroken}
 Because a 3-node generator not does contain much in terms of locality, we 
-created data from the following generator:
+created a graph structure containing slightly more complex relationships to 
+benchmark our model on; that generator can be found in \figref{fig:10neur}.
+ 
 \begin{table}[h]
 	\centering
+	{\scalebox{.9}{
 	{\scalebox{.9}{\input{../resources/9neur.tex}}}
 	\hspace{1em}
 	\begin{tabular}{ccccccccccc}
@@ -258,18 +249,58 @@ created data from the following generator:
 		\mc{8} &   &   &   &   &   &   &   & \bf1 &   &  \\
 		\mc{9} &   &   &   &   &   &   &   &   &   &  
 	\end{tabular}
+	}}
 	\captionof{figure}{Ten neuron generator and adjacency matrix. For purposes 
 	of clarity, all zero values in the matrix have been omitted.}
-\end{table}
+	\label{fig:10neur}
+\end{table}\noindent
 
-We trained 100 model/benchmark pairs
+We trained 100 model/benchmark pairs on the data produced by this generator; the 
+losses and parameters of the best-performing models of each type can be found in 
+\figref{fig:9neur_loss+params}. The results, in which the losses of both types 
+of networks stayed extremely close, demonstrate that, while the locality-based 
+approach is able to reconstruct networks, it does not offer substantive 
+improvement over the much more straightforward benchmark model, at least in the 
+cases that we have considered.  An example run can be found in 
+\figref{fig:samepred}.
+\input{../resources/models/9neur/plot.tex}
+\begin{figure}[h]
+	\centering
+	\hfill
+	\begin{subfigure}{.2\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{9neur/conv1/input.png}
+		\caption{Input}
+	\end{subfigure}
+	\hspace{2em}
+	\begin{minipage}{.65\textwidth}
+		\centering
+	\begin{subfigure}{.9\textwidth}
+		\centering
+		\includegraphics[width=.45\textwidth]{9neur/conv1/pred.png}
+		\caption{Locality-based model prediction}
+	\end{subfigure}\\
+	\begin{subfigure}{.9\textwidth}
+		\centering
+		\includegraphics[width=.45\textwidth]{9neur/dumb1/pred.png}
+		\caption{Benchmark model prediction}
+	\end{subfigure}
+	\end{minipage}
+	\caption{Example of data from generator defined in \figref{fig:10neur}, 
+	passed through the locality-based and benchmarks models.}
+	\label{fig:samepred}
+\end{figure}\noindent
+\newpage
+The same results were found with generators of various sizes and topologies, 
+although none larger than that in \figref{fig:10neur} were used. It is 
+important, however, not to overstate the importance of this comparison, 
 
 \section{Applicability Beyond Training Data}
 As described in \ref{subsec:hotswap}, the fact that our model is trained on data 
 produced by only one generator is of little consequence; due to its structure, 
-the only information it can learn is relational; i.e., per-neuron-pair. Consider 
-the following examples, in which data was produced from several generator 
-networks and fed into the model described in \ref{results_3neur}:
+the only information it can learn is relational, per neuron pair. Consider the 
+following examples, in which data was produced from several generator networks 
+and fed into the model described in \ref{results_3neur}:
 
 
 TODO: add examples of input and output data to 3.2.1 and 3.2.2.
@@ -303,7 +334,7 @@ model in \ref{results_3neur}, reconstruction of this network is simple.
 \begin{table}[h]
 	\centering
 	\begin{minipage}{.1\textwidth}
-		\includegraphics[width=\textwidth]{var1/input.png}
+		\includegraphics[width=\textwidth]{3neurEx/var1/input.png}
 	\end{minipage}
 	\hspace{2em}
 	{\scalebox{2}{$\Rightarrow$}}

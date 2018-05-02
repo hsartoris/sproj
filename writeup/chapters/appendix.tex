@@ -9,6 +9,19 @@
 	\chapter{Model}
 	\section{Batched Architecture Calculations}
 	\label{asec:batched}
+	In order to allow processing of many pieces of data at once, the matrix 
+	model defined in \ref{subsec:matmodel} was adapted to a batched format.  
+	Given input matrices of shape $(b \times n)$, the actual input to the model 
+	is now of shape $(batchSize \times b \times n)$. As previously discussed, 
+	iteration across lists or dimensions is not a computationally efficient 
+	option. Therefore we use \texttt{tf.einsum}, an implementation of Einstein 
+	Sums. This allows, for example, the multiplication of two matrices, one of 
+	dimension $(i \times j \times k)$, and the other of dimension $(h \times 
+	j)$. An appropriate function call might appear as
+	\texttt{tf.einsum(`hj,ijk->ihk', mat2, mat1)}. The result is equivalent to 
+	the iterative multiplication of the $(h \times j)$ matrix across all 
+	\textit{i}, without the computational overhead of CPU involvement. Every 
+	matrix multiplication in our model is implemented using this functionality.
 
 
 \end{appendices}

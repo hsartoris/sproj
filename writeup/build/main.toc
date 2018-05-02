@@ -27,12 +27,12 @@
 \contentsline {paragraph}{Example:}{14}
 \contentsline {subsubsection}{Locality Layer}{15}
 \contentsline {subsubsection}{Final Layer}{16}
-\contentsline {subsection}{\numberline {2.2.4}Benchmark Model}{17}
+\contentsline {subsection}{\numberline {2.2.4}Benchmark Model}{16}
 \contentsline {subsection}{\numberline {2.2.5}\textit {n}-independence}{17}
 \contentsline {subsubsection}{Trainable Values}{17}
 \contentsline {subparagraph}{First Layer}{17}
 \contentsline {subparagraph}{Locality Layer}{17}
-\contentsline {subparagraph}{Final Layer}{18}
+\contentsline {subparagraph}{Final Layer}{17}
 \contentsline {subparagraph}{Benchmark Model}{18}
 \contentsline {subsubsection}{Implications}{18}
 \contentsline {chapter}{\numberline {3}Training}{19}
@@ -45,33 +45,38 @@
 \contentsline {subsubsection}{Effects}{22}
 \contentsline {subsection}{\numberline {3.2.2}Optimizer Function}{23}
 \contentsline {section}{\numberline {3.3}Datasets}{24}
-\contentsline {section}{\numberline {3.4}Matrix Initialization}{24}
-\contentsline {section}{\numberline {3.5}Hyperparameter Optimization}{24}
-\contentsline {chapter}{\numberline {4}Results}{25}
-\contentsline {section}{\numberline {4.1}Overfitting}{25}
-\contentsline {subsection}{\numberline {4.1.1}Empty Data}{25}
-\contentsline {subsection}{\numberline {4.1.2}Random Data}{26}
-\contentsline {subsection}{\numberline {4.1.3}Analysis}{26}
-\contentsline {section}{\numberline {4.2}3-neuron generator}{27}
-\contentsline {subsection}{\numberline {4.2.1}Example Model}{28}
-\contentsline {subsection}{\numberline {4.2.2}Trained Network Operation}{29}
-\contentsline {subsubsection}{Analysis}{30}
-\contentsline {paragraph}{First Layer Functionality}{30}
-\contentsline {paragraph}{Convolutional Layer Functionality}{30}
-\contentsline {paragraph}{Final Layer}{30}
-\contentsline {section}{\numberline {4.3}Higher-order Datasets}{30}
-\contentsline {section}{\numberline {4.4}Applicability Beyond Training Data}{31}
-\contentsline {subsection}{\numberline {4.4.1}Inverted Network}{31}
-\contentsline {subsection}{\numberline {4.4.2}Cyclical Network}{32}
-\contentsline {chapter}{\numberline {5}Discussion}{33}
-\contentsline {section}{\numberline {5.1}Potential Improvements}{33}
-\contentsline {subsection}{\numberline {5.1.1}Layering}{33}
-\contentsline {subsection}{\numberline {5.1.2}Locality Algorithm}{33}
-\contentsline {subsection}{\numberline {5.1.3}Loss}{33}
-\contentsline {subsection}{\numberline {5.1.4}Optimizer}{34}
-\contentsline {section}{\numberline {5.2}Potential Applications/Further Development}{34}
-\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{35}
-\contentsline {section}{\numberline {A.1}Data}{35}
-\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{35}
-\contentsline {chapter}{\numberline {B}Model}{36}
-\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{36}
+\contentsline {section}{\numberline {3.4}Matrices}{24}
+\contentsline {subsection}{\numberline {3.4.1}Initialization}{24}
+\contentsline {subsection}{\numberline {3.4.2}Locality Layer Operations}{24}
+\contentsline {section}{\numberline {3.5}Hyperparameter Optimization}{26}
+\contentsline {subsection}{\numberline {3.5.1}Batch Size}{26}
+\contentsline {chapter}{\numberline {4}Results}{27}
+\contentsline {section}{\numberline {4.1}Overfitting}{27}
+\contentsline {subsection}{\numberline {4.1.1}Empty Data}{27}
+\contentsline {subsection}{\numberline {4.1.2}Random Data}{28}
+\contentsline {subsection}{\numberline {4.1.3}Analysis}{28}
+\contentsline {section}{\numberline {4.2}3-neuron generator}{29}
+\contentsline {subsection}{\numberline {4.2.1}Example Model}{30}
+\contentsline {subsection}{\numberline {4.2.2}Trained Network Operation}{31}
+\contentsline {subsubsection}{Brief Analysis}{32}
+\contentsline {paragraph}{Final Layer}{32}
+\contentsline {paragraph}{Locality Layer Functionality}{32}
+\contentsline {section}{\numberline {4.3}Higher-order Datasets}{32}
+\contentsline {section}{\numberline {4.4}Applicability Beyond Training Data}{34}
+\contentsline {subsection}{\numberline {4.4.1}Inverted Network}{35}
+\contentsline {subsection}{\numberline {4.4.2}Cyclical Network}{35}
+\contentsline {chapter}{\numberline {5}Discussion}{37}
+\contentsline {section}{\numberline {5.1}Data}{37}
+\contentsline {subsection}{\numberline {5.1.1}Complex Neurons}{38}
+\contentsline {subsection}{\numberline {5.1.2}Larger, Structured Networks}{38}
+\contentsline {section}{\numberline {5.2}Potential Improvements to Locality}{39}
+\contentsline {subsection}{\numberline {5.2.1}Layering}{39}
+\contentsline {subsection}{\numberline {5.2.2}Algorithm}{39}
+\contentsline {subsection}{\numberline {5.2.3}Loss}{39}
+\contentsline {subsection}{\numberline {5.2.4}Optimizer}{40}
+\contentsline {section}{\numberline {5.3}Potential Applications/Further Development}{40}
+\contentsline {chapter}{\numberline {A}Parameter Optimization Miscellanea}{41}
+\contentsline {section}{\numberline {A.1}Data}{41}
+\contentsline {subsection}{\numberline {A.1.1}Spike Rate Determination}{41}
+\contentsline {chapter}{\numberline {B}Model}{42}
+\contentsline {section}{\numberline {B.1}Batched Architecture Calculations}{42}
