@@ -39,7 +39,7 @@ import time
 import shutil, os
 from utils.termVis import termVis
 from model.scripts.SeqData import seqData
-from model.tmodel import Model
+from model.t2model import Model
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
