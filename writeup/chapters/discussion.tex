@@ -41,9 +41,11 @@ will not encounter any particular benefit from this ability if the generators it
 is tasked with reconstructing contain at most one such structure. Indeed, 
 preliminary results suggest that a large gap opens between models considering 
 locality and those not when the training data is generated from a large 
-($n\approx50$) network seeded with recurring motifs.
+($n\approx50$) network seeded with recurring motifs. On such a dataset, the 
+benchmark model cannot get below .5 loss, while the locality-enabled model hits 
+.35 easily.
 
-\section{Potential Improvements to Locality}
+\section{Improvements to Locality Processing}
 
 \subsection{Layering}
 There may need to be more initial layers to provide useful data to the Locality 
@@ -53,10 +55,6 @@ manner that the locality-based layer can usefully include it in determining node
 existence.  Adding at least one intermediary processing layer might allow the 
 network to format the data going in to the locality layer in a more useful way.  
 Merits further testing.
-
-\subsection{Algorithm}
-Detail issues with summing inputs and outputs, and propose alternative algorithm 
-here. Note issues with implementation.
 
 \subsection{Loss}
 \label{subsec:lossdisc}
@@ -73,18 +71,10 @@ ideal, it is preferable to guessing a strong connection where there is none.
 Thus our loss function might be modified to more strongly disincentive false 
 positives.
 
-\subsection{Optimizer}
-I think it's in the paper about ELU or SELU that they use a ramping up learn 
-rate and then decline. That might be ideal for the original, concatenation-based 
-implemenation of the network, to avoid pushing it down the gradient too fast and 
-zeroing out the convolutional matrix sections.
-
 \section{Potential Applications/Further Development}
 
-This shit is portable as fuck
-
-Imagine an app(lication) that contains pretrained networks for different types 
-of biological networks that researchers can then apply to their own data without 
-having to interact at all with the nitty gritty bullshitty.
-
-Community run database of trained networks as specific as submitters make them.
+In the process of creating this network, we implemented a pure-numpy version, 
+which can run on matrices created by a model trained in TensorFlow. This would, 
+along with the portability of our model, allow for training and then 
+distributing ready-to-run reconstruction models, without the need for user 
+experience with GPUs, machine learning, or any of the like.

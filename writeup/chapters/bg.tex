@@ -5,22 +5,23 @@
 
 \section{Biological Neural Networks}
 \label{sec:bioNN}
-A biological neural network in the sense we will use it here is a collection of 
-neurons, the connections between which enable cognition. Neurons themselves 
-consist of a cell body, from which emerge axons and dendrites. Axons extend from 
-the neuron body to meet the dendrites emerging from another neuron, and this 
-forms a connection that, in terms of electrical terms, is one-way.\footnote{This 
-needs a citation.} Neurons may connect to and receive connections from many 
-other neurons\footnote{again citation}, and the axons can be so long as to 
-render physical adjacency of neurons in a network irrelevant in terms of 
-connection probability.\footnote{cite again}
+Biological neural networks in the sense we will refer to them  here are 
+collections of neurons, the connections between which enable cognition. Neurons 
+themselves consist of a cell body, from which emerge axons and dendrites. Axons 
+extend from the neuron body to meet the dendrites emerging from another neuron, 
+and this forms an electrochemical one-way connection.\footnote{This is something 
+	of an oversimplification, but it will suffice for our purposes; see 
+	\cite{Reimann2017}} Neurons may connect to and receive connections from many 
+	other neurons, and the axons can be so long as to render physical adjacency 
+	of neurons in a network irrelevant in terms of connection 
+	probability.\cite{axonlens}
 
 \subsection{Neuron Behavior}
-Neurons generally sit at a resting voltage\footnote{cite}, but upon receiving a 
-high enough total input level from incoming connections to exceed a particular 
-threshold, they spike, rapidly increasing in voltage and then dropping again.  
-This voltage travels down the neuron's axons and in turn provides input to other 
-neurons.
+Neurons generally sit at a resting voltage, but upon receiving a high enough 
+total input level from incoming connections to exceed a particular threshold, 
+they spike, rapidly increasing in voltage and then dropping again. 
+\cite{actionpotential} This voltage travels down the neuron's axons and in turn 
+provides input to other neurons.
 \subsection{Extracting Data}
 Due to the three-dimensional nature of most brains, the sheer quantity of 
 neurons, and their small size, manually mapping out a brain, and in particular 
@@ -28,11 +29,11 @@ the actual connections from neuron to neuron, is practically impossible. In
 order to monitor activity within a biological neural network, then, some 
 compromises must be made. Several techniques exist for neuron monitoring; on the 
 very small scale is the patch clamp technique, in which a pipette is directly 
-attached to a single neuron\cite{neher1992patch}, to in-vivo calcium imaging, in 
-which a dye is injected into a living brain, leading the neurons to fluoresce 
-when spiking\cite{Stosiek7319}. As calcium imaging allows observation of as many 
-neurons as can be seen by a camera, we are interested in data that are derived 
-from this process.
+attached to a single neuron\cite{neher1992patch}; on the larger scale is in-vivo 
+calcium imaging, in which a dye is injected into a living brain, leading the 
+neurons to fluoresce when spiking\cite{Stosiek7319}. As calcium imaging allows 
+observation of as many neurons as can be seen by a camera, we are interested in 
+data that are derived from this process.
 
 \begin{wrapfigure}[8]{r}{.25\textwidth}
 	\centering
@@ -52,8 +53,7 @@ indicates a spike, and an unfilled block indicates no spike.
 
 
 \section{Graphs}
-In general, we define a graph as a collection of nodes and edges\footnote{This 
-is something of an abuse of notation \cite{networksciencebook}}, where nodes 
+In general, we define a graph as a collection of nodes and edges, where nodes 
 represent states or components of a system, and edges represent the connections 
 between those nodes\cite{networksciencebook}. An example graph can be found in 
 \figref{fig:digraph}.
@@ -71,7 +71,7 @@ are edges.  In such a case, the edges in the graph are bidirectional (one
 hopes). In describing other systems, however, edges are often unidirectional.  
 Such a graph is called a directed graph, or digraph.\cite{networksciencebook} 
 The graphs we consider here will be digraphs in that a biological neural network 
-can be thought of as a directed graph: as described in \ref{sec:bioNN}, physical 
+can be thought of as a directed graph. As described in \ref{sec:bioNN}, physical 
 adjacency of individual neurons does not necessarily play a role in the 
 likelihood of a connection existing. This makes graphs an ideal representation 
 for biological neural networks: placement of nodes when visualizing a graph is 
@@ -92,7 +92,7 @@ Graph analysis of naturally-occurring networks, including neural networks,
 reveals the consistent repetition throughout of small patterns, known as motifs, 
 and suggests that network robustness towards perturbation is in part due to the 
 presence of these underlying structures, which do not occur at comparable rates 
-in random graphs.\cite{Milo842, netmotifs-robustness} \figref{fig:digraph} is an 
+in random graphs.\cite{Milo824, netmotifs-robustness} \figref{fig:digraph} is an 
 example of a directed simplex, a type of motif in which each node is 
 unidirectionally connected to every other node, with one node, termed the 
 source, only possessing outgoing connections, and another, termed the sink, only 
@@ -100,8 +100,8 @@ receiving incoming connections.  In \figref{fig:3simplex}, node 0 is the source,
 and node 3 is the sink.
 
 Since these simplices and other motifs appear in biological neural networks with 
-unusual regularity\cite{Reimann2017}, we may be able to take advantage of this 
-local property in reconstruction.
+unusual regularity\cite{Reimann2017}, we may be able to take advantage of these 
+local properties in reconstruction.
 
 
 %\subsection{Graph Locality}
@@ -144,9 +144,10 @@ being processed, and they are an important part of how effective ANNs are. For
 example, a network with only two layers but a nonlinear activation function can 
 be trained as an arbitrary function approximator.\cite{2006mathematics}
 \subsubsection{Training}
-The process of optimizing the values in layer transition matrices is known as 
-training, and is often performed by gradient descent via backpropagation and OH 
-BOY DOES THIS NEED SOME MORE
+The process of optimizing the values in the layer transition matrices is known 
+as training, and is often performed by gradient descent via 
+backpropagation\cite{Rumelhart}. See \ref{sec:lossandop} for more information on 
+this.
 
 \subsection{Convolutional Neural Networks}
 \label{subsec:convnets}
@@ -187,14 +188,14 @@ convolutional architecture, consisting of filters that evaluate small chunks of
 data for particular features, is ideally suited to analyzing such data.
 
 Before making the jump to applying a convolutional architecture to our problem, 
-though, we must one of the reasons that convolutional filters are effective: 
-adjacency. In the case of image analysis, the fact that one pixel or group of 
-pixels is next to another is itself important data, as it implies a relationship 
-of some nature between those elements. In our problem, there is no such data 
-available; local structure in a graph is analagous to adjacency in an image, but 
-it is specifically that structure data that we are trying to derive. In the 
-second layer of our model, defined in \ref{subsubsec:locality}, we offer one 
-solution to this dilemna.
+though, we must confront one of the reasons that convolutional filters are 
+effective: adjacency. In the case of image analysis, the fact that one pixel or 
+group of pixels is next to another is itself important data, as it implies a 
+relationship of some nature between those elements. In our problem, there is no 
+such data available; local structure in a graph is analagous to adjacency in an 
+image, but it is specifically that structure data that we are trying to derive.  
+In the second layer of our model, defined in \ref{subsubsec:locality}, we offer 
+one solution to this dilemna.
 
 Fortunately, we can apply at least one aspect of a convolutional architecture in 
 each layer: while some transforms are defined in terms of the size of the input 
@@ -233,8 +234,8 @@ matrices or vectors in question. Example:
 	\end{bmatrix}
 \end{align*}
 Note that the second dimension of both matrices must be the same; the first, as 
-in this example, need not. However, every concatenation in our model matrices of 
-equal dimensions.
+in this example, need not. However, every concatenation in our model involves 
+matrices of equal dimensions.
 
 \paragraph{Entrywise Product}
 Also known as the Hadamard or Schur product, we denote the entrywise product as 

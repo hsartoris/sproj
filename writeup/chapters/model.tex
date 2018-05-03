@@ -2,16 +2,15 @@
 \graphicspath{ {resources/} }
 \chapter{Model}
 \label{model}
-The model trained and tested here represents ... stuff
 
 \section{Data}
 \label{sec:data}
-Training a network requires input data representing the known data about the 
-system we
+Training a network requires inputs representing the known data about the system 
+we
 wish to model, as well as output data we wish the network to produce from the
 inputs. More generally, input data usually entails information that is easy to 
 acquire about the process being modeled, while output data, which we treat as 
-targets,
+our targets,
 correspond to a dataset that is difficult to acquire generally. Of course, this 
 means that the first step in training a neural network is to assemble a 
 sufficiently large set of inputs and outputs in order to characterize the 
@@ -108,7 +107,7 @@ final value for $\mathbb{S}^1$, and append it to $\mathbb{O}$.
 \]
 If we were to repeat this process several more times, we might end up with an 
 output matrix such as in \figref{fig:exoutput}.
-\begin{equation*}
+{\begin{equation*}
 	\mathbb{O} = \left[ \mathbb{S}^0 \mid
 		\mathbb{S}^1 \mid \mathbb{S}^2 \mid \mathbb{S}^3 \mid \mathbb{S}^4 
 	\right] = \begin{bmatrix}
@@ -118,14 +117,13 @@ output matrix such as in \figref{fig:exoutput}.
 	\end{bmatrix}
 	\label{fig:exoutput}
 \end{equation*}
-{\captionsetup{width=.85\linewidth}
+\captionsetup{width=.85\linewidth}
 	\vspace{-8pt}
 \captionof{figure}{Example output matrix for a 3-neuron network simulated for 
 five steps.}}
 
-\noindent We can clearly see the effects of neuron 2 having inputs from both 
-other neurons in that it is spiking every timestep but the first.
-Practically, the number of iterations was usually set to 50.
+Practically, the number of iterations was usually set to 50; this provided more 
+than enough data to converge, particularly for small \textit{n}.
 
 
 \subsection{Restructuring}
@@ -191,14 +189,14 @@ dimensionality.
 
 \subsection{Generalizability}
 \label{subsec:hotswap}
-In most ANN implementations, feeding various data with the same label attached 
-to it results in the network learning to ignore the input data and always return 
-the desired label, rendering it useless. However, due to the unique structure of 
-our model, this sort of overfitting is impossible.\footnote{See 
-\ref{subsec:nindependence}} Therefore, we must merely construct a suitably 
-representative generator network, meaning that it contains all of the 
-inter-neuron relationships we expect to see in the data we ultimately use to 
-test it.
+In most ANN implementations, inputting various data with the same target 
+attached to it results in the network learning to ignore the input data and 
+always return the desired target, rendering it useless. However, due to the 
+unique structure of our model, this sort of overfitting is 
+impossible.\footnote{See \ref{subsec:nindependence}} Therefore, we must merely 
+construct a suitably representative generator network, meaning that it contains 
+all of the inter-neuron relationships we expect to see in the data we ultimately 
+use to test it.
 
 \section{Architecture}
 We will first describe the architecture in terms that, while accurate on the 
@@ -226,11 +224,12 @@ calculate summations and averages, the structure of our calculations is such
 that no aspects of the model are defined in terms of \textit{n}.
 
 \subsubsection{Omitted Details}
-An elementwise activation function\footnote{SEE NN PRINCIPLES} is applied to the 
-matrix outputs from each layer. While this is crucial to network function, our 
-primary focus in this section is the underlying principles and mathematical 
-expressions thereof, and activation is somewhat trivial in comparison. For 
-details on the activation functions used, see \ref{sec:activation}.
+An elementwise activation function\footnote{See \ref{sec:activation}} is applied 
+to the matrix outputs from each layer. While this is crucial to network 
+function, our primary focus in this section is the underlying principles and 
+mathematical expressions thereof, and activation is somewhat trivial in 
+comparison. For details on the activation functions used, see 
+\ref{sec:activation}.
 
 \subsection{Conceptual Model}
 \label{subsec:conceptualmodel}

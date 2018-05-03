@@ -135,7 +135,8 @@ class Model():
                     n=n, grayScale=True)
             self.savenp(mat, csvPath + name)
 
-    def run(self, data, saveDir, printNumbers=False, dumb=False):
+    def run(self, data, saveDir, printNumbers=False, dumb=False, 
+            saveInput=True):
         n = data.shape[1]
         self.makeTiles(n)
         layer0dict = self.layer0(data, n)
@@ -159,7 +160,7 @@ class Model():
         layerfdict['0out'] = np.expand_dims(layerfdict['0out'], 0)
         pred = pred.reshape((n,n))
 
-        self.savenp(data, saveDir + "input")
+        if saveInput: self.savenp(data, saveDir + "input")
         matVis(data, saveDir + "input.png", drawText=printNumbers, 
                 grayScale=True)
         self.exportLayerDict(layer0dict, saveDir + "layer0/", pn=printNumbers, 
@@ -175,9 +176,10 @@ class Model():
 
 
 if __name__ == "__main__":
-    dumb = True
-    if len(sys.argv) < 4:
-        print("Usage: PyModel matDir outDir dataFile [pn]\n\tpn: print numbers")
+    dumb = False
+    if len(sys.argv) < 3:
+        print("Usage: PyModel matDir outDir [dataFile] [pn]\n\tpn: print" + 
+        "numbers")
         sys.exit()
     if len(sys.argv) == 5 and sys.argv[4] == 'pn':
         printNumbers = True
@@ -187,10 +189,22 @@ if __name__ == "__main__":
     if printNumbers: print("Printing numbers")
     matDir = sys.argv[1] + "/"
     outDir = sys.argv[2] + "/"
-    data = np.loadtxt(sys.argv[3], delimiter=',')
+    if len(sys.argv) == 3:
+        saveInput = False
+        # data in outDir
+        if os.path.exists(outDir + "input"):
+            data = np.loadtxt(outDir + "input", delimiter=',')
+        else:
+            print("No input specified and none found")
+            exit()
+    else:
+        saveInput = True
+        data = np.loadtxt(sys.argv[3], delimiter=',')
     m = Model(matDir)
     b = int(m.weights['layer0'].shape[1] / 2)
     print("b:", b)
     if not data.shape[0] == b:
+        # probably untransposed data
         data = data[:,:b].transpose()
-    m.run(data, outDir, printNumbers=printNumbers, dumb=dumb)
+    m.run(data, outDir, printNumbers=printNumbers, dumb=dumb, 
+            saveInput=saveInput)

@@ -2,20 +2,16 @@
 
 \chapter{Introduction}
 
-Reconstruction of biological neural networks given lossy imaging data of regions 
-in question remains a persisent problem in the field of computational 
-neuroscience, with artifical neural network-based solutions emerging in recent 
-years as a preeminent method for achieving accurate 
-reconstructions.\cite{Ray2015} However, the methods used are often abstruse and 
-inaccessible, reducing accessibility; beyond this, there are features unique to 
-biological neural networks that can be taken advantage of in producing 
-reconstructions. We present an architecture for determining network structure 
-inspired by convolutional neural networks. Whereas in image processing, the 
-typical target of convolutional networks, pixel and feature adjacency correlates 
-with shared meaning, there exists no such metric for data extracted from 
-biological neural networks, as per-neuron spike trains can be reconfigured into 
-various permutations without necessitating a change in the structure of the 
-network that generated those spikes. Thus our architecture redefines the 
-adjacency usually used in convolution to one more suited to the unique features 
-of biological neural networks, derived from locality within the original graph 
-structure.
+Artifical neural network-based solutions emerging in recent years have become a 
+preeminent method for achieving accurate reconstructions of biological neural 
+networks.\cite{Ray2015} However, the methods used tend to not take advantage of 
+features unique to biological neural networks that can assist in producing 
+reconstructions.  We present an architecture for determining network structure 
+inspired by convolutional neural networks.  Whereas in image processing, the 
+typical use case for convolutional networks, pixel and feature adjacency 
+correlates with shared meaning, there exists no such metric for data extracted 
+from biological neural networks, as per-neuron spike trains can be reconfigured 
+into various permutations without necessitating a change in the structure of the 
+network that generated those spikes. Thus our architecture redefines adjacency 
+to a version more suited to the unique features of biological neural networks, 
+derived from locality within the original graph structure.

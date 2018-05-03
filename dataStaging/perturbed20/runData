@@ -1,0 +1,4 @@
+Neurons: 16
+Timesteps: 30
+Run count: 20
+Spike prob:0.15

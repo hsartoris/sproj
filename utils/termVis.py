@@ -11,10 +11,10 @@ def termVis(struct):
         print(str(i) + "|" + "".join([("#" if x > 0 else " ") for x in struct[i]]) + 
     "|")
     print(" " + "-"*(w+2))
+'''
+if not len(sys.argv) == 2:
+    print("Usage: termVis <struct>")
+    exit()
 
-if __name__ == "__main__":
-    if not len(sys.argv) == 2:
-        print("Usage: termVis <struct>")
-        exit()
-    
-    struct = np.loadtxt(sys.argv[1], delimiter=',')
+struct = np.loadtxt(sys.argv[1], delimiter=',')
+'''

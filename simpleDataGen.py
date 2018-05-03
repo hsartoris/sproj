@@ -6,7 +6,8 @@ from multiprocessing import Process, Queue
 import subprocess
 import os
 import model.scripts.Prettify
-from model.scripts.GraphKit import diGraph, Simplex, SimplicialComplex
+from model.scripts.GraphKit import diGraph, Simplex, SimplicialComplex, perturb
+from utils.termVis import termVis
 
 def simplicialNet():
     minPlex = 2
@@ -86,6 +87,13 @@ def smallNetVar2():
     mat[2,4] = 1
     return mat
 
+def smallNetVar3():
+    # only two connections
+    mat = np.matrix(np.zeros((3,3)))
+    mat[0,1] = 1
+    mat[1,2] = 1
+    return mat
+
 def runData():
     out = "Neurons: " + str(neurons) + "\n"
     out += "Timesteps: " + str(steps) + "\n"
@@ -111,11 +119,22 @@ def saveRandomData(n, params, dataDir, q):
 
 
 if __name__=="__main__":
-    #mat, spikeProb = tenNeurNet()
+    mat, spikeProb = tenNeurNet()
+    newMat = np.zeros(mat.shape*2)
+    newMat[:mat.shape[0],:mat.shape[1]] = mat
+    newMat[mat.shape[0]:,mat.shape[1]:] = mat
+    mat = newMat
+    print(mat)
+    print(np.sum(mat))
+    #mat = perturb(np.pad(mat, 3, mode='constant'), .05)
+    print(mat)
+    print(np.sum(mat))
     #mat = genSimplex(3)
-    mat = simplicialNet()
+    #mat = simplicialNet()
+    #mat = smallNetVar3()
     if not (input("neurons: " + str(mat.shape[0]) + ", continue?[Y/n]") or "Y").lower() == 'y': exit()
-    spikeProb = .005
+    #spikeProb = .005
+    spikeProb = .15
     if len(sys.argv) == 2 and sys.argv[1] == "optimize":
         spikeProb = optimizeSpike(mat, 0.0)
         print("Optimized rate:", spikeProb)

@@ -68,6 +68,7 @@ probable connections far into the positives, with the activation function
 ultimately mapping large values into a small range closely approaching 1.
 
 \section{Loss \& Optimization}
+\label{sec:lossandop}
 In a nutshell, backpropagation via gradient descent is a method for training 
 neural networks by calculating the extent to which each value in a particular 
 layer is responsible for the overall network error on a single data point or 
@@ -128,7 +129,7 @@ comparable to that of MSE as the model learns to predict appropriately.
 \label{subsubsec:losseffects}
 \begin{wraptable}[5]{r}{.3\textwidth}
 	\captionsetup{justification=centering}
-	\vspace{-30pt}
+	\vspace{-15pt}
 	\centering
 	\adjacencyT{0 & 0 & 0}{1 & 0 & 0}{1 & 1 & 0}
 	\vspace{-5pt}
@@ -155,15 +156,16 @@ determining loss by way of \eqref{eq:losscalc} are as follows:
 Thus, our loss function `punishes' the network equally for false positives and 
 false negatives: due to the squared difference, a 1 where there should be a 0 
 adds the same loss as a 0 where there should be a one. This is perhaps not the 
-ideal method; see \ref{subsec:lossdics}. The value produced for each 
+ideal method; see \ref{subsec:lossdisc}. The value produced for each 
 input/target pair is then passed to the optimizer.
 
 \subsection{Optimizer Function}
 \label{subsec:optimizer}
-We used the Adam optimizer\footnote{Citation} as provided by TensorFlow, 
-providing different initial learning rates per dataset. Those values were 
-arrived at via experimentation. After initializing the optimizer, it is passed 
-the loss at each step and performs gradient descent on the trainable matrices.
+We used the Adam optimizer as provided by 
+TensorFlow\cite{tensorflow2015-whitepaper}, providing different initial learning 
+rates per dataset. Those values were arrived at via experimentation. After 
+initializing the optimizer, it is passed the loss at each step and performs 
+gradient descent on the trainable matrices.
 
 Adam adjusts its learning rate as time goes on, according to the following 
 equation, where $\beta_n^t$ indicates exponentiation by $t$ and $lr$ denotes 
@@ -199,8 +201,6 @@ learning rate:
 			asymptotically to 1.}
 	\end{minipage}
 \end{figure}
-
-\section{Datasets}
 
 
 \section{Matrices}

@@ -195,7 +195,7 @@ def spikeTimeArray(spikes, timesteps):
         output[int(spikes[1][i] * 10)] = np.array([int(spikes[0][i])])
     return output
 
-def perturb(matrix, chance=.1):
+def perturb(matrix, chance=.01):
     # incomplete
     for i in range(len(matrix)):
         for j in range(len(matrix)):
