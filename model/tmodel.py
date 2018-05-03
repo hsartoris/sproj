@@ -36,7 +36,7 @@ class Model():
         # for layer 1, weights['layer1]'[0] is in, and 1 is out
         self.biases = dict()
         biases_stddev = .01
-        weights_stddev = .05
+        weights_stddev = .01
         if matDir is not None:
             if trainable is None: trainable = [True, True, True]
             # attempt to load matrices from previous run
@@ -80,6 +80,7 @@ class Model():
         #self.layer2
         self.layer1
         self.layer1dumb
+        self.layer2dumb
         self.layer2
         self.layerFinal
         self.loss
@@ -118,13 +119,19 @@ class Model():
     @lazy_property
     def layer1dumb(self):
         return self.activation(tf.add(tf.einsum('ij,kjl->kil', 
-            self.weights['layer1'][0], self.layer0), tf.tile(self.biases['layer1'],
+            self.weights['layer1'][0], self.layer0_1), tf.tile(self.biases['layer1'],
+                [self.batchSize, 1, self.n*self.n])))
+
+    @lazy_property
+    def layer2dumb(self):
+        return self.activation(tf.add(tf.einsum('ij,kjl->kil', 
+            self.weights['layer2'][0], self.layer1dumb), tf.tile(self.biases['layer2'],
                 [self.batchSize, 1, self.n*self.n])))
 
     @lazy_property
     def layer1(self):
         #convolutional
-        data = self.layer0
+        data = self.layer0_1
 
         horizCompress = tf.einsum('ijk,kl->ijl', data, tf.transpose(self.expand))
         horizCompress = tf.divide(horizCompress, self.n)
@@ -168,8 +175,8 @@ class Model():
     @lazy_property
     def layerFinal(self):
         if self.dumb:
-            return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1dumb)
-        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer1)
+            return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2dumb)
+        return tf.einsum('ij,ljk->lik', self.weights['final'], self.layer2)
 
     @lazy_property
     def prediction(self):
