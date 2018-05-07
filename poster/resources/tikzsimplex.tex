@@ -1,0 +1,26 @@
+\tikzset{
+	simplex/.pic={
+		\newcount\mycount
+		\tikzset{state/.style={fill=none, draw=black, text=black, shape=circle}}
+		\pgfmathsetmacro\rot{360.0/\N}
+		\begin{scope}[rotate=\rot]
+			\node[regular polygon, regular polygon sides=\N,
+				minimum size=\radius, rotate=\rot] (A) {};
+			\pgfmathsetmacro\None{\N-1}
+			\foreach \i in {1,...,\N}
+			\node[state] (\i) at (A.corner \i) {\i};
+			
+			\foreach \i in {1,...,\None}{
+				\mycount=\i
+				\advance\mycount by 1
+				\foreach \j in {\the\mycount,...,\N} {
+					\draw[-{Stealth[scale=1.5,angle'=45]},semithick] (\i) -- (\j);
+				}
+			}
+		\end{scope}
+	},
+	N/.store in=\N,
+	radius/.store in=\radius,
+	radius=10cm,
+	N=5,
+}
