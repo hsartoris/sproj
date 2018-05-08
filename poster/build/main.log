@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  7 MAY 2018 17:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  8 MAY 2018 01:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -466,15 +466,26 @@ Package pgfplots: loading complementary arithmetics for your pgf version...
 File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
-))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
+))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+ (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
-) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
-File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
- (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
+)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+ (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+ (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+ (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.arrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.callouts.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.callouts.code.tex)) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
@@ -498,7 +509,11 @@ File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
 \pgfnodepartsevenbox=\box85
 \pgfnodepartsixbox=\box86
 \pgfnodepartfivebox=\box87
-))) (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
+File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
+) (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 \pgfarrowinset=\dimen188
 \pgfarrowlength=\dimen189
@@ -639,47 +654,45 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 \hssizeeb=\skip73
 \hssizeer=\skip74
 \hbsizeer=\skip75
-LaTeX Font Info:    Calculating math sizes for size <28.90755> on input line 22.
+LaTeX Font Info:    Calculating math sizes for size <28.90755> on input line 23.
 
-Overfull \hbox (36.45364pt too wide) in paragraph at lines 22--22
+Overfull \hbox (36.45364pt too wide) in paragraph at lines 23--23
 [][][][] 
  []
 
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 24--24
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 29--29
 [][][][] 
  []
 
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 35--35
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 38--38
+[][][][] 
+ []
+
+<resources/fullRun/0_py/input.png, id=4, 301.125pt x 803.0pt>
+File: resources/fullRun/0_py/input.png Graphic file (type png)
+<use resources/fullRun/0_py/input.png>
+Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 75.
+(pdftex.def)             Requested size: 53.83209pt x 143.55354pt.
+File: resources/fullRun/0_py/input.png Graphic file (type png)
+<use resources/fullRun/0_py/input.png>
+Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 97.
+(pdftex.def)             Requested size: 768.94945pt x 2050.94347pt.
+
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 109--109
 [][][][] 
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <28.90755> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
-<resources/fullRun/0_py/input.png, id=4, 301.125pt x 803.0pt>
-File: resources/fullRun/0_py/input.png Graphic file (type png)
-<use resources/fullRun/0_py/input.png>
-Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 62.
-(pdftex.def)             Requested size: 301.12425pt x 802.99805pt.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 112.
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 68--68
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 198--198
 [][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--117
-
- []
-
-\mycount=\count153
-
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 140--140
-[][][][] 
- []
-
-
-Overfull \hbox (25.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (25.91663pt too wide) in paragraph at lines 222--222
  [][][] 
  []
 
@@ -687,15 +700,15 @@ Overfull \hbox (25.91663pt too wide) in paragraph at lines 164--164
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resources/fullRun/0_py/input.png>] (build/main.aux) ) 
 Here is how much of TeX's memory you used:
- 25653 strings out of 492982
- 638939 string characters out of 6138579
- 895425 words of memory out of 5000000
- 28784 multiletter control sequences out of 15000+600000
+ 26534 strings out of 492982
+ 662722 string characters out of 6138579
+ 933283 words of memory out of 5000000
+ 29638 multiletter control sequences out of 15000+600000
  12830 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,96p,700b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,96p,700b,1156s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb>
-Output written on build/main.pdf (1 page, 94076 bytes).
+Output written on build/main.pdf (1 page, 94604 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream

@@ -30,17 +30,15 @@ class Model():
         for name, fname in self.biasStrs.items():
             self.biases[name] = np.expand_dims(self.lWMat(fname), 1)
 
-    def makeTiles(self, n):
+    def makeTiles(n):
         # needs to be called at runtime
         expand = np.array([[1]*n + [0]*n*(n-1)])
         for i in range(1, n):
             expand = np.append(expand, [[0]*n*i + [1]*n + [0]*n*(n-1-i)], 0)
-        self.expand = expand
         
         tile = np.array([([1] + [0]*(n-1))*n])
         for i in range(1, n):
             tile = np.append(tile, [([0]*i + [1] + [0]*(n-1-i))*n], 0)
-        self.tile = tile
         return expand, tile
 
     def layer0(self, data, n):
@@ -122,7 +120,7 @@ class Model():
         # assumes path exists
         np.savetxt(path, mat, delimiter=',')
 
-    def exportLayerDict(self, layer, layerPath, pn=False, n=None):
+    def exportLayerDict(self, layer, layerPath, pn=False, n=None, width=30):
         csvPath = layerPath + "csvs/"
         if not os.path.exists(layerPath):
             os.mkdir(layerPath)
@@ -132,13 +130,14 @@ class Model():
 
         for name, mat in layer.items():
             matVis(mat, layerPath + name + ".png", connections=pn, drawText=pn, 
-                    n=n, grayScale=True)
+                    n=n, grayScale=True, width=width)
             self.savenp(mat, csvPath + name)
 
     def run(self, data, saveDir, printNumbers=False, dumb=False, 
             saveInput=True):
         n = data.shape[1]
-        self.makeTiles(n)
+        self.expand, self.tile = Model.makeTiles(n);
+        #self.makeTiles(n)
         layer0dict = self.layer0(data, n)
         print("Layer 0 complete")
         if not dumb:
@@ -161,17 +160,18 @@ class Model():
         pred = pred.reshape((n,n))
 
         if saveInput: self.savenp(data, saveDir + "input")
+        width = 100
         matVis(data, saveDir + "input.png", drawText=printNumbers, 
-                grayScale=True)
+                grayScale=True, width=width)
         self.exportLayerDict(layer0dict, saveDir + "layer0/", pn=printNumbers, 
-                n=None)
+                n=None, width=width)
         self.exportLayerDict(layer1dict, saveDir + "layer1/", pn=printNumbers, 
-                n=None)
+                n=None, width=width)
         self.exportLayerDict(layerfdict, saveDir + "layerf/", pn=printNumbers,
-                n=None)
+                n=None, width=width)
         self.savenp(pred, saveDir + "pred")
         matVis(pred, saveDir + "pred.png", connections=printNumbers, 
-                drawText=printNumbers, grayScale=True)
+                drawText=printNumbers, grayScale=True, width=width)
         
 
 

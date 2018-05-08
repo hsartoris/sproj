@@ -2,7 +2,7 @@
 \usepackage{amssymb, amsthm, amsmath, amsfonts, fancybox, multicol, graphicx, 
 type1cm, color, array, bardtex, verbatim, tikz, pgfplots}
 
-\usetikzlibrary{shapes.geometric, positioning, automata, arrows.meta}
+\usetikzlibrary{shapes, shapes.geometric, positioning, automata, arrows.meta}
 
 \input{../resources/tikzsimplex.tex}
 \graphicspath{{resources/}}
@@ -17,49 +17,90 @@ type1cm, color, array, bardtex, verbatim, tikz, pgfplots}
 
 \begin{posterbard}
 
+	%\postertopwidthfactor{5}
 	\postertopscale{Neural Network Reconstruction via Graph Locality-Driven 
 		Machine Learning}{Hayden Sartoris}{Computer Science}{May 2018}{Sven 
-	Anderson, Arseny Khakhalin}{1}
+	Anderson, Arseny Khakhalin}{2}
 
-	\begin{posterboxabstract}
-		\noindent A ubiquitous problem within the field of computational 
-neuroscience is the determination of biological neural network structure and 
-connectivity from imaging of stochastic, large-scale network activity. We 
-propose an algorithm inspired by convolutional approaches to image processing, 
-adapted to the graph structure of neural networks. To achieve this, we redefine 
-locality in terms of graph adjacency, and create a scale-independent algorithm 
-facilitated by modern machine learning techniques to incorporate this locality 
-data into individual connection prediction.
-	\end{posterboxabstract}
+	\fontsize{\boxfontsize}{1.2\boxfontsize} \selectfont
+	\setlength{\columnseprule}{0pt}
+	\setlength{\columnsep}{0.01\textwidth}
 
-	\begin{posterboxtitle}{Steps Toward Our Goal}
+	\begin{posterboxtitle}{Overview}
+		\noindent We propose an algorithm inspired by convolutional approaches 
+to image processing, adapted to the graph structure of neural networks, in order 
+to solve the problem of network reconstruction from spiking data.
+To achieve this, we redefine locality in terms of graph adjacency, and create a 
+scale-independent algorithm facilitated by modern machine learning techniques to 
+incorporate this locality data into individual connection prediction.
+	\end{posterboxtitle}
+
+	\begin{posterboxtitle}{Process}
 		\noindent Our goal was to infer biological neural network connectivity 
-		from spiking data, itself inferred from calcium imaging of biological 
-		networks. To do so, we took the following steps:
-		\begin{enumerate}
-			\item Considered biological networks in terms of a graph 
-				representation
-			\item Identified features within that graph representation 
-				potentially useful to reconstruction
-			\item Created a model based around an algorithm informed by these 
-				features and inspired by convolutional neural networks
-			\item Generated data from a variety of simple test networks
-			\item Trained models on that data and analyzed the resulting output 
-				to determine efficacy
-		\end{enumerate}
+		from spiking data. To do so, we created the following data pathway:
+		\begin{center}
+			\scalebox{1.1}{
+			\begin{tikzpicture}[node distance=5em,->,
+				-{Stealth[scale=1.5,angle'=45]},semithick]
+				\tikzset{state/.style={fill=none, draw=black, text=black,
+					shape=circle}}
+				\node[state] (0) {0};
+				\node[state] (1) [right of=0] {1};
+				\node[state] (2) [below right of=0] {2};
+
+				\path 	(0) edge node {} (1)
+						(0) edge node {} (2)
+						(1) edge node {} (2);
+				\node (arrow) [below right=1.3cm of 1] 
+					{\scalebox{1.5}{$\Rightarrow$}};
+				\node (input) [right=1cm of arrow] 
+					{\includegraphics[width=.07\textwidth]{fullRun/0_py/input.png}};
+				\node (arrow2) [below=.8cm of input] 
+					{\rotatebox{-90}{\scalebox{1.5}{$\Rightarrow$}}};
+				\tikzset{state/.style={shape=rectangle, draw=black, minimum 
+				height=4cm, minimum width=4cm}}
+				\node[state] (model) [below=.8cm of arrow2] {Model};
+				\node (arrow3) [left=.6cm of model] 
+					{\scalebox{1.5}{$\Leftarrow$}};
+				\tikzset{state/.style={fill=none, draw=black, text=black,
+					shape=circle}}
+				\node[state] (3) [below=7.5cm of 0] {0};
+				\node[state] (4) [right of=3]{1};
+				\node[state] (5) [below right of=3] {2};
+
+				\path 	(3) edge node {} (4)
+						(3) edge node {} (5)
+						(4) edge node {} (5);
+
+			\end{tikzpicture}}
+		\end{center}
+		%\begin{enumerate}
+		%	\item Considered biological networks in terms of a graph 
+		%		representation
+		%	\item Identified features within that graph representation 
+		%		potentially useful to reconstruction
+		%	\item Created a model based around an algorithm informed by these 
+		%		features and inspired by convolutional neural networks
+		%	\item Generated data from a variety of simple test networks
+		%	\item Trained models on that data and analyzed the resulting output 
+		%		to determine efficacy
+		%\end{enumerate}
 	\end{posterboxtitle}
 
 	\begin{posterbox}
 		\begin{center}\textbf{Spike-time Raster Plots}\end{center}
-		\begin{itemize}
-			\item Matrices of binary data
-			\item Each row represents a step in time
-			\item Each column represents a neuron over time
-		\end{itemize}
 		For a three neuron network sampled for eight timesteps, a raster plot 
 		might appear as below.
 		\begin{center}
-			\scalebox{.5}{\includegraphics{fullRun/0_py/input.png}}
+			\begin{tikzpicture}
+			\node (input) 
+				{\scalebox{.2}{\includegraphics[width=\textwidth]{fullRun/0_py/input.png}}};
+			\node (neurons) [above=.7cm of input] {\textit{neurons} 
+			$\rightarrow$};
+			\node (time) [left=1cm of input] {\rotatebox{90}{$\leftarrow$ 
+				\textit{time}}};
+			\end{tikzpicture}
+			
 		\end{center}
 		\vspace{\baselineskip}
 	\end{posterbox}
@@ -79,7 +120,7 @@ data into individual connection prediction.
 		\begin{center}
 			\begin{tikzpicture}[node distance=5em,->,
 				-{Stealth[scale=1.5,angle'=45]},semithick]
-				\tikzset{state/.style={fill=none, draw=black, text=black,
+				\tikzset{state/.style={fill=none, draw=red, text=black,
 					shape=circle}}
 				\node[state] (0) {0};
 				\node[state] (1) [right of=0] {1};
@@ -89,6 +130,8 @@ data into individual connection prediction.
 						(0) edge node {} (2)
 						(1) edge node {} (2);
 				
+				\tikzset{state/.style={fill=none, draw=blue, text=black,
+					shape=circle}}
 				\node[state] (3) [right of=2] {3};
 				\node[state] (4) [above right of=3] {4};
 				\node[state] (5) [below of=4] {5};
@@ -112,29 +155,44 @@ data into individual connection prediction.
 			\item Some motifs, simplices, are structures in which information 
 				flows in one direction, from a `source' node to a `sink' node
 		\end{itemize}\footnote{Cite 5,9,11}
-		An example of a 6-simplex is below; the graph above contains a 2-simplex 
-		and a 3-simplex.\\
-		\begin{center}
-			\begin{tikzpicture}
-				\pgfmathsetmacro\N{7}
-				\pic {simplex={N=\N}};
-			\end{tikzpicture}
-		\end{center}
+		The graph above contains a 2-simplex, in red, and a 3-simplex, in blue.
 	\end{posterboxtitle}
 	\begin{posterbox}
 		\begin{center}\textbf{Graph Convolution}\end{center}
 		\begin{itemize}
-			\item Convolutional neural networks are used on data containing many 
-				local features, such as images
-			\item They involve tranposing a small `filter' matrix across input 
-				data, limiting the size of an analysis model to the total size 
-				of its filters, instead of the size of input images
-			\item In an image, nearby pixels are adjacent; in a graph, connected 
-				nodes are adjacent
 			\item We designed an algorithm to incorporate information from 
 				adjacent nodes in the determination of whether or not a given 
-				connection in a network exists
+				connection \textit{ij} in a network exists
 		\end{itemize}
+		\begin{center}
+		\begin{tikzpicture}[node distance=5em,->,
+			-{Stealth[scale=1.5,angle'=45]},semithick]
+			\tikzset{state/.style={fill=none, draw=black, text=black,
+				shape=circle}}
+				\node[state] (i) {i};
+				\node[state] (j) [above right of=1] {j};
+				\pgfmathsetmacro\dist{.1em}
+				\node (k1) [above=\dist of j] {};
+				\node (k2) [above right=\dist of j] {};
+				\node (k3) [right=\dist of j] {};
+				\node (k4) [below right=\dist of j] {};
+
+				\node (k5) [below=\dist of i] {};
+				\node (k6) [above left=\dist of i] {};
+				\node (k7) [left=\dist of i] {};
+				\node (k8) [below left=\dist of i] {};
+				\path 	(j) edge node {} (i)
+						(k1) edge node {} (j)
+						(k2) edge node {} (j)
+						(k3) edge node {} (j)
+						(k4) edge node {} (j)
+						(i) edge node {} (k5)
+						(i) edge node {} (k6)
+						(i) edge node {} (k7)
+						(i) edge node {} (k8);
+		\end{tikzpicture}
+		\end{center}
+
 		\vspace{\baselineskip}
 	\end{posterbox}
 	\begin{posterboxtitle}{Model}

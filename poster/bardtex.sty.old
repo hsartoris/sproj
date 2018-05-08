@@ -2754,7 +2754,7 @@ Bard College
 \setlength{\columnseprule}{0pt}
 \setlength{\columnsep}{0.01\textwidth}
 \setcounter{finalcolumnbadness}{0}
-\begin{multicols}{3}\raggedcolumns
+%\begin{multicols}{3}\raggedcolumns
 }
 
 \newcommand{\postertopseven}[5]{
@@ -2882,7 +2882,7 @@ Bard College
 \setlength{\columnseprule}{0pt}
 \setlength{\columnsep}{0.01\textwidth}
 \setcounter{finalcolumnbadness}{0}
-\begin{multicols}{3}\raggedcolumns
+%\begin{multicols}{3}\raggedcolumns
 }
 
 
@@ -2955,6 +2955,7 @@ Bard College
 \setlength{\hssizeer}{#6\hssizeea + \hssizeeb}
 \newlength{\hbsizeer}
 \setlength{\hbsizeer}{0.98\textwidth - 2.3\hssizeer}
+\setlenth{\hbsizeer}{0.98\textwidth}
 \setlength{\fboxrule}{0pt}
 \fbox{
 \begin{minipage}{\hssizeer}
@@ -2962,6 +2963,9 @@ Bard College
 \leftlogofig
 \end{center}
 \end{minipage}
+\fontsize{\boxfontsize}{1.2\boxfontsize} \selectfont
+\setlength{\columnseprule}{0pt}
+\setlength{\columnsep}{0.01\textwidth}
 }
 \hfill
 \setlength{\fboxrule}{0pt}
@@ -2970,14 +2974,14 @@ Bard College
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{.950\hbsizeer}
-\begin{center}
+\begin{minipage}{\textwidth}
+\centering
 \bf \fontsize{\titlefontsize}{\titlefontsize}\selectfont
  \textcolor{\topptitlecolor}{#1}\\ \bigskip
 \fontsize{\namefontsize}{\namefontsize}\selectfont
  #2 \qquad \fontsize{\advfontsize}{\advfontsize}\selectfont \addviser: #5\\ \bigskip\bigskip
 \fontsize{\progdatefontsize}{\progdatefontsize}\selectfont 
 #3 \pprogram, Bard College, #4
-\end{center}
 \end{minipage}
 \end{Sbox}
 \setlength{\fboxrule}{4pt}
@@ -3505,7 +3509,7 @@ Bard College
 \setlength{\hssizeer}{##6\hssizeea + \hssizeeb}
 \newlength{\hbsizeer}
 %\setlength{\hbsizeer}{0.98\textwidth - 2.3\hssizeer}
-\setlength{\hbsizeer}{0.98\textwidth}
+\setlength{\hbsizeer}{.98\textwidth}
 \setlength{\fboxrule}{0pt}
 \fbox{
 \begin{minipage}{\hssizeer}
@@ -3514,7 +3518,7 @@ Bard College
 \end{center}
 \end{minipage}
 }
-\hfill
+%\hfill
 \setlength{\fboxrule}{0pt}
 \fbox{
 \begin{minipage}{\hbsizeer}
@@ -3523,11 +3527,12 @@ Bard College
 \begin{minipage}{.950\hbsizeer}
 \begin{center}
 \bf \fontsize{\titlefontsize}{\titlefontsize}\selectfont
- \textcolor{\topptitlecolor}{##1}\\ \bigskip
+ \textcolor{\topptitlecolor}{#1}\\ \bigskip
 \fontsize{\namefontsize}{\namefontsize}\selectfont
-##2 \qquad \fontsize{\advfontsize}{\advfontsize}\selectfont \addviser: ##5\\ \bigskip\bigskip
-\fontsize{\progdatefontsize}{\progdatefontsize}\selectfont 
-##3 \pprogram, Bard College, ##4
+#2 \qquad \fontsize{\advfontsize}{\advfontsize}\selectfont \addviser: #5\\ 
+\bigskip\bigskip
+\fontsize{\progdatefontsize}{\progdatefontsize}\selectfont #3 \pprogram, Bard 
+College, #4
 \end{center}
 \end{minipage}
 \end{Sbox}
@@ -3537,7 +3542,7 @@ Bard College
 \end{center}
 \end{minipage}
 }
-\hfill
+%\hfill
 \setlength{\fboxrule}{0pt}
 \fbox{
 \begin{minipage}{\hssizeer}
@@ -4170,8 +4175,7 @@ Bard College
 \newlength{\hssizeer}
 \setlength{\hssizeer}{##6\hssizeea + \hssizeeb}
 \newlength{\hbsizeer}
-%\setlength{\hbsizeer}{0.98\textwidth - 2.3\hssizeer}
-\setlength{\hbsizeer}{0.95\textwidth}
+\setlength{\hbsizeer}{0.98\textwidth - 2.3\hssizeer}
 \setlength{\fboxrule}{0pt}
 \fbox{
 \begin{minipage}{\hssizeer}

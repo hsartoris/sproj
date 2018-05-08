@@ -1,0 +1,94 @@
+\begin{thebibliography}{10}
+
+\bibitem{2006mathematics}
+{\em Mathematics of Control, Signals, and Systems: MCSS.}
+\newblock Number v. 18. Springer International, 2006.
+
+\bibitem{tensorflow2015-whitepaper}
+M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
+  A.~Davis, J.~Dean, M.~Devin, S.~Ghemawat, I.~Goodfellow, A.~Harp, G.~Irving,
+  M.~Isard, Y.~Jia, R.~Jozefowicz, L.~Kaiser, M.~Kudlur, J.~Levenberg,
+  D.~Man\'{e}, R.~Monga, S.~Moore, D.~Murray, C.~Olah, M.~Schuster, J.~Shlens,
+  B.~Steiner, I.~Sutskever, K.~Talwar, P.~Tucker, V.~Vanhoucke, V.~Vasudevan,
+  F.~Vi\'{e}gas, O.~Vinyals, P.~Warden, M.~Wattenberg, M.~Wicke, Y.~Yu, and
+  X.~Zheng.
+\newblock {TensorFlow}: Large-scale machine learning on heterogeneous systems,
+  2015.
+\newblock Software available from tensorflow.org.
+
+\bibitem{networksciencebook}
+A.~Barab{\'a}si and M.~P{\'o}sfai.
+\newblock {\em Network Science}.
+\newblock Cambridge University Press, 2016.
+
+\bibitem{lecun1998gradient}
+Y.~LeCun, L.~Bottou, Y.~Bengio, and P.~Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 1998.
+
+\bibitem{Milo824}
+R.~Milo, S.~Shen-Orr, S.~Itzkovitz, N.~Kashtan, D.~Chklovskii, and U.~Alon.
+\newblock Network motifs: Simple building blocks of complex networks.
+\newblock {\em Science}, 298(5594):824--827, 2002.
+
+\bibitem{nair2010rectified}
+V.~Nair and G.~E. Hinton.
+\newblock Rectified linear units improve restricted boltzmann machines.
+\newblock In {\em Proceedings of the 27th international conference on machine
+  learning (ICML-10)}, pages 807--814, 2010.
+
+\bibitem{neher1992patch}
+E.~Neher and B.~Sakmann.
+\newblock The patch clamp technique.
+\newblock {\em Scientific American}, 266(3):44--51, 1992.
+
+\bibitem{actionpotential}
+J.~Platkiewicz and R.~Brette.
+\newblock A threshold equation for action potential initiation.
+\newblock {\em PLOS Computational Biology}, 6(7):1--16, 07 2010.
+
+\bibitem{netmotifs-robustness}
+R.~J. Prill, P.~A. Iglesias, and A.~Levchenko.
+\newblock Dynamic properties of network motifs contribute to biological network
+  organization.
+\newblock {\em PLOS Biology}, 3(11), 10 2005.
+
+\bibitem{Ray2015}
+B.~Ray, A.~Statnikov, and C.~Aliferis.
+\newblock {Computational Methods for Unraveling Temporal Brain Connectivity
+  Data.}
+\newblock {\em AMIA ... Annual Symposium proceedings. AMIA Symposium},
+  2015:2043--52, 2015.
+
+\bibitem{Reimann2017}
+M.~W. Reimann, M.~Nolte, M.~Scolamiero, K.~Turner, R.~Perin, G.~Chindemi,
+  P.~D{\l}otko, R.~Levi, K.~Hess, and H.~Markram.
+\newblock {Cliques of Neurons Bound into Cavities Provide a Missing Link
+  between Structure and Function}.
+\newblock {\em Frontiers in Computational Neuroscience}, 2017.
+
+\bibitem{Rumelhart}
+D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
+\newblock Parallel distributed processing: Explorations in the microstructure
+  of cognition, vol. 1.
+\newblock chapter Learning Internal Representations by Error Propagation, pages
+  318--362. MIT Press, Cambridge, MA, USA, 1986.
+
+\bibitem{axonlens}
+O.~Shefi, I.~Golding, R.~Segev, E.~Ben-Jacob, and A.~Ayali.
+\newblock Morphological characterization of in vitro neuronal networks.
+\newblock {\em Phys. Rev. E}, 66:021905, Aug 2002.
+
+\bibitem{Stosiek7319}
+C.~Stosiek, O.~Garaschuk, K.~Holthoff, and A.~Konnerth.
+\newblock In vivo two-photon calcium imaging of neuronal networks.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  100(12):7319--7324, 2003.
+
+\bibitem{Xu8025}
+H.~Xu, A.~S. Khakhalin, A.~V. Nurmikko, and C.~D. Aizenman.
+\newblock Visual experience-dependent maturation of correlated neuronal
+  activity patterns in a developing visual system.
+\newblock {\em Journal of Neuroscience}, 31(22):8025--8036, 2011.
+
+\end{thebibliography}
