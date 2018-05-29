@@ -1,7 +1,8 @@
 \tikzset{
 	simplex/.pic={
 		\newcount\mycount
-		\tikzset{state/.style={fill=none, draw=black, text=black, shape=circle}}
+		\tikzset{state/.style={fill=none, draw=violet, text=black, 
+		shape=circle}}
 		\pgfmathsetmacro\rot{360.0/\N}
 		\begin{scope}[rotate=\rot]
 			\node[regular polygon, regular polygon sides=\N,

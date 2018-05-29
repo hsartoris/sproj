@@ -24,6 +24,7 @@ def matVis(matrix, outFile = None, width=30, connections=False, n=None,
                     (255 if matVal < 0 and not grayScale else 0), 
                     int(abs(matVal)/pixRange * 255)]
             matArr[yoffset:matrix.shape[0]*width, pixW] = [(0, 0, 0, 255)]
+            matArr[pixH+yoffset, 0:matrix.shape[1]*width] = [(0,0,0,255)]
             if matVal == pixRange or abs(matVal) == pixRange:
                 maxBlock = (i,j)
     # draw vertical border left

@@ -130,7 +130,7 @@ class Model():
 
         for name, mat in layer.items():
             matVis(mat, layerPath + name + ".png", connections=pn, drawText=pn, 
-                    n=n, grayScale=True, width=width)
+                    n=n, grayScale=False, width=width)
             self.savenp(mat, csvPath + name)
 
     def run(self, data, saveDir, printNumbers=False, dumb=False, 
@@ -162,7 +162,7 @@ class Model():
         if saveInput: self.savenp(data, saveDir + "input")
         width = 100
         matVis(data, saveDir + "input.png", drawText=printNumbers, 
-                grayScale=True, width=width)
+                grayScale=False, width=width)
         self.exportLayerDict(layer0dict, saveDir + "layer0/", pn=printNumbers, 
                 n=None, width=width)
         self.exportLayerDict(layer1dict, saveDir + "layer1/", pn=printNumbers, 
@@ -171,7 +171,7 @@ class Model():
                 n=None, width=width)
         self.savenp(pred, saveDir + "pred")
         matVis(pred, saveDir + "pred.png", connections=printNumbers, 
-                drawText=printNumbers, grayScale=True, width=width)
+                drawText=printNumbers, grayScale=False, width=width)
         
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  8 MAY 2018 01:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.4.28)  9 MAY 2018 20:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -519,6 +519,8 @@ File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 \pgfarrowlength=\dimen189
 \pgfarrowwidth=\dimen190
 \pgfarrowlinewidth=\dimen191
+) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
 ) (build/../resources/tikzsimplex.tex) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
  (/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
@@ -549,18 +551,18 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
  (build/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count147
@@ -614,7 +616,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into your preamble.
- on input line 16.
+ on input line 17.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -654,64 +656,85 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 \hssizeeb=\skip73
 \hssizeer=\skip74
 \hbsizeer=\skip75
-LaTeX Font Info:    Calculating math sizes for size <28.90755> on input line 23.
+LaTeX Font Info:    Calculating math sizes for size <28.90755> on input line 24.
 
-Overfull \hbox (36.45364pt too wide) in paragraph at lines 23--23
+Overfull \hbox (36.45364pt too wide) in paragraph at lines 24--24
 [][][][] 
  []
 
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 29--29
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 30--30
 [][][][] 
  []
 
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 38--38
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 40--40
 [][][][] 
  []
 
 <resources/fullRun/0_py/input.png, id=4, 301.125pt x 803.0pt>
 File: resources/fullRun/0_py/input.png Graphic file (type png)
 <use resources/fullRun/0_py/input.png>
-Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 75.
+Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 85.
 (pdftex.def)             Requested size: 53.83209pt x 143.55354pt.
 File: resources/fullRun/0_py/input.png Graphic file (type png)
 <use resources/fullRun/0_py/input.png>
-Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 97.
+Package pdftex.def Info: resources/fullRun/0_py/input.png  used on input line 108.
+(pdftex.def)             Requested size: 768.94945pt x 2050.94347pt.
+<resources/fullRun/invert/input.png, id=6, 301.125pt x 803.0pt>
+File: resources/fullRun/invert/input.png Graphic file (type png)
+<use resources/fullRun/invert/input.png>
+Package pdftex.def Info: resources/fullRun/invert/input.png  used on input line 117.
 (pdftex.def)             Requested size: 768.94945pt x 2050.94347pt.
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 109--109
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 131--131
 [][][][] 
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <28.90755> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 112.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
+\mycount=\count153
 
-Overfull \hbox (37.25363pt too wide) in paragraph at lines 198--198
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 241--241
 [][][][] 
  []
 
 
-Overfull \hbox (25.91663pt too wide) in paragraph at lines 222--222
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 365--365
+[][][][] 
+ []
+
+
+Overfull \hbox (37.25363pt too wide) in paragraph at lines 384--384
+[][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 399--403
+
+ []
+
+
+Overfull \hbox (25.91663pt too wide) in paragraph at lines 407--407
  [][][] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resources/fullRun/0_py/input.png>] (build/main.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resources/fullRun/0_py/input.png> <./resources/fullRun/invert/input.png>] (build/main.aux) ) 
 Here is how much of TeX's memory you used:
- 26534 strings out of 492982
- 662722 string characters out of 6138579
- 933283 words of memory out of 5000000
- 29638 multiletter control sequences out of 15000+600000
- 12830 words of font info for 49 fonts, out of 8000000 for 9000
+ 26747 strings out of 492982
+ 666968 string characters out of 6138579
+ 994554 words of memory out of 5000000
+ 29851 multiletter control sequences out of 15000+600000
+ 10441 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,15n,96p,700b,1156s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb>
-Output written on build/main.pdf (1 page, 94604 bytes).
+ 62i,15n,96p,700b,1450s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on build/main.pdf (1 page, 85709 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 40 PDF objects out of 1000 (max. 8388607)
+ 26 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
